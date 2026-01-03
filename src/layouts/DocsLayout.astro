@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/astro/docs/Sidebar.astro';
+import TableOfContents from '../components/astro/docs/TableOfContents.astro';
+
+interface Props {
+  doc: CollectionEntry<'docs'>;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { doc, headings } = Astro.props;
+const { title, description } = doc.data;
+
+// Get all docs for sidebar
+const allDocs = await getCollection('docs');
+---
+
+<BaseLayout title={`${title} | Skill Seekers Docs`} description={description}>
+  <div class="flex min-h-screen bg-dark-bg">
+    <!-- Sidebar -->
+    <Sidebar docs={allDocs} currentSlug={doc.slug} />
+
+    <!-- Main Content -->
+    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-64">
+      <div class="mx-auto max-w-4xl">
+        <!-- Breadcrumbs -->
+        <nav class="mb-8 text-sm" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2 text-dark-text-secondary">
+            <li><a href="/" class="hover:text-brand-primary transition-colors">Home</a></li>
+            <li class="flex items-center">
+              <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <a href="/docs/getting-started/overview" class="hover:text-brand-primary transition-colors">Docs</a>
+            </li>
+            <li class="flex items-center">
+              <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-dark-text-primary">{title}</span>
+            </li>
+          </ol>
+        </nav>
+
+        <!-- Article -->
+        <article class="prose prose-invert prose-indigo max-w-none">
+          <h1 class="text-4xl font-bold mb-4 text-dark-text-primary">{title}</h1>
+          <p class="text-lg text-dark-text-secondary mb-8">{description}</p>
+
+          <div class="prose-headings:text-dark-text-primary prose-p:text-dark-text-secondary prose-a:text-brand-primary prose-strong:text-dark-text-primary prose-code:text-brand-secondary prose-pre:bg-dark-surface prose-pre:border prose-pre:border-dark-border">
+            <slot />
+          </div>
+        </article>
+
+        <!-- Page Navigation -->
+        <div class="mt-12 pt-8 border-t border-dark-border flex justify-between">
+          <div>
+            <!-- Previous page link will go here -->
+          </div>
+          <div>
+            <!-- Next page link will go here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Table of Contents (desktop only) -->
+    {headings.length > 0 && (
+      <aside class="hidden xl:block xl:w-64 flex-shrink-0">
+        <div class="sticky top-20 py-8">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  docs: CollectionEntry<'docs'>[];
+  currentSlug: string;
+}
+
+const { docs, currentSlug } = Astro.props;
+
+// Organize docs by section
+const sections = {
+  'getting-started': { title: 'Getting Started', order: 1, docs: [] as CollectionEntry<'docs'>[] },
+  'features': { title: 'Features', order: 2, docs: [] as CollectionEntry<'docs'>[] },
+  'guides': { title: 'Guides', order: 3, docs: [] as CollectionEntry<'docs'>[] },
+  'cli': { title: 'CLI Reference', order: 4, docs: [] as CollectionEntry<'docs'>[] },
+  'api': { title: 'API Reference', order: 5, docs: [] as CollectionEntry<'docs'>[] },
+};
+
+// Group docs by section
+docs.forEach((doc) => {
+  const section = doc.data.section;
+  if (sections[section]) {
+    sections[section].docs.push(doc);
+  }
+});
+
+// Sort docs within each section by order
+Object.values(sections).forEach((section) => {
+  section.docs.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+});
+
+// Get ordered sections
+const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order - b.order);
+---
+
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto border-r border-dark-border bg-dark-surface px-4 py-6 hidden xl:block">
+  <nav aria-label="Documentation navigation">
+    <div class="space-y-6">
+      {orderedSections.map(([key, section]) => (
+        section.docs.length > 0 && (
+          <div>
+            <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary">
+              {section.title}
+            </h3>
+            <ul class="space-y-1">
+              {section.docs.map((doc) => {
+                const isActive = doc.slug === currentSlug;
+                return (
+                  <li>
+                    <a
+                      href={`/docs/${doc.slug}`}
+                      class={`block rounded px-3 py-2 text-sm transition-colors ${
+                        isActive
+                          ? 'bg-brand-primary text-white font-medium'
+                          : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
+                      }`}
+                    >
+                      {doc.data.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )
+      ))}
+    </div>
+  </nav>
+
+  <!-- Mobile Toggle (for future mobile menu) -->
+  <div class="xl:hidden mb-4">
+    <button
+      id="docs-mobile-menu-toggle"
+      class="flex items-center gap-2 rounded-lg border border-dark-border bg-dark-surface px-4 py-2 text-sm text-dark-text-primary hover:bg-dark-border transition-colors"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      Menu
+    </button>
+  </div>
+</aside>
+
+<script>
+  // Mobile menu toggle (for future implementation)
+  const toggle = document.getElementById('docs-mobile-menu-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      // Mobile menu logic will go here
+      console.log('Mobile menu clicked');
+    });
+  }
+</script>

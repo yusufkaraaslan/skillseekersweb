@@ -1,0 +1,30 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter to only h2 and h3
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <nav class="sticky top-20" aria-label="Table of contents">
+    <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary">
+      On This Page
+    </h4>
+    <ul class="space-y-2 text-sm">
+      {tocHeadings.map((heading) => (
+        <li class={heading.depth === 3 ? 'ml-4' : ''}>
+          <a
+            href={`#${heading.slug}`}
+            class="block text-dark-text-secondary hover:text-brand-primary transition-colors"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

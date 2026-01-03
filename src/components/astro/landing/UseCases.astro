@@ -1,0 +1,121 @@
+---
+// Use cases section with examples
+
+const useCases = [
+  {
+    title: 'For Developers',
+    icon: '👨‍💻',
+    description: 'Create skills from documentation + GitHub repos with automatic conflict detection.',
+    example: 'Build a React skill from official docs + GitHub repo, catch API changes before they surprise you.',
+    gradient: '#3b82f6, #06b6d4',
+  },
+  {
+    title: 'For Game Developers',
+    icon: '🎮',
+    description: 'Generate comprehensive skills for game engines like Godot (handles 40K+ pages!).',
+    example: 'Create complete Godot skill covering all topics with intelligent router/hub pattern.',
+    gradient: '#a855f7, #ec4899',
+  },
+  {
+    title: 'For Teams',
+    icon: '👥',
+    description: 'Combine internal docs + code repositories into single source of truth.',
+    example: 'Share custom configs via private git repos across 3-500+ team members.',
+    gradient: '#22c55e, #10b981',
+  },
+  {
+    title: 'For Learners',
+    icon: '📚',
+    description: 'Build comprehensive skills from docs, code examples, and PDF tutorials.',
+    example: 'Combine official docs + GitHub examples + PDF manual into one unified learning resource.',
+    gradient: '#f97316, #ef4444',
+  },
+  {
+    title: 'For Open Source',
+    icon: '🔍',
+    description: 'Analyze repos to find documentation gaps and outdated examples automatically.',
+    example: 'Detect discrepancies between documentation and actual code implementation.',
+    gradient: '#6366f1, #a855f7',
+  },
+];
+---
+
+<section class="py-20 bg-dark-bg">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          Who Uses Skill Seekers?
+        </span>
+      </h2>
+      <p class="text-xl text-dark-text-secondary">
+        From solo developers to enterprise teams
+      </p>
+    </div>
+
+    <!-- Use Cases Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {useCases.map((useCase, index) => (
+        <div
+          class="group relative overflow-hidden rounded-xl border border-dark-border bg-dark-surface p-8 transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-1"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <!-- Icon with gradient background -->
+          <div
+            class="mb-6 flex h-16 w-16 items-center justify-center rounded-lg text-4xl shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3"
+            style={`background: linear-gradient(135deg, ${useCase.gradient})`}
+          >
+            {useCase.icon}
+          </div>
+
+          <!-- Title -->
+          <h3 class="mb-3 text-2xl font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">
+            {useCase.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="mb-4 text-dark-text-secondary leading-relaxed">
+            {useCase.description}
+          </p>
+
+          <!-- Example -->
+          <div class="rounded-lg bg-dark-bg/50 p-4 border border-dark-border/50 group-hover:border-brand-primary/30 transition-colors">
+            <p class="text-sm text-dark-text-secondary italic leading-relaxed">
+              "{useCase.example}"
+            </p>
+          </div>
+
+          <!-- Animated glow effect -->
+          <div class="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Platform Support Banner -->
+    <div class="rounded-lg border border-dark-border bg-gradient-to-r from-dark-surface to-dark-bg p-8">
+      <div class="text-center">
+        <h3 class="text-2xl font-semibold mb-4">Multi-Platform Support</h3>
+        <p class="text-dark-text-secondary mb-6">
+          Export your skills to multiple LLM platforms with platform-specific optimizations
+        </p>
+
+        <!-- Platform badges -->
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+            🤖 Claude AI
+          </div>
+          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+            💎 Google Gemini
+          </div>
+          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+            🔮 OpenAI ChatGPT
+          </div>
+          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+            📝 Generic Markdown
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

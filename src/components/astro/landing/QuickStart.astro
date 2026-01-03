@@ -1,0 +1,158 @@
+---
+// Quick start section with code examples
+
+const codeExamples = [
+  {
+    title: '1. Install',
+    description: 'Install from PyPI in seconds',
+    code: 'pip install skill-seekers',
+    language: 'bash',
+  },
+  {
+    title: '2. Scrape Docs',
+    description: 'Use preset configs or create your own',
+    code: `skill-seekers scrape --config react
+# Or from URL directly
+skill-seekers scrape --url https://react.dev --name react`,
+    language: 'bash',
+  },
+  {
+    title: '3. Package & Upload',
+    description: 'Create .zip and upload to Claude',
+    code: `skill-seekers package output/react/
+skill-seekers upload react.zip
+
+# Done! Your skill is ready to use`,
+    language: 'bash',
+  },
+];
+---
+
+<section class="py-20 bg-dark-surface border-y border-dark-border">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          Get Started in 3 Steps
+        </span>
+      </h2>
+      <p class="text-xl text-dark-text-secondary">
+        From zero to production-ready skill in 20-40 minutes
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      {codeExamples.map((example, index) => (
+        <div class="relative group" style={`animation-delay: ${index * 150}ms`}>
+          <!-- Step number badge -->
+          <div class="absolute -top-4 -left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary text-lg font-bold text-white shadow-lg shadow-brand-primary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+            {index + 1}
+          </div>
+
+          <!-- Code block -->
+          <div class="rounded-xl border border-dark-border bg-dark-bg overflow-hidden transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-1">
+            <!-- Header -->
+            <div class="border-b border-dark-border bg-dark-surface px-4 py-3 transition-colors group-hover:bg-dark-surface/80">
+              <h3 class="text-lg font-semibold text-dark-text-primary mb-1 group-hover:text-brand-primary transition-colors">
+                {example.title}
+              </h3>
+              <p class="text-sm text-dark-text-secondary">
+                {example.description}
+              </p>
+            </div>
+
+            <!-- Code -->
+            <div class="relative p-4">
+              <button
+                class="copy-btn absolute top-6 right-6 rounded-md bg-dark-surface border border-dark-border px-3 py-1.5 text-xs text-dark-text-secondary hover:text-brand-primary hover:border-brand-primary hover:bg-dark-border transition-all duration-200 hover:scale-105"
+                data-copy={example.code}
+              >
+                Copy
+              </button>
+              <pre class="overflow-x-auto"><code class="text-sm font-mono text-dark-text-primary leading-relaxed">{example.code}</code></pre>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional installation methods -->
+    <div class="mx-auto max-w-4xl">
+      <div class="rounded-xl border border-dark-border bg-dark-bg p-8 hover:border-brand-primary/50 transition-colors duration-300">
+        <h3 class="text-xl font-semibold mb-6 text-center bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          Multiple Installation Options
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- PyPI -->
+          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-success hover:shadow-lg hover:shadow-brand-success/10">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-success transition-colors">PyPI (Recommended)</h4>
+              <span class="text-xs bg-brand-success/20 text-brand-success px-2 py-1 rounded-full">Easiest</span>
+            </div>
+            <code class="block text-sm font-mono text-dark-text-secondary">pip install skill-seekers</code>
+          </div>
+
+          <!-- uv -->
+          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/10">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">uv (Modern)</h4>
+              <span class="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-full">Fast</span>
+            </div>
+            <code class="block text-sm font-mono text-dark-text-secondary">uv tool install skill-seekers</code>
+          </div>
+
+          <!-- Source -->
+          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-secondary hover:shadow-lg hover:shadow-brand-secondary/10">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-secondary transition-colors">From Source</h4>
+              <span class="text-xs bg-brand-secondary/20 text-brand-secondary px-2 py-1 rounded-full">Dev</span>
+            </div>
+            <code class="block text-sm font-mono text-dark-text-secondary">git clone && pip install -e .</code>
+          </div>
+
+          <!-- MCP -->
+          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-warning hover:shadow-lg hover:shadow-brand-warning/10">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-warning transition-colors">MCP Integration</h4>
+              <span class="text-xs bg-brand-warning/20 text-brand-warning px-2 py-1 rounded-full">5 Agents</span>
+            </div>
+            <code class="block text-sm font-mono text-dark-text-secondary">./setup_mcp.sh</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center">
+      <a
+        href="/docs/getting-started/installation"
+        class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-transform hover:scale-105"
+      >
+        Read Full Installation Guide
+        <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Copy to clipboard functionality for all copy buttons
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      if (text) {
+        await navigator.clipboard.writeText(text);
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }
+    });
+  });
+</script>

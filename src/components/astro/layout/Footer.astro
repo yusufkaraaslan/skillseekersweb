@@ -1,0 +1,121 @@
+---
+// Footer with links and social
+
+const footerLinks = {
+  Product: [
+    { label: 'Features', href: '/docs/getting-started/overview' },
+    { label: 'Configs', href: '/configs' },
+    { label: 'Documentation', href: '/docs/getting-started/overview' },
+    { label: 'API Reference', href: 'https://api.skillseekersweb.com/docs' },
+  ],
+  Resources: [
+    { label: 'Getting Started', href: '/docs/getting-started/installation' },
+    { label: 'Quick Start', href: '/docs/getting-started/quick-start' },
+    { label: 'Installation', href: '/docs/getting-started/installation' },
+    { label: 'Overview', href: '/docs/getting-started/overview' },
+  ],
+  Community: [
+    { label: 'GitHub', href: 'https://github.com/yusufkaraaslan/Skill_Seekers' },
+    { label: 'Issues', href: 'https://github.com/yusufkaraaslan/Skill_Seekers/issues' },
+    { label: 'PyPI', href: 'https://pypi.org/project/skill-seekers/' },
+    { label: 'Project Board', href: 'https://github.com/users/yusufkaraaslan/projects/2' },
+  ],
+};
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-dark-border bg-dark-surface">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <a href="/" class="flex items-center space-x-2 text-xl font-bold mb-4">
+          <svg class="h-8 w-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="footer-logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path d="M20 2L37 10V20C37 29 32 35 20 38C8 35 3 29 3 20V10L20 2Z" fill="url(#footer-logo-gradient)" />
+            <path d="M20 10L28 14V20C28 24 26 27 20 29C14 27 12 24 12 20V14L20 10Z" fill="#0a0a0f" />
+          </svg>
+          <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+            Skill Seekers
+          </span>
+        </a>
+        <p class="text-sm text-dark-text-secondary mb-4">
+          Transform documentation into Claude AI skills in minutes.
+        </p>
+        <!-- Stats Badge -->
+        <div class="flex items-center space-x-2 text-xs text-dark-text-secondary">
+          <span class="flex items-center space-x-1">
+            <svg class="h-4 w-4 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span>700+ tests</span>
+          </span>
+          <span>•</span>
+          <span>v2.5.2</span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      {Object.entries(footerLinks).map(([category, links]) => (
+        <div>
+          <h3 class="text-sm font-semibold text-dark-text-primary mb-4">{category}</h3>
+          <ul class="space-y-3">
+            {links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-dark-text-secondary hover:text-brand-primary transition-colors"
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="pt-8 border-t border-dark-border flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+      <p class="text-sm text-dark-text-secondary">
+        © {currentYear} Skill Seekers. MIT License. Built with ❤️ using <a href="https://astro.build" class="text-brand-primary hover:text-brand-secondary">Astro</a>.
+      </p>
+
+      <!-- Social Links -->
+      <div class="flex items-center space-x-6">
+        <a
+          href="https://github.com/yusufkaraaslan/Skill_Seekers"
+          class="text-dark-text-secondary hover:text-brand-primary transition-colors"
+          aria-label="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <a
+          href="https://pypi.org/project/skill-seekers/"
+          class="text-dark-text-secondary hover:text-brand-primary transition-colors"
+          aria-label="PyPI"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
+            <path d="M7.5 9.5h9v5h-9z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

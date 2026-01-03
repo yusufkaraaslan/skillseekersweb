@@ -1,0 +1,120 @@
+---
+// Navigation header with logo and menu
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/configs', label: 'Configs' },
+  { href: '/docs/getting-started/overview', label: 'Docs' },
+  { href: 'https://github.com/yusufkaraaslan/Skill_Seekers', label: 'GitHub', external: true },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-dark-border bg-dark-bg/80 backdrop-blur-lg">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-2 text-xl font-bold">
+        <svg class="h-8 w-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path d="M20 2L37 10V20C37 29 32 35 20 38C8 35 3 29 3 20V10L20 2Z" fill="url(#logo-gradient)" />
+          <path d="M20 10L28 14V20C28 24 26 27 20 29C14 27 12 24 12 20V14L20 10Z" fill="#0a0a0f" />
+        </svg>
+        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          Skill Seekers
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-brand-primary',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-brand-primary'
+                : 'text-dark-text-secondary',
+            ]}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+
+        <!-- CTA Button -->
+        <a
+          href="/docs/getting-started/installation"
+          class="rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
+        >
+          Get Started
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden rounded-lg p-2 text-dark-text-secondary hover:bg-dark-surface hover:text-dark-text-primary focus:outline-none focus:ring-2 focus:ring-brand-primary"
+        aria-label="Toggle mobile menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden pb-4"
+    >
+      <div class="flex flex-col space-y-3">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'bg-brand-primary/10 text-brand-primary'
+                : 'text-dark-text-secondary hover:bg-dark-surface hover:text-dark-text-primary',
+            ]}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/docs/getting-started/installation"
+          class="rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-3 py-2 text-center text-sm font-semibold text-white"
+        >
+          Get Started
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  button?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (!button?.contains(target) && !menu?.contains(target)) {
+      menu?.classList.add('hidden');
+    }
+  });
+</script>

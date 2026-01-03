@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ConfigGallery from '../components/react/ConfigGallery';
+import { fetchConfigs } from '../utils/api';
+
+// Fetch configs at build time
+const configs = await fetchConfigs();
+---
+
+<BaseLayout
+  title="Configuration Gallery | Skill Seekers"
+  description="Browse and download 27 production-ready configurations for Skill Seekers. Convert documentation, GitHub repos, and PDFs into Claude AI skills with pre-built configs."
+>
+  <ConfigGallery client:load initialConfigs={configs} />
+</BaseLayout>

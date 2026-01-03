@@ -1,0 +1,107 @@
+---
+// Features grid with 7 key features
+
+const features = [
+  {
+    icon: '🌐',
+    title: 'Documentation Scraping',
+    description: 'Convert ANY documentation website to Claude AI skills in 20-40 minutes. Auto-detects llms.txt for 10x faster scraping.',
+  },
+  {
+    icon: '🐙',
+    title: 'GitHub Repository Analysis',
+    description: 'Deep AST parsing for Python, JavaScript, TypeScript, Java, C++, Go. Extract APIs, functions, classes with full signatures.',
+  },
+  {
+    icon: '📄',
+    title: 'PDF + Advanced Formats',
+    description: 'Extract text, code, images, and tables from PDFs. OCR support for scanned documents. 3x faster with parallel processing.',
+  },
+  {
+    icon: '🔄',
+    title: 'Multi-Source Unification',
+    description: 'Combine documentation + GitHub code + PDFs in ONE skill. Automatic conflict detection shows docs vs. code discrepancies.',
+  },
+  {
+    icon: '🤖',
+    title: '4 LLM Platform Support',
+    description: 'Export to Claude AI, Google Gemini, OpenAI ChatGPT, and Generic Markdown. Platform-specific enhancement with latest models.',
+  },
+  {
+    icon: '✨',
+    title: 'Local AI Enhancement',
+    description: 'Transform basic templates into 500+ line comprehensive guides using Claude Code Max. Free, 30-60 seconds, 3/10→9/10 quality boost.',
+  },
+  {
+    icon: '🔧',
+    title: 'MCP Integration',
+    description: 'Works with 5 AI coding agents: Claude Code, VS Code + Cline, Cursor, Windsurf, IntelliJ IDEA. 27 MCP tools available.',
+  },
+];
+---
+
+<section class="py-20 bg-dark-bg">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mx-auto max-w-3xl text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          Powerful Features
+        </span>
+      </h2>
+      <p class="text-xl text-dark-text-secondary">
+        Everything you need to create production-ready AI skills from any source
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div
+          class="group relative rounded-xl border border-dark-border bg-dark-surface p-8 transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-2"
+          style={`animation-delay: ${index * 75}ms`}
+        >
+          <!-- Icon with animation -->
+          <div class="mb-4 text-5xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+            {feature.icon}
+          </div>
+
+          <!-- Title -->
+          <h3 class="mb-3 text-xl font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors duration-300">
+            {feature.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-dark-text-secondary leading-relaxed">
+            {feature.description}
+          </p>
+
+          <!-- Decorative gradient with glow -->
+          <div class="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/10 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"></div>
+          <div class="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Features Banner -->
+    <div class="mt-16 rounded-lg border border-dark-border bg-dark-surface p-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex-1">
+          <h3 class="text-2xl font-semibold mb-2">Production-Ready & Battle-Tested</h3>
+          <p class="text-dark-text-secondary">
+            700+ tests passing • 16 preset configurations • Handles 40K+ page docs • MIT Licensed
+          </p>
+        </div>
+        <a
+          href="/configs"
+          class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-6 py-3 font-semibold text-white transition-transform hover:scale-105"
+        >
+          Explore Configs
+          <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

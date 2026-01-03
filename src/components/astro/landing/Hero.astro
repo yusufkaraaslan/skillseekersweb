@@ -1,0 +1,121 @@
+---
+// Hero section with animated gradient background
+---
+
+<section class="relative overflow-hidden bg-dark-bg py-20 sm:py-32">
+  <!-- Animated gradient background -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/20 via-brand-secondary/20 to-transparent opacity-80"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-primary/10 via-transparent to-transparent animate-pulse"></div>
+    <!-- Animated orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl animate-float-delayed"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-4xl text-center">
+      <!-- Badge -->
+      <div class="mb-8 inline-flex items-center space-x-2 rounded-full bg-dark-surface/80 backdrop-blur-sm border border-dark-border px-4 py-2 text-sm shadow-lg animate-fade-in-up">
+        <svg class="h-4 w-4 text-brand-success animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-dark-text-secondary">v2.5.2</span>
+        <span class="text-dark-text-secondary">•</span>
+        <span class="text-dark-text-secondary">700+ tests passing</span>
+        <span class="text-dark-text-secondary">•</span>
+        <span class="text-dark-text-secondary">MIT Licensed</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl animate-fade-in-up" style="animation-delay: 100ms">
+        Transform Any Documentation into
+        <span class="block bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent animate-gradient-x">
+          Claude AI Skills
+        </span>
+        in Minutes
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="mb-10 text-xl text-dark-text-secondary sm:text-2xl">
+        Automatically convert docs, GitHub repos, and PDFs into production-ready skills for Claude AI, Gemini, OpenAI, and more.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up" style="animation-delay: 300ms">
+        <a
+          href="/docs/getting-started/installation"
+          class="group inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/60 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
+        >
+          Get Started
+          <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+
+        <a
+          href="/configs"
+          class="inline-flex items-center justify-center rounded-lg border-2 border-dark-border bg-dark-surface/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-dark-text-primary transition-all duration-300 hover:bg-dark-surface hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/20 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
+        >
+          Browse 24 Configs
+        </a>
+      </div>
+
+      <!-- Quick Install -->
+      <div class="mx-auto max-w-2xl">
+        <div class="rounded-lg bg-dark-surface border border-dark-border p-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-dark-text-secondary">Quick Install</span>
+            <button
+              id="copy-install-btn"
+              class="text-sm text-brand-primary hover:text-brand-secondary transition-colors"
+              data-copy="pip install skill-seekers"
+            >
+              Copy
+            </button>
+          </div>
+          <code class="block text-left font-mono text-sm text-dark-text-primary">
+            <span class="text-brand-secondary">$</span> pip install skill-seekers
+          </code>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-dark-text-secondary">
+        <div class="flex items-center space-x-2">
+          <svg class="h-5 w-5 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+          <span>700+ Tests</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <svg class="h-5 w-5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+          </svg>
+          <span>4 LLM Platforms</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <svg class="h-5 w-5 text-brand-secondary" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+          </svg>
+          <span>20-40 min / skill</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Copy to clipboard functionality
+  const copyBtn = document.getElementById('copy-install-btn');
+  copyBtn?.addEventListener('click', async () => {
+    const text = copyBtn.getAttribute('data-copy');
+    if (text) {
+      await navigator.clipboard.writeText(text);
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    }
+  });
+</script>
