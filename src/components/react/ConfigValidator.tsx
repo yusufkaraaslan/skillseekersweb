@@ -9,7 +9,10 @@ export default function ConfigValidator() {
   const [configJson, setConfigJson] = useState('');
   const [errors, setErrors] = useState<ValidationError[]>([]);
   const [isValid, setIsValid] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [issueUrl, setIssueUrl] = useState<string | null>(null);
 
   const validateConfig = (jsonString: string) => {
     const newErrors: ValidationError[] = [];
@@ -81,14 +84,39 @@ export default function ConfigValidator() {
     validateConfig(configJson);
   };
 
-  const handleCopyAndSubmit = () => {
-    navigator.clipboard.writeText(configJson);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
+  const handleSubmit = async () => {
+    try {
+      setSubmitting(true);
+      setSubmitError(null);
+      setSubmitSuccess(false);
+      setIssueUrl(null);
 
-    // Open GitHub issue in new tab
-    const issueUrl = `https://github.com/yusufkaraaslan/Skill_Seekers/issues/new?template=submit-config.md&title=[CONFIG]%20&labels=config-submission,needs-review`;
-    window.open(issueUrl, '_blank');
+      const config = JSON.parse(configJson);
+
+      const response = await fetch('/api/submit-config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ config }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit config');
+      }
+
+      setSubmitSuccess(true);
+      setIssueUrl(data.issueUrl);
+      setConfigJson(''); // Clear the form
+      setIsValid(false);
+      setErrors([]);
+    } catch (error) {
+      setSubmitError((error as Error).message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const exampleConfig = {
@@ -178,23 +206,76 @@ export default function ConfigValidator() {
         )}
 
         {/* Success */}
-        {isValid && errors.length === 0 && configJson.trim() && (
+        {isValid && errors.length === 0 && configJson.trim() && !submitSuccess && (
           <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
             <h4 className="font-semibold text-green-400 mb-2">✅ Config is Valid!</h4>
             <p className="text-sm text-green-300 mb-4">
-              Your configuration looks good. Click below to copy and submit to GitHub.
+              Your configuration looks good. Click below to submit to GitHub.
             </p>
             <button
-              onClick={handleCopyAndSubmit}
-              className="inline-flex items-center space-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+              onClick={handleSubmit}
+              disabled={submitting}
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
             >
-              <span>📋 Copy & Submit to GitHub</span>
+              {submitting ? (
+                <>
+                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></span>
+                  <span>Submitting...</span>
+                </>
+              ) : (
+                <>
+                  <span>🚀 Submit Config</span>
+                </>
+              )}
             </button>
-            {showSuccess && (
-              <p className="mt-3 text-sm text-green-400 font-medium">
-                ✅ Copied to clipboard! Opening GitHub issue...
-              </p>
-            )}
+          </div>
+        )}
+
+        {/* Submit Success */}
+        {submitSuccess && issueUrl && (
+          <div className="mt-6 p-6 bg-green-500/10 border border-green-500/30 rounded-lg">
+            <h4 className="font-semibold text-green-400 mb-2 text-lg">🎉 Config Submitted Successfully!</h4>
+            <p className="text-sm text-green-300 mb-4">
+              Your config has been submitted for review. Our team will review it and add it to the repository.
+            </p>
+            <div className="space-y-3">
+              <a
+                href={issueUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+              >
+                <span>View GitHub Issue</span>
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <button
+                onClick={() => {
+                  setSubmitSuccess(false);
+                  setIssueUrl(null);
+                }}
+                className="ml-3 px-6 py-3 bg-dark-bg hover:bg-dark-border text-dark-text-secondary hover:text-white rounded-lg transition-colors"
+              >
+                Submit Another Config
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Submit Error */}
+        {submitError && (
+          <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+            <h4 className="font-semibold text-red-400 mb-2">❌ Submission Failed</h4>
+            <p className="text-sm text-red-300 mb-3">
+              {submitError}
+            </p>
+            <button
+              onClick={() => setSubmitError(null)}
+              className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors text-sm"
+            >
+              Try Again
+            </button>
           </div>
         )}
 
@@ -204,11 +285,14 @@ export default function ConfigValidator() {
           <ol className="text-sm text-dark-text-secondary space-y-1 list-decimal list-inside">
             <li>Paste your config JSON above</li>
             <li>Click "Validate Config" to check for errors</li>
-            <li>Fix any validation errors</li>
-            <li>Click "Copy & Submit to GitHub" when valid</li>
-            <li>Paste the config in the GitHub issue that opens</li>
-            <li>Fill in additional details and submit</li>
+            <li>Fix any validation errors if needed</li>
+            <li>Click "🚀 Submit Config" - that's it!</li>
+            <li>Your config will be automatically submitted for review</li>
+            <li>Track the review status via the GitHub Issue link</li>
           </ol>
+          <p className="mt-3 text-xs text-dark-text-secondary/70">
+            ✨ Automatic submission - no manual copying or pasting required!
+          </p>
         </div>
       </div>
     </div>
