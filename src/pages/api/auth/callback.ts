@@ -62,15 +62,14 @@ export const GET: APIRoute = async ({ request, redirect }) => {
     const sessionCookie = btoa(JSON.stringify(sessionData));
 
     // Set session cookie and redirect to admin dashboard
+    const headers = new Headers();
+    headers.append('Location', '/admin');
+    headers.append('Set-Cookie', `gh_admin_session=${sessionCookie}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`);
+    headers.append('Set-Cookie', 'oauth_state=; Path=/; Max-Age=0');
+
     return new Response(null, {
       status: 302,
-      headers: {
-        Location: '/admin',
-        'Set-Cookie': [
-          `gh_admin_session=${sessionCookie}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`, // 7 days
-          'oauth_state=; Path=/; Max-Age=0', // Clear state cookie
-        ].join(', '),
-      },
+      headers,
     });
   } catch (error) {
     console.error('OAuth callback error:', error);
