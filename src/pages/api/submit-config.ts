@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Create GitHub Issue
     const githubToken = import.meta.env.GITHUB_TOKEN;
     const repoOwner = 'yusufkaraaslan';
-    const repoName = 'Skill_Seekers';
+    const repoName = 'skill-seekers-configs';
 
     // Format config JSON for issue body
     const configJson = JSON.stringify(config, null, 2);

@@ -51,8 +51,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Step 1: Get the current SHA of the configs directory (need for commit)
     const repoOwner = 'yusufkaraaslan';
-    const repoName = 'Skill_Seekers';
-    const branch = 'master';
+    const repoName = 'skill-seekers-configs';
+    const branch = 'main';
     const filePath = `configs/${configFileName}`;
 
     // Check if file already exists

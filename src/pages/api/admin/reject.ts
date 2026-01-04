@@ -37,7 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const githubToken = import.meta.env.GITHUB_TOKEN;
     const repoOwner = 'yusufkaraaslan';
-    const repoName = 'Skill_Seekers';
+    const repoName = 'skill-seekers-configs';
 
     // Step 1: Add "rejected" label
     await fetch(

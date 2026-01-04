@@ -27,7 +27,7 @@ export const GET: APIRoute = async ({ request }) => {
 
     // Fetch pending submissions from GitHub Issues
     const response = await fetch(
-      'https://api.github.com/repos/yusufkaraaslan/Skill_Seekers/issues?labels=config-submission,needs-review&state=open',
+      'https://api.github.com/repos/yusufkaraaslan/skill-seekers-configs/issues?labels=config-submission,needs-review&state=open',
       {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
