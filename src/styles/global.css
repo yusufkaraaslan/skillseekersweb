@@ -152,3 +152,84 @@ a:hover {
   background-clip: text;
   text-fill-color: transparent;
 }
+
+/* Docs-specific styles */
+.prose ul li::marker {
+  font-size: 1.1em;
+}
+
+.prose ol li::marker {
+  font-weight: 600;
+}
+
+/* Better spacing for nested lists */
+.prose ul ul,
+.prose ul ol,
+.prose ol ul,
+.prose ol ol {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+/* Code in lists should be inline */
+.prose li code {
+  display: inline-block;
+}
+
+/* Table improvements - no outer borders, only inner borders */
+.prose table {
+  border: none !important;
+}
+
+.prose thead {
+  background-color: #13131a;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid #1f1f29;
+}
+
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.prose th,
+.prose td {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Better code block styling in docs */
+.prose pre code {
+  background: transparent;
+  color: #a0a0b0;
+  text-shadow: none;
+}
+
+/* Callout boxes (if needed) */
+.callout {
+  border-left: 4px solid;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #13131a;
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.callout.info {
+  border-left-color: #6366f1;
+}
+
+.callout.warning {
+  border-left-color: #f59e0b;
+}
+
+.callout.error {
+  border-left-color: #ef4444;
+}
+
+.callout.success {
+  border-left-color: #10b981;
+}

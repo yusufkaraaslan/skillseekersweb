@@ -45,11 +45,33 @@ const allDocs = await getCollection('docs');
         </nav>
 
         <!-- Article -->
-        <article class="prose prose-invert prose-indigo max-w-none">
+        <article class="prose prose-invert prose-indigo max-w-none prose-lg">
           <h1 class="text-4xl font-bold mb-4 text-dark-text-primary">{title}</h1>
-          <p class="text-lg text-dark-text-secondary mb-8">{description}</p>
+          <p class="text-lg text-dark-text-secondary mb-8 leading-relaxed">{description}</p>
 
-          <div class="prose-headings:text-dark-text-primary prose-p:text-dark-text-secondary prose-a:text-brand-primary prose-strong:text-dark-text-primary prose-code:text-brand-secondary prose-pre:bg-dark-surface prose-pre:border prose-pre:border-dark-border">
+          <div class="
+            prose-headings:text-dark-text-primary prose-headings:font-semibold prose-headings:tracking-tight
+            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-dark-border
+            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+            prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-3
+            prose-p:text-dark-text-secondary prose-p:leading-relaxed prose-p:mb-6
+            prose-a:text-brand-primary prose-a:no-underline hover:prose-a:text-brand-secondary prose-a:transition-colors prose-a:font-medium
+            prose-strong:text-dark-text-primary prose-strong:font-semibold
+            prose-code:text-brand-secondary prose-code:bg-dark-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-[''] prose-code:after:content-['']
+            prose-pre:bg-dark-surface prose-pre:border prose-pre:border-dark-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:my-6
+            prose-ul:my-6 prose-ul:space-y-3
+            prose-ol:my-6 prose-ol:space-y-3
+            prose-li:text-dark-text-secondary prose-li:leading-relaxed prose-li:pl-2
+            prose-li:marker:text-brand-primary
+            prose-blockquote:border-l-4 prose-blockquote:border-brand-primary prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-dark-text-secondary prose-blockquote:bg-dark-surface prose-blockquote:py-2 prose-blockquote:my-6 prose-blockquote:rounded-r
+            prose-table:border-collapse prose-table:w-full prose-table:my-8
+            prose-thead:border-b-2 prose-thead:border-dark-border
+            prose-th:text-left prose-th:p-3 prose-th:text-dark-text-primary prose-th:font-semibold prose-th:bg-dark-surface
+            prose-td:p-3 prose-td:text-dark-text-secondary prose-td:border-t prose-td:border-dark-border
+            prose-tr:hover:bg-dark-surface/50 prose-tr:transition-colors
+            prose-img:rounded-lg prose-img:border prose-img:border-dark-border prose-img:my-8
+            prose-hr:border-dark-border prose-hr:my-8
+          ">
             <slot />
           </div>
         </article>
