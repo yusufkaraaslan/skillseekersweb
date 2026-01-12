@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/astro/landing/Hero.astro';
 import About from '../components/astro/landing/About.astro';
-import Features from '../components/astro/landing/Features.astro';
-import HowItWorks from '../components/astro/landing/HowItWorks.astro';
+import FeatureMatrix from '../components/react/FeatureMatrix';
 import QuickStart from '../components/astro/landing/QuickStart.astro';
 import UseCases from '../components/astro/landing/UseCases.astro';
 import Stats from '../components/astro/landing/Stats.astro';
@@ -15,8 +14,9 @@ import Stats from '../components/astro/landing/Stats.astro';
 >
   <Hero />
   <About />
-  <Features />
-  <HowItWorks />
+  <div id="feature-matrix">
+    <FeatureMatrix client:load />
+  </div>
   <QuickStart />
   <UseCases />
   <Stats />
