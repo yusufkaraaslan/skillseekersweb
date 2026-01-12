@@ -4,6 +4,8 @@ import ConfigGallery from '../components/react/ConfigGallery';
 import ConfigValidator from '../components/react/ConfigValidator';
 import { fetchConfigs } from '../utils/api';
 
+export const prerender = true;
+
 // Fetch configs at build time
 const configs = await fetchConfigs();
 ---
