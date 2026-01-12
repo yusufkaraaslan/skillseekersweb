@@ -233,3 +233,14 @@ a:hover {
 .callout.success {
   border-left-color: #10b981;
 }
+
+/* Remove any unwanted borders from grid/flex layouts */
+footer .grid > * {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Ensure no default borders on divs in footer */
+footer div {
+  box-sizing: border-box;
+}
