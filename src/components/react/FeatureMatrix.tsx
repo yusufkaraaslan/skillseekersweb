@@ -10,6 +10,12 @@ interface Feature {
 const allFeatures: Feature[] = [
   // Key features (shown initially)
   {
+    icon: '🌊',
+    title: 'Three-Stream Analysis',
+    description: 'Split GitHub repos into Code (C3.x), Docs, and Insights streams for comprehensive skills',
+    category: 'NEW - v2.6.0',
+  },
+  {
     icon: '🌐',
     title: 'Multi-Source Scraping',
     description: 'Extract from documentation websites, GitHub repositories, and PDF files',
@@ -97,9 +103,21 @@ const allFeatures: Feature[] = [
   },
   {
     icon: '🔬',
-    title: 'GitHub AST Analysis',
-    description: 'Deep code analysis using Abstract Syntax Trees for repos',
-    category: 'Data Sources',
+    title: 'C3.x Codebase Analysis',
+    description: 'Deep AST analysis extracting patterns, examples, guides, and configurations',
+    category: 'Codebase Analysis',
+  },
+  {
+    icon: '⚙️',
+    title: 'Config Pattern Detection',
+    description: 'Extract and analyze 9 config formats with AI-powered security analysis',
+    category: 'Codebase Analysis',
+  },
+  {
+    icon: '📖',
+    title: 'Auto How-To Guides',
+    description: 'Generate comprehensive tutorials from code with AI enhancement',
+    category: 'Codebase Analysis',
   },
   {
     icon: '📄',
@@ -148,9 +166,9 @@ const allFeatures: Feature[] = [
 export default function FeatureMatrix() {
   const [expanded, setExpanded] = useState(false);
 
-  // Show first 8 features initially
-  const displayedFeatures = expanded ? allFeatures : allFeatures.slice(0, 8);
-  const hiddenCount = allFeatures.length - 8;
+  // Show first 9 features initially
+  const displayedFeatures = expanded ? allFeatures : allFeatures.slice(0, 9);
+  const hiddenCount = allFeatures.length - 9;
 
   return (
     <section className="py-20 bg-dark-bg">
