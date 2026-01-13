@@ -48,9 +48,23 @@ That's it! You now have a comprehensive Astro skill in Claude.
 
 ### Multi-Source Support
 - Documentation websites (any site with docs)
-- GitHub repositories (with code analysis)
+- GitHub repositories (with deep C3.x analysis)
 - PDF files (with OCR support)
 - Combined unified skills from multiple sources
+
+### Three-Stream Architecture (NEW v2.6.0)
+- **Stream 1: Code** - Deep C3.x analysis (patterns, examples, architecture)
+- **Stream 2: Docs** - Repository documentation (README, docs/)
+- **Stream 3: Insights** - GitHub issues (common problems + solutions)
+- Automatic conflict detection between docs and code
+- Real user problems and solutions from GitHub
+
+### C3.x Codebase Analysis (NEW v2.6.0)
+- **C3.1:** Design pattern detection (Strategy, Factory, etc.)
+- **C3.2:** Test example extraction (working code from tests)
+- **C3.3:** How-to guide generation (automated tutorials)
+- **C3.4:** Configuration analysis (9 formats with security scan)
+- **C3.7:** Architectural pattern detection (MVC, microservices, etc.)
 
 ### Multi-Platform Export
 - **Claude AI** (default) - ZIP + YAML format
@@ -63,10 +77,26 @@ That's it! You now have a comprehensive Astro skill in Claude.
 - Code language detection (Python, JS, C++, GDScript, etc.)
 - Conflict detection between docs and code
 - AI-powered enhancement and summarization
-- Smart caching for faster re-runs
+- Smart caching for faster re-runs (50% speedup)
+
+## What's New in v2.6.0
+
+**Three-Stream GitHub Architecture:**
+- Automatically splits GitHub repos into Code, Docs, and Insights streams
+- Real user problems and solutions from GitHub issues
+- Complete understanding of any framework
+
+**Enhanced C3.x Analysis:**
+- Design pattern detection (Strategy, Factory, Observer, etc.)
+- Test example extraction from test files
+- Automated how-to guide generation
+- Configuration security analysis
+- Architectural pattern detection
+
+[Read the full v2.6.0 announcement →](/docs/features/three-stream-architecture)
 
 ## Next Steps
 
-- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers
+- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v2.6.0
 - [Quick Start](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
-- [Browse Configs](/configs) - Explore 27 pre-built configurations
+- [Browse Configs](/configs) - Explore 24 pre-built configurations

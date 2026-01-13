@@ -35,7 +35,7 @@ pip install skill-seekers[all]     # For all platforms
 **Verify installation:**
 ```bash
 skill-seekers --version
-# Should show: skill-seekers 2.5.0 or higher
+# Should show: skill-seekers 2.6.0 or higher
 ```
 
 ## Method 2: Install from Source
