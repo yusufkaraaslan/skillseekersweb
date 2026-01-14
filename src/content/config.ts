@@ -5,7 +5,7 @@ const docsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    section: z.enum(['getting-started', 'features', 'guides', 'cli', 'api']),
+    section: z.enum(['getting-started', 'features', 'guides', 'cli', 'integrations', 'reference', 'community', 'api']),
     order: z.number().optional(),
     draft: z.boolean().optional().default(false),
   }),
