@@ -178,13 +178,27 @@ Delay between requests in seconds (prevents rate limiting).
 ```
 
 ##### `max_pages` (number or null)
-Maximum pages to scrape (null = unlimited).
+**Optional** - Maximum pages to scrape. Defaults to unlimited if not specified.
+
+- **Omit field:** Unlimited scraping (recommended)
+- **null:** Explicitly unlimited
+- **-1:** Explicitly unlimited
+- **Number:** Limit to specific page count
 
 ```json
 {
-  "max_pages": 300
+  // Option 1: Omit for unlimited (recommended)
+  // "max_pages": not specified
+
+  // Option 2: Explicit unlimited
+  "max_pages": null
+
+  // Option 3: Limit to specific count
+  // "max_pages": 300
 }
 ```
+
+**Note:** Since v2.6.0, unlimited scraping is the default. Only specify `max_pages` if you need to limit pages for testing or rate-limit concerns.
 
 #### Complete Documentation Source Example
 
@@ -474,8 +488,7 @@ Default: `false` - Process pages in parallel for faster extraction.
     {
       "type": "documentation",
       "base_url": "https://docs.enterprise.com/",
-      "rate_limit": 1.0,
-      "max_pages": 500
+      "rate_limit": 1.0
     },
     {
       "type": "github",
@@ -575,7 +588,13 @@ Skill Seekers v2.6.0+ still supports legacy configs (single-source format).
 - Official docs: 0.5-1.0 seconds
 - Community sites: 1.0-2.0 seconds
 
-### 5. GitHub Codebase Analysis
+### 5. Page Limits
+- **Default:** Unlimited scraping (recommended for complete documentation)
+- **When to limit:** Testing configs, respecting aggressive rate limits
+- **How to limit:** Set `"max_pages": 100` for specific page count
+- **Unlimited modes:** Omit field, use `null`, or use `-1`
+
+### 6. GitHub Codebase Analysis
 - Use `code_analysis_depth: "deep"` for most cases
 - Use `"full"` only for critical framework analysis
 - Limit `file_patterns` to relevant directories
