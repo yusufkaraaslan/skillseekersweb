@@ -225,8 +225,7 @@ Delay between requests in seconds (prevents rate limiting).
     "core_concepts": ["project-structure", "components"],
     "integrations": ["integrations", "framework"]
   },
-  "rate_limit": 0.5,
-  "max_pages": 300
+  "rate_limit": 0.5
 }
 ```
 
@@ -430,8 +429,7 @@ Default: `false` - Process pages in parallel for faster extraction.
         "title": "h1",
         "code_blocks": "pre code"
       },
-      "rate_limit": 0.5,
-      "max_pages": 200
+      "rate_limit": 0.5
     }
   ]
 }
@@ -459,8 +457,7 @@ Default: `false` - Process pages in parallel for faster extraction.
         "advanced": ["advanced", "security", "database"],
         "deployment": ["deployment", "docker", "server"]
       },
-      "rate_limit": 0.5,
-      "max_pages": 150
+      "rate_limit": 0.5
     },
     {
       "type": "github",
