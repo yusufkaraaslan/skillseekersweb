@@ -182,47 +182,50 @@ export default function ConfigValidator() {
   };
 
   const exampleConfig = {
-    name: "example-framework",
-    description: "Complete Example Framework knowledge combining official documentation and GitHub repository. Use when building Example Framework applications.",
+    name: "vue",
+    description: "Complete Vue.js framework knowledge combining official documentation and Vue.js codebase. Use when building Vue applications, understanding reactivity internals, or debugging Vue issues.",
     merge_mode: "rule-based",
     sources: [
       {
         type: "documentation",
-        base_url: "https://docs.example.com",
+        base_url: "https://vuejs.org/",
         extract_api: true,
         start_urls: [
-          "https://docs.example.com/getting-started/",
-          "https://docs.example.com/api/"
+          "https://vuejs.org/guide/introduction.html",
+          "https://vuejs.org/guide/quick-start.html",
+          "https://vuejs.org/api/"
         ],
         selectors: {
-          main_content: "article",
+          main_content: "main",
           title: "h1",
           code_blocks: "pre code"
         },
         url_patterns: {
-          include: ["/docs/", "/api/"],
-          exclude: ["/blog/", "/changelog/"]
+          include: ["/guide/", "/api/", "/examples/"],
+          exclude: ["/about/", "/sponsor/", "/partners/"]
         },
         categories: {
-          getting_started: ["intro", "installation", "quickstart"],
-          guides: ["tutorial", "guide", "how-to"],
-          api: ["api", "reference", "methods"]
+          essentials: ["essentials", "quick-start", "introduction"],
+          components: ["component", "props", "events", "slots"],
+          reactivity: ["reactivity", "reactive", "ref", "computed"],
+          composition_api: ["composition", "setup", "composables"],
+          best_practices: ["performance", "production", "ssr"]
         },
-        rate_limit: 0.5,
-        max_pages: 100
+        rate_limit: 0.5
       },
       {
         type: "github",
-        repo: "example/framework",
+        repo: "vuejs/core",
         enable_codebase_analysis: true,
         code_analysis_depth: "deep",
         fetch_issues: true,
-        max_issues: 50,
+        max_issues: 100,
         fetch_changelog: true,
         fetch_releases: true,
         file_patterns: [
-          "src/**/*.ts",
-          "packages/**/*.ts"
+          "packages/reactivity/src/**/*.ts",
+          "packages/runtime-core/src/**/*.ts",
+          "packages/compiler-core/src/**/*.ts"
         ]
       }
     ]
@@ -242,19 +245,48 @@ export default function ConfigValidator() {
           Paste your unified config JSON below to validate it before submitting. Supports documentation, GitHub, and PDF sources.
         </p>
 
+        {/* Helper Banner */}
+        <div className="mb-4 p-4 bg-brand-primary/10 border border-brand-primary/30 rounded-lg">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">📝</span>
+              <div>
+                <p className="text-sm font-medium text-dark-text-primary mb-1">
+                  Need a starting point?
+                </p>
+                <p className="text-xs text-dark-text-secondary">
+                  Load an example config or browse 27+ presets from the gallery
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={loadExample}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary hover:bg-brand-secondary text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 text-sm"
+              >
+                <span>📄</span>
+                Load Example
+              </button>
+              <a
+                href="#config-gallery"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-dark-bg hover:bg-dark-border border border-dark-border text-dark-text-primary hover:text-white font-medium rounded-lg transition-colors text-sm"
+              >
+                <span>🎨</span>
+                Browse Gallery
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Textarea */}
         <div className="mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-dark-text-primary">
-              Config JSON
-            </label>
-            <button
-              onClick={loadExample}
-              className="text-sm text-brand-primary hover:text-brand-secondary transition-colors"
-            >
-              Load Example
-            </button>
-          </div>
+          <label className="text-sm font-medium text-dark-text-primary mb-2 block">
+            Config JSON
+          </label>
           <textarea
             value={configJson}
             onChange={(e) => {
@@ -262,7 +294,7 @@ export default function ConfigValidator() {
               setErrors([]);
               setIsValid(false);
             }}
-            placeholder='Paste your config JSON here...'
+            placeholder='Paste your config JSON here, or click "Load Example" above...'
             className="w-full h-64 px-4 py-3 bg-dark-bg border border-dark-border rounded-lg font-mono text-sm text-dark-text-primary placeholder-dark-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent resize-none"
           />
         </div>
@@ -374,15 +406,15 @@ export default function ConfigValidator() {
         <div className="mt-6 p-4 bg-dark-bg border border-dark-border/50 rounded-lg">
           <h4 className="text-sm font-semibold text-dark-text-primary mb-2">📝 Submission Steps:</h4>
           <ol className="text-sm text-dark-text-secondary space-y-1 list-decimal list-inside">
-            <li>Paste your config JSON above</li>
+            <li>Click "Load Example" to see a real production config (Vue.js)</li>
+            <li>Paste your own config JSON or modify the example</li>
             <li>Click "Validate Config" to check for errors</li>
             <li>Fix any validation errors if needed</li>
             <li>Click "🚀 Submit Config" - that's it!</li>
-            <li>Your config will be automatically submitted for review</li>
             <li>Track the review status via the GitHub Issue link</li>
           </ol>
           <p className="mt-3 text-xs text-dark-text-secondary/70">
-            ✨ Automatic submission - no manual copying or pasting required!
+            💡 Tip: Browse the <a href="#config-gallery" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-brand-primary hover:text-brand-secondary underline">config gallery above</a> to see 27+ real examples
           </p>
         </div>
       </div>
