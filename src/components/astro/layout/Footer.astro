@@ -1,6 +1,12 @@
 ---
 // Footer with links and social
 
+interface Props {
+  hasDocsSidebar?: boolean;
+}
+
+const { hasDocsSidebar = false } = Astro.props;
+
 const footerLinks = {
   Product: [
     { label: 'Features', href: '/docs/getting-started/overview' },
@@ -25,7 +31,7 @@ const footerLinks = {
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-dark-border bg-dark-surface">
+<footer class={`border-t border-dark-border bg-dark-surface ${hasDocsSidebar ? 'xl:ml-64' : ''}`}>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Top Section -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 [&>*]:border-0">

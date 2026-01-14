@@ -17,7 +17,7 @@ const { title, description } = doc.data;
 const allDocs = await getCollection('docs');
 ---
 
-<BaseLayout title={`${title} | Skill Seekers Docs`} description={description}>
+<BaseLayout title={`${title} | Skill Seekers Docs`} description={description} hasDocsSidebar={true}>
   <div class="flex min-h-screen bg-dark-bg">
     <!-- Sidebar -->
     <Sidebar docs={allDocs} currentSlug={doc.slug} />

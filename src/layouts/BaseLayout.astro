@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  hasDocsSidebar?: boolean;
 }
 
 const {
   title = 'Skill Seekers - Transform Docs into Claude AI Skills',
   description = 'Automatically convert documentation websites, GitHub repositories, and PDFs into production-ready Claude AI skills in minutes. Supports Claude, Gemini, OpenAI, and more.',
   ogImage = '/og-image.png',
+  hasDocsSidebar = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -61,6 +63,6 @@ const fullOgImage = new URL(ogImage, Astro.site);
     <main class="flex-grow">
       <slot />
     </main>
-    <Footer />
+    <Footer hasDocsSidebar={hasDocsSidebar} />
   </body>
 </html>

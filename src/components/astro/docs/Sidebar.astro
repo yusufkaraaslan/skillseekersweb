@@ -37,7 +37,7 @@ Object.values(sections).forEach((section) => {
 const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order - b.order);
 ---
 
-<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto bg-dark-surface px-4 py-6 pb-96 hidden xl:block">
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto bg-dark-surface px-4 py-6 hidden xl:block">
   <nav aria-label="Documentation navigation">
     <div class="space-y-6">
       {orderedSections.map(([key, section]) => (
