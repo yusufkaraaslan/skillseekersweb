@@ -95,10 +95,10 @@ export default function ConfigValidator() {
         errors.push({ field: `${prefix}.selectors`, message: 'selectors must be an object' });
       }
 
-      // Optional max_pages validation
-      if (source.max_pages !== undefined && source.max_pages !== null) {
+      // Optional max_pages validation (omit for unlimited, use null/-1 for explicit unlimited)
+      if (source.max_pages !== undefined && source.max_pages !== null && source.max_pages !== -1) {
         if (typeof source.max_pages !== 'number' || source.max_pages < 1) {
-          errors.push({ field: `${prefix}.max_pages`, message: 'max_pages must be a positive number (or null)' });
+          errors.push({ field: `${prefix}.max_pages`, message: 'max_pages must be a positive number, null, -1, or omitted for unlimited' });
         }
       }
 
