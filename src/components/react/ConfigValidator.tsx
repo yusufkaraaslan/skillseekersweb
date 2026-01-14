@@ -26,7 +26,7 @@ export default function ConfigValidator() {
     try {
       const config = JSON.parse(jsonString);
 
-      // Required fields validation
+      // Required top-level fields
       if (!config.name || typeof config.name !== 'string') {
         newErrors.push({ field: 'name', message: 'Config must have a "name" field (string)' });
       } else if (!/^[a-z0-9-_]+$/.test(config.name)) {
@@ -37,38 +37,24 @@ export default function ConfigValidator() {
         newErrors.push({ field: 'description', message: 'Config must have a "description" field (string)' });
       }
 
-      if (!config.base_url || typeof config.base_url !== 'string') {
-        newErrors.push({ field: 'base_url', message: 'Config must have a "base_url" field (string)' });
-      } else if (!config.base_url.startsWith('http://') && !config.base_url.startsWith('https://')) {
-        newErrors.push({ field: 'base_url', message: 'base_url must start with http:// or https://' });
-      }
-
-      // Selectors validation
-      if (!config.selectors || typeof config.selectors !== 'object') {
-        newErrors.push({ field: 'selectors', message: 'Config must have a "selectors" object' });
+      // Validate sources array (required)
+      if (!config.sources) {
+        newErrors.push({ field: 'sources', message: 'Config must have a "sources" array' });
+      } else if (!Array.isArray(config.sources)) {
+        newErrors.push({ field: 'sources', message: '"sources" must be an array' });
+      } else if (config.sources.length === 0) {
+        newErrors.push({ field: 'sources', message: '"sources" array cannot be empty (at least 1 source required)' });
       } else {
-        if (!config.selectors.main_content) {
-          newErrors.push({ field: 'selectors.main_content', message: 'selectors must have "main_content" field' });
-        }
-        if (!config.selectors.title) {
-          newErrors.push({ field: 'selectors.title', message: 'selectors must have "title" field' });
-        }
-        if (!config.selectors.code_blocks) {
-          newErrors.push({ field: 'selectors.code_blocks', message: 'selectors must have "code_blocks" field' });
-        }
+        // Validate each source
+        config.sources.forEach((source: any, index: number) => {
+          const sourceErrors = validateSource(source, index);
+          newErrors.push(...sourceErrors);
+        });
       }
 
-      // Optional but recommended fields
-      if (config.max_pages !== undefined && config.max_pages !== null) {
-        if (typeof config.max_pages !== 'number' || config.max_pages < 1) {
-          newErrors.push({ field: 'max_pages', message: 'max_pages must be a positive number (or null for unlimited)' });
-        }
-      }
-
-      if (config.rate_limit !== undefined) {
-        if (typeof config.rate_limit !== 'number' || config.rate_limit < 0) {
-          newErrors.push({ field: 'rate_limit', message: 'rate_limit must be a positive number (seconds)' });
-        }
+      // Validate optional merge_mode
+      if (config.merge_mode && !['rule-based', 'claude-enhanced'].includes(config.merge_mode)) {
+        newErrors.push({ field: 'merge_mode', message: 'merge_mode must be "rule-based" or "claude-enhanced"' });
       }
 
       setErrors(newErrors);
@@ -78,6 +64,82 @@ export default function ConfigValidator() {
       setErrors([{ field: 'json', message: 'Invalid JSON format. Please check syntax.' }]);
       setIsValid(false);
     }
+  };
+
+  const validateSource = (source: any, index: number): ValidationError[] => {
+    const errors: ValidationError[] = [];
+    const prefix = `sources[${index}]`;
+
+    // Check type field
+    if (!source.type) {
+      errors.push({ field: `${prefix}.type`, message: 'Source must have a "type" field' });
+      return errors;
+    }
+
+    const validTypes = ['documentation', 'github', 'pdf'];
+    if (!validTypes.includes(source.type)) {
+      errors.push({ field: `${prefix}.type`, message: `Type must be one of: ${validTypes.join(', ')}` });
+      return errors;
+    }
+
+    // Type-specific validation
+    if (source.type === 'documentation') {
+      if (!source.base_url || typeof source.base_url !== 'string') {
+        errors.push({ field: `${prefix}.base_url`, message: 'Documentation source must have "base_url" (string)' });
+      } else if (!source.base_url.startsWith('http://') && !source.base_url.startsWith('https://')) {
+        errors.push({ field: `${prefix}.base_url`, message: 'base_url must start with http:// or https://' });
+      }
+
+      // Optional selectors validation
+      if (source.selectors && typeof source.selectors !== 'object') {
+        errors.push({ field: `${prefix}.selectors`, message: 'selectors must be an object' });
+      }
+
+      // Optional max_pages validation
+      if (source.max_pages !== undefined && source.max_pages !== null) {
+        if (typeof source.max_pages !== 'number' || source.max_pages < 1) {
+          errors.push({ field: `${prefix}.max_pages`, message: 'max_pages must be a positive number (or null)' });
+        }
+      }
+
+      // Optional rate_limit validation
+      if (source.rate_limit !== undefined) {
+        if (typeof source.rate_limit !== 'number' || source.rate_limit < 0) {
+          errors.push({ field: `${prefix}.rate_limit`, message: 'rate_limit must be a positive number' });
+        }
+      }
+    } else if (source.type === 'github') {
+      if (!source.repo || typeof source.repo !== 'string') {
+        errors.push({ field: `${prefix}.repo`, message: 'GitHub source must have "repo" field (string)' });
+      } else if (!source.repo.includes('/')) {
+        errors.push({ field: `${prefix}.repo`, message: 'repo must be in format "owner/repo" (e.g., "facebook/react")' });
+      }
+
+      // Optional code_analysis_depth validation
+      const validDepths = ['surface', 'deep', 'full'];
+      if (source.code_analysis_depth && !validDepths.includes(source.code_analysis_depth)) {
+        errors.push({ field: `${prefix}.code_analysis_depth`, message: `Must be one of: ${validDepths.join(', ')}` });
+      }
+
+      // Optional max_issues validation
+      if (source.max_issues !== undefined) {
+        if (typeof source.max_issues !== 'number' || source.max_issues < 1) {
+          errors.push({ field: `${prefix}.max_issues`, message: 'max_issues must be a positive number' });
+        }
+      }
+
+      // Optional ai_mode validation
+      const validAiModes = ['auto', 'api', 'local', 'none'];
+      if (source.ai_mode && !validAiModes.includes(source.ai_mode)) {
+        errors.push({ field: `${prefix}.ai_mode`, message: `Must be one of: ${validAiModes.join(', ')}` });
+      }
+    } else if (source.type === 'pdf') {
+      if (!source.path || typeof source.path !== 'string') {
+        errors.push({ field: `${prefix}.path`, message: 'PDF source must have "path" field (string)' });
+      }
+    }
+
+    return errors;
   };
 
   const handleValidate = () => {
@@ -121,20 +183,49 @@ export default function ConfigValidator() {
 
   const exampleConfig = {
     name: "example-framework",
-    description: "Example framework documentation",
-    base_url: "https://docs.example.com",
-    selectors: {
-      main_content: "article",
-      title: "h1",
-      code_blocks: "pre code"
-    },
-    url_patterns: {
-      include: [],
-      exclude: []
-    },
-    categories: {},
-    rate_limit: 0.5,
-    max_pages: 100
+    description: "Complete Example Framework knowledge combining official documentation and GitHub repository. Use when building Example Framework applications.",
+    merge_mode: "rule-based",
+    sources: [
+      {
+        type: "documentation",
+        base_url: "https://docs.example.com",
+        extract_api: true,
+        start_urls: [
+          "https://docs.example.com/getting-started/",
+          "https://docs.example.com/api/"
+        ],
+        selectors: {
+          main_content: "article",
+          title: "h1",
+          code_blocks: "pre code"
+        },
+        url_patterns: {
+          include: ["/docs/", "/api/"],
+          exclude: ["/blog/", "/changelog/"]
+        },
+        categories: {
+          getting_started: ["intro", "installation", "quickstart"],
+          guides: ["tutorial", "guide", "how-to"],
+          api: ["api", "reference", "methods"]
+        },
+        rate_limit: 0.5,
+        max_pages: 100
+      },
+      {
+        type: "github",
+        repo: "example/framework",
+        enable_codebase_analysis: true,
+        code_analysis_depth: "deep",
+        fetch_issues: true,
+        max_issues: 50,
+        fetch_changelog: true,
+        fetch_releases: true,
+        file_patterns: [
+          "src/**/*.ts",
+          "packages/**/*.ts"
+        ]
+      }
+    ]
   };
 
   const loadExample = () => {
@@ -148,7 +239,7 @@ export default function ConfigValidator() {
       <div className="bg-dark-surface border border-dark-border rounded-xl p-8">
         <h3 className="text-2xl font-bold mb-2">Validate Your Config</h3>
         <p className="text-dark-text-secondary mb-6">
-          Paste your config JSON below to validate it before submitting to GitHub.
+          Paste your unified config JSON below to validate it before submitting. Supports documentation, GitHub, and PDF sources.
         </p>
 
         {/* Textarea */}
