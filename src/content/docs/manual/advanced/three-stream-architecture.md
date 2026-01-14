@@ -1,7 +1,8 @@
 ---
 title: Three-Stream GitHub Architecture
 description: Split GitHub repositories into Code, Docs, and Insights streams for comprehensive AI skills
-section: features
+section: manual
+subsection: advanced
 order: 1
 ---
 

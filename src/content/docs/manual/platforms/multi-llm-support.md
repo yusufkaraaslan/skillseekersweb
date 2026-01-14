@@ -1,8 +1,9 @@
 ---
-title: Multi-LLM Platform Support
+title: Overview
 description: Deploy skills to Claude AI, Google Gemini, OpenAI ChatGPT, or export as Markdown
-section: features
-order: 3
+section: manual
+subsection: platforms
+order: 1
 ---
 
 # Multi-LLM Platform Support

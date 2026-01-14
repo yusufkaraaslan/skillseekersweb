@@ -1,7 +1,8 @@
 ---
 title: Test Example Extraction (C3.2)
 description: Transform test files into documentation assets by extracting real API usage patterns across 9 programming languages
-section: features
+section: manual
+subsection: codebase-analysis
 order: 7
 ---
 

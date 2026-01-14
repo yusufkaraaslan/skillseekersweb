@@ -1,8 +1,9 @@
 ---
-title: Google Gemini Integration
+title: Google Gemini
 description: Complete guide for creating and deploying skills to Google Gemini using tar.gz format, Files API, and grounding support
-section: integrations
-order: 1
+section: manual
+subsection: platforms
+order: 2
 ---
 
 # Google Gemini Integration Guide

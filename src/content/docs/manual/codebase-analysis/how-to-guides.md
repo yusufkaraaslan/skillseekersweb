@@ -1,7 +1,8 @@
 ---
 title: How-To Guide Generation (C3.3)
 description: Transform test workflows into step-by-step educational guides with AI enhancement - extracts workflows from tests and builds comprehensive tutorials
-section: features
+section: manual
+subsection: codebase-analysis
 order: 12
 ---
 

@@ -1,7 +1,8 @@
 ---
 title: Unified Multi-Source Scraping
 description: Combine documentation, GitHub repositories, and PDFs into a single comprehensive skill with intelligent conflict detection and merging
-section: features
+section: manual
+subsection: scraping
 order: 13
 ---
 

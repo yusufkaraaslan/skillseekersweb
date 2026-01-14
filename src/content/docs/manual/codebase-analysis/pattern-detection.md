@@ -1,7 +1,8 @@
 ---
 title: Design Pattern Detection
 description: Automatically detect 10 common design patterns in your codebase across 9 programming languages using C3.1 analysis
-section: features
+section: manual
+subsection: codebase-analysis
 order: 6
 ---
 

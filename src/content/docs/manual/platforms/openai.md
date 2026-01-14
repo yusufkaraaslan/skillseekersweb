@@ -1,8 +1,9 @@
 ---
-title: OpenAI ChatGPT Integration
+title: OpenAI ChatGPT
 description: Complete guide for creating and deploying skills to OpenAI ChatGPT using Assistants API, Vector Store, and file_search tool
-section: integrations
-order: 2
+section: manual
+subsection: platforms
+order: 3
 ---
 
 # OpenAI ChatGPT Integration Guide

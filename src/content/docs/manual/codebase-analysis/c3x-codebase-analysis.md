@@ -1,7 +1,8 @@
 ---
 title: C3.x Codebase Analysis
 description: Deep AST analysis extracting patterns, examples, guides, and configurations from code
-section: features
+section: manual
+subsection: codebase-analysis
 order: 2
 ---
 
