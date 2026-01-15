@@ -40,7 +40,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 <!-- Mobile Menu Toggle Button (visible on mobile/tablet only) -->
 <button
   id="docs-mobile-menu-toggle"
-  class="fixed bottom-6 right-6 z-40 xl:hidden flex items-center gap-2 rounded-full border-2 border-brand-primary bg-brand-primary px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand-secondary hover:border-brand-secondary transition-all duration-300 hover:scale-105"
+  class="fixed bottom-6 right-6 z-[60] xl:hidden flex items-center gap-2 rounded-full border-2 border-brand-primary bg-brand-primary px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand-secondary hover:border-brand-secondary transition-all duration-300 hover:scale-105"
   aria-label="Toggle documentation navigation"
   aria-expanded="false"
   aria-controls="docs-sidebar"
@@ -61,8 +61,9 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 <!-- Sidebar -->
 <aside
   id="docs-sidebar"
-  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 overflow-y-auto bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out transform -translate-x-full xl:translate-x-0 xl:block"
+  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 overflow-y-auto bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:translate-x-0"
   aria-label="Documentation navigation"
+  aria-hidden="true"
 >
   <!-- Mobile Close Button -->
   <div class="xl:hidden flex items-center justify-between mb-4 pb-4 border-b border-dark-border">
@@ -127,6 +128,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 
     isOpen = true;
     sidebar?.classList.remove('-translate-x-full');
+    sidebar?.setAttribute('aria-hidden', 'false');
     overlay?.classList.remove('hidden');
     toggleButton?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden'; // Prevent body scroll when sidebar is open
@@ -138,6 +140,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
   function closeSidebar() {
     isOpen = false;
     sidebar?.classList.add('-translate-x-full');
+    sidebar?.setAttribute('aria-hidden', 'true');
     overlay?.classList.add('hidden');
     toggleButton?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = ''; // Restore body scroll
@@ -195,6 +198,29 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
       closeSidebar();
     }
   });
+
+  // Initialize sidebar state on page load
+  function initializeSidebar() {
+    // Ensure sidebar is closed on mobile on page load
+    if (window.innerWidth < 1280) {
+      sidebar?.classList.add('-translate-x-full');
+      sidebar?.setAttribute('aria-hidden', 'true');
+      overlay?.classList.add('hidden');
+      toggleButton?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      isOpen = false;
+    } else {
+      // On desktop, ensure sidebar is visible
+      sidebar?.classList.remove('-translate-x-full');
+      sidebar?.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  // Run initialization
+  initializeSidebar();
+
+  // Re-initialize on page load events
+  window.addEventListener('load', initializeSidebar);
 </script>
 
 <style>
