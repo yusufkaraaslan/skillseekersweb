@@ -62,6 +62,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 <aside
   id="docs-sidebar"
   class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 overflow-y-auto bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:translate-x-0"
+  style="transform: translateX(-100%);"
   aria-label="Documentation navigation"
   aria-hidden="true"
 >
@@ -128,6 +129,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 
     isOpen = true;
     sidebar?.classList.remove('-translate-x-full');
+    if (sidebar) sidebar.style.transform = 'translateX(0)';
     sidebar?.setAttribute('aria-hidden', 'false');
     overlay?.classList.remove('hidden');
     toggleButton?.setAttribute('aria-expanded', 'true');
@@ -140,6 +142,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
   function closeSidebar() {
     isOpen = false;
     sidebar?.classList.add('-translate-x-full');
+    if (sidebar) sidebar.style.transform = 'translateX(-100%)';
     sidebar?.setAttribute('aria-hidden', 'true');
     overlay?.classList.add('hidden');
     toggleButton?.setAttribute('aria-expanded', 'false');
@@ -204,6 +207,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
     // Ensure sidebar is closed on mobile on page load
     if (window.innerWidth < 1280) {
       sidebar?.classList.add('-translate-x-full');
+      if (sidebar) sidebar.style.transform = 'translateX(-100%)';
       sidebar?.setAttribute('aria-hidden', 'true');
       overlay?.classList.add('hidden');
       toggleButton?.setAttribute('aria-expanded', 'false');
@@ -212,15 +216,20 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
     } else {
       // On desktop, ensure sidebar is visible
       sidebar?.classList.remove('-translate-x-full');
+      if (sidebar) sidebar.style.transform = 'translateX(0)';
       sidebar?.setAttribute('aria-hidden', 'false');
     }
   }
 
-  // Run initialization
+  // Run initialization immediately (before DOMContentLoaded)
   initializeSidebar();
 
-  // Re-initialize on page load events
+  // Re-initialize on various page load events
+  document.addEventListener('DOMContentLoaded', initializeSidebar);
   window.addEventListener('load', initializeSidebar);
+
+  // Handle Astro page transitions
+  document.addEventListener('astro:after-swap', initializeSidebar);
 </script>
 
 <style>
