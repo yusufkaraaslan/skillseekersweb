@@ -37,8 +37,49 @@ Object.values(sections).forEach((section) => {
 const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order - b.order);
 ---
 
-<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto bg-dark-surface px-4 py-6 hidden xl:block">
-  <nav aria-label="Documentation navigation">
+<!-- Mobile Menu Toggle Button (visible on mobile/tablet only) -->
+<button
+  id="docs-mobile-menu-toggle"
+  class="fixed bottom-6 right-6 z-40 xl:hidden flex items-center gap-2 rounded-full border-2 border-brand-primary bg-brand-primary px-5 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand-secondary hover:border-brand-secondary transition-all duration-300 hover:scale-105"
+  aria-label="Toggle documentation navigation"
+  aria-expanded="false"
+  aria-controls="docs-sidebar"
+>
+  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+  <span>Menu</span>
+</button>
+
+<!-- Mobile Overlay (backdrop) -->
+<div
+  id="docs-sidebar-overlay"
+  class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm xl:hidden hidden transition-opacity duration-300"
+  aria-hidden="true"
+></div>
+
+<!-- Sidebar -->
+<aside
+  id="docs-sidebar"
+  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 overflow-y-auto bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out transform -translate-x-full xl:translate-x-0 xl:block"
+  aria-label="Documentation navigation"
+>
+  <!-- Mobile Close Button -->
+  <div class="xl:hidden flex items-center justify-between mb-4 pb-4 border-b border-dark-border">
+    <h2 class="text-lg font-semibold text-dark-text-primary">Documentation</h2>
+    <button
+      id="docs-mobile-menu-close"
+      class="rounded-lg p-2 text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary transition-colors"
+      aria-label="Close navigation"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Navigation Content -->
+  <nav>
     <div class="space-y-6">
       {orderedSections.map(([key, section]) => (
         section.docs.length > 0 && (
@@ -70,28 +111,124 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
       ))}
     </div>
   </nav>
-
-  <!-- Mobile Toggle (for future mobile menu) -->
-  <div class="xl:hidden mb-4">
-    <button
-      id="docs-mobile-menu-toggle"
-      class="flex items-center gap-2 rounded-lg border border-dark-border bg-dark-surface px-4 py-2 text-sm text-dark-text-primary hover:bg-dark-border transition-colors"
-    >
-      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-      Menu
-    </button>
-  </div>
 </aside>
 
 <script>
-  // Mobile menu toggle (for future implementation)
-  const toggle = document.getElementById('docs-mobile-menu-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      // Mobile menu logic will go here
-      console.log('Mobile menu clicked');
-    });
+  // Mobile menu functionality
+  const sidebar = document.getElementById('docs-sidebar');
+  const overlay = document.getElementById('docs-sidebar-overlay');
+  const toggleButton = document.getElementById('docs-mobile-menu-toggle');
+  const closeButton = document.getElementById('docs-mobile-menu-close');
+
+  let isOpen = false;
+
+  function openSidebar() {
+    if (window.innerWidth >= 1280) return; // Don't toggle on xl screens
+
+    isOpen = true;
+    sidebar?.classList.remove('-translate-x-full');
+    overlay?.classList.remove('hidden');
+    toggleButton?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // Prevent body scroll when sidebar is open
+
+    // Focus trap - focus the close button
+    closeButton?.focus();
   }
+
+  function closeSidebar() {
+    isOpen = false;
+    sidebar?.classList.add('-translate-x-full');
+    overlay?.classList.add('hidden');
+    toggleButton?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = ''; // Restore body scroll
+
+    // Return focus to toggle button
+    toggleButton?.focus();
+  }
+
+  // Toggle button click
+  toggleButton?.addEventListener('click', () => {
+    if (isOpen) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+
+  // Close button click
+  closeButton?.addEventListener('click', () => {
+    closeSidebar();
+  });
+
+  // Overlay click
+  overlay?.addEventListener('click', () => {
+    closeSidebar();
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) {
+      closeSidebar();
+    }
+  });
+
+  // Close sidebar when clicking a link (on mobile)
+  const sidebarLinks = sidebar?.querySelectorAll('a');
+  sidebarLinks?.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1280) {
+        closeSidebar();
+      }
+    });
+  });
+
+  // Close sidebar on window resize to desktop size
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280 && isOpen) {
+      closeSidebar();
+    }
+  });
+
+  // Handle page navigation (for Astro view transitions if enabled)
+  document.addEventListener('astro:page-load', () => {
+    if (isOpen) {
+      closeSidebar();
+    }
+  });
 </script>
+
+<style>
+  /* Ensure smooth scrolling in sidebar */
+  #docs-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.5) rgba(26, 26, 31, 0.5);
+  }
+
+  #docs-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #docs-sidebar::-webkit-scrollbar-track {
+    background: rgba(26, 26, 31, 0.5);
+    border-radius: 3px;
+  }
+
+  #docs-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.5);
+    border-radius: 3px;
+  }
+
+  #docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.7);
+  }
+
+  /* Smooth transition for overlay */
+  #docs-sidebar-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  #docs-sidebar-overlay:not(.hidden) {
+    opacity: 1;
+  }
+</style>

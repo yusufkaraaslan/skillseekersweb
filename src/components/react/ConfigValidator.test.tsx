@@ -3,6 +3,12 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ConfigValidator from './ConfigValidator';
 
+// Mock fetch for submit tests
+global.fetch = vi.fn();
+
+// Mock window.scrollTo
+window.scrollTo = vi.fn();
+
 // Helper function to set textarea value (simulates paste)
 const setTextareaValue = (textarea: HTMLElement, value: string) => {
   fireEvent.change(textarea, { target: { value } });
@@ -11,6 +17,10 @@ const setTextareaValue = (textarea: HTMLElement, value: string) => {
 describe('ConfigValidator', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    (global.fetch as any).mockResolvedValue({
+      ok: true,
+      json: async () => ({ issueUrl: 'https://github.com/test/repo/issues/1' }),
+    });
   });
 
   describe('Initial Rendering', () => {
@@ -18,7 +28,7 @@ describe('ConfigValidator', () => {
       render(<ConfigValidator />);
 
       expect(screen.getByText('Validate Your Config')).toBeInTheDocument();
-      expect(screen.getByPlaceholderText('Paste your config JSON here...')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...')).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /validate config/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /load example/i })).toBeInTheDocument();
     });
@@ -32,7 +42,7 @@ describe('ConfigValidator', () => {
     it('should enable validate button when text is entered', () => {
       render(<ConfigValidator />);
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       const validateButton = screen.getByRole('button', { name: /validate config/i });
 
       setTextareaValue(textarea, '{"test": "value"}');
@@ -48,12 +58,12 @@ describe('ConfigValidator', () => {
       const loadExampleButton = screen.getByRole('button', { name: /load example/i });
       await user.click(loadExampleButton);
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       const value = (textarea as HTMLTextAreaElement).value;
 
-      expect(value).toContain('example-framework');
-      expect(value).toContain('Example framework documentation');
-      expect(value).toContain('https://docs.example.com');
+      expect(value).toContain('vue');
+      expect(value).toContain('Complete Vue.js framework knowledge');
+      expect(value).toContain('https://vuejs.org/');
     });
   });
 
@@ -62,7 +72,7 @@ describe('ConfigValidator', () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, '{invalid json}');
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -78,15 +88,20 @@ describe('ConfigValidator', () => {
       const validConfig = {
         name: 'test-framework',
         description: 'Test framework documentation',
-        base_url: 'https://docs.test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://docs.test.com',
+            selectors: {
+              main_content: 'article',
+              title: 'h1',
+              code_blocks: 'pre code',
+            },
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(validConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -106,15 +121,15 @@ describe('ConfigValidator', () => {
 
       const invalidConfig = {
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -129,15 +144,15 @@ describe('ConfigValidator', () => {
 
       const invalidConfig = {
         name: 'test-config',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -146,27 +161,22 @@ describe('ConfigValidator', () => {
       expect(await screen.findByText(/config must have a "description" field/i)).toBeInTheDocument();
     });
 
-    it('should show error when base_url field is missing', async () => {
+    it('should show error when sources array is missing', async () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
 
       const invalidConfig = {
         name: 'test-config',
         description: 'Test',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
       await user.click(validateButton);
 
-      expect(await screen.findByText(/config must have a "base_url" field/i)).toBeInTheDocument();
+      expect(await screen.findByText(/config must have a "sources" array/i)).toBeInTheDocument();
     });
   });
 
@@ -178,15 +188,15 @@ describe('ConfigValidator', () => {
       const invalidConfig = {
         name: 'TestConfig',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -202,15 +212,15 @@ describe('ConfigValidator', () => {
       const validConfig = {
         name: 'test-config_v2',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(validConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -222,7 +232,47 @@ describe('ConfigValidator', () => {
     });
   });
 
-  describe('URL Validation', () => {
+  describe('Sources Array Validation', () => {
+    it('should reject empty sources array', async () => {
+      const user = userEvent.setup();
+      render(<ConfigValidator />);
+
+      const invalidConfig = {
+        name: 'test-config',
+        description: 'Test',
+        sources: [],
+      };
+
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
+      setTextareaValue(textarea, JSON.stringify(invalidConfig));
+
+      const validateButton = screen.getByRole('button', { name: /validate config/i });
+      await user.click(validateButton);
+
+      expect(await screen.findByText(/"sources" array cannot be empty/i)).toBeInTheDocument();
+    });
+
+    it('should reject non-array sources', async () => {
+      const user = userEvent.setup();
+      render(<ConfigValidator />);
+
+      const invalidConfig = {
+        name: 'test-config',
+        description: 'Test',
+        sources: 'not an array',
+      };
+
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
+      setTextareaValue(textarea, JSON.stringify(invalidConfig));
+
+      const validateButton = screen.getByRole('button', { name: /validate config/i });
+      await user.click(validateButton);
+
+      expect(await screen.findByText(/"sources" must be an array/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('Documentation Source Validation', () => {
     it('should reject URLs without protocol', async () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
@@ -230,15 +280,15 @@ describe('ConfigValidator', () => {
       const invalidConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'docs.test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'docs.test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -254,15 +304,15 @@ describe('ConfigValidator', () => {
       const validConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'http://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'http://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(validConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -272,99 +322,7 @@ describe('ConfigValidator', () => {
         expect(screen.queryByText(/base_url must start with http/i)).not.toBeInTheDocument();
       });
     });
-  });
 
-  describe('Selector Validation', () => {
-    it('should show error when selectors object is missing', async () => {
-      const user = userEvent.setup();
-      render(<ConfigValidator />);
-
-      const invalidConfig = {
-        name: 'test-config',
-        description: 'Test',
-        base_url: 'https://test.com',
-      };
-
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
-      setTextareaValue(textarea, JSON.stringify(invalidConfig));
-
-      const validateButton = screen.getByRole('button', { name: /validate config/i });
-      await user.click(validateButton);
-
-      expect(await screen.findByText(/config must have a "selectors" object/i)).toBeInTheDocument();
-    });
-
-    it('should show error when main_content selector is missing', async () => {
-      const user = userEvent.setup();
-      render(<ConfigValidator />);
-
-      const invalidConfig = {
-        name: 'test-config',
-        description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
-      };
-
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
-      setTextareaValue(textarea, JSON.stringify(invalidConfig));
-
-      const validateButton = screen.getByRole('button', { name: /validate config/i });
-      await user.click(validateButton);
-
-      expect(await screen.findByText(/selectors must have "main_content" field/i)).toBeInTheDocument();
-    });
-
-    it('should show error when title selector is missing', async () => {
-      const user = userEvent.setup();
-      render(<ConfigValidator />);
-
-      const invalidConfig = {
-        name: 'test-config',
-        description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          code_blocks: 'pre code',
-        },
-      };
-
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
-      setTextareaValue(textarea, JSON.stringify(invalidConfig));
-
-      const validateButton = screen.getByRole('button', { name: /validate config/i });
-      await user.click(validateButton);
-
-      expect(await screen.findByText(/selectors must have "title" field/i)).toBeInTheDocument();
-    });
-
-    it('should show error when code_blocks selector is missing', async () => {
-      const user = userEvent.setup();
-      render(<ConfigValidator />);
-
-      const invalidConfig = {
-        name: 'test-config',
-        description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-        },
-      };
-
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
-      setTextareaValue(textarea, JSON.stringify(invalidConfig));
-
-      const validateButton = screen.getByRole('button', { name: /validate config/i });
-      await user.click(validateButton);
-
-      expect(await screen.findByText(/selectors must have "code_blocks" field/i)).toBeInTheDocument();
-    });
-  });
-
-  describe('Optional Field Validation', () => {
     it('should show error for negative max_pages', async () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
@@ -372,16 +330,16 @@ describe('ConfigValidator', () => {
       const invalidConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
-        max_pages: -1,
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+            max_pages: -2,
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -397,16 +355,16 @@ describe('ConfigValidator', () => {
       const invalidConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
-        rate_limit: -0.5,
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+            rate_limit: -0.5,
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -416,7 +374,81 @@ describe('ConfigValidator', () => {
     });
   });
 
-  describe('Copy and Submit Functionality', () => {
+  describe('GitHub Source Validation', () => {
+    it('should require repo field for GitHub source', async () => {
+      const user = userEvent.setup();
+      render(<ConfigValidator />);
+
+      const invalidConfig = {
+        name: 'test-config',
+        description: 'Test',
+        sources: [
+          {
+            type: 'github',
+          },
+        ],
+      };
+
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
+      setTextareaValue(textarea, JSON.stringify(invalidConfig));
+
+      const validateButton = screen.getByRole('button', { name: /validate config/i });
+      await user.click(validateButton);
+
+      expect(await screen.findByText(/GitHub source must have "repo" field/i)).toBeInTheDocument();
+    });
+
+    it('should validate repo format', async () => {
+      const user = userEvent.setup();
+      render(<ConfigValidator />);
+
+      const invalidConfig = {
+        name: 'test-config',
+        description: 'Test',
+        sources: [
+          {
+            type: 'github',
+            repo: 'invalid-format',
+          },
+        ],
+      };
+
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
+      setTextareaValue(textarea, JSON.stringify(invalidConfig));
+
+      const validateButton = screen.getByRole('button', { name: /validate config/i });
+      await user.click(validateButton);
+
+      expect(await screen.findByText(/repo must be in format "owner\/repo"/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('PDF Source Validation', () => {
+    it('should require path field for PDF source', async () => {
+      const user = userEvent.setup();
+      render(<ConfigValidator />);
+
+      const invalidConfig = {
+        name: 'test-config',
+        description: 'Test',
+        sources: [
+          {
+            type: 'pdf',
+          },
+        ],
+      };
+
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
+      setTextareaValue(textarea, JSON.stringify(invalidConfig));
+
+      const validateButton = screen.getByRole('button', { name: /validate config/i });
+      await user.click(validateButton);
+
+      expect(await screen.findByText(/PDF source must have "path" field/i)).toBeInTheDocument();
+    });
+  });
+
+  describe('Submit Functionality', () => {
     it('should show submit button only when config is valid', async () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
@@ -424,62 +456,63 @@ describe('ConfigValidator', () => {
       const validConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(validConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
       await user.click(validateButton);
 
-      expect(await screen.findByRole('button', { name: /copy & submit to github/i })).toBeInTheDocument();
+      expect(await screen.findByRole('button', { name: /submit config/i })).toBeInTheDocument();
     });
 
-    it('should copy to clipboard and open GitHub when submit is clicked', async () => {
+    it('should submit config and show success message', async () => {
       const user = userEvent.setup();
       render(<ConfigValidator />);
 
       const validConfig = {
         name: 'test-config',
         description: 'Test',
-        base_url: 'https://test.com',
-        selectors: {
-          main_content: 'article',
-          title: 'h1',
-          code_blocks: 'pre code',
-        },
+        sources: [
+          {
+            type: 'documentation',
+            base_url: 'https://test.com',
+          },
+        ],
       };
 
       const configString = JSON.stringify(validConfig);
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, configString);
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
       await user.click(validateButton);
 
-      const submitButton = await screen.findByRole('button', { name: /copy & submit to github/i });
+      const submitButton = await screen.findByRole('button', { name: /submit config/i });
       await user.click(submitButton);
 
-      // Check window.open was called with correct URL
+      // Check fetch was called with correct data
       await waitFor(() => {
-        expect(window.open).toHaveBeenCalledWith(
-          'https://github.com/yusufkaraaslan/Skill_Seekers/issues/new?template=submit-config.md&title=[CONFIG]%20&labels=config-submission,needs-review',
-          '_blank'
-        );
+        expect(global.fetch).toHaveBeenCalledWith('/api/submit-config', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ config: validConfig }),
+        });
       });
 
       // Check success message appears
-      expect(screen.getByText(/✅ copied to clipboard/i)).toBeInTheDocument();
+      expect(await screen.findByText(/config submitted successfully/i)).toBeInTheDocument();
+      expect(screen.getByText(/view github issue/i)).toBeInTheDocument();
     });
-
-    // Note: Timer-based test removed as it tests implementation details
-    // The important behavior (showing success message) is tested above
   });
 
   describe('Multiple Validation Errors', () => {
@@ -489,11 +522,10 @@ describe('ConfigValidator', () => {
 
       const invalidConfig = {
         name: 'InvalidName',
-        base_url: 'invalid-url',
-        selectors: {},
+        sources: 'not-an-array',
       };
 
-      const textarea = screen.getByPlaceholderText('Paste your config JSON here...');
+      const textarea = screen.getByPlaceholderText('Paste your config JSON here, or click "Load Example" above...');
       setTextareaValue(textarea, JSON.stringify(invalidConfig));
 
       const validateButton = screen.getByRole('button', { name: /validate config/i });
@@ -503,14 +535,8 @@ describe('ConfigValidator', () => {
         expect(screen.getByText(/❌ validation errors/i)).toBeInTheDocument();
         expect(screen.getByText(/name must be lowercase/i)).toBeInTheDocument();
         expect(screen.getByText(/config must have a "description" field/i)).toBeInTheDocument();
-        expect(screen.getByText(/base_url must start with http/i)).toBeInTheDocument();
-        expect(screen.getByText(/selectors must have "main_content" field/i)).toBeInTheDocument();
-        expect(screen.getByText(/selectors must have "title" field/i)).toBeInTheDocument();
-        expect(screen.getByText(/selectors must have "code_blocks" field/i)).toBeInTheDocument();
+        expect(screen.getByText(/"sources" must be an array/i)).toBeInTheDocument();
       });
     });
   });
-
-  // Note: UI Behavior tests removed as they test implementation details (error state management)
-  // The important validation behavior is already thoroughly tested above
 });

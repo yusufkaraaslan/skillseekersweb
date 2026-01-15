@@ -23,11 +23,11 @@ const allDocs = await getCollection('docs');
     <Sidebar docs={allDocs} currentSlug={doc.slug} />
 
     <!-- Main Content -->
-    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-64">
+    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-64 pb-20 sm:pb-8">
       <div class="mx-auto max-w-4xl">
         <!-- Breadcrumbs -->
         <nav class="mb-8 text-sm" aria-label="Breadcrumb">
-          <ol class="flex items-center space-x-2 text-dark-text-secondary">
+          <ol class="flex items-center space-x-2 text-dark-text-secondary flex-wrap">
             <li><a href="/" class="hover:text-brand-primary transition-colors">Home</a></li>
             <li class="flex items-center">
               <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
@@ -45,7 +45,7 @@ const allDocs = await getCollection('docs');
         </nav>
 
         <!-- Article -->
-        <article class="prose max-w-none">
+        <article class="prose prose-invert prose-brand max-w-none">
           <slot />
         </article>
 
@@ -71,3 +71,50 @@ const allDocs = await getCollection('docs');
     )}
   </div>
 </BaseLayout>
+
+<style>
+  /* Prose styling for documentation content */
+  .prose-brand {
+    --tw-prose-body: #e8e8ee;
+    --tw-prose-headings: #e8e8ee;
+    --tw-prose-links: #6366f1;
+    --tw-prose-bold: #e8e8ee;
+    --tw-prose-code: #6366f1;
+    --tw-prose-pre-bg: rgba(26, 26, 31, 0.8);
+    --tw-prose-pre-code: #e8e8ee;
+    --tw-prose-quotes: #a0a0b0;
+    --tw-prose-quote-borders: #6366f1;
+  }
+
+  /* Adjust prose styles for code blocks */
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: rgba(26, 26, 31, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 0.5rem;
+  }
+
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    background-color: rgba(99, 102, 241, 0.1);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+  }
+
+  .prose :where(pre code):not(:where([class~="not-prose"] *)) {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  /* Add smooth scrolling behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ensure main content is properly spaced on mobile to avoid FAB overlap */
+  @media (max-width: 1279px) {
+    main {
+      padding-bottom: 5rem;
+    }
+  }
+</style>
