@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Block admin routes from search engines
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://skillseekersweb.com/sitemap.xml
