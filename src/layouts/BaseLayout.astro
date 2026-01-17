@@ -1,6 +1,7 @@
 ---
 import Header from '../components/astro/layout/Header.astro';
 import Footer from '../components/astro/layout/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 
 interface Props {
@@ -64,5 +65,6 @@ const fullOgImage = new URL(ogImage, Astro.site);
       <slot />
     </main>
     <Footer hasDocsSidebar={hasDocsSidebar} />
+    <Analytics />
   </body>
 </html>
