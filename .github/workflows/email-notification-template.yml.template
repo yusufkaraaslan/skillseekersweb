@@ -1,0 +1,133 @@
+# Email Notification Workflow Template
+#
+# This workflow sends email notifications when new config submissions are created.
+# To activate this workflow:
+# 1. Add your Proton email credentials to GitHub Secrets:
+#    - NOTIFICATION_EMAIL_HOST: smtp.protonmail.ch
+#    - NOTIFICATION_EMAIL_PORT: 587
+#    - NOTIFICATION_EMAIL_USER: your-proton-email@proton.me
+#    - NOTIFICATION_EMAIL_PASSWORD: your-proton-app-password
+#    - NOTIFICATION_EMAIL_TO: admin-email@example.com (where to send notifications)
+#
+# 2. Rename this file from `.yml.template` to `.yml`:
+#    mv .github/workflows/email-notification-template.yml.template \
+#       .github/workflows/config-submission-email-notification.yml
+#
+# 3. Commit and push the renamed file
+
+name: Email Notification for Config Submissions
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  send-email-notification:
+    # Only run if the issue has the config-submission label
+    if: contains(github.event.issue.labels.*.name, 'config-submission')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # SMTP server settings
+          server_address: ${{ secrets.NOTIFICATION_EMAIL_HOST }}
+          server_port: ${{ secrets.NOTIFICATION_EMAIL_PORT }}
+
+          # Authentication
+          username: ${{ secrets.NOTIFICATION_EMAIL_USER }}
+          password: ${{ secrets.NOTIFICATION_EMAIL_PASSWORD }}
+
+          # Email details
+          subject: "🔔 New Skill Seekers Config Submission #${{ github.event.issue.number }}"
+          to: ${{ secrets.NOTIFICATION_EMAIL_TO }}
+          from: Skill Seekers Bot <${{ secrets.NOTIFICATION_EMAIL_USER }}>
+
+          # Email body
+          body: |
+            A new config submission has been received!
+
+            **Issue:** #${{ github.event.issue.number }}
+            **Title:** ${{ github.event.issue.title }}
+            **Author:** @${{ github.event.issue.user.login }}
+            **Created:** ${{ github.event.issue.created_at }}
+
+            **View Submission:**
+            ${{ github.event.issue.html_url }}
+
+            **Admin Dashboard:**
+            https://skillseekersweb.com/admin
+
+            ---
+
+            Please review and approve/reject this submission within 48 hours.
+
+          # Content type
+          html_body: |
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; }
+                .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; }
+                .footer { background: #1f2937; color: #9ca3af; padding: 20px; border-radius: 0 0 10px 10px; text-align: center; font-size: 12px; }
+                .badge { background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+                .button { display: inline-block; background: #667eea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px 5px; }
+                .button:hover { background: #5568d3; }
+                .meta { color: #6b7280; font-size: 14px; margin: 10px 0; }
+                .highlight { background: #fef3c7; padding: 2px 6px; border-radius: 3px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1 style="margin: 0;">🔔 New Config Submission</h1>
+                  <p style="margin: 10px 0 0 0; opacity: 0.9;">Skill Seekers Admin Notification</p>
+                </div>
+
+                <div class="content">
+                  <p>A new config submission has been received and is waiting for your review:</p>
+
+                  <h2 style="color: #1f2937; margin-top: 20px;">
+                    <span class="badge">#${{ github.event.issue.number }}</span>
+                    ${{ github.event.issue.title }}
+                  </h2>
+
+                  <div class="meta">
+                    <p>👤 <strong>Author:</strong> @${{ github.event.issue.user.login }}</p>
+                    <p>📅 <strong>Submitted:</strong> ${{ github.event.issue.created_at }}</p>
+                    <p>⏱️ <strong>SLA:</strong> <span class="highlight">Review within 48 hours</span></p>
+                  </div>
+
+                  <div style="text-align: center; margin: 30px 0;">
+                    <a href="${{ github.event.issue.html_url }}" class="button">
+                      View GitHub Issue →
+                    </a>
+                    <a href="https://skillseekersweb.com/admin" class="button">
+                      Open Admin Dashboard →
+                    </a>
+                  </div>
+
+                  <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+                    <strong>Next Steps:</strong><br>
+                    1. Review the config in the GitHub issue<br>
+                    2. Verify all fields are correct<br>
+                    3. Approve ✅ or Reject ❌ via the admin dashboard
+                  </p>
+                </div>
+
+                <div class="footer">
+                  <p>This is an automated notification from Skill Seekers</p>
+                  <p>To manage notification settings, visit your GitHub repository settings</p>
+                </div>
+              </div>
+            </body>
+            </html>
+
+      - name: Log notification sent
+        run: |
+          echo "Email notification sent for issue #${{ github.event.issue.number }}"
+          echo "Recipient: ${{ secrets.NOTIFICATION_EMAIL_TO }}"
