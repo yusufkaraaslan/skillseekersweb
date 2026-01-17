@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import sentry from '@sentry/astro';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,12 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/admin') &&
         !page.includes('/api/')
+    }),
+    sentry({
+      sourceMapsUploadOptions: {
+        project: process.env.SENTRY_PROJECT || 'skillseekersweb',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+      },
     })
   ],
   output: 'server', // Enable SSR for API routes and admin dashboard

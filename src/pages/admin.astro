@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AdminDashboard from '../components/react/AdminDashboard';
+import ErrorBoundary from '../components/react/ErrorBoundary';
 
 // Check if user is authenticated
 const authCookie = Astro.cookies.get('gh_admin_session');
@@ -99,7 +100,9 @@ if (error === 'not_authorized') {
           </div>
 
           <!-- Dashboard Component -->
-          <AdminDashboard client:load />
+          <ErrorBoundary client:load>
+            <AdminDashboard client:load />
+          </ErrorBoundary>
         </div>
       )}
     </div>
