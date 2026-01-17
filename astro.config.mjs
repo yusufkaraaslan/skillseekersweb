@@ -20,10 +20,10 @@ export default defineConfig({
         !page.includes('/api/')
     }),
     sentry({
-      sourceMapsUploadOptions: {
-        project: process.env.SENTRY_PROJECT || 'skillseekersweb',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
+      dsn: process.env.SENTRY_DSN,
+      project: 'javascript-astro',
+      org: 'yusuf-karaaslan',
+      authToken: process.env.SENTRY_AUTH_TOKEN,
     })
   ],
   output: 'server', // Enable SSR for API routes and admin dashboard
