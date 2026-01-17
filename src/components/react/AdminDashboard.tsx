@@ -151,6 +151,27 @@ export default function AdminDashboard() {
     });
   };
 
+  const isNewSubmission = (dateString: string) => {
+    const submissionDate = new Date(dateString);
+    const now = new Date();
+    const hoursDiff = (now.getTime() - submissionDate.getTime()) / (1000 * 60 * 60);
+    return hoursDiff < 24; // New if created within last 24 hours
+  };
+
+  const getTimeAgo = (dateString: string) => {
+    const submissionDate = new Date(dateString);
+    const now = new Date();
+    const diffInMs = now.getTime() - submissionDate.getTime();
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    if (diffInMinutes < 1) return 'Just now';
+    if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+    if (diffInHours < 24) return `${diffInHours}h ago`;
+    return `${diffInDays}d ago`;
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
@@ -197,8 +218,27 @@ export default function AdminDashboard() {
     <div>
       {/* Stats */}
       <div className="mb-6 flex items-center justify-between">
-        <div className="text-sm text-dark-text-secondary">
-          {submissions.length} pending submission{submissions.length !== 1 ? 's' : ''}
+        <div className="flex items-center space-x-3">
+          {/* Pending Submissions Badge */}
+          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-brand-primary/20 to-brand-secondary/20 border border-brand-primary/50 rounded-lg">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute inline-flex h-full w-full animate-ping opacity-75 rounded-full bg-brand-primary"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-primary"></span>
+            </div>
+            <span className="text-lg font-bold text-brand-primary">
+              {submissions.length}
+            </span>
+            <span className="text-sm text-dark-text-secondary">
+              pending submission{submissions.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
+          {/* New Submissions Indicator */}
+          {submissions.filter(s => isNewSubmission(s.createdAt)).length > 0 && (
+            <div className="px-3 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-yellow-400 text-sm font-medium">
+              ⚡ {submissions.filter(s => isNewSubmission(s.createdAt)).length} new (24h)
+            </div>
+          )}
         </div>
         <button
           onClick={fetchSubmissions}
@@ -210,27 +250,41 @@ export default function AdminDashboard() {
 
       {/* Submissions Grid */}
       <div className="space-y-4">
-        {submissions.map((submission) => (
-          <div
-            key={submission.issueNumber}
-            className="bg-dark-surface border border-dark-border rounded-xl p-6 hover:border-brand-primary/50 transition-all"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-2">
-                  <h3 className="text-xl font-semibold">
-                    {submission.config?.name || 'Unknown Config'}
-                  </h3>
-                  <span className="px-2 py-1 bg-brand-primary/10 text-brand-primary text-xs font-medium rounded">
-                    #{submission.issueNumber}
-                  </span>
-                </div>
+        {submissions.map((submission) => {
+          const isNew = isNewSubmission(submission.createdAt);
+          return (
+            <div
+              key={submission.issueNumber}
+              className={`bg-dark-surface border rounded-xl p-6 hover:border-brand-primary/50 transition-all ${
+                isNew
+                  ? 'border-yellow-500/50 shadow-lg shadow-yellow-500/10'
+                  : 'border-dark-border'
+              }`}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <h3 className="text-xl font-semibold">
+                      {submission.config?.name || 'Unknown Config'}
+                    </h3>
+                    <span className="px-2 py-1 bg-brand-primary/10 text-brand-primary text-xs font-medium rounded">
+                      #{submission.issueNumber}
+                    </span>
+                    {isNew && (
+                      <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded animate-pulse">
+                        ⚡ NEW
+                      </span>
+                    )}
+                  </div>
                 <p className="text-dark-text-secondary text-sm mb-2">
                   {submission.config?.description || 'No description'}
                 </p>
                 <div className="flex items-center space-x-4 text-xs text-dark-text-secondary">
                   <span>👤 {submission.author}</span>
                   <span>📅 {formatDate(submission.createdAt)}</span>
+                  <span className={`font-medium ${isNew ? 'text-yellow-400' : ''}`}>
+                    ⏱️ {getTimeAgo(submission.createdAt)}
+                  </span>
                   <a
                     href={submission.url}
                     target="_blank"
@@ -308,7 +362,8 @@ export default function AdminDashboard() {
               </button>
             </div>
           </div>
-        ))}
+        );
+        })}
       </div>
 
       {/* Reject Modal */}

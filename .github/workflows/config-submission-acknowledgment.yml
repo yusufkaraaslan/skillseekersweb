@@ -1,0 +1,51 @@
+name: Config Submission Acknowledgment
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  acknowledge-submission:
+    # Only run if the issue has the config-submission label
+    if: contains(github.event.issue.labels.*.name, 'config-submission')
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+
+    steps:
+      - name: Add acknowledgment comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            const author = context.payload.issue.user.login;
+
+            const comment = `👋 Hi @${author}!
+
+Thank you for submitting your Skill Seekers configuration! 🎉
+
+**What happens next:**
+- ✅ Your submission has been received
+- 🔍 Our team will review it within **48 hours**
+- 📧 You'll get notified when it's approved or if changes are needed
+- 🚀 Once approved, your skill will be available in the [Skills Library](https://skillseekersweb.com/skills)
+
+**While you wait:**
+- Make sure your configuration follows the [submission guidelines](https://skillseekersweb.com/docs/getting-started/submit-config)
+- Check that all required fields are filled
+- Verify URLs are accessible
+
+Feel free to ask questions or make updates to your submission by commenting below.
+
+---
+*This is an automated message. A human will review your submission soon!*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: comment
+            });
+
+            console.log(`Added acknowledgment comment to issue #${issueNumber}`);
