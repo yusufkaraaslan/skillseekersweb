@@ -1,7 +1,14 @@
 import type { APIRoute } from 'astro';
+import { rateLimits, applyRateLimit, getClientIP } from '../../../utils/ratelimit';
 
 // Initiate GitHub OAuth flow
-export const GET: APIRoute = async ({ redirect }) => {
+export const GET: APIRoute = async ({ request, redirect }) => {
+  // Apply rate limiting (10 requests per 15 minutes per IP)
+  const clientIP = getClientIP(request);
+  const rateLimitResponse = await applyRateLimit(rateLimits.oauth, clientIP);
+  if (rateLimitResponse) {
+    return rateLimitResponse;
+  }
   const clientId = import.meta.env.GITHUB_OAUTH_CLIENT_ID;
 
   if (!clientId) {

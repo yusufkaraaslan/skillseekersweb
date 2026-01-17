@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { rateLimits, applyRateLimit } from '../../../utils/ratelimit';
 
 // API endpoint to fetch pending config submissions from GitHub Issues
 export const GET: APIRoute = async ({ request }) => {
@@ -15,6 +16,12 @@ export const GET: APIRoute = async ({ request }) => {
 
     // Decode session (simple base64 for now - in production use signed tokens)
     const sessionData = JSON.parse(atob(authCookie));
+
+    // Apply rate limiting (30 requests per hour per user)
+    const rateLimitResponse = await applyRateLimit(rateLimits.adminSubmissions, sessionData.username);
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
 
     // Check if user is in admin whitelist
     const adminWhitelist = import.meta.env.ADMIN_GITHUB_USERNAMES?.split(',') || [];

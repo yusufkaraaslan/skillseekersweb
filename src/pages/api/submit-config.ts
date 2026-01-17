@@ -1,8 +1,16 @@
 import type { APIRoute } from 'astro';
+import { rateLimits, applyRateLimit, getClientIP } from '../../utils/ratelimit';
 
 // API endpoint to automatically submit config to GitHub Issues
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Apply rate limiting (5 requests per hour per IP)
+    const clientIP = getClientIP(request);
+    const rateLimitResponse = await applyRateLimit(rateLimits.submitConfig, clientIP);
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
+
     const body = await request.json();
     const { config } = body;
 
