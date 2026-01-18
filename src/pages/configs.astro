@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ConfigGallery from '../components/react/ConfigGallery';
 import ConfigValidator from '../components/react/ConfigValidator';
-import ErrorBoundary from '../components/react/ErrorBoundary';
 import { fetchConfigs } from '../utils/api';
 
 export const prerender = false;
@@ -16,9 +15,7 @@ const configs = await fetchConfigs();
   description="Browse and download 27 production-ready configurations for Skill Seekers. Convert documentation, GitHub repos, and PDFs into Claude AI skills with pre-built configs."
 >
   <!-- Config Gallery -->
-  <ErrorBoundary client:load>
-    <ConfigGallery client:load initialConfigs={configs} />
-  </ErrorBoundary>
+  <ConfigGallery client:load initialConfigs={configs} />
 
   <!-- Submit Config Section -->
   <section class="py-20 bg-dark-bg border-t border-dark-border">
@@ -79,9 +76,7 @@ const configs = await fetchConfigs();
       </div>
 
       <!-- Validator -->
-      <ErrorBoundary client:load>
-        <ConfigValidator client:load />
-      </ErrorBoundary>
+      <ConfigValidator client:load />
 
       <!-- Additional Info -->
       <div class="max-w-4xl mx-auto mt-12">
