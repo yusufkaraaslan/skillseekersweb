@@ -34,7 +34,7 @@ Make sure Skill Seekers is ready:
 skill-seekers --version
 ```
 
-You should see something like: `Skill Seekers v2.6.0`
+You should see something like: `Skill Seekers v2.7.0`
 
 **If not installed:** See [Installation Guide](/docs/getting-started/installation)
 

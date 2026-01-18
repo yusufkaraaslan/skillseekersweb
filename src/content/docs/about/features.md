@@ -7,7 +7,7 @@ order: 2
 
 # Features Overview
 
-Skill Seekers v2.6.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
+Skill Seekers v2.7.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
 
 ## 🌐 Input Sources
 
@@ -152,11 +152,11 @@ Advanced code analysis features for understanding codebases:
 
 ## 📊 Statistics
 
-- **700+ tests** - Comprehensive test coverage, 100% passing
+- **1200+ tests** - Comprehensive test coverage, 100% passing
 - **24 preset configs** - Ready-to-use configs for popular frameworks
 - **4 platforms** - Complete multi-LLM support
 - **18 MCP tools** - Full Claude Code integration
-- **v2.6.0** - Latest release (January 2026)
+- **v2.7.0** - Latest release (January 2026)
 
 ## Next Steps
 

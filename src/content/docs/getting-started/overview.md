@@ -52,14 +52,14 @@ That's it! You now have a comprehensive Astro skill in Claude.
 - PDF files (with OCR support)
 - Combined unified skills from multiple sources
 
-### Three-Stream Architecture (NEW v2.6.0)
+### Three-Stream Architecture (v2.6.0)
 - **Stream 1: Code** - Deep C3.x analysis (patterns, examples, architecture)
 - **Stream 2: Docs** - Repository documentation (README, docs/)
 - **Stream 3: Insights** - GitHub issues (common problems + solutions)
 - Automatic conflict detection between docs and code
 - Real user problems and solutions from GitHub
 
-### C3.x Codebase Analysis (NEW v2.6.0)
+### C3.x Codebase Analysis (v2.6.0)
 - **C3.1:** Design pattern detection (Strategy, Factory, etc.)
 - **C3.2:** Test example extraction (working code from tests)
 - **C3.3:** How-to guide generation (automated tutorials)
@@ -79,24 +79,29 @@ That's it! You now have a comprehensive Astro skill in Claude.
 - AI-powered enhancement and summarization
 - Smart caching for faster re-runs (50% speedup)
 
-## What's New in v2.6.0
+## What's New in v2.7.0
 
-**Three-Stream GitHub Architecture:**
-- Automatically splits GitHub repos into Code, Docs, and Insights streams
-- Real user problems and solutions from GitHub issues
-- Complete understanding of any framework
+**Smart Rate Limit Management & Multi-Token Configuration:**
+- Multi-profile GitHub token management with automatic switching
+- Interactive configuration wizard (`skill-seekers config`)
+- Smart rate limit handling with four strategies (prompt, wait, switch, fail)
+- Resume command for interrupted jobs (`skill-seekers resume`)
+- Non-interactive mode for CI/CD pipelines
 
-**Enhanced C3.x Analysis:**
-- Design pattern detection (Strategy, Factory, Observer, etc.)
-- Test example extraction from test files
-- Automated how-to guide generation
-- Configuration security analysis
-- Architectural pattern detection
+**Self-Hosting & Bootstrap Feature:**
+- Generate Skill Seekers as a Claude Code skill
+- One-command bootstrap with `./scripts/bootstrap_skill.sh`
+- MCP now optional - install with `pip install skill-seekers[mcp]`
 
-[Read the full v2.6.0 announcement →](/docs/features/three-stream-architecture)
+**Enhanced Testing & Quality:**
+- 1200+ tests passing (up from 700+)
+- Zero linting errors with ruff
+- Comprehensive E2E testing for bootstrap
+
+[Read the full v2.7.0 changelog →](/docs/community/changelog)
 
 ## Next Steps
 
-- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v2.6.0
+- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v2.7.0
 - [Quick Start](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
 - [Browse Configs](/configs) - Explore 24 pre-built configurations

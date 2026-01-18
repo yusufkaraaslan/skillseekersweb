@@ -213,7 +213,7 @@ curl http://localhost:3000/health
 {
   "status": "healthy",
   "server": "skill-seeker-mcp",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "transport": "http",
   "tools": 18
 }

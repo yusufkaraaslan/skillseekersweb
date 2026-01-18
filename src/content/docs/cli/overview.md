@@ -30,11 +30,13 @@ Skill Seekers provides a comprehensive command-line interface for creating, enha
 
 ### Utility Commands
 
-| Command | Purpose | Time |
-|---------|---------|------|
-| `estimate` | Estimate page count | 1-2 min |
-| `validate` | Validate config files | Instant |
-| `install` | One-command install | Variable |
+| Command | Purpose | Time | Example |
+|---------|---------|------|---------|
+| [`config`](/docs/cli/config) | Configure tokens & settings | Instant | `skill-seekers config --github` |
+| [`resume`](/docs/cli/resume) | Resume interrupted jobs | Variable | `skill-seekers resume abc123` |
+| `estimate` | Estimate page count | 1-2 min | `skill-seekers estimate --config configs/react.json` |
+| `validate` | Validate config files | Instant | `skill-seekers validate configs/react.json` |
+| `install` | One-command install | Variable | `skill-seekers install output/react.zip` |
 
 ## Quick Reference
 
@@ -98,6 +100,51 @@ Most commands support these options:
 - `--output DIR` - Output directory
 - `--help` - Show command help
 
+## Configuration Management (v2.7.0)
+
+New in v2.7.0: Interactive configuration wizard and job resumption.
+
+### Setup GitHub Tokens
+
+```bash
+# Interactive wizard for multi-profile token management
+skill-seekers config --github
+
+# Set up multiple profiles (personal, work, etc.)
+# Configure rate limit strategies (prompt, wait, switch, fail)
+# Test connections and view rate limits
+```
+
+### Configure API Keys
+
+```bash
+# Set up API keys for AI enhancement
+skill-seekers config --api-keys
+
+# Supported: Claude (Anthropic), Google Gemini, OpenAI ChatGPT
+# Browser integration opens API key creation pages
+# Secure storage with 600 permissions
+```
+
+### Resume Interrupted Jobs
+
+```bash
+# List all resumable jobs
+skill-seekers resume --list
+
+# Resume specific job from checkpoint
+skill-seekers resume abc123def456
+
+# Clean up old job files
+skill-seekers resume --clean
+```
+
+**Auto-resume features:**
+- Automatic checkpoints every 60 seconds (configurable)
+- Resume from network interruptions
+- Continue after rate limit resets
+- Recover from system crashes
+
 ## Getting Help
 
 ```bash
@@ -108,11 +155,22 @@ skill-seekers --help
 skill-seekers scrape --help
 skill-seekers github --help
 skill-seekers package --help
+skill-seekers config --help
+skill-seekers resume --help
 ```
 
 ## Next Steps
 
+**Source Commands:**
 - [Scrape Command](/docs/cli/scrape) - Documentation scraping
 - [GitHub Command](/docs/cli/github) - Repository scraping
+- [Unified Command](/docs/cli/unified) - Multi-source scraping
+
+**Processing Commands:**
+- [Enhance Command](/docs/cli/enhance) - AI enhancement
 - [Package Command](/docs/cli/package) - Multi-platform packaging
 - [Upload Command](/docs/cli/upload) - Platform deployment
+
+**Configuration (v2.7.0):**
+- [Config Command](/docs/cli/config) - Token & settings management
+- [Resume Command](/docs/cli/resume) - Job resumption

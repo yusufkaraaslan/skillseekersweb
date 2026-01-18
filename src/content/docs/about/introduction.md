@@ -62,7 +62,7 @@ Skill Seekers automates the entire process:
 
 ## Version
 
-Current version: **v2.6.0** (January 2026)
+Current version: **v2.7.0** (January 2026)
 
 ## Who Should Use Skill Seekers?
 
