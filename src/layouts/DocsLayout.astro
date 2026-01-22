@@ -4,36 +4,43 @@ import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Sidebar from '../components/astro/docs/Sidebar.astro';
 import TableOfContents from '../components/astro/docs/TableOfContents.astro';
+import type { SupportedLanguage } from '../i18n/utils';
 
 interface Props {
-  doc: CollectionEntry<'docs'>;
+  doc: CollectionEntry<'docs'> | CollectionEntry<'docs-zh'>;
   headings: { depth: number; slug: string; text: string }[];
+  lang?: SupportedLanguage;
 }
 
-const { doc, headings } = Astro.props;
+const { doc, headings, lang = 'en' } = Astro.props;
 const { title, description } = doc.data;
 
-// Get all docs for sidebar
-const allDocs = await getCollection('docs');
+// Get all docs for sidebar - use correct collection based on lang
+const allDocs = lang === 'zh'
+  ? await getCollection('docs-zh')
+  : await getCollection('docs');
+
+// Language prefix for links
+const langPrefix = lang === 'zh' ? '/zh' : '';
 ---
 
 <BaseLayout title={`${title} | Skill Seekers Docs`} description={description} hasDocsSidebar={true}>
   <div class="flex min-h-screen bg-dark-bg">
     <!-- Sidebar -->
-    <Sidebar docs={allDocs} currentSlug={doc.slug} />
+    <Sidebar docs={allDocs} currentSlug={doc.slug} lang={lang} />
 
     <!-- Main Content -->
-    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-64 pb-20 sm:pb-8">
-      <div class="mx-auto max-w-4xl">
+    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-80 xl:pl-8 pb-20 sm:pb-8">
+      <div class="mx-auto max-w-3xl">
         <!-- Breadcrumbs -->
         <nav class="mb-8 text-sm" aria-label="Breadcrumb">
           <ol class="flex items-center space-x-2 text-dark-text-secondary flex-wrap">
-            <li><a href="/" class="hover:text-brand-primary transition-colors">Home</a></li>
+            <li><a href={`${langPrefix}/`} class="hover:text-brand-primary transition-colors">Home</a></li>
             <li class="flex items-center">
               <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>
-              <a href="/docs/getting-started/overview" class="hover:text-brand-primary transition-colors">Docs</a>
+              <a href={`${langPrefix}/docs/getting-started/overview`} class="hover:text-brand-primary transition-colors">Docs</a>
             </li>
             <li class="flex items-center">
               <svg class="h-4 w-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +71,7 @@ const allDocs = await getCollection('docs');
     <!-- Table of Contents (desktop only) -->
     {headings.length > 0 && (
       <aside class="hidden xl:block xl:w-64 flex-shrink-0">
-        <div class="sticky top-20 py-8">
+        <div class="sticky top-20 py-8 px-4">
           <TableOfContents headings={headings} />
         </div>
       </aside>

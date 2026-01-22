@@ -1,43 +1,22 @@
 ---
 // Use cases section with examples
+import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
 
-const useCases = [
-  {
-    title: 'For Developers',
-    icon: '👨‍💻',
-    description: 'Create skills from documentation + GitHub repos with automatic conflict detection.',
-    example: 'Build a React skill from official docs + GitHub repo, catch API changes before they surprise you.',
-    gradient: '#3b82f6, #06b6d4',
-  },
-  {
-    title: 'For Game Developers',
-    icon: '🎮',
-    description: 'Generate comprehensive skills for game engines like Godot (handles 40K+ pages!).',
-    example: 'Create complete Godot skill covering all topics with intelligent router/hub pattern.',
-    gradient: '#a855f7, #ec4899',
-  },
-  {
-    title: 'For Teams',
-    icon: '👥',
-    description: 'Combine internal docs + code repositories into single source of truth.',
-    example: 'Share custom configs via private git repos across 3-500+ team members.',
-    gradient: '#22c55e, #10b981',
-  },
-  {
-    title: 'For Learners',
-    icon: '📚',
-    description: 'Build comprehensive skills from docs, code examples, and PDF tutorials.',
-    example: 'Combine official docs + GitHub examples + PDF manual into one unified learning resource.',
-    gradient: '#f97316, #ef4444',
-  },
-  {
-    title: 'For Open Source',
-    icon: '🔍',
-    description: 'Analyze repos to find documentation gaps and outdated examples automatically.',
-    example: 'Detect discrepancies between documentation and actual code implementation.',
-    gradient: '#6366f1, #a855f7',
-  },
+const lang = getLangFromUrl(Astro.url);
+const t = getTranslations(lang);
+
+const gradients = [
+  '#3b82f6, #06b6d4',
+  '#a855f7, #ec4899',
+  '#22c55e, #10b981',
+  '#f97316, #ef4444',
+  '#6366f1, #a855f7',
 ];
+
+const useCases = t.usecases.cases.map((useCase: any, index: number) => ({
+  ...useCase,
+  gradient: gradients[index],
+}));
 ---
 
 <section class="py-20 bg-dark-bg">
@@ -46,17 +25,17 @@ const useCases = [
     <div class="mx-auto max-w-3xl text-center mb-16">
       <h2 class="text-4xl font-bold mb-4">
         <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-          Who Uses Skill Seekers?
+          {t.usecases.title}
         </span>
       </h2>
       <p class="text-xl text-dark-text-secondary">
-        From solo developers to enterprise teams
+        {t.usecases.subtitle}
       </p>
     </div>
 
     <!-- Use Cases Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      {useCases.map((useCase, index) => (
+      {useCases.map((useCase: any, index: number) => (
         <div
           class="group relative overflow-hidden rounded-xl border border-dark-border bg-dark-surface p-8 transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-1"
           style={`animation-delay: ${index * 100}ms`}
@@ -95,25 +74,18 @@ const useCases = [
     <!-- Platform Support Banner -->
     <div class="rounded-lg border border-dark-border bg-gradient-to-r from-dark-surface to-dark-bg p-8">
       <div class="text-center">
-        <h3 class="text-2xl font-semibold mb-4">Multi-Platform Support</h3>
+        <h3 class="text-2xl font-semibold mb-4">{t.usecases.platforms.title}</h3>
         <p class="text-dark-text-secondary mb-6">
-          Export your skills to multiple LLM platforms with platform-specific optimizations
+          {t.usecases.platforms.subtitle}
         </p>
 
         <!-- Platform badges -->
         <div class="flex flex-wrap items-center justify-center gap-4">
-          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
-            🤖 Claude AI
-          </div>
-          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
-            💎 Google Gemini
-          </div>
-          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
-            🔮 OpenAI ChatGPT
-          </div>
-          <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
-            📝 Generic Markdown
-          </div>
+          {t.usecases.platforms.items.map((platform: string) => (
+            <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+              {platform}
+            </div>
+          ))}
         </div>
       </div>
     </div>

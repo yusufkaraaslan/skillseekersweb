@@ -1,185 +1,29 @@
 import { useState } from 'react';
+import { useTranslations } from '../../i18n/useTranslations';
+import type { SupportedLanguage } from '../../i18n/utils';
 
-interface Feature {
-  icon: string;
-  title: string;
-  description: string;
-  category: string;
+interface FeatureMatrixProps {
+  lang: SupportedLanguage;
 }
 
-const allFeatures: Feature[] = [
-  // Key features (shown initially)
-  {
-    icon: '🌊',
-    title: 'Three-Stream Analysis',
-    description: 'Split GitHub repos into Code (C3.x), Docs, and Insights streams for comprehensive skills',
-    category: 'NEW - v2.6.0',
-  },
-  {
-    icon: '🌐',
-    title: 'Multi-Source Scraping',
-    description: 'Extract from documentation websites, GitHub repositories, and PDF files',
-    category: 'Data Sources',
-  },
-  {
-    icon: '✨',
-    title: 'AI Enhancement',
-    description: 'Automatically add explanations, examples, and best practices using Claude',
-    category: 'AI Features',
-  },
-  {
-    icon: '🤖',
-    title: '4 LLM Platforms',
-    description: 'Deploy to Claude Projects, Gemini, OpenAI, or export as Markdown',
-    category: 'Platform Support',
-  },
-  {
-    icon: '📦',
-    title: '24 Preset Configs',
-    description: 'Ready-to-use configs for popular frameworks (React, Vue, Django, etc.)',
-    category: 'Configuration',
-  },
-  {
-    icon: '🔧',
-    title: 'MCP Integration',
-    description: 'Built-in Model Context Protocol support with 27+ tools',
-    category: 'Integration',
-  },
-  {
-    icon: '✅',
-    title: '700+ Tests',
-    description: 'Production-ready with comprehensive test coverage and validation',
-    category: 'Quality',
-  },
-  {
-    icon: '⚡',
-    title: 'Zero Manual Work',
-    description: 'Fully automated pipeline from source to production-ready skill',
-    category: 'Automation',
-  },
-  {
-    icon: '⏱️',
-    title: '20-40 Minutes',
-    description: 'Complete skill generation in under an hour, including AI enhancement',
-    category: 'Performance',
-  },
-
-  // Additional features (hidden initially)
-  {
-    icon: '🎯',
-    title: 'URL Pattern Filtering',
-    description: 'Include/exclude specific paths with regex pattern matching',
-    category: 'Configuration',
-  },
-  {
-    icon: '🚦',
-    title: 'Rate Limiting',
-    description: 'Control scraping speed to respect server resources (0.1-5 req/sec)',
-    category: 'Configuration',
-  },
-  {
-    icon: '🔍',
-    title: 'Custom CSS Selectors',
-    description: 'Define precise selectors for main content, titles, and code blocks',
-    category: 'Customization',
-  },
-  {
-    icon: '⚙️',
-    title: 'Async Mode',
-    description: 'Parallel scraping with configurable concurrency (up to 50 workers)',
-    category: 'Performance',
-  },
-  {
-    icon: '📚',
-    title: 'Large Docs Support',
-    description: 'Handle massive documentation sites with intelligent pagination',
-    category: 'Data Sources',
-  },
-  {
-    icon: '🧠',
-    title: 'Smart Chunking',
-    description: 'Automatic content splitting optimized for LLM context windows',
-    category: 'AI Features',
-  },
-  {
-    icon: '🔬',
-    title: 'C3.x Codebase Analysis',
-    description: 'Deep AST analysis extracting patterns, examples, guides, and configurations',
-    category: 'Codebase Analysis',
-  },
-  {
-    icon: '⚙️',
-    title: 'Config Pattern Detection',
-    description: 'Extract and analyze 9 config formats with AI-powered security analysis',
-    category: 'Codebase Analysis',
-  },
-  {
-    icon: '📖',
-    title: 'Auto How-To Guides',
-    description: 'Generate comprehensive tutorials from code with AI enhancement',
-    category: 'Codebase Analysis',
-  },
-  {
-    icon: '📄',
-    title: 'PDF OCR',
-    description: 'Extract text from scanned PDFs with OCR fallback',
-    category: 'Data Sources',
-  },
-  {
-    icon: '💬',
-    title: 'Custom Prompts',
-    description: 'Customize AI enhancement prompts for specific use cases',
-    category: 'AI Features',
-  },
-  {
-    icon: '🔒',
-    title: 'GitHub Auth',
-    description: 'Support for private repositories with GitHub token authentication',
-    category: 'Integration',
-  },
-  {
-    icon: '📊',
-    title: 'Progress Tracking',
-    description: 'Real-time progress bars and status updates during scraping',
-    category: 'UX',
-  },
-  {
-    icon: '🎨',
-    title: 'Markdown Export',
-    description: 'Export skills as portable Markdown files for any platform',
-    category: 'Platform Support',
-  },
-  {
-    icon: '🔄',
-    title: 'Incremental Updates',
-    description: 'Re-scrape only changed pages to keep skills up-to-date',
-    category: 'Automation',
-  },
-  {
-    icon: '🛡️',
-    title: 'Error Recovery',
-    description: 'Automatic retry with exponential backoff for failed requests',
-    category: 'Quality',
-  },
-];
-
-export default function FeatureMatrix() {
+export default function FeatureMatrix({ lang }: FeatureMatrixProps) {
   const [expanded, setExpanded] = useState(false);
+  const t = useTranslations(lang);
 
   // Show first 9 features initially
-  const displayedFeatures = expanded ? allFeatures : allFeatures.slice(0, 9);
-  const hiddenCount = allFeatures.length - 9;
+  const displayedFeatures = expanded ? t.features.items : t.features.items.slice(0, 9);
+  const hiddenCount = t.features.items.length - 9;
 
   return (
-    <section className="py-20 bg-dark-bg">
+    <section className="py-20 bg-dark-bg" id="feature-matrix">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
-            Comprehensive Feature Set
+            {t.features.title}
           </h2>
           <p className="text-xl text-dark-text-secondary">
-            Everything you need to transform documentation into production-ready AI skills
+            {t.features.subtitle}
           </p>
         </div>
 
@@ -221,13 +65,13 @@ export default function FeatureMatrix() {
                 onClick={() => setExpanded(true)}
                 className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold rounded-lg shadow-lg shadow-brand-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/60"
               >
-                <span>View All {allFeatures.length} Features</span>
+                <span>{t.features.viewAll.replace('{count}', t.features.items.length.toString())}</span>
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               <p className="mt-3 text-sm text-dark-text-secondary">
-                +{hiddenCount} more features
+                {t.features.moreFeatures.replace('{count}', hiddenCount.toString())}
               </p>
             </div>
           )}
@@ -242,7 +86,7 @@ export default function FeatureMatrix() {
                 }}
                 className="inline-flex items-center space-x-3 px-8 py-4 bg-dark-surface border border-dark-border hover:border-brand-primary text-dark-text-secondary hover:text-brand-primary font-semibold rounded-lg transition-all duration-300"
               >
-                <span>Show Less</span>
+                <span>{t.features.showLess}</span>
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                 </svg>
@@ -254,13 +98,13 @@ export default function FeatureMatrix() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <p className="text-dark-text-secondary mb-6">
-            Ready to transform your documentation?
+            {t.features.cta.question}
           </p>
           <a
             href="/docs/getting-started/quick-start"
             className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold rounded-lg shadow-lg shadow-brand-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/60"
           >
-            <span>Get Started Now</span>
+            <span>{t.features.cta.button}</span>
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>

@@ -1,28 +1,27 @@
 ---
 // Quick start section with code examples
+import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getTranslations(lang);
 
 const codeExamples = [
   {
-    title: '1. Install',
-    description: 'Install from PyPI in seconds',
-    code: 'pip install skill-seekers',
+    title: t.quickstart.steps[0].title,
+    description: t.quickstart.steps[0].description,
+    code: t.quickstart.steps[0].code,
     language: 'bash',
   },
   {
-    title: '2. Scrape Docs',
-    description: 'Use preset configs or create your own',
-    code: `skill-seekers scrape --config react
-# Or from URL directly
-skill-seekers scrape --url https://react.dev --name react`,
+    title: t.quickstart.steps[1].title,
+    description: t.quickstart.steps[1].description,
+    code: t.quickstart.steps[1].code,
     language: 'bash',
   },
   {
-    title: '3. Package & Upload',
-    description: 'Create .zip and upload to Claude',
-    code: `skill-seekers package output/react/
-skill-seekers upload react.zip
-
-# Done! Your skill is ready to use`,
+    title: t.quickstart.steps[2].title,
+    description: t.quickstart.steps[2].description,
+    code: t.quickstart.steps[2].code,
     language: 'bash',
   },
 ];
@@ -34,11 +33,11 @@ skill-seekers upload react.zip
     <div class="mx-auto max-w-3xl text-center mb-16">
       <h2 class="text-4xl font-bold mb-4">
         <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-          Get Started in 3 Steps
+          {t.quickstart.title}
         </span>
       </h2>
       <p class="text-xl text-dark-text-secondary">
-        From zero to production-ready skill in 20-40 minutes
+        {t.quickstart.subtitle}
       </p>
     </div>
 
@@ -69,7 +68,7 @@ skill-seekers upload react.zip
                 class="copy-btn absolute top-6 right-6 rounded-md bg-dark-surface border border-dark-border px-3 py-1.5 text-xs text-dark-text-secondary hover:text-brand-primary hover:border-brand-primary hover:bg-dark-border transition-all duration-200 hover:scale-105"
                 data-copy={example.code}
               >
-                Copy
+                {t.common.copy}
               </button>
               <pre class="overflow-x-auto"><code class="text-sm font-mono text-dark-text-primary leading-relaxed">{example.code}</code></pre>
             </div>
@@ -82,44 +81,44 @@ skill-seekers upload react.zip
     <div class="mx-auto max-w-4xl">
       <div class="rounded-xl border border-dark-border bg-dark-bg p-8 hover:border-brand-primary/50 transition-colors duration-300">
         <h3 class="text-xl font-semibold mb-6 text-center bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-          Multiple Installation Options
+          {t.quickstart.installOptions.title}
         </h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- PyPI -->
           <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-success hover:shadow-lg hover:shadow-brand-success/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-success transition-colors">PyPI (Recommended)</h4>
-              <span class="text-xs bg-brand-success/20 text-brand-success px-2 py-1 rounded-full">Easiest</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-success transition-colors">{t.quickstart.installOptions.pypi.title}</h4>
+              <span class="text-xs bg-brand-success/20 text-brand-success px-2 py-1 rounded-full">{t.quickstart.installOptions.pypi.badge}</span>
             </div>
-            <code class="block text-sm font-mono text-dark-text-secondary">pip install skill-seekers</code>
+            <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.pypi.code}</code>
           </div>
 
           <!-- uv -->
           <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">uv (Modern)</h4>
-              <span class="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-full">Fast</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">{t.quickstart.installOptions.uv.title}</h4>
+              <span class="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-full">{t.quickstart.installOptions.uv.badge}</span>
             </div>
-            <code class="block text-sm font-mono text-dark-text-secondary">uv tool install skill-seekers</code>
+            <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.uv.code}</code>
           </div>
 
           <!-- Source -->
           <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-secondary hover:shadow-lg hover:shadow-brand-secondary/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-secondary transition-colors">From Source</h4>
-              <span class="text-xs bg-brand-secondary/20 text-brand-secondary px-2 py-1 rounded-full">Dev</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-secondary transition-colors">{t.quickstart.installOptions.source.title}</h4>
+              <span class="text-xs bg-brand-secondary/20 text-brand-secondary px-2 py-1 rounded-full">{t.quickstart.installOptions.source.badge}</span>
             </div>
-            <code class="block text-sm font-mono text-dark-text-secondary">git clone && pip install -e .</code>
+            <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.source.code}</code>
           </div>
 
           <!-- MCP -->
           <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-warning hover:shadow-lg hover:shadow-brand-warning/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-warning transition-colors">MCP Integration</h4>
-              <span class="text-xs bg-brand-warning/20 text-brand-warning px-2 py-1 rounded-full">5 Agents</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-warning transition-colors">{t.quickstart.installOptions.mcp.title}</h4>
+              <span class="text-xs bg-brand-warning/20 text-brand-warning px-2 py-1 rounded-full">{t.quickstart.installOptions.mcp.badge}</span>
             </div>
-            <code class="block text-sm font-mono text-dark-text-secondary">./setup_mcp.sh</code>
+            <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.mcp.code}</code>
           </div>
         </div>
       </div>
@@ -131,7 +130,7 @@ skill-seekers upload react.zip
         href="/docs/getting-started/installation"
         class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-transform hover:scale-105"
       >
-        Read Full Installation Guide
+        {t.quickstart.cta}
         <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
@@ -148,7 +147,7 @@ skill-seekers upload react.zip
       if (text) {
         await navigator.clipboard.writeText(text);
         const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
+        btn.textContent = btn.getAttribute('data-copied') || 'Copied!';
         setTimeout(() => {
           btn.textContent = originalText;
         }, 2000);

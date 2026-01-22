@@ -1,8 +1,10 @@
 ---
 import Header from '../components/astro/layout/Header.astro';
 import Footer from '../components/astro/layout/Footer.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
 import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
+import { getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -18,17 +20,44 @@ const {
   hasDocsSidebar = false,
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullOgImage = new URL(ogImage, Astro.site);
+
+// Generate alternate URLs for hreflang
+function getAlternateUrl(targetLang: string, currentPath: string): URL {
+  if (targetLang === 'en') {
+    // Remove /zh/ prefix if present
+    const cleanPath = currentPath.replace(/^\/zh\//, '/');
+    return new URL(cleanPath === '' ? '/' : cleanPath, Astro.site);
+  } else {
+    // Add /zh/ prefix if not present
+    if (currentPath.startsWith('/zh/')) {
+      return new URL(currentPath, Astro.site);
+    }
+    const newPath = currentPath === '/' ? '/zh/' : `/zh${currentPath}`;
+    return new URL(newPath, Astro.site);
+  }
+}
+
+const currentPath = Astro.url.pathname;
+const enUrl = getAlternateUrl('en', currentPath);
+const zhUrl = getAlternateUrl('zh', currentPath);
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- hreflang tags for multi-language SEO -->
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="zh" href={zhUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -42,6 +71,8 @@ const fullOgImage = new URL(ogImage, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullOgImage} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'zh' ? 'en_US' : 'zh_CN'} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -58,6 +89,10 @@ const fullOgImage = new URL(ogImage, Astro.site);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <JsonLd type="Organization" data={{ description }} />
+    <JsonLd type="WebSite" />
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />

@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ConfigGallery from '../../components/react/ConfigGallery';
+import ConfigValidator from '../../components/react/ConfigValidator';
+import { fetchConfigs } from '../../utils/api';
+import { getTranslations } from '../../i18n/utils';
+
+export const prerender = false;
+
+// Fetch configs dynamically (always fresh from API)
+const configs = await fetchConfigs();
+
+// Get Chinese translations
+const t = getTranslations('zh');
+
+// Language prefix for links
+const langPrefix = '/zh';
+---
+
+<BaseLayout
+  title={t.configs.title}
+  description={t.configs.description}
+>
+  <!-- Config Gallery -->
+  <ConfigGallery client:load initialConfigs={configs} lang="zh" />
+
+  <!-- Submit Config Section -->
+  <section class="py-20 bg-dark-bg border-t border-dark-border">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+            {t.configs.submit.heading}
+          </span>
+        </h2>
+        <p class="text-xl text-dark-text-secondary max-w-3xl mx-auto">
+          {t.configs.submit.subtitle}
+        </p>
+      </div>
+
+      <!-- Info Banner -->
+      <div class="max-w-4xl mx-auto mb-12">
+        <div class="bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 border border-brand-primary/30 rounded-xl p-8">
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="flex-shrink-0 text-5xl">
+              📤
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold mb-2">{t.configs.submit.howToTitle}</h3>
+              <ol class="text-dark-text-secondary space-y-2">
+                <li class="flex items-start">
+                  <span class="text-brand-primary mr-2">1.</span>
+                  <span>{t.configs.submit.steps.step1}</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-brand-primary mr-2">2.</span>
+                  <span>{t.configs.submit.steps.step2}</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-brand-primary mr-2">3.</span>
+                  <span>{t.configs.submit.steps.step3}</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-brand-primary mr-2">4.</span>
+                  <span>{t.configs.submit.steps.step4}</span>
+                </li>
+              </ol>
+            </div>
+            <div class="flex-shrink-0">
+              <a
+                href={`${langPrefix}/docs/guides/submit-config`}
+                class="inline-flex items-center px-6 py-3 bg-dark-surface hover:bg-dark-border border border-dark-border rounded-lg text-sm font-medium text-dark-text-primary transition-all duration-300 hover:scale-105"
+              >
+                {t.configs.submit.guideButton}
+                <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Validator -->
+      <ConfigValidator client:load />
+
+      <!-- Additional Info -->
+      <div class="max-w-4xl mx-auto mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+            <div class="text-3xl mb-3">{t.configs.submit.benefits.quickReview.icon}</div>
+            <h4 class="font-semibold mb-2">{t.configs.submit.benefits.quickReview.title}</h4>
+            <p class="text-sm text-dark-text-secondary">
+              {t.configs.submit.benefits.quickReview.description}
+            </p>
+          </div>
+          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+            <div class="text-3xl mb-3">{t.configs.submit.benefits.qualityChecked.icon}</div>
+            <h4 class="font-semibold mb-2">{t.configs.submit.benefits.qualityChecked.title}</h4>
+            <p class="text-sm text-dark-text-secondary">
+              {t.configs.submit.benefits.qualityChecked.description}
+            </p>
+          </div>
+          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+            <div class="text-3xl mb-3">{t.configs.submit.benefits.getCredit.icon}</div>
+            <h4 class="font-semibold mb-2">{t.configs.submit.benefits.getCredit.title}</h4>
+            <p class="text-sm text-dark-text-secondary">
+              {t.configs.submit.benefits.getCredit.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

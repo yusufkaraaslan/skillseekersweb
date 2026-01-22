@@ -1,0 +1,434 @@
+{
+  "hero": {
+    "badge": {
+      "version": "v2.7.0",
+      "tests": "1200+ tests passing",
+      "license": "MIT Licensed"
+    },
+    "headline": {
+      "part1": "Transform Docs, Code & PDFs into",
+      "part2": "AI Skills",
+      "part3": "in Minutes"
+    },
+    "subheadline": "Automatically convert documentation websites, GitHub repositories, and PDF files into production-ready skills for any LLM platform—Claude, Gemini, OpenAI, and more.",
+    "cta": {
+      "getStarted": "Get Started",
+      "browseConfigs": "Browse 24 Configs"
+    },
+    "quickInstall": {
+      "label": "Quick Install",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "socialProof": {
+      "tests": "1200+ Tests",
+      "platforms": "4 LLM Platforms",
+      "time": "20-40 min / skill"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "docs": "Documentation",
+    "configs": "Configs",
+    "github": "GitHub",
+    "getStarted": "Get Started"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "readDocs": "Read Docs",
+    "viewOnGitHub": "View on GitHub",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "about": {
+    "heading": "What is Skill Seekers?",
+    "description": "Skill Seekers is an open-source Python tool that automatically converts documentation websites, GitHub repositories, and PDF files into production-ready AI skills for Claude, Gemini, OpenAI, and other LLM platforms.",
+    "problem": {
+      "title": "The Problem",
+      "item1": "Manually copying documentation into AI chat contexts is tedious and error-prone",
+      "item2": "Large codebases and documentation exceed AI context window limits",
+      "item3": "AI responses lack framework-specific knowledge and best practices",
+      "item4": "Keeping AI knowledge up-to-date with framework changes is time-consuming"
+    },
+    "solution": {
+      "title": "The Solution",
+      "item1": "Automatically extract from docs, GitHub repos, and PDFs with multi-source analysis",
+      "item2": "Intelligent chunking, categorization, and Three-Stream Analysis (Code, Docs, Insights)",
+      "item3": "AI-enhanced skills with explanations, examples, and best practices",
+      "item4": "Deploy to any LLM platform (Claude, Gemini, OpenAI) in 20-40 minutes"
+    },
+    "benefits": {
+      "speed": {
+        "title": "10x Faster Development",
+        "description": "Stop copying docs manually. Generate comprehensive skills in minutes, not hours."
+      },
+      "expertise": {
+        "title": "Framework Expertise",
+        "description": "Give AI assistants deep knowledge of any framework with API references and examples."
+      },
+      "uptodate": {
+        "title": "Always Up-to-Date",
+        "description": "Re-run when docs update. Keep your AI knowledge fresh and accurate."
+      }
+    }
+  },
+  "features": {
+    "title": "Comprehensive Feature Set",
+    "subtitle": "Everything you need to transform documentation into production-ready AI skills",
+    "viewAll": "View All {count} Features",
+    "showLess": "Show Less",
+    "moreFeatures": "+{count} more features",
+    "cta": {
+      "question": "Ready to transform your documentation?",
+      "button": "Get Started Now"
+    },
+    "items": [
+      {
+        "icon": "🌊",
+        "title": "Three-Stream Analysis",
+        "description": "Split GitHub repos into Code (C3.x), Docs, and Insights streams for comprehensive skills",
+        "category": "NEW - v2.6.0"
+      },
+      {
+        "icon": "🌐",
+        "title": "Multi-Source Scraping",
+        "description": "Extract from documentation websites, GitHub repositories, and PDF files",
+        "category": "Data Sources"
+      },
+      {
+        "icon": "✨",
+        "title": "AI Enhancement",
+        "description": "Automatically add explanations, examples, and best practices using Claude",
+        "category": "AI Features"
+      },
+      {
+        "icon": "🤖",
+        "title": "4 LLM Platforms",
+        "description": "Deploy to Claude Projects, Gemini, OpenAI, or export as Markdown",
+        "category": "Platform Support"
+      },
+      {
+        "icon": "📦",
+        "title": "24 Preset Configs",
+        "description": "Ready-to-use configs for popular frameworks (React, Vue, Django, etc.)",
+        "category": "Configuration"
+      },
+      {
+        "icon": "🔧",
+        "title": "MCP Integration",
+        "description": "Built-in Model Context Protocol support with 27+ tools",
+        "category": "Integration"
+      },
+      {
+        "icon": "✅",
+        "title": "700+ Tests",
+        "description": "Production-ready with comprehensive test coverage and validation",
+        "category": "Quality"
+      },
+      {
+        "icon": "⚡",
+        "title": "Zero Manual Work",
+        "description": "Fully automated pipeline from source to production-ready skill",
+        "category": "Automation"
+      },
+      {
+        "icon": "⏱️",
+        "title": "20-40 Minutes",
+        "description": "Complete skill generation in under an hour, including AI enhancement",
+        "category": "Performance"
+      },
+      {
+        "icon": "🎯",
+        "title": "URL Pattern Filtering",
+        "description": "Include/exclude specific paths with regex pattern matching",
+        "category": "Configuration"
+      },
+      {
+        "icon": "🚦",
+        "title": "Rate Limiting",
+        "description": "Control scraping speed to respect server resources (0.1-5 req/sec)",
+        "category": "Configuration"
+      },
+      {
+        "icon": "🔍",
+        "title": "Custom CSS Selectors",
+        "description": "Define precise selectors for main content, titles, and code blocks",
+        "category": "Customization"
+      },
+      {
+        "icon": "⚙️",
+        "title": "Async Mode",
+        "description": "Parallel scraping with configurable concurrency (up to 50 workers)",
+        "category": "Performance"
+      },
+      {
+        "icon": "📚",
+        "title": "Large Docs Support",
+        "description": "Handle massive documentation sites with intelligent pagination",
+        "category": "Data Sources"
+      },
+      {
+        "icon": "🧠",
+        "title": "Smart Chunking",
+        "description": "Automatic content splitting optimized for LLM context windows",
+        "category": "AI Features"
+      },
+      {
+        "icon": "🔬",
+        "title": "C3.x Codebase Analysis",
+        "description": "Deep AST analysis extracting patterns, examples, guides, and configurations",
+        "category": "Codebase Analysis"
+      },
+      {
+        "icon": "⚙️",
+        "title": "Config Pattern Detection",
+        "description": "Extract and analyze 9 config formats with AI-powered security analysis",
+        "category": "Codebase Analysis"
+      },
+      {
+        "icon": "📖",
+        "title": "Auto How-To Guides",
+        "description": "Generate comprehensive tutorials from code with AI enhancement",
+        "category": "Codebase Analysis"
+      },
+      {
+        "icon": "📄",
+        "title": "PDF OCR",
+        "description": "Extract text from scanned PDFs with OCR fallback",
+        "category": "Data Sources"
+      },
+      {
+        "icon": "💬",
+        "title": "Custom Prompts",
+        "description": "Customize AI enhancement prompts for specific use cases",
+        "category": "AI Features"
+      },
+      {
+        "icon": "🔒",
+        "title": "GitHub Auth",
+        "description": "Support for private repositories with GitHub token authentication",
+        "category": "Integration"
+      },
+      {
+        "icon": "📊",
+        "title": "Progress Tracking",
+        "description": "Real-time progress bars and status updates during scraping",
+        "category": "UX"
+      },
+      {
+        "icon": "🎨",
+        "title": "Markdown Export",
+        "description": "Export skills as portable Markdown files for any platform",
+        "category": "Platform Support"
+      },
+      {
+        "icon": "🔄",
+        "title": "Incremental Updates",
+        "description": "Re-scrape only changed pages to keep skills up-to-date",
+        "category": "Automation"
+      },
+      {
+        "icon": "🛡️",
+        "title": "Error Recovery",
+        "description": "Automatic retry with exponential backoff for failed requests",
+        "category": "Quality"
+      }
+    ]
+  },
+  "quickstart": {
+    "title": "Get Started in 3 Steps",
+    "subtitle": "From zero to production-ready skill in 20-40 minutes",
+    "steps": [
+      {
+        "number": "1",
+        "title": "1. Install",
+        "description": "Install from PyPI in seconds",
+        "code": "pip install skill-seekers"
+      },
+      {
+        "number": "2",
+        "title": "2. Scrape Docs",
+        "description": "Use preset configs or create your own",
+        "code": "skill-seekers scrape --config react\n# Or from URL directly\nskill-seekers scrape --url https://react.dev --name react"
+      },
+      {
+        "number": "3",
+        "title": "3. Package & Upload",
+        "description": "Create .zip and upload to Claude",
+        "code": "skill-seekers package output/react/\nskill-seekers upload react.zip\n\n# Done! Your skill is ready to use"
+      }
+    ],
+    "installOptions": {
+      "title": "Multiple Installation Options",
+      "pypi": {
+        "title": "PyPI (Recommended)",
+        "badge": "Easiest",
+        "code": "pip install skill-seekers"
+      },
+      "uv": {
+        "title": "uv (Modern)",
+        "badge": "Fast",
+        "code": "uv tool install skill-seekers"
+      },
+      "source": {
+        "title": "From Source",
+        "badge": "Dev",
+        "code": "git clone && pip install -e ."
+      },
+      "mcp": {
+        "title": "MCP Integration",
+        "badge": "5 Agents",
+        "code": "./setup_mcp.sh"
+      }
+    },
+    "cta": "Read Full Installation Guide"
+  },
+  "usecases": {
+    "title": "Who Uses Skill Seekers?",
+    "subtitle": "From solo developers to enterprise teams",
+    "cases": [
+      {
+        "title": "For Developers",
+        "icon": "👨‍💻",
+        "description": "Create skills from documentation + GitHub repos with automatic conflict detection.",
+        "example": "Build a React skill from official docs + GitHub repo, catch API changes before they surprise you."
+      },
+      {
+        "title": "For Game Developers",
+        "icon": "🎮",
+        "description": "Generate comprehensive skills for game engines like Godot (handles 40K+ pages!).",
+        "example": "Create complete Godot skill covering all topics with intelligent router/hub pattern."
+      },
+      {
+        "title": "For Teams",
+        "icon": "👥",
+        "description": "Combine internal docs + code repositories into single source of truth.",
+        "example": "Share custom configs via private git repos across 3-500+ team members."
+      },
+      {
+        "title": "For Learners",
+        "icon": "📚",
+        "description": "Build comprehensive skills from docs, code examples, and PDF tutorials.",
+        "example": "Combine official docs + GitHub examples + PDF manual into one unified learning resource."
+      },
+      {
+        "title": "For Open Source",
+        "icon": "🔍",
+        "description": "Analyze repos to find documentation gaps and outdated examples automatically.",
+        "example": "Detect discrepancies between documentation and actual code implementation."
+      }
+    ],
+    "platforms": {
+      "title": "Multi-Platform Support",
+      "subtitle": "Export your skills to multiple LLM platforms with platform-specific optimizations",
+      "items": [
+        "🤖 Claude AI",
+        "💎 Google Gemini",
+        "🔮 OpenAI ChatGPT",
+        "📝 Generic Markdown"
+      ]
+    }
+  },
+  "stats": {
+    "title": "By the Numbers",
+    "subtitle": "Trusted metrics from a production-ready tool",
+    "labels": {
+      "stars": "GitHub Stars",
+      "forks": "Forks",
+      "contributors": "Contributors",
+      "tests": "Tests Passing",
+      "configs": "Preset Configs",
+      "platforms": "LLM Platforms"
+    },
+    "values": {
+      "tests": "1200+",
+      "configs": "24",
+      "platforms": "4"
+    },
+    "banner": "Open source • MIT Licensed • Active development",
+    "cta": {
+      "star": "Star on GitHub",
+      "download": "Download from PyPI"
+    }
+  },
+  "footer": {
+    "tagline": "Transform documentation into Claude AI skills in minutes.",
+    "sections": {
+      "product": {
+        "title": "Product",
+        "links": {
+          "features": "Features",
+          "configs": "Configs",
+          "docs": "Documentation",
+          "api": "API Reference"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "gettingStarted": "Getting Started",
+          "quickStart": "Quick Start",
+          "installation": "Installation",
+          "overview": "Overview"
+        }
+      },
+      "community": {
+        "title": "Community",
+        "links": {
+          "github": "GitHub",
+          "issues": "Issues",
+          "pypi": "PyPI",
+          "board": "Project Board"
+        }
+      }
+    },
+    "copyright": "© {year} Skill Seekers. MIT License. Built with ❤️ using",
+    "stats": {
+      "tests": "1200+ tests"
+    }
+  },
+  "configs": {
+    "title": "Configuration Gallery | Skill Seekers",
+    "description": "Browse and download 27 production-ready configurations for Skill Seekers. Convert documentation, GitHub repos, and PDFs into Claude AI skills with pre-built configs.",
+    "gallery": {
+      "heading": "Configuration Gallery",
+      "subtitle": "Browse and download {count} production-ready configurations for Skill Seekers",
+      "showing": "Showing {filtered} of {total} configurations",
+      "searchFor": "for \"{query}\"",
+      "noResults": {
+        "title": "No configurations found",
+        "description": "Try adjusting your filters or search query",
+        "clearButton": "Clear All Filters"
+      }
+    },
+    "submit": {
+      "heading": "Share Your Config",
+      "subtitle": "Created a config for a framework not listed here? Share it with the community!",
+      "howToTitle": "How to Submit",
+      "steps": {
+        "step1": "Validate your config using the tool below",
+        "step2": "Click \"Copy & Submit to GitHub\" when valid",
+        "step3": "Paste your config in the GitHub issue that opens",
+        "step4": "We'll review and add it to the official gallery!"
+      },
+      "guideButton": "📖 Detailed Guide",
+      "benefits": {
+        "quickReview": {
+          "icon": "⚡",
+          "title": "Quick Review",
+          "description": "We review submissions within 24-48 hours"
+        },
+        "qualityChecked": {
+          "icon": "✅",
+          "title": "Quality Checked",
+          "description": "All configs are tested before adding"
+        },
+        "getCredit": {
+          "icon": "🎉",
+          "title": "Get Credit",
+          "description": "Your GitHub profile listed as contributor"
+        }
+      }
+    }
+  }
+}

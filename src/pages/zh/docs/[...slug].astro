@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs-zh');
+
+  return docs.map((doc) => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+interface Props {
+  doc: CollectionEntry<'docs-zh'>;
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await doc.render();
+---
+
+<DocsLayout doc={doc} headings={headings} lang="zh">
+  <Content />
+</DocsLayout>

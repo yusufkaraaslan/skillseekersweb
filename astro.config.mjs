@@ -10,6 +10,13 @@ import sentry from '@sentry/astro';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://skillseekersweb.com',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   integrations: [
     react({
       experimentalReactChildren: true
@@ -17,7 +24,14 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/admin') &&
-        !page.includes('/api/')
+        !page.includes('/api/'),
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en',
+          zh: 'zh',
+        },
+      },
     }),
     sentry({
       dsn: process.env.SENTRY_DSN,

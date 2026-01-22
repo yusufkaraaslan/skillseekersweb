@@ -7,4 +7,4 @@ Disallow: /admin
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://skillseekersweb.com/sitemap.xml
+Sitemap: https://skillseekersweb.com/sitemap-index.xml

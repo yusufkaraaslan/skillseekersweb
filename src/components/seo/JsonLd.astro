@@ -1,0 +1,51 @@
+---
+/**
+ * JSON-LD Structured Data Component
+ * Generates Schema.org markup for improved SEO
+ */
+
+interface Props {
+  type: 'Organization' | 'WebSite' | 'BreadcrumbList';
+  data?: Record<string, any>;
+}
+
+const { type, data = {} } = Astro.props;
+
+const schemas = {
+  Organization: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Skill Seekers",
+    "url": "https://skillseekersweb.com",
+    "logo": "https://skillseekersweb.com/logo.png",
+    "description": data.description || "Transform documentation into AI skills in minutes. Automatically convert docs, GitHub repos, and PDFs into production-ready skills for Claude, Gemini, OpenAI, and more.",
+    "sameAs": [
+      "https://github.com/yusufkaraaslan/Skill_Seekers",
+      "https://pypi.org/project/skill-seekers/"
+    ],
+    "inLanguage": ["en", "zh"]
+  },
+  WebSite: {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Skill Seekers",
+    "url": "https://skillseekersweb.com",
+    "description": "Transform documentation into AI skills",
+    "inLanguage": ["en", "zh"]
+  },
+  BreadcrumbList: {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": (data.items || []).map((item: any, index: number) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  }
+};
+
+const schema = schemas[type];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,5 +1,6 @@
 ---
 // Footer with links and social
+import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
 
 interface Props {
   hasDocsSidebar?: boolean;
@@ -7,28 +8,32 @@ interface Props {
 
 const { hasDocsSidebar = false } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const t = getTranslations(lang);
+
 const footerLinks = {
-  Product: [
-    { label: 'Features', href: '/docs/getting-started/overview' },
-    { label: 'Configs', href: '/configs' },
-    { label: 'Documentation', href: '/docs/getting-started/overview' },
-    { label: 'API Reference', href: 'https://api.skillseekersweb.com/docs' },
+  [t.footer.sections.product.title]: [
+    { label: t.footer.sections.product.links.features, href: '/docs/getting-started/overview' },
+    { label: t.footer.sections.product.links.configs, href: '/configs' },
+    { label: t.footer.sections.product.links.docs, href: '/docs/getting-started/overview' },
+    { label: t.footer.sections.product.links.api, href: 'https://api.skillseekersweb.com/docs' },
   ],
-  Resources: [
-    { label: 'Getting Started', href: '/docs/getting-started/installation' },
-    { label: 'Quick Start', href: '/docs/getting-started/quick-start' },
-    { label: 'Installation', href: '/docs/getting-started/installation' },
-    { label: 'Overview', href: '/docs/getting-started/overview' },
+  [t.footer.sections.resources.title]: [
+    { label: t.footer.sections.resources.links.gettingStarted, href: '/docs/getting-started/installation' },
+    { label: t.footer.sections.resources.links.quickStart, href: '/docs/getting-started/quick-start' },
+    { label: t.footer.sections.resources.links.installation, href: '/docs/getting-started/installation' },
+    { label: t.footer.sections.resources.links.overview, href: '/docs/getting-started/overview' },
   ],
-  Community: [
-    { label: 'GitHub', href: 'https://github.com/yusufkaraaslan/Skill_Seekers' },
-    { label: 'Issues', href: 'https://github.com/yusufkaraaslan/Skill_Seekers/issues' },
-    { label: 'PyPI', href: 'https://pypi.org/project/skill-seekers/' },
-    { label: 'Project Board', href: 'https://github.com/users/yusufkaraaslan/projects/2' },
+  [t.footer.sections.community.title]: [
+    { label: t.footer.sections.community.links.github, href: 'https://github.com/yusufkaraaslan/Skill_Seekers' },
+    { label: t.footer.sections.community.links.issues, href: 'https://github.com/yusufkaraaslan/Skill_Seekers/issues' },
+    { label: t.footer.sections.community.links.pypi, href: 'https://pypi.org/project/skill-seekers/' },
+    { label: t.footer.sections.community.links.board, href: 'https://github.com/users/yusufkaraaslan/projects/2' },
   ],
 };
 
 const currentYear = new Date().getFullYear();
+const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
 ---
 
 <footer class={`border-t border-dark-border bg-dark-surface ${hasDocsSidebar ? 'xl:ml-64' : ''}`}>
@@ -53,7 +58,7 @@ const currentYear = new Date().getFullYear();
           </span>
         </a>
         <p class="text-sm text-dark-text-secondary mb-4">
-          Transform documentation into Claude AI skills in minutes.
+          {t.footer.tagline}
         </p>
         <!-- Stats Badge -->
         <div class="flex items-center space-x-2 text-xs text-dark-text-secondary">
@@ -61,7 +66,7 @@ const currentYear = new Date().getFullYear();
             <svg class="h-4 w-4 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
-            <span>1200+ tests</span>
+            <span>{t.footer.stats.tests}</span>
           </span>
           <span>•</span>
           <span>v2.7.0</span>
@@ -93,7 +98,7 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom Section -->
     <div class="pt-8 border-t border-dark-border flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
       <p class="text-sm text-dark-text-secondary">
-        © {currentYear} Skill Seekers. MIT License. Built with ❤️ using <a href="https://astro.build" class="text-brand-primary hover:text-brand-secondary">Astro</a>.
+        {copyright} <a href="https://astro.build" class="text-brand-primary hover:text-brand-secondary">Astro</a>.
       </p>
 
       <!-- Social Links -->

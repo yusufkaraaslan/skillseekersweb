@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/astro/landing/Hero.astro';
+import About from '../../components/astro/landing/About.astro';
+import FeatureMatrix from '../../components/react/FeatureMatrix';
+import QuickStart from '../../components/astro/landing/QuickStart.astro';
+import UseCases from '../../components/astro/landing/UseCases.astro';
+import Stats from '../../components/astro/landing/Stats.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Skill Seekers - 将文档转换为 Claude AI 技能"
+  description="自动将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的技能，支持任何 LLM 平台——Claude、Gemini、OpenAI 等。"
+>
+  <Hero />
+  <About />
+  <div id="feature-matrix">
+    <FeatureMatrix client:load lang={lang} />
+  </div>
+  <QuickStart />
+  <UseCases />
+  <Stats />
+</BaseLayout>

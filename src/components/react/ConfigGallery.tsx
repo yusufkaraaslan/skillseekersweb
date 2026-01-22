@@ -6,12 +6,16 @@ import ConfigFilters from './ConfigFilters';
 import ConfigCard from './ConfigCard';
 import ConfigDetailModal from './ConfigDetailModal';
 import ViewToggle from './ViewToggle';
+import { useTranslations } from '../../i18n/useTranslations';
+import type { SupportedLanguage } from '../../i18n/utils';
 
 interface ConfigGalleryProps {
   initialConfigs: Config[];
+  lang?: SupportedLanguage;
 }
 
-export default function ConfigGallery({ initialConfigs }: ConfigGalleryProps) {
+export default function ConfigGallery({ initialConfigs, lang = 'en' }: ConfigGalleryProps) {
+  const t = useTranslations(lang);
   const [filters, setFilters] = useState<FilterOptions>({});
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedConfig, setSelectedConfig] = useState<Config | null>(null);
@@ -39,10 +43,10 @@ export default function ConfigGallery({ initialConfigs }: ConfigGalleryProps) {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
-            Configuration Gallery
+            {t.configs.gallery.heading}
           </h1>
           <p className="text-lg text-dark-text-secondary">
-            Browse and download {initialConfigs.length} production-ready configurations for Skill Seekers
+            {t.configs.gallery.subtitle.replace('{count}', String(initialConfigs.length))}
           </p>
         </div>
 
@@ -70,8 +74,10 @@ export default function ConfigGallery({ initialConfigs }: ConfigGalleryProps) {
           <main className="flex-1">
             {/* Results Count */}
             <div className="mb-4 text-sm text-dark-text-secondary">
-              Showing {filteredConfigs.length} of {initialConfigs.length} configurations
-              {filters.search && ` for "${filters.search}"`}
+              {t.configs.gallery.showing
+                .replace('{filtered}', String(filteredConfigs.length))
+                .replace('{total}', String(initialConfigs.length))}
+              {filters.search && ` ${t.configs.gallery.searchFor.replace('{query}', filters.search)}`}
             </div>
 
             {/* Configs */}
@@ -107,15 +113,15 @@ export default function ConfigGallery({ initialConfigs }: ConfigGalleryProps) {
                     d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <h3 className="text-lg font-semibold text-dark-text-primary mb-2">No configurations found</h3>
+                <h3 className="text-lg font-semibold text-dark-text-primary mb-2">{t.configs.gallery.noResults.title}</h3>
                 <p className="text-sm text-dark-text-secondary mb-4">
-                  Try adjusting your filters or search query
+                  {t.configs.gallery.noResults.description}
                 </p>
                 <button
                   onClick={() => setFilters({})}
                   className="rounded-lg bg-brand-primary px-4 py-2 text-sm font-medium text-white hover:bg-brand-primary/90 transition-colors"
                 >
-                  Clear All Filters
+                  {t.configs.gallery.noResults.clearButton}
                 </button>
               </div>
             )}

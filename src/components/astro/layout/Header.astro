@@ -1,13 +1,21 @@
 ---
 // Navigation header with logo and menu
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/configs', label: 'Configs' },
-  { href: '/docs/getting-started/overview', label: 'Docs' },
-  { href: 'https://github.com/yusufkaraaslan/Skill_Seekers', label: 'GitHub', external: true },
-];
+import LanguageSwitcher from '../../react/LanguageSwitcher';
+import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
 
 const currentPath = Astro.url.pathname;
+const currentLang = getLangFromUrl(Astro.url);
+const t = getTranslations(currentLang);
+
+// Add language prefix to internal links if on Chinese site
+const langPrefix = currentLang === 'zh' ? '/zh' : '';
+
+const navLinks = [
+  { href: `${langPrefix}/`, label: t.nav.home },
+  { href: `${langPrefix}/configs`, label: t.nav.configs },
+  { href: `${langPrefix}/docs/getting-started/overview`, label: t.nav.docs },
+  { href: 'https://github.com/yusufkaraaslan/Skill_Seekers', label: t.nav.github, external: true },
+];
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-dark-border bg-dark-bg/80 backdrop-blur-lg">
@@ -31,7 +39,7 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex md:items-center md:space-x-8">
+      <div class="hidden md:flex md:items-center md:space-x-6">
         {navLinks.map((link) => (
           <a
             href={link.href}
@@ -48,12 +56,15 @@ const currentPath = Astro.url.pathname;
           </a>
         ))}
 
+        <!-- Language Switcher -->
+        <LanguageSwitcher client:load currentLang={currentLang} currentPath={currentPath} />
+
         <!-- CTA Button -->
         <a
-          href="/docs/getting-started/installation"
+          href={`${langPrefix}/docs/getting-started/installation`}
           class="rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
         >
-          Get Started
+          {t.nav.getStarted}
         </a>
       </div>
 
@@ -90,11 +101,15 @@ const currentPath = Astro.url.pathname;
             {link.label}
           </a>
         ))}
+        <!-- Language Switcher Mobile -->
+        <div class="px-3 py-2">
+          <LanguageSwitcher client:load currentLang={currentLang} currentPath={currentPath} />
+        </div>
         <a
-          href="/docs/getting-started/installation"
+          href={`${langPrefix}/docs/getting-started/installation`}
           class="rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-3 py-2 text-center text-sm font-semibold text-white"
         >
-          Get Started
+          {t.nav.getStarted}
         </a>
       </div>
     </div>

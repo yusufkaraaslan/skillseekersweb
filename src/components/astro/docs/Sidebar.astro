@@ -1,12 +1,17 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { SupportedLanguage } from '../../../i18n/utils';
 
 interface Props {
-  docs: CollectionEntry<'docs'>[];
+  docs: CollectionEntry<'docs'>[] | CollectionEntry<'docs-zh'>[];
   currentSlug: string;
+  lang?: SupportedLanguage;
 }
 
-const { docs, currentSlug } = Astro.props;
+const { docs, currentSlug, lang = 'en' } = Astro.props;
+
+// Language prefix for links
+const langPrefix = lang === 'zh' ? '/zh' : '';
 
 // Organize docs by section
 const sections = {
@@ -61,7 +66,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 <!-- Sidebar -->
 <aside
   id="docs-sidebar"
-  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 overflow-y-auto bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:translate-x-0"
+  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 lg:w-80 overflow-y-auto overflow-x-hidden bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:translate-x-0"
   style="transform: translateX(-100%);"
   aria-label="Documentation navigation"
   aria-hidden="true"
@@ -86,7 +91,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
       {orderedSections.map(([key, section]) => (
         section.docs.length > 0 && (
           <div>
-            <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary">
+            <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
               {section.title}
             </h3>
             <ul class="space-y-1">
@@ -95,8 +100,8 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
                 return (
                   <li>
                     <a
-                      href={`/docs/${doc.slug}`}
-                      class={`block rounded px-3 py-2 text-sm transition-colors ${
+                      href={`${langPrefix}/docs/${doc.slug}`}
+                      class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
                         isActive
                           ? 'bg-brand-primary text-white font-medium'
                           : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'

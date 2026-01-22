@@ -1,0 +1,434 @@
+{
+  "hero": {
+    "badge": {
+      "version": "v2.7.0",
+      "tests": "1200+ 测试通过",
+      "license": "MIT 许可证"
+    },
+    "headline": {
+      "part1": "将文档、代码和 PDF 转换为",
+      "part2": "AI 技能",
+      "part3": "只需几分钟"
+    },
+    "subheadline": "自动将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的技能,支持任何 LLM 平台——Claude、Gemini、OpenAI 等。",
+    "cta": {
+      "getStarted": "开始使用",
+      "browseConfigs": "浏览 24 个配置"
+    },
+    "quickInstall": {
+      "label": "快速安装",
+      "copy": "复制",
+      "copied": "已复制！"
+    },
+    "socialProof": {
+      "tests": "1200+ 测试",
+      "platforms": "4 个 LLM 平台",
+      "time": "每个技能 20-40 分钟"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "docs": "文档",
+    "configs": "配置",
+    "github": "GitHub",
+    "getStarted": "开始使用"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "readDocs": "阅读文档",
+    "viewOnGitHub": "在 GitHub 上查看",
+    "copy": "复制",
+    "copied": "已复制！"
+  },
+  "about": {
+    "heading": "什么是 Skill Seekers？",
+    "description": "Skill Seekers 是一个开源 Python 工具，可自动将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的 AI 技能，支持 Claude、Gemini、OpenAI 和其他 LLM 平台。",
+    "problem": {
+      "title": "问题所在",
+      "item1": "手动复制文档到 AI 聊天上下文既繁琐又容易出错",
+      "item2": "大型代码库和文档超出 AI 上下文窗口限制",
+      "item3": "AI 回复缺乏特定框架的知识和最佳实践",
+      "item4": "随着框架变化保持 AI 知识更新非常耗时"
+    },
+    "solution": {
+      "title": "解决方案",
+      "item1": "通过多源分析自动从文档、GitHub 仓库和 PDF 中提取",
+      "item2": "智能分块、分类和三流分析（代码、文档、见解）",
+      "item3": "AI 增强的技能，包含解释、示例和最佳实践",
+      "item4": "在 20-40 分钟内部署到任何 LLM 平台（Claude、Gemini、OpenAI）"
+    },
+    "benefits": {
+      "speed": {
+        "title": "10 倍更快的开发速度",
+        "description": "无需手动复制文档。在几分钟而非几小时内生成全面的技能。"
+      },
+      "expertise": {
+        "title": "框架专业知识",
+        "description": "为 AI 助手提供任何框架的深度知识，包括 API 参考和示例。"
+      },
+      "uptodate": {
+        "title": "始终保持最新",
+        "description": "当文档更新时重新运行。保持您的 AI 知识新鲜准确。"
+      }
+    }
+  },
+  "features": {
+    "title": "全面的功能集",
+    "subtitle": "将文档转换为生产就绪 AI 技能所需的一切",
+    "viewAll": "查看全部 {count} 个功能",
+    "showLess": "显示更少",
+    "moreFeatures": "还有 {count} 个功能",
+    "cta": {
+      "question": "准备好转换您的文档了吗？",
+      "button": "立即开始"
+    },
+    "items": [
+      {
+        "icon": "🌊",
+        "title": "三流分析",
+        "description": "将 GitHub 仓库拆分为代码（C3.x）、文档和见解流，创建全面的技能",
+        "category": "新功能 - v2.6.0"
+      },
+      {
+        "icon": "🌐",
+        "title": "多源抓取",
+        "description": "从文档网站、GitHub 仓库和 PDF 文件中提取",
+        "category": "数据来源"
+      },
+      {
+        "icon": "✨",
+        "title": "AI 增强",
+        "description": "使用 Claude 自动添加解释、示例和最佳实践",
+        "category": "AI 功能"
+      },
+      {
+        "icon": "🤖",
+        "title": "4 个 LLM 平台",
+        "description": "部署到 Claude Projects、Gemini、OpenAI，或导出为 Markdown",
+        "category": "平台支持"
+      },
+      {
+        "icon": "📦",
+        "title": "24 个预设配置",
+        "description": "为流行框架（React、Vue、Django 等）提供即用配置",
+        "category": "配置"
+      },
+      {
+        "icon": "🔧",
+        "title": "MCP 集成",
+        "description": "内置模型上下文协议支持，包含 27+ 个工具",
+        "category": "集成"
+      },
+      {
+        "icon": "✅",
+        "title": "700+ 测试",
+        "description": "生产就绪，具有全面的测试覆盖和验证",
+        "category": "质量"
+      },
+      {
+        "icon": "⚡",
+        "title": "零手动工作",
+        "description": "从源到生产就绪技能的全自动流程",
+        "category": "自动化"
+      },
+      {
+        "icon": "⏱️",
+        "title": "20-40 分钟",
+        "description": "在一小时内完成技能生成，包括 AI 增强",
+        "category": "性能"
+      },
+      {
+        "icon": "🎯",
+        "title": "URL 模式过滤",
+        "description": "使用正则表达式模式匹配包含/排除特定路径",
+        "category": "配置"
+      },
+      {
+        "icon": "🚦",
+        "title": "速率限制",
+        "description": "控制抓取速度以尊重服务器资源（0.1-5 请求/秒）",
+        "category": "配置"
+      },
+      {
+        "icon": "🔍",
+        "title": "自定义 CSS 选择器",
+        "description": "为主要内容、标题和代码块定义精确的选择器",
+        "category": "定制化"
+      },
+      {
+        "icon": "⚙️",
+        "title": "异步模式",
+        "description": "可配置并发的并行抓取（最多 50 个工作线程）",
+        "category": "性能"
+      },
+      {
+        "icon": "📚",
+        "title": "大型文档支持",
+        "description": "通过智能分页处理海量文档网站",
+        "category": "数据来源"
+      },
+      {
+        "icon": "🧠",
+        "title": "智能分块",
+        "description": "针对 LLM 上下文窗口优化的自动内容分割",
+        "category": "AI 功能"
+      },
+      {
+        "icon": "🔬",
+        "title": "C3.x 代码库分析",
+        "description": "深度 AST 分析，提取模式、示例、指南和配置",
+        "category": "代码库分析"
+      },
+      {
+        "icon": "⚙️",
+        "title": "配置模式检测",
+        "description": "提取和分析 9 种配置格式，配备 AI 安全分析",
+        "category": "代码库分析"
+      },
+      {
+        "icon": "📖",
+        "title": "自动操作指南",
+        "description": "从代码生成全面的教程，配备 AI 增强",
+        "category": "代码库分析"
+      },
+      {
+        "icon": "📄",
+        "title": "PDF OCR",
+        "description": "使用 OCR 后备从扫描的 PDF 中提取文本",
+        "category": "数据来源"
+      },
+      {
+        "icon": "💬",
+        "title": "自定义提示",
+        "description": "为特定用例定制 AI 增强提示",
+        "category": "AI 功能"
+      },
+      {
+        "icon": "🔒",
+        "title": "GitHub 认证",
+        "description": "支持使用 GitHub 令牌认证的私有仓库",
+        "category": "集成"
+      },
+      {
+        "icon": "📊",
+        "title": "进度跟踪",
+        "description": "抓取期间的实时进度条和状态更新",
+        "category": "用户体验"
+      },
+      {
+        "icon": "🎨",
+        "title": "Markdown 导出",
+        "description": "将技能导出为可移植的 Markdown 文件，适用于任何平台",
+        "category": "平台支持"
+      },
+      {
+        "icon": "🔄",
+        "title": "增量更新",
+        "description": "仅重新抓取更改的页面以保持技能最新",
+        "category": "自动化"
+      },
+      {
+        "icon": "🛡️",
+        "title": "错误恢复",
+        "description": "失败请求的指数退避自动重试",
+        "category": "质量"
+      }
+    ]
+  },
+  "quickstart": {
+    "title": "三步开始",
+    "subtitle": "从零到生产就绪技能，仅需 20-40 分钟",
+    "steps": [
+      {
+        "number": "1",
+        "title": "1. 安装",
+        "description": "从 PyPI 秒速安装",
+        "code": "pip install skill-seekers"
+      },
+      {
+        "number": "2",
+        "title": "2. 抓取文档",
+        "description": "使用预设配置或创建自己的配置",
+        "code": "skill-seekers scrape --config react\n# 或直接从 URL\nskill-seekers scrape --url https://react.dev --name react"
+      },
+      {
+        "number": "3",
+        "title": "3. 打包并上传",
+        "description": "创建 .zip 并上传到 Claude",
+        "code": "skill-seekers package output/react/\nskill-seekers upload react.zip\n\n# 完成！您的技能已准备就绪"
+      }
+    ],
+    "installOptions": {
+      "title": "多种安装选项",
+      "pypi": {
+        "title": "PyPI（推荐）",
+        "badge": "最简单",
+        "code": "pip install skill-seekers"
+      },
+      "uv": {
+        "title": "uv（现代）",
+        "badge": "快速",
+        "code": "uv tool install skill-seekers"
+      },
+      "source": {
+        "title": "从源码",
+        "badge": "开发",
+        "code": "git clone && pip install -e ."
+      },
+      "mcp": {
+        "title": "MCP 集成",
+        "badge": "5 个代理",
+        "code": "./setup_mcp.sh"
+      }
+    },
+    "cta": "阅读完整安装指南"
+  },
+  "usecases": {
+    "title": "谁在使用 Skill Seekers？",
+    "subtitle": "从独立开发者到企业团队",
+    "cases": [
+      {
+        "title": "为开发者",
+        "icon": "👨‍💻",
+        "description": "从文档 + GitHub 仓库创建技能，自动检测冲突。",
+        "example": "从官方文档 + GitHub 仓库构建 React 技能，在 API 变化之前就能发现问题。"
+      },
+      {
+        "title": "为游戏开发者",
+        "icon": "🎮",
+        "description": "为 Godot 等游戏引擎生成全面技能（处理 40K+ 页面！）。",
+        "example": "创建完整的 Godot 技能，涵盖所有主题，采用智能路由/中心模式。"
+      },
+      {
+        "title": "为团队",
+        "icon": "👥",
+        "description": "将内部文档 + 代码仓库合并为单一信息源。",
+        "example": "通过私有 git 仓库在 3-500+ 团队成员之间共享自定义配置。"
+      },
+      {
+        "title": "为学习者",
+        "icon": "📚",
+        "description": "从文档、代码示例和 PDF 教程构建全面技能。",
+        "example": "将官方文档 + GitHub 示例 + PDF 手册合并为统一的学习资源。"
+      },
+      {
+        "title": "为开源项目",
+        "icon": "🔍",
+        "description": "分析仓库以自动发现文档空白和过时示例。",
+        "example": "检测文档与实际代码实现之间的差异。"
+      }
+    ],
+    "platforms": {
+      "title": "多平台支持",
+      "subtitle": "将您的技能导出到多个 LLM 平台，配备特定平台优化",
+      "items": [
+        "🤖 Claude AI",
+        "💎 Google Gemini",
+        "🔮 OpenAI ChatGPT",
+        "📝 通用 Markdown"
+      ]
+    }
+  },
+  "stats": {
+    "title": "数据说话",
+    "subtitle": "来自生产就绪工具的可信指标",
+    "labels": {
+      "stars": "GitHub Stars",
+      "forks": "Forks",
+      "contributors": "贡献者",
+      "tests": "测试通过",
+      "configs": "预设配置",
+      "platforms": "LLM 平台"
+    },
+    "values": {
+      "tests": "1200+",
+      "configs": "24",
+      "platforms": "4"
+    },
+    "banner": "开源 • MIT 许可证 • 活跃开发",
+    "cta": {
+      "star": "在 GitHub 上 Star",
+      "download": "从 PyPI 下载"
+    }
+  },
+  "footer": {
+    "tagline": "几分钟内将文档转换为 Claude AI 技能。",
+    "sections": {
+      "product": {
+        "title": "产品",
+        "links": {
+          "features": "功能",
+          "configs": "配置",
+          "docs": "文档",
+          "api": "API 参考"
+        }
+      },
+      "resources": {
+        "title": "资源",
+        "links": {
+          "gettingStarted": "开始使用",
+          "quickStart": "快速开始",
+          "installation": "安装",
+          "overview": "概览"
+        }
+      },
+      "community": {
+        "title": "社区",
+        "links": {
+          "github": "GitHub",
+          "issues": "问题",
+          "pypi": "PyPI",
+          "board": "项目看板"
+        }
+      }
+    },
+    "copyright": "© {year} Skill Seekers. MIT 许可证。使用 ❤️ 和以下技术构建",
+    "stats": {
+      "tests": "1200+ 测试"
+    }
+  },
+  "configs": {
+    "title": "配置画廊 | Skill Seekers",
+    "description": "浏览和下载 27 个生产就绪的 Skill Seekers 配置。使用预构建配置将文档、GitHub 仓库和 PDF 转换为 Claude AI 技能。",
+    "gallery": {
+      "heading": "配置画廊",
+      "subtitle": "浏览和下载 {count} 个生产就绪的 Skill Seekers 配置",
+      "showing": "显示 {total} 个配置中的 {filtered} 个",
+      "searchFor": "搜索「{query}」",
+      "noResults": {
+        "title": "未找到配置",
+        "description": "请尝试调整筛选条件或搜索关键词",
+        "clearButton": "清除所有筛选"
+      }
+    },
+    "submit": {
+      "heading": "分享您的配置",
+      "subtitle": "为此处未列出的框架创建了配置？与社区分享！",
+      "howToTitle": "如何提交",
+      "steps": {
+        "step1": "使用下面的工具验证您的配置",
+        "step2": "验证通过后点击「复制并提交到 GitHub」",
+        "step3": "在打开的 GitHub 问题中粘贴您的配置",
+        "step4": "我们会审核并将其添加到官方画廊！"
+      },
+      "guideButton": "📖 详细指南",
+      "benefits": {
+        "quickReview": {
+          "icon": "⚡",
+          "title": "快速审核",
+          "description": "我们会在 24-48 小时内审核提交"
+        },
+        "qualityChecked": {
+          "icon": "✅",
+          "title": "质量检查",
+          "description": "所有配置在添加前都会经过测试"
+        },
+        "getCredit": {
+          "icon": "🎉",
+          "title": "获得认可",
+          "description": "您的 GitHub 资料将列为贡献者"
+        }
+      }
+    }
+  }
+}

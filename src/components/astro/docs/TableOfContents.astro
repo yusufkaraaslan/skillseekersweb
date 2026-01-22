@@ -19,7 +19,7 @@ const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
         <li class={heading.depth === 3 ? 'ml-4' : ''}>
           <a
             href={`#${heading.slug}`}
-            class="block text-dark-text-secondary hover:text-brand-primary transition-colors"
+            class="block text-dark-text-secondary hover:text-brand-primary transition-colors break-words"
           >
             {heading.text}
           </a>
