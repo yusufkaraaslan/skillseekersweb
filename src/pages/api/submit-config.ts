@@ -21,8 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Validate required fields
-    const requiredFields = ['name', 'description', 'base_url', 'selectors'];
+    // Validate required fields for unified format (v2.6.0)
+    const requiredFields = ['name', 'description', 'sources'];
     for (const field of requiredFields) {
       if (!config[field]) {
         return new Response(
@@ -32,16 +32,50 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // Validate selectors
-    const requiredSelectors = ['main_content', 'title', 'code_blocks'];
-    for (const selector of requiredSelectors) {
-      if (!config.selectors[selector]) {
+    // Validate sources array
+    if (!Array.isArray(config.sources) || config.sources.length === 0) {
+      return new Response(
+        JSON.stringify({ error: 'Config must have at least one source in sources array' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Validate first source (at least one documentation source required)
+    const firstSource = config.sources[0];
+    if (!firstSource.type) {
+      return new Response(
+        JSON.stringify({ error: 'Source missing required field: type' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // For documentation sources, validate base_url and selectors
+    if (firstSource.type === 'documentation') {
+      if (!firstSource.base_url) {
         return new Response(
-          JSON.stringify({
-            error: `Config selectors missing required field: ${selector}`
-          }),
+          JSON.stringify({ error: 'Documentation source missing required field: base_url' }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
+      }
+
+      if (!firstSource.selectors) {
+        return new Response(
+          JSON.stringify({ error: 'Documentation source missing required field: selectors' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // Validate selectors
+      const requiredSelectors = ['main_content', 'title', 'code_blocks'];
+      for (const selector of requiredSelectors) {
+        if (!firstSource.selectors[selector]) {
+          return new Response(
+            JSON.stringify({
+              error: `Documentation source selectors missing required field: ${selector}`
+            }),
+            { status: 400, headers: { 'Content-Type': 'application/json' } }
+          );
+        }
       }
     }
 
@@ -56,6 +90,15 @@ export const POST: APIRoute = async ({ request }) => {
     // Create issue title
     const issueTitle = `[CONFIG] ${config.name}`;
 
+    // Extract base_url from sources for display
+    const baseUrl = config.sources[0]?.base_url ||
+                    config.sources[0]?.repo ||
+                    config.sources[0]?.pdf_path ||
+                    'N/A';
+
+    const sourceType = config.sources[0]?.type || 'unknown';
+    const sourceCount = config.sources.length;
+
     // Create issue body using the template
     const issueBody = `## Config Submission
 
@@ -63,7 +106,11 @@ export const POST: APIRoute = async ({ request }) => {
 
 **Description:** ${config.description}
 
-**Base URL:** ${config.base_url}
+**Source Type:** ${sourceType}
+
+**Sources:** ${sourceCount} source${sourceCount > 1 ? 's' : ''}
+
+**Primary URL/Path:** ${baseUrl}
 
 ---
 

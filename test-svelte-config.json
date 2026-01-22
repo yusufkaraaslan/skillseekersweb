@@ -1,0 +1,46 @@
+{
+  "name": "svelte",
+  "description": "Official Svelte framework documentation - reactive UI components with modern syntax including runes and fine-grained reactivity",
+  "merge_mode": "rule-based",
+  "sources": [
+    {
+      "type": "documentation",
+      "base_url": "https://svelte.dev/docs/",
+      "start_urls": [
+        "https://svelte.dev/docs/introduction"
+      ],
+      "selectors": {
+        "main_content": ".content article",
+        "title": "h1",
+        "code_blocks": "pre code"
+      },
+      "url_patterns": {
+        "include": ["/docs/"],
+        "exclude": ["/blog/", "/examples/", "/tutorial/", "/repl", "/faq"]
+      },
+      "categories": {
+        "introduction": ["introduction", "getting-started", "overview"],
+        "tutorial": ["tutorial", "basics", "learn"],
+        "components": ["components", "props", "events", "slots"],
+        "reactivity": ["reactivity", "state", "stores", "reactive", "runes"],
+        "template_syntax": ["template", "syntax", "directives", "if", "each", "await"],
+        "runtime": ["runtime", "lifecycle", "context"],
+        "sveltekit": ["sveltekit", "routing", "load", "server"],
+        "advanced": ["advanced", "animations", "transitions", "actions"],
+        "compiler": ["compiler", "svelte-compiler", "preprocessors"],
+        "api": ["api", "reference", "svelte/store", "svelte/motion"]
+      },
+      "rate_limit": 0.5,
+      "max_pages": 150
+    }
+  ],
+  "metadata": {
+    "version": "5.0",
+    "language": "en",
+    "framework_type": "frontend",
+    "tags": ["javascript", "frontend", "reactive", "ui-framework", "web-components"],
+    "author": "Test User",
+    "submission_date": "2026-01-23"
+  },
+  "notes": "Covers Svelte 5.x documentation including runes and modern reactive patterns. Excludes blog posts, interactive examples, and tutorial sections to focus on core documentation."
+}
