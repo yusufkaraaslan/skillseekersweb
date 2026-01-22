@@ -1,16 +1,51 @@
 import { useState, useEffect } from 'react';
 
-interface Config {
-  name: string;
-  description: string;
-  base_url: string;
-  selectors: {
+interface Source {
+  type: 'documentation' | 'github' | 'pdf';
+  base_url?: string;
+  repo?: string;
+  pdf_path?: string;
+  selectors?: {
     main_content: string;
     title: string;
     code_blocks: string;
   };
   [key: string]: any;
 }
+
+interface Config {
+  name: string;
+  description: string;
+  // Unified format (v2.6.0)
+  sources?: Source[];
+  merge_mode?: string;
+  metadata?: any;
+  // Legacy format (backward compatibility)
+  base_url?: string;
+  selectors?: {
+    main_content: string;
+    title: string;
+    code_blocks: string;
+  };
+  [key: string]: any;
+}
+
+// Helper to get base URL from config (supports both formats)
+const getConfigBaseUrl = (config: Config): string => {
+  if (config.sources && config.sources.length > 0) {
+    const source = config.sources[0];
+    return source.base_url || source.repo || source.pdf_path || 'N/A';
+  }
+  return config.base_url || 'N/A';
+};
+
+// Helper to get source type from config
+const getSourceType = (config: Config): string => {
+  if (config.sources && config.sources.length > 0) {
+    return config.sources[0].type || 'documentation';
+  }
+  return 'documentation';
+};
 
 interface Submission {
   issueNumber: number;
@@ -313,15 +348,18 @@ export default function AdminDashboard() {
               <div className="mb-4 p-4 bg-dark-bg rounded-lg border border-dark-border">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-dark-text-secondary">Base URL:</span>
+                    <span className="text-dark-text-secondary">Source URL:</span>
                     <p className="font-mono text-xs text-brand-primary break-all">
-                      {submission.config.base_url}
+                      {getConfigBaseUrl(submission.config)}
                     </p>
                   </div>
                   <div>
-                    <span className="text-dark-text-secondary">Selectors:</span>
+                    <span className="text-dark-text-secondary">Type:</span>
                     <p className="font-mono text-xs">
-                      {Object.keys(submission.config.selectors).length} defined
+                      {getSourceType(submission.config)}
+                      {submission.config.sources && submission.config.sources.length > 1 &&
+                        ` (+${submission.config.sources.length - 1} more)`
+                      }
                     </p>
                   </div>
                 </div>
