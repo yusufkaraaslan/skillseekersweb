@@ -546,7 +546,7 @@ skill-seekers router output/project/ --max-tokens 50000
 
 - [AI Skill Standards](/docs/reference/ai-skill-standards) - Best practices for all platforms
 - [Three-Stream Architecture](/docs/reference/c3x-router-architecture) - Large project pattern
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Platform comparison
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Platform comparison
 - [MCP Setup Guide](/docs/guides/mcp-setup) - Install MCP integration
 
 ---

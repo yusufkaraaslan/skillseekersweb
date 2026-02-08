@@ -7,7 +7,7 @@ order: 2
 
 # Features Overview
 
-Skill Seekers v2.7.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
+Skill Seekers v3.0.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
 
 ## 🌐 Input Sources
 
@@ -105,7 +105,7 @@ Advanced code analysis features for understanding codebases:
 
 ## 🔌 MCP Integration
 
-### 18 MCP Tools for Claude Code
+### 26 MCP Tools for Claude Code
 - **Config Management** - generate_config, list_configs, validate_config
 - **Scraping** - scrape_docs, scrape_github, scrape_pdf, estimate_pages
 - **Processing** - enhance_skill, package_skill, upload_skill
@@ -152,11 +152,11 @@ Advanced code analysis features for understanding codebases:
 
 ## 📊 Statistics
 
-- **1200+ tests** - Comprehensive test coverage, 100% passing
+- **1,852 tests** - Comprehensive test coverage, 100% passing
 - **24 preset configs** - Ready-to-use configs for popular frameworks
 - **4 platforms** - Complete multi-LLM support
-- **18 MCP tools** - Full Claude Code integration
-- **v2.7.0** - Latest release (January 2026)
+- **26 MCP tools** - Full Claude Code integration
+- **v3.0.0** - Latest release (February 2026)
 
 ## Next Steps
 

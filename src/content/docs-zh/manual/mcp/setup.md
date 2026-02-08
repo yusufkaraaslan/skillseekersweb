@@ -17,7 +17,7 @@ order: 1
 Skill Seekers MCP 服务器通过模型上下文协议提供 18 个工具，支持使用自然语言与所有 Skill Seekers 功能交互。
 
 **支持的功能：**
-- ✅ **18 个 MCP 工具** - 完整的 Skill Seekers 功能
+- ✅ **26 个 MCP 工具** - 完整的 Skill Seekers 功能
 - ✅ **5 个 AI 代理** - Claude Code、Cursor、Windsurf、VS Code + Cline、IntelliJ IDEA
 - ✅ **双传输** - stdio（默认）和 HTTP 模式
 - ✅ **自动配置** - 一行设置脚本

@@ -731,7 +731,7 @@ A: Yes! The generic markdown export creates universal documentation that works w
 
 ## Next Steps
 
-- [Three-Stream Architecture](/docs/features/three-stream-architecture) - Multi-source scraping
-- [AI Enhancement](/docs/features/ai-enhancement) - Improve skills with AI
+- [Three-Stream Architecture](/docs/manual/advanced/three-stream-architecture) - Multi-source scraping
+- [AI Enhancement](/docs/manual/enhancement/ai-enhancement) - Improve skills with AI
 - [CLI Reference: package](/docs/cli/package) - Package command details
 - [CLI Reference: upload](/docs/cli/upload) - Upload command details

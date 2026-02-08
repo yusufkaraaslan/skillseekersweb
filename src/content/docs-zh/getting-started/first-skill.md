@@ -34,7 +34,7 @@ order: 3
 skill-seekers --version
 ```
 
-您应该看到类似这样的内容: `Skill Seekers v2.7.0`
+您应该看到类似这样的内容: `Skill Seekers v3.0.0`
 
 **如果未安装:** 请参阅[安装指南](/docs/getting-started/installation)
 

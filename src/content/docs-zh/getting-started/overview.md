@@ -1,30 +1,50 @@
 ---
 title: 概览
-description: 了解 Skill Seekers 是什么以及它如何将文档转换为 AI 技能
+description: 了解 Skill Seekers 是什么以及它如何将文档、GitHub 仓库、PDF 和代码库转换为适用于任何 AI 系统的结构化知识
 section: getting-started
 order: 1
 ---
 
 # 什么是 Skill Seekers？
 
-Skill Seekers 是一个自动化工具，可将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的 Claude AI 技能。无需手动阅读和总结文档，Skill Seekers 可以：
+Skill Seekers 是**AI 系统的通用预处理器**。它将**文档网站、GitHub 仓库、PDF 文件和本地代码库**转换为适用于 RAG 管道、AI 编码助手、Claude 技能和任何 LLM 平台的结构化知识。
 
-1. **抓取**多个来源（文档、GitHub 仓库、PDF）的内容
-2. **分析**代码仓库，进行深度 AST 解析
+**70% 的 RAG 开发时间花在数据预处理上**——抓取、清理、分块和结构化文档。**我们将其全部自动化。**
+
+无需手动预处理数据，Skill Seekers：
+
+1. **提取**自任何源——文档、GitHub 仓库、PDF、本地代码库
+2. **分析**使用深度解析（代码使用 AST，PDF 使用 OCR，语义分块）
 3. **检测**文档和代码实现之间的冲突
-4. **组织**内容为分类的参考文件
+4. **组织**内容为分类的参考文件，带有丰富的元数据
 5. **增强**使用 AI 提取最佳示例和关键概念
-6. **打包**所有内容为可上传到 Claude 的文件
+6. **打包**为 16+ 种格式适用于任何 AI 系统
 
-**结果：** 20-40 分钟内获得任何框架、API 或工具的全面 Claude 技能，而不是数小时的手动工作。
+**结果：**生产就绪的 AI 知识只需 15-45 分钟，而不是数天的手动工作。
 
 ## 为什么使用 Skill Seekers？
 
-- 🎯 **为开发者**: 从文档 + GitHub 仓库创建技能，带有冲突检测
-- 🎮 **为游戏开发者**: 为游戏引擎生成技能（Godot 文档 + GitHub、Unity 等）
-- 🔧 **为团队**: 将内部文档 + 代码仓库合并为单一信息源
-- 📚 **为学习者**: 从文档、代码示例和 PDF 构建全面技能
-- 🔍 **为开源项目**: 分析仓库以发现文档空白和过时示例
+### 为 RAG 构建者和 AI 工程师
+- 🤖 **RAG 系统**：构建生产级 Q&A 机器人、聊天机器人、文档门户
+- 🚀 **速度快 99%**：数天的预处理 → 15-45 分钟
+- ✅ **经过实战检验**：1,852 个测试，24+ 框架预设，生产就绪
+- 🔄 **多源**：自动组合文档 + GitHub + PDF + 代码库
+- 🌐 **平台无关**：导出到 LangChain、LlamaIndex、Pinecone 或自定义
+
+### 为 AI 编码助手用户
+- 💻 **Cursor、Windsurf、Cline、Continue.dev**：生成 `.cursorrules` 提供框架专业知识
+- 🎯 **持久上下文**：AI "了解" 您的框架，无需手动提示
+- 📚 **始终保持最新**：框架更改时 5 分钟更新规则
+
+### 为游戏开发者
+- 🎮 **Godot 4.x**：信号流分析（208 个信号，634 个连接）
+- 🕹️ **Unity/Unreal**：使用模式检测进行 C# 和 C++ 代码分析
+- 📖 **自动生成文档**：从代码生成架构文档
+
+### 为团队
+- 🔧 **内部知识**：将文档 + 代码仓库组合成单一信息源
+- 👥 **共享配置**：团队配置的私有 git 仓库
+- 🔄 **CI/CD 就绪**：GitHub Actions 自动更新知识
 
 ## 快速示例
 
@@ -32,76 +52,79 @@ Skill Seekers 是一个自动化工具，可将文档网站、GitHub 仓库和 P
 # 安装
 pip install skill-seekers
 
-# 抓取文档
-skill-seekers scrape https://docs.astro.build/en/getting-started/
+# 从文档
+skill-seekers scrape --config configs/react.json
 
-# 为 Claude 打包
-skill-seekers package output/astro/
+# 从 GitHub 仓库
+skill-seekers scrape --github https://github.com/owner/repo --format langchain
 
-# 上传到 Claude
-skill-seekers upload astro.zip
+# 从 PDF
+skill-seekers scrape --pdf ./manual.pdf --format llamaindex
+
+# 从本地代码库
+skill-seekers analyze --directory ./my-project --format langchain
+
+# 打包为任何平台
+skill-seekers package output/ --target langchain
 ```
 
-就是这样！您现在在 Claude 中拥有了一个全面的 Astro 技能。
+就是这样！您现在拥有来自任何源的 RAG 就绪文档。
 
 ## 核心功能
 
-### 多源支持
-- 文档网站（任何带有文档的网站）
-- GitHub 仓库（带有深度 C3.x 分析）
-- PDF 文件（支持 OCR）
-- 从多个来源组合的统一技能
+### 4 种输入源
+- **文档网站** - 任何 HTML 文档（Docusaurus、GitBook、ReadTheDocs）
+- **GitHub 仓库** - 公共和私有，深度 C3.x 分析
+- **PDF 文件** - 扫描文档、手册、研究论文，支持 OCR
+- **本地代码库** - 您的项目（27+ 语言、游戏引擎）
 
-### 三流架构 (v2.6.0)
-- **流 1: 代码** - 深度 C3.x 分析（模式、示例、架构）
-- **流 2: 文档** - 仓库文档（README、docs/）
-- **流 3: 洞察** - GitHub issues（常见问题 + 解决方案）
-- 文档和代码之间的自动冲突检测
-- 来自 GitHub 的真实用户问题和解决方案
+### 16 种输出格式
+| 类别 | 平台 |
+|------|------|
+| **RAG/向量** | LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate |
+| **AI 平台** | Claude、Gemini、OpenAI |
+| **AI 编码** | Cursor、Windsurf、Cline、Continue.dev |
+| **通用** | Markdown、JSON、YAML |
 
-### C3.x 代码库分析 (v2.6.0)
-- **C3.1:** 设计模式检测（策略、工厂等）
-- **C3.2:** 测试示例提取（来自测试的工作代码）
-- **C3.3:** 操作指南生成（自动化教程）
-- **C3.4:** 配置分析（9 种格式，带安全扫描）
-- **C3.7:** 架构模式检测（MVC、微服务等）
+### C3.x 代码库分析
+- **C3.1：** 设计模式检测（策略、工厂等）
+- **C3.2：** 测试示例提取（来自测试的工作代码）
+- **C3.3：** 操作指南生成（自动化教程）
+- **C3.4：** 配置分析（9 种格式，带安全扫描）
+- **C3.9：** 信号流分析（Godot、游戏引擎）
+- **C3.10：** 多代理 LOCAL 模式支持
 
-### 多平台导出
-- **Claude AI**（默认）- ZIP + YAML 格式
-- **Google Gemini** - tar.gz，带平台优化
-- **OpenAI ChatGPT** - ZIP，带向量存储
-- **通用 Markdown** - 通用 Markdown 格式
+### 多代理支持
+- **Claude Code**（默认）- 原生 stdio 传输
+- **GitHub Copilot CLI** - 企业集成
+- **OpenAI Codex CLI** - OpenAI 集成
+- **OpenCode CLI** - 开源替代方案
+- **自定义代理** - 任何 CLI 工具
 
 ### 智能处理
-- 自动内容分类
-- 代码语言检测（Python、JS、C++、GDScript 等）
-- 文档和代码之间的冲突检测
-- AI 增强和摘要
-- 智能缓存加快重新运行（50% 提速）
+- **智能分块** - 保留代码块，保持上下文（512 令牌分块）
+- **27+ 语言** - Python、JavaScript、Go、Rust、C++、C#、GDScript 等
+- **Godot 支持** - 信号流检测和模式分析
+- **云存储** - 直接上传到 S3、GCS、Azure
+- **CI/CD 就绪** - GitHub Actions + Docker
 
-## v2.7.0 新功能
+## v3.0.0 新增功能
 
-**智能速率限制管理和多令牌配置：**
-- 多配置文件 GitHub 令牌管理，自动切换
-- 交互式配置向导（`skill-seekers config`）
-- 智能速率限制处理，四种策略（提示、等待、切换、失败）
-- 中断任务的恢复命令（`skill-seekers resume`）
-- CI/CD 流水线的非交互模式
+**通用智能平台：**
 
-**自托管和引导功能：**
-- 将 Skill Seekers 生成为 Claude Code 技能
-- 使用 `./scripts/bootstrap_skill.sh` 一键引导
-- MCP 现在是可选的 - 使用 `pip install skill-seekers[mcp]` 安装
+- **16 个平台适配器**（从 4 个增加）- LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate、Pinecone、Claude、Gemini、OpenAI、Cursor、Windsurf、Cline、Continue.dev
+- **26 个 MCP 工具**（从 9 个增加）- AI 代理准备自己的知识
+- **云存储** - AWS S3、Google Cloud Storage、Azure Blob Storage
+- **CI/CD 就绪** - GitHub Action + Docker 支持
+- **Godot 游戏引擎** - 完整的 4.x 分析，带信号流检测
+- **7 种新语言** - Dart、Scala、SCSS/SASS、Elixir、Lua、Perl（共 27+）
+- **多代理支持** - Claude、Copilot、Codex、OpenCode
+- **1,852 个测试**（从 700+ 增加）- 生产就绪质量
 
-**增强的测试和质量：**
-- 1200+ 测试通过（从 700+ 增加）
-- 使用 ruff 零 linting 错误
-- 引导的全面 E2E 测试
-
-[阅读完整的 v2.7.0 更新日志 →](/docs/community/changelog)
+[阅读完整的 v3.0.0 更新日志 →](/docs/community/changelog)
 
 ## 下一步
 
-- [安装指南](/docs/getting-started/installation) - 设置 Skill Seekers v2.7.0
-- [快速开始](/docs/getting-started/quick-start) - 5 分钟内创建您的第一个技能
+- [安装指南](/docs/getting-started/installation) - 设置 Skill Seekers v3.0.0
+- [快速开始](/docs/getting-started/first-skill) - 5 分钟创建您的第一个技能
 - [浏览配置](/configs) - 探索 24 个预构建配置

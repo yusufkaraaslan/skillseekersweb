@@ -17,7 +17,7 @@ Set up the Skill Seekers MCP server to use all features through Model Context Pr
 The Skill Seekers MCP server provides 18 tools accessible through the Model Context Protocol, enabling natural language interaction with all Skill Seekers features.
 
 **Supported Features:**
-- ✅ **18 MCP Tools** - Complete Skill Seekers functionality
+- ✅ **26 MCP Tools** - Complete Skill Seekers functionality
 - ✅ **5 AI Agents** - Claude Code, Cursor, Windsurf, VS Code + Cline, IntelliJ IDEA
 - ✅ **Dual Transport** - stdio (default) and HTTP modes
 - ✅ **Auto-Configuration** - One-line setup script

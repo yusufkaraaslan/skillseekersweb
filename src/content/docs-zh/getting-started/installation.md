@@ -185,4 +185,4 @@ pip install --user skill-seekers
 
 - [快速入门指南](/docs/getting-started/quick-start) - 5 分钟创建您的第一个技能
 - [浏览配置](/configs) - 探索预构建的配置
-- [功能概述](/docs/features/documentation-scraping) - 了解 Skill Seekers 可以做什么
+- [功能概述](/docs/about/features) - 了解 Skill Seekers 可以做什么

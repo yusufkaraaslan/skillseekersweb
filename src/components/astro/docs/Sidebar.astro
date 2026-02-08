@@ -22,13 +22,21 @@ const sections = {
   'integrations': { title: 'Integrations', order: 5, docs: [] as CollectionEntry<'docs'>[] },
   'reference': { title: 'Reference', order: 6, docs: [] as CollectionEntry<'docs'>[] },
   'community': { title: 'Community', order: 7, docs: [] as CollectionEntry<'docs'>[] },
-  'api': { title: 'API Reference', order: 8, docs: [] as CollectionEntry<'docs'>[] },
+};
+
+// Subsection configuration
+const subsections = {
+  'rag': { title: 'RAG & Vector Databases', order: 1 },
+  'coding': { title: 'AI Coding Assistants', order: 2 },
 };
 
 // Group docs by section
+const integrationsDocs: CollectionEntry<'docs'>[] = [];
 docs.forEach((doc) => {
   const section = doc.data.section;
-  if (sections[section]) {
+  if (section === 'integrations') {
+    integrationsDocs.push(doc);
+  } else if (sections[section]) {
     sections[section].docs.push(doc);
   }
 });
@@ -66,7 +74,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
 <!-- Sidebar -->
 <aside
   id="docs-sidebar"
-  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 lg:w-80 overflow-y-auto overflow-x-hidden bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:translate-x-0"
+  class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 lg:w-80 overflow-y-auto overflow-x-hidden bg-dark-surface border-r border-dark-border px-4 py-6 z-50 transition-transform duration-300 ease-in-out -translate-x-full xl:sticky xl:top-16 xl:self-start xl:translate-x-0"
   style="transform: translateX(-100%);"
   aria-label="Documentation navigation"
   aria-hidden="true"
@@ -88,6 +96,7 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
   <!-- Navigation Content -->
   <nav>
     <div class="space-y-6">
+      {/* Regular Sections */}
       {orderedSections.map(([key, section]) => (
         section.docs.length > 0 && (
           <div>
@@ -116,6 +125,83 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
           </div>
         )
       ))}
+      
+      {/* Integrations Section with Subsections */}
+      {integrationsDocs.length > 0 && (
+        <div>
+          <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
+            Integrations
+          </h3>
+          
+          {/* RAG & Vector Databases Subsection */}
+          {(() => {
+            const ragDocs = integrationsDocs
+              .filter(d => d.data.subsection === 'rag')
+              .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+            if (ragDocs.length === 0) return null;
+            return (
+              <div class="mb-3">
+                <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
+                  RAG & Vector DBs
+                </h4>
+                <ul class="space-y-1">
+                  {ragDocs.map((doc) => {
+                    const isActive = doc.slug === currentSlug;
+                    return (
+                      <li>
+                        <a
+                          href={`${langPrefix}/docs/${doc.slug}`}
+                          class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
+                            isActive
+                              ? 'bg-brand-primary text-white font-medium'
+                              : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
+                          }`}
+                        >
+                          {doc.data.title}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })()}
+          
+          {/* AI Coding Assistants Subsection */}
+          {(() => {
+            const codingDocs = integrationsDocs
+              .filter(d => d.data.subsection === 'coding')
+              .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+            if (codingDocs.length === 0) return null;
+            return (
+              <div>
+                <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
+                  AI Coding Assistants
+                </h4>
+                <ul class="space-y-1">
+                  {codingDocs.map((doc) => {
+                    const isActive = doc.slug === currentSlug;
+                    return (
+                      <li>
+                        <a
+                          href={`${langPrefix}/docs/${doc.slug}`}
+                          class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
+                            isActive
+                              ? 'bg-brand-primary text-white font-medium'
+                              : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
+                          }`}
+                        >
+                          {doc.data.title}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })()}
+        </div>
+      )}
     </div>
   </nav>
 </aside>

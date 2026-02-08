@@ -213,4 +213,4 @@ skill-seekers pdf --pdf huge.pdf --name myskill --parallel --workers 2
 
 - [Unified Command](/docs/cli/unified) - Combine PDFs with other sources
 - [Package Command](/docs/cli/package) - Package your skills
-- [Features: PDF](/docs/features/pdf-scraping) - Advanced PDF features
+- [Features: PDF](/docs/manual/scraping/pdf) - Advanced PDF features

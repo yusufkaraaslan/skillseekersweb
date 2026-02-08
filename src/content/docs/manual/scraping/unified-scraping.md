@@ -57,7 +57,7 @@ Create a config file with multiple sources:
 ### 2. Scrape and Build
 
 ```bash
-python3 cli/unified_scraper.py --config configs/react_unified.json
+skill-seekers unified --config configs/react_unified.json
 ```
 
 The tool will:
@@ -69,7 +69,7 @@ The tool will:
 ### 3. Package and Upload
 
 ```bash
-python3 cli/package_skill.py output/react/
+skill-seekers package output/react/
 ```
 
 ## Config Format
@@ -226,7 +226,7 @@ Fast, deterministic merging using predefined rules:
 
 **Example**:
 ```bash
-python3 cli/unified_scraper.py --config config.json --merge-mode rule-based
+skill-seekers unified --config config.json --merge-mode rule-based
 ```
 
 ### Claude-Enhanced Merge
@@ -245,7 +245,7 @@ AI-powered reconciliation using local Claude Code:
 
 **Example**:
 ```bash
-python3 cli/unified_scraper.py --config config.json --merge-mode claude-enhanced
+skill-seekers unified --config config.json --merge-mode claude-enhanced
 ```
 
 ## Skill Output Structure
@@ -422,13 +422,13 @@ useEffect(callback: () => void | (() => void), deps?: readonly any[])
 
 ```bash
 # Basic usage
-python3 cli/unified_scraper.py --config configs/react_unified.json
+skill-seekers unified --config configs/react_unified.json
 
 # Override merge mode
-python3 cli/unified_scraper.py --config configs/react_unified.json --merge-mode claude-enhanced
+skill-seekers unified --config configs/react_unified.json --merge-mode claude-enhanced
 
 # Use cached data (skip re-scraping)
-python3 cli/unified_scraper.py --config configs/react_unified.json --skip-scrape
+skill-seekers unified --config configs/react_unified.json --skip-scrape
 ```
 
 ## MCP Integration
@@ -594,10 +594,10 @@ Planned features:
 
 ## Next Steps
 
-- [Three-Stream Architecture](/docs/features/three-stream-architecture) - Multi-source architecture overview
-- [PDF Scraping](/docs/features/pdf-scraping) - PDF extraction features
+- [Three-Stream Architecture](/docs/manual/advanced/three-stream-architecture) - Multi-source architecture overview
+- [PDF Scraping](/docs/manual/scraping/pdf) - PDF extraction features
 - [GitHub Scraping](/docs/cli/github) - GitHub repository scraping
-- [AI Enhancement](/docs/features/ai-enhancement) - AI-powered improvements
+- [AI Enhancement](/docs/manual/enhancement/ai-enhancement) - AI-powered improvements
 
 ---
 

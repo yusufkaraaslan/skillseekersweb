@@ -264,5 +264,5 @@ Ask Claude: "What skills do you have?"
 ## Next Steps
 
 - [Upload Guide](/docs/guides/upload-guide) - Complete upload guide
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Platform comparison
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Platform comparison
 - [Package Command](/docs/cli/package) - Package for platforms

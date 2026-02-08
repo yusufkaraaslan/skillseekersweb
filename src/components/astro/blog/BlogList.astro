@@ -1,0 +1,16 @@
+---
+import BlogCard from './BlogCard.astro';
+
+interface Props {
+  posts: any[];
+  lang?: string;
+}
+
+const { posts, lang = 'en' } = Astro.props;
+---
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {posts.map(post => (
+    <BlogCard post={post} lang={lang} />
+  ))}
+</div>

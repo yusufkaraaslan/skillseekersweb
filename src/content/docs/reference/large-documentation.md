@@ -660,7 +660,7 @@ skill-seekers scrape --config X --verbose
 
 - [Three-Stream GitHub Architecture](/docs/reference/c3x-router-architecture) - Router pattern for multi-source skills
 - [Skill Architecture Guide](/docs/reference/skill-architecture) - Layering and splitting strategies
-- [Unified Scraping](/docs/features/unified-scraping) - Multi-source scraping with conflict detection
+- [Unified Scraping](/docs/manual/scraping/unified-scraping) - Multi-source scraping with conflict detection
 
 ---
 

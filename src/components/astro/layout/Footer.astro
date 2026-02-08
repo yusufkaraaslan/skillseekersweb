@@ -36,7 +36,7 @@ const currentYear = new Date().getFullYear();
 const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
 ---
 
-<footer class={`border-t border-dark-border bg-dark-surface ${hasDocsSidebar ? 'xl:ml-64' : ''}`}>
+<footer class={`relative z-[60] border-t border-dark-border bg-dark-surface ${hasDocsSidebar ? 'xl:ml-64' : ''}`}>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Top Section -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 [&>*]:border-0">

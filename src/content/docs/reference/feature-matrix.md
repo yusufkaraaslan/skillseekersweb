@@ -187,7 +187,7 @@ skill-seekers-codebase path/to/repo/ \
 
 ### Available MCP Tools
 
-**18 MCP tools for Claude Desktop integration:**
+**26 MCP tools for Claude Desktop integration:**
 
 | Tool Category | Tool Name | Description |
 |---------------|-----------|-------------|
@@ -402,7 +402,7 @@ skill-seekers package output/react/ --target [claude|gemini|openai|markdown]
 
 ## Next Steps
 
-- [Multi-LLM Support Guide](/docs/features/multi-llm-support) - Detailed platform comparison
+- [Multi-LLM Support Guide](/docs/manual/platforms/multi-llm-support) - Detailed platform comparison
 - [Claude Integration](/docs/reference/claude-integration) - Claude-specific features
 - [Gemini Integration](/docs/integrations/gemini) - Gemini setup and usage
 - [OpenAI Integration](/docs/integrations/openai) - OpenAI setup and usage

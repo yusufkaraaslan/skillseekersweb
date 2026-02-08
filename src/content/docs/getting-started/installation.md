@@ -185,4 +185,4 @@ pip install --user skill-seekers
 
 - [Quick Start Guide](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
 - [Browse Configs](/configs) - Explore pre-built configurations
-- [Features Overview](/docs/features/documentation-scraping) - Learn what Skill Seekers can do
+- [Features Overview](/docs/about/features) - Learn what Skill Seekers can do

@@ -7,7 +7,7 @@ order: 2
 
 # 功能概览
 
-Skill Seekers v2.7.0 提供从任何知识源创建 AI 技能的全面功能。
+Skill Seekers v3.0.0 提供从任何知识源创建 AI 技能的全面功能。
 
 ## 🌐 输入源
 
@@ -105,7 +105,7 @@ Skill Seekers v2.7.0 提供从任何知识源创建 AI 技能的全面功能。
 
 ## 🔌 MCP 集成
 
-### 18 个 Claude Code MCP 工具
+### 26 个 Claude Code MCP 工具
 - **配置管理** - generate_config、list_configs、validate_config
 - **抓取** - scrape_docs、scrape_github、scrape_pdf、estimate_pages
 - **处理** - enhance_skill、package_skill、upload_skill
@@ -152,11 +152,11 @@ Skill Seekers v2.7.0 提供从任何知识源创建 AI 技能的全面功能。
 
 ## 📊 统计数据
 
-- **1200+ 测试** - 全面的测试覆盖率，100% 通过
+- **1,852 个测试** - 全面的测试覆盖率，100% 通过
 - **24 个预设配置** - 流行框架的即用配置
 - **4 个平台** - 完整的多 LLM 支持
-- **18 个 MCP 工具** - 完整的 Claude Code 集成
-- **v2.7.0** - 最新版本（2026 年 1 月）
+- **26 个 MCP 工具** - 完整的 Claude Code 集成
+- **v3.0.0** - 最新版本（2026 年 2 月）
 
 ## 下一步
 

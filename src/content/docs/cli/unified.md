@@ -263,6 +263,6 @@ output/
 
 ## Next Steps
 
-- [Three-Stream Architecture](/docs/features/three-stream-architecture) - Learn about the architecture
-- [C3.x Analysis](/docs/features/c3x-codebase-analysis) - Deep code analysis
+- [Three-Stream Architecture](/docs/manual/advanced/three-stream-architecture) - Learn about the architecture
+- [C3.x Analysis](/docs/manual/codebase-analysis/c3x-codebase-analysis) - Deep code analysis
 - [Package Command](/docs/cli/package) - Package unified skills

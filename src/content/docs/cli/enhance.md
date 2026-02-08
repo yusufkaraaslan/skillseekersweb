@@ -328,5 +328,5 @@ skill-seekers enhance output/react/
 ## Next Steps
 
 - [Package Command](/docs/cli/package) - Package enhanced skills
-- [Features: AI Enhancement](/docs/features/ai-enhancement) - Enhancement details
+- [Features: AI Enhancement](/docs/manual/enhancement/ai-enhancement) - Enhancement details
 - [Upload Guide](/docs/guides/upload-guide) - Deploy your skills

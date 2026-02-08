@@ -57,7 +57,7 @@ order: 13
 ### 2. 抓取和构建
 
 ```bash
-python3 cli/unified_scraper.py --config configs/react_unified.json
+skill-seekers unified --config configs/react_unified.json
 ```
 
 该工具将：
@@ -69,7 +69,7 @@ python3 cli/unified_scraper.py --config configs/react_unified.json
 ### 3. 打包和上传
 
 ```bash
-python3 cli/package_skill.py output/react/
+skill-seekers package output/react/
 ```
 
 ## 配置格式
@@ -226,7 +226,7 @@ def move_local_x(delta: float, snap: bool = False)
 
 **示例**：
 ```bash
-python3 cli/unified_scraper.py --config config.json --merge-mode rule-based
+skill-seekers unified --config config.json --merge-mode rule-based
 ```
 
 ### Claude 增强合并
@@ -245,7 +245,7 @@ python3 cli/unified_scraper.py --config config.json --merge-mode rule-based
 
 **示例**：
 ```bash
-python3 cli/unified_scraper.py --config config.json --merge-mode claude-enhanced
+skill-seekers unified --config config.json --merge-mode claude-enhanced
 ```
 
 ## 技能输出结构
@@ -422,13 +422,13 @@ useEffect(callback: () => void | (() => void), deps?: readonly any[])
 
 ```bash
 # 基本用法
-python3 cli/unified_scraper.py --config configs/react_unified.json
+skill-seekers unified --config configs/react_unified.json
 
 # 覆盖合并模式
-python3 cli/unified_scraper.py --config configs/react_unified.json --merge-mode claude-enhanced
+skill-seekers unified --config configs/react_unified.json --merge-mode claude-enhanced
 
 # 使用缓存数据（跳过重新抓取）
-python3 cli/unified_scraper.py --config configs/react_unified.json --skip-scrape
+skill-seekers unified --config configs/react_unified.json --skip-scrape
 ```
 
 ## MCP 集成

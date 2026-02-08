@@ -1,16 +1,17 @@
 {
   "hero": {
     "badge": {
-      "version": "v2.7.0",
-      "tests": "1200+ 测试通过",
+      "version": "v3.0.0",
+      "new": "NEW",
+      "tests": "1852 个测试通过",
       "license": "MIT 许可证"
     },
     "headline": {
-      "part1": "将文档、代码和 PDF 转换为",
-      "part2": "AI 技能",
-      "part3": "只需几分钟"
+      "part1": "AI 系统的通用",
+      "part2": "数据层",
+      "part3": ""
     },
-    "subheadline": "自动将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的技能,支持任何 LLM 平台——Claude、Gemini、OpenAI 等。",
+    "subheadline": "将文档、GitHub 仓库、PDF 和代码库转换为适用于任何 AI 系统的结构化知识。16 种输出格式。一个工具支持 RAG 管道、AI 编码助手和 Claude 技能。",
     "cta": {
       "getStarted": "开始使用",
       "browseConfigs": "浏览 24 个配置"
@@ -21,8 +22,9 @@
       "copied": "已复制！"
     },
     "socialProof": {
-      "tests": "1200+ 测试",
-      "platforms": "4 个 LLM 平台",
+      "tests": "1852 个测试",
+      "platforms": "16 种输出格式",
+      "sources": "4 种输入源",
       "time": "每个技能 20-40 分钟"
     }
   },
@@ -30,6 +32,7 @@
     "home": "首页",
     "docs": "文档",
     "configs": "技能库",
+    "blog": "博客",
     "github": "GitHub",
     "getStarted": "开始使用"
   },
@@ -41,21 +44,21 @@
     "copied": "已复制！"
   },
   "about": {
-    "heading": "什么是 Skill Seekers？",
-    "description": "Skill Seekers 是一个开源 Python 工具，可自动将文档网站、GitHub 仓库和 PDF 文件转换为生产就绪的 AI 技能，支持 Claude、Gemini、OpenAI 和其他 LLM 平台。",
+    "heading": "AI 的通用预处理",
+    "description": "Skill Seekers 是 AI 系统的通用数据层。它将文档网站、GitHub 仓库、PDF 文件和本地代码库转换为适用于 RAG 管道、AI 编码助手、Claude 技能和任何 LLM 平台的生产就绪格式。",
     "problem": {
       "title": "问题所在",
-      "item1": "手动复制文档到 AI 聊天上下文既繁琐又容易出错",
-      "item2": "大型代码库和文档超出 AI 上下文窗口限制",
-      "item3": "AI 回复缺乏特定框架的知识和最佳实践",
-      "item4": "随着框架变化保持 AI 知识更新非常耗时"
+      "item1": "70% 的 RAG 开发时间花在数据预处理上——抓取、清理、分块",
+      "item2": "AI 编码助手在没有手动上下文注入的情况下不了解您的框架",
+      "item3": "多源知识（文档 + 代码 + PDF）需要复杂的集成",
+      "item4": "不同的 AI 系统需要不同的格式——LangChain、LlamaIndex、Cursor、Claude"
     },
     "solution": {
       "title": "解决方案",
-      "item1": "通过多源分析自动从文档、GitHub 仓库和 PDF 中提取",
-      "item2": "智能分块、分类和三流分析（代码、文档、见解）",
-      "item3": "AI 增强的技能，包含解释、示例和最佳实践",
-      "item4": "在 20-40 分钟内部署到任何 LLM 平台（Claude、Gemini、OpenAI）"
+      "item1": "一个工具处理所有源：文档、GitHub 仓库、PDF 和本地代码库",
+      "item2": "智能分块保留上下文、代码块和层次结构",
+      "item3": "16 种输出格式：RAG 管道、AI 编码助手、Claude 技能、向量数据库",
+      "item4": "端到端 15-45 分钟：从源到生产就绪的 AI 知识"
     },
     "benefits": {
       "speed": {
@@ -73,11 +76,18 @@
     }
   },
   "features": {
-    "title": "全面的功能集",
-    "subtitle": "将文档转换为生产就绪 AI 技能所需的一切",
+    "title": "通用智能平台",
+    "subtitle": "将任何文档转换为适用于任何 AI 系统的结构化知识",
     "viewAll": "查看全部 {count} 个功能",
     "showLess": "显示更少",
     "moreFeatures": "还有 {count} 个功能",
+    "formats": {
+      "title": "16 种输出格式",
+      "rag": "RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate",
+      "ai": "AI 平台：Claude、Gemini、OpenAI",
+      "coding": "AI 编码：Cursor、Windsurf、Cline、Continue.dev",
+      "generic": "通用：Markdown"
+    },
     "cta": {
       "question": "准备好转换您的文档了吗？",
       "button": "立即开始"
@@ -103,9 +113,9 @@
       },
       {
         "icon": "🤖",
-        "title": "4 个 LLM 平台",
-        "description": "部署到 Claude Projects、Gemini、OpenAI，或导出为 Markdown",
-        "category": "平台支持"
+        "title": "16 个 LLM 平台",
+        "description": "部署到 LangChain、LlamaIndex、Chroma、Claude、Gemini、OpenAI、Cursor 等",
+        "category": "新功能 - v3.0.0"
       },
       {
         "icon": "📦",
@@ -115,14 +125,14 @@
       },
       {
         "icon": "🔧",
-        "title": "MCP 集成",
-        "description": "内置模型上下文协议支持，包含 27+ 个工具",
-        "category": "集成"
+        "title": "26 个 MCP 工具",
+        "description": "AI 代理可以使用 26 个 MCP 工具准备自己的知识（v3.0.0）",
+        "category": "新功能 - v3.0.0"
       },
       {
         "icon": "✅",
-        "title": "700+ 测试",
-        "description": "生产就绪，具有全面的测试覆盖和验证",
+        "title": "1852 个测试",
+        "description": "生产就绪，100 个测试文件中有 1852 个测试（v3.0.0）",
         "category": "质量"
       },
       {
@@ -338,12 +348,16 @@
       "contributors": "贡献者",
       "tests": "测试通过",
       "configs": "预设配置",
-      "platforms": "LLM 平台"
+      "platforms": "输出格式",
+      "mcpTools": "MCP 工具",
+      "languages": "编程语言"
     },
     "values": {
-      "tests": "1200+",
+      "tests": "1852",
       "configs": "24",
-      "platforms": "4"
+      "platforms": "16",
+      "mcpTools": "26",
+      "languages": "27+"
     },
     "banner": "开源 • MIT 许可证 • 活跃开发",
     "cta": {
@@ -352,7 +366,7 @@
     }
   },
   "footer": {
-    "tagline": "几分钟内将文档转换为 Claude AI 技能。",
+    "tagline": "AI 系统的通用文档预处理器。",
     "sections": {
       "product": {
         "title": "产品",
@@ -384,7 +398,7 @@
     },
     "copyright": "© {year} Skill Seekers. MIT 许可证。使用 ❤️ 和以下技术构建",
     "stats": {
-      "tests": "1200+ 测试"
+      "tests": "1852 个测试"
     }
   },
   "configs": {

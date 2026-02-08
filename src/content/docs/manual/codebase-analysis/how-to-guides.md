@@ -462,7 +462,7 @@ skill-seekers-how-to-guides examples.json \
 
 **Test Set:** Skill_Seekers own test suite
 - 54 test files
-- 700+ total tests
+- 1,852 total tests
 - 50+ workflow examples
 
 **Performance:**
@@ -553,10 +553,10 @@ cat output/codebase/tutorials/index.md
 
 ## Next Steps
 
-- [Pattern Detection (C3.1)](/docs/features/pattern-detection) - Detect design patterns
-- [Test Example Extraction (C3.2)](/docs/features/test-extraction) - Extract test examples
-- [C3.x Codebase Analysis](/docs/features/c3x-codebase-analysis) - Complete analysis suite
-- [AI Enhancement](/docs/features/ai-enhancement) - AI-powered improvements
+- [Pattern Detection (C3.1)](/docs/manual/codebase-analysis/pattern-detection) - Detect design patterns
+- [Test Example Extraction (C3.2)](/docs/manual/codebase-analysis/test-extraction) - Extract test examples
+- [C3.x Codebase Analysis](/docs/manual/codebase-analysis/c3x-codebase-analysis) - Complete analysis suite
+- [AI Enhancement](/docs/manual/enhancement/ai-enhancement) - AI-powered improvements
 
 ---
 

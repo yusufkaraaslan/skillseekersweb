@@ -1,0 +1,46 @@
+---
+interface Props {
+  post: any;
+  featured?: boolean;
+  lang?: string;
+}
+
+const { post, featured = false, lang = 'en' } = Astro.props;
+const langPrefix = lang === 'zh' ? '/zh' : '';
+---
+
+<article class={`bg-dark-surface rounded-lg shadow-lg overflow-hidden border border-dark-border/30 hover:border-brand-primary/50 transition-all duration-300 ${featured ? 'md:flex' : ''}`}>
+  {post.data.image && (
+    <img 
+      src={post.data.image} 
+      alt={post.data.title}
+      class={`object-cover ${featured ? 'md:w-1/2 h-64 md:h-auto' : 'w-full h-48'}`}
+    />
+  )}
+  <div class="p-6">
+    <div class="flex gap-2 mb-3 flex-wrap">
+      {post.data.tags.slice(0, 3).map((tag: string) => (
+        <span class="px-2 py-1 bg-dark-bg text-gray-400 rounded text-xs border border-dark-border/20">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <h3 class={`font-bold mb-2 text-white hover:text-brand-primary transition-colors ${featured ? 'text-2xl' : 'text-xl'}`}>
+      <a href={`${langPrefix}/blog/${post.slug}`}>
+        {post.data.title}
+      </a>
+    </h3>
+    <p class="text-gray-400 mb-4 line-clamp-3">{post.data.description}</p>
+    <div class="flex items-center gap-2 text-sm text-gray-500">
+      <span>{post.data.author}</span>
+      <span>•</span>
+      <time datetime={post.data.pubDate.toISOString()}>
+        {post.data.pubDate.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        })}
+      </time>
+    </div>
+  </div>
+</article>

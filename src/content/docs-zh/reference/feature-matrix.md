@@ -187,7 +187,7 @@ skill-seekers-codebase path/to/repo/ \
 
 ### 可用的 MCP 工具
 
-**18 个用于 Claude Desktop 集成的 MCP 工具：**
+**26 个用于 Claude Desktop 集成的 MCP 工具：**
 
 | 工具类别 | 工具名称 | 描述 |
 |---------------|-----------|-------------|

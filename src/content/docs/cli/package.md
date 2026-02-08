@@ -244,5 +244,5 @@ Use `--target` parameter correctly.
 ## Next Steps
 
 - [Upload Command](/docs/cli/upload) - Upload to platforms
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Platform details
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Platform details
 - [Upload Guide](/docs/guides/upload-guide) - Complete upload guide

@@ -25,12 +25,18 @@ const langPrefix = lang === 'zh' ? '/zh' : '';
 ---
 
 <BaseLayout title={`${title} | Skill Seekers Docs`} description={description} hasDocsSidebar={true}>
-  <div class="flex min-h-screen bg-dark-bg">
+  <div class="flex items-start min-h-screen bg-dark-bg">
     <!-- Sidebar -->
-    <Sidebar docs={allDocs} currentSlug={doc.slug} lang={lang} />
+    <div class="hidden xl:block xl:w-80 flex-shrink-0">
+      <Sidebar docs={allDocs} currentSlug={doc.slug} lang={lang} />
+    </div>
+    <!-- Mobile Sidebar (fixed overlay) -->
+    <div class="xl:hidden absolute">
+      <Sidebar docs={allDocs} currentSlug={doc.slug} lang={lang} />
+    </div>
 
     <!-- Main Content -->
-    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:ml-80 xl:pl-8 pb-20 sm:pb-8">
+    <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8 xl:pl-8 pb-20 sm:pb-8">
       <div class="mx-auto max-w-3xl">
         <!-- Breadcrumbs -->
         <nav class="mb-8 text-sm" aria-label="Breadcrumb">

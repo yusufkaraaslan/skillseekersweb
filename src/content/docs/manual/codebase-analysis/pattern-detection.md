@@ -518,6 +518,6 @@ PatternRecognizer
 
 ## Next Steps
 
-- [C3.x Codebase Analysis](/docs/features/c3x-codebase-analysis) - Complete C3 suite
-- [Test Example Extraction](/docs/features/test-extraction) - C3.2 feature
-- [How-To Guide Generation](/docs/features/how-to-guides) - C3.3 feature
+- [C3.x Codebase Analysis](/docs/manual/codebase-analysis/c3x-codebase-analysis) - Complete C3 suite
+- [Test Example Extraction](/docs/manual/codebase-analysis/test-extraction) - C3.2 feature
+- [How-To Guide Generation](/docs/manual/codebase-analysis/how-to-guides) - C3.3 feature

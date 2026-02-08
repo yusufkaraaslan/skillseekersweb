@@ -1,30 +1,50 @@
 ---
 title: Overview
-description: Learn what Skill Seekers is and how it transforms documentation into AI skills
+description: Learn what Skill Seekers is and how it transforms docs, GitHub repos, PDFs, and codebases into structured knowledge for any AI system
 section: getting-started
 order: 1
 ---
 
 # What is Skill Seekers?
 
-Skill Seekers is an automated tool that transforms documentation websites, GitHub repositories, and PDF files into production-ready Claude AI skills. Instead of manually reading and summarizing documentation, Skill Seekers:
+Skill Seekers is the **universal preprocessor for AI systems**. It transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured knowledge for RAG pipelines, AI coding assistants, Claude skills, and any LLM platform.
 
-1. **Scrapes** multiple sources (docs, GitHub repos, PDFs) automatically
-2. **Analyzes** code repositories with deep AST parsing
+**70% of RAG development time is spent on data preprocessing**—scraping, cleaning, chunking, and structuring documentation. **We automate all of it.**
+
+Instead of manually preprocessing data, Skill Seekers:
+
+1. **Extracts** from any source - docs, GitHub repos, PDFs, local codebases
+2. **Analyzes** with deep parsing (AST for code, OCR for PDFs, semantic chunking)
 3. **Detects** conflicts between documentation and code implementation
-4. **Organizes** content into categorized reference files
+4. **Organizes** content into categorized reference files with rich metadata
 5. **Enhances** with AI to extract best examples and key concepts
-6. **Packages** everything into an uploadable file for Claude
+6. **Packages** into 16+ formats for any AI system
 
-**Result:** Get comprehensive Claude skills for any framework, API, or tool in 20-40 minutes instead of hours of manual work.
+**Result:** Production-ready AI knowledge in 15-45 minutes instead of days of manual work.
 
 ## Why Use Skill Seekers?
 
-- 🎯 **For Developers**: Create skills from documentation + GitHub repos with conflict detection
-- 🎮 **For Game Devs**: Generate skills for game engines (Godot docs + GitHub, Unity, etc.)
-- 🔧 **For Teams**: Combine internal docs + code repositories into single source of truth
-- 📚 **For Learners**: Build comprehensive skills from docs, code examples, and PDFs
-- 🔍 **For Open Source**: Analyze repos to find documentation gaps and outdated examples
+### For RAG Builders & AI Engineers
+- 🤖 **RAG Systems**: Build production-grade Q&A bots, chatbots, documentation portals
+- 🚀 **99% Faster**: Days of preprocessing → 15-45 minutes
+- ✅ **Battle-Tested**: 1,852 tests, 24+ framework presets, production-ready
+- 🔄 **Multi-Source**: Combine docs + GitHub + PDFs + codebases automatically
+- 🌐 **Platform-Agnostic**: Export to LangChain, LlamaIndex, Pinecone, or custom
+
+### For AI Coding Assistant Users
+- 💻 **Cursor, Windsurf, Cline, Continue.dev**: Generate `.cursorrules` for framework expertise
+- 🎯 **Persistent Context**: AI "knows" your frameworks without manual prompting
+- 📚 **Always Current**: Update rules in 5 minutes when frameworks change
+
+### For Game Developers
+- 🎮 **Godot 4.x**: Signal flow analysis (208 signals, 634 connections)
+- 🕹️ **Unity/Unreal**: C# and C++ code analysis with pattern detection
+- 📖 **Auto-Documentation**: Generate architecture docs from code
+
+### For Teams
+- 🔧 **Internal Knowledge**: Combine docs + code repositories into single source of truth
+- 👥 **Share Configs**: Private git repos for team configurations
+- 🔄 **CI/CD Ready**: GitHub Actions for automated knowledge updates
 
 ## Quick Example
 
@@ -32,76 +52,79 @@ Skill Seekers is an automated tool that transforms documentation websites, GitHu
 # Install
 pip install skill-seekers
 
-# Scrape documentation
-skill-seekers scrape https://docs.astro.build/en/getting-started/
+# From documentation
+skill-seekers scrape --config configs/react.json
 
-# Package for Claude
-skill-seekers package output/astro/
+# From GitHub repository
+skill-seekers scrape --github https://github.com/owner/repo --format langchain
 
-# Upload to Claude
-skill-seekers upload astro.zip
+# From PDF
+skill-seekers scrape --pdf ./manual.pdf --format llamaindex
+
+# From local codebase
+skill-seekers analyze --directory ./my-project --format langchain
+
+# Package for any platform
+skill-seekers package output/ --target langchain
 ```
 
-That's it! You now have a comprehensive Astro skill in Claude.
+That's it! You now have RAG-ready documents from ANY source.
 
 ## Key Capabilities
 
-### Multi-Source Support
-- Documentation websites (any site with docs)
-- GitHub repositories (with deep C3.x analysis)
-- PDF files (with OCR support)
-- Combined unified skills from multiple sources
+### 4 Input Sources
+- **Documentation websites** - Any HTML docs (Docusaurus, GitBook, ReadTheDocs)
+- **GitHub repositories** - Public & private with deep C3.x analysis
+- **PDF files** - Scanned docs, manuals, research papers with OCR
+- **Local codebases** - Your projects (27+ languages, game engines)
 
-### Three-Stream Architecture (v2.6.0)
-- **Stream 1: Code** - Deep C3.x analysis (patterns, examples, architecture)
-- **Stream 2: Docs** - Repository documentation (README, docs/)
-- **Stream 3: Insights** - GitHub issues (common problems + solutions)
-- Automatic conflict detection between docs and code
-- Real user problems and solutions from GitHub
+### 16 Output Formats
+| Category | Platforms |
+|----------|-----------|
+| **RAG/Vectors** | LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate |
+| **AI Platforms** | Claude, Gemini, OpenAI |
+| **AI Coding** | Cursor, Windsurf, Cline, Continue.dev |
+| **Generic** | Markdown, JSON, YAML |
 
-### C3.x Codebase Analysis (v2.6.0)
+### C3.x Codebase Analysis
 - **C3.1:** Design pattern detection (Strategy, Factory, etc.)
 - **C3.2:** Test example extraction (working code from tests)
 - **C3.3:** How-to guide generation (automated tutorials)
 - **C3.4:** Configuration analysis (9 formats with security scan)
-- **C3.7:** Architectural pattern detection (MVC, microservices, etc.)
+- **C3.9:** Signal flow analysis (Godot, game engines)
+- **C3.10:** Multi-agent LOCAL mode support
 
-### Multi-Platform Export
-- **Claude AI** (default) - ZIP + YAML format
-- **Google Gemini** - tar.gz with platform optimization
-- **OpenAI ChatGPT** - ZIP with vector store
-- **Generic Markdown** - Universal markdown format
+### Multi-Agent Support
+- **Claude Code** (default) - Native stdio transport
+- **GitHub Copilot CLI** - Enterprise integration
+- **OpenAI Codex CLI** - OpenAI integration
+- **OpenCode CLI** - Open source alternative
+- **Custom agents** - Any CLI tool
 
 ### Intelligent Processing
-- Automatic content categorization
-- Code language detection (Python, JS, C++, GDScript, etc.)
-- Conflict detection between docs and code
-- AI-powered enhancement and summarization
-- Smart caching for faster re-runs (50% speedup)
+- **Smart chunking** - Preserves code blocks, maintains context (512 token chunks)
+- **27+ languages** - Python, JavaScript, Go, Rust, C++, C#, GDScript, and more
+- **Godot support** - Signal flow detection and pattern analysis
+- **Cloud storage** - Direct upload to S3, GCS, Azure
+- **CI/CD ready** - GitHub Actions + Docker
 
-## What's New in v2.7.0
+## What's New in v3.0.0
 
-**Smart Rate Limit Management & Multi-Token Configuration:**
-- Multi-profile GitHub token management with automatic switching
-- Interactive configuration wizard (`skill-seekers config`)
-- Smart rate limit handling with four strategies (prompt, wait, switch, fail)
-- Resume command for interrupted jobs (`skill-seekers resume`)
-- Non-interactive mode for CI/CD pipelines
+**Universal Intelligence Platform:**
 
-**Self-Hosting & Bootstrap Feature:**
-- Generate Skill Seekers as a Claude Code skill
-- One-command bootstrap with `./scripts/bootstrap_skill.sh`
-- MCP now optional - install with `pip install skill-seekers[mcp]`
+- **16 platform adaptors** (up from 4) - LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate, Pinecone, Claude, Gemini, OpenAI, Cursor, Windsurf, Cline, Continue.dev
+- **26 MCP tools** (up from 9) - AI agents prepare their own knowledge
+- **Cloud storage** - AWS S3, Google Cloud Storage, Azure Blob Storage
+- **CI/CD ready** - GitHub Action + Docker support
+- **Godot game engine** - Full 4.x analysis with signal flow detection
+- **7 new languages** - Dart, Scala, SCSS/SASS, Elixir, Lua, Perl (27+ total)
+- **Multi-agent support** - Claude, Copilot, Codex, OpenCode
+- **1,852 tests** (up from 700+) - Production-ready quality
 
-**Enhanced Testing & Quality:**
-- 1200+ tests passing (up from 700+)
-- Zero linting errors with ruff
-- Comprehensive E2E testing for bootstrap
-
-[Read the full v2.7.0 changelog →](/docs/community/changelog)
+[Read the full v3.0.0 changelog →](/docs/community/changelog)
 
 ## Next Steps
 
-- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v2.7.0
-- [Quick Start](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
+- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v3.0.0
+- [Quick Start](/docs/getting-started/first-skill) - Create your first skill in 5 minutes
 - [Browse Configs](/configs) - Explore 24 pre-built configurations

@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  // Only get English posts for /blog/* routes
+  const posts = await getCollection('blog');
+  
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout 
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
+>
+  <article class="max-w-3xl mx-auto px-4 py-12">
+    <header class="mb-12">
+      <div class="flex gap-2 mb-4 flex-wrap">
+        {post.data.tags.map((tag: string) => (
+          <span class="px-3 py-1 bg-dark-bg text-brand-primary rounded-full text-sm border border-brand-primary/30">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <h1 class="text-4xl font-bold mb-4 text-white">{post.data.title}</h1>
+      <p class="text-xl text-gray-400 mb-6">{post.data.description}</p>
+      <div class="flex items-center gap-4 text-gray-500">
+        <span>{post.data.author}</span>
+        <span>•</span>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+      </div>
+    </header>
+
+    <div class="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-a:text-brand-primary hover:prose-a:text-brand-secondary">
+      <Content />
+    </div>
+    
+    <div class="mt-12 pt-8 border-t border-dark-border/30">
+      <a 
+        href="/blog" 
+        class="text-brand-primary hover:text-brand-secondary transition-colors"
+      >
+        ← Back to Blog
+      </a>
+    </div>
+  </article>
+</BaseLayout>

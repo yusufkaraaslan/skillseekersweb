@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: Complete version history of Skill Seekers from v0.1.0 to v2.7.0 with all features, changes, fixes, and breaking changes documented
+description: Complete version history of Skill Seekers from v0.1.0 to v3.0.0 with all features, changes, fixes, and breaking changes documented
 section: community
 order: 4
 ---
@@ -21,6 +21,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Removed
+
+---
+
+## [3.0.0] - 2026-02-10
+
+### 🚀 "Universal Intelligence Platform" - Major Release
+
+**Theme:** Transform any documentation into structured knowledge for any AI system.
+
+### Added
+
+- **16 Platform Adaptors** (up from 4)
+  - RAG/Vectors: LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
+  - AI Platforms: Claude, Gemini, OpenAI
+  - AI Coding: Cursor, Windsurf, Cline, Continue.dev
+  - Generic: Markdown
+- **26 MCP Tools** (up from 9)
+  - Config tools (3): generate_config, list_configs, validate_config
+  - Scraping tools (8): estimate_pages, scrape_docs, scrape_github, scrape_pdf, scrape_codebase, detect_patterns, extract_test_examples, build_how_to_guides
+  - Packaging tools (4): package_skill, upload_skill, enhance_skill, install_skill
+  - Source tools (5): fetch_config, submit_config, add/remove_config_source, list_config_sources
+  - Splitting tools (2): split_config, generate_router
+  - Vector DB tools (4): export_to_weaviate, export_to_chroma, export_to_faiss, export_to_qdrant
+- **Cloud Storage Support**
+  - AWS S3 with multipart upload and presigned URLs
+  - Google Cloud Storage with signed URLs
+  - Azure Blob Storage with SAS tokens
+- **CI/CD Ready**
+  - GitHub Action for automated skill generation
+  - Docker support with official images
+  - Automated pipelines with scheduling
+- **Godot Game Engine Support**
+  - Full Godot 4.x analysis
+  - Signal flow detection (208 signals, 634 connections, 298 emissions)
+  - Pattern detection (EventBus, Observer, Event Chains)
+  - GDScript test extraction (GUT, gdUnit4)
+- **7 New Programming Languages**
+  - Dart (Flutter), Scala, SCSS/SASS, Elixir, Lua, Perl
+  - Total: 27+ programming languages supported
+- **Multi-Agent Support**
+  - Claude Code (default)
+  - GitHub Copilot CLI
+  - OpenAI Codex CLI
+  - OpenCode CLI
+  - Custom agent support
+- **RAG Chunking**
+  - Semantic document splitting
+  - Optimal chunk size (512 tokens)
+  - Rich metadata preservation
+
+### Statistics
+
+- 1,852 tests passing (up from 700+)
+- 100 test files
+- 58,512 lines of Python code
+- 80+ documentation files
+- 12 example projects
+
+### Migration
+
+v3.0.0 is fully backward compatible. All v2.x configs and commands work unchanged.
 
 ---
 

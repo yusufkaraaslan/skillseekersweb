@@ -320,7 +320,7 @@ The Three-Stream Architecture has:
 
 ## Next Steps
 
-- [C3.x Codebase Analysis](/docs/features/c3x-codebase-analysis) - Deep dive into code analysis
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Deploy to Claude, Gemini, OpenAI
-- [Unified Scraping](/docs/features/unified-scraping) - Combine multiple sources
+- [C3.x Codebase Analysis](/docs/manual/codebase-analysis/c3x-codebase-analysis) - Deep dive into code analysis
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Deploy to Claude, Gemini, OpenAI
+- [Unified Scraping](/docs/manual/scraping/unified-scraping) - Combine multiple sources
 - [CLI Reference: unified](/docs/cli/unified) - Complete CLI documentation

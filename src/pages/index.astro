@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/astro/landing/Hero.astro';
 import About from '../components/astro/landing/About.astro';
+import Sources from '../components/astro/landing/Sources.astro';
 import FeatureMatrix from '../components/react/FeatureMatrix';
 import QuickStart from '../components/astro/landing/QuickStart.astro';
 import UseCases from '../components/astro/landing/UseCases.astro';
@@ -14,10 +15,11 @@ export const prerender = true;
 ---
 
 <BaseLayout
-  title="Skill Seekers - Transform Docs into Claude AI Skills"
-  description="Automatically convert documentation websites, GitHub repositories, and PDFs into production-ready Claude AI skills in minutes. Supports Claude, Gemini, OpenAI, and more."
+  title="Skill Seekers - Universal Data Layer for AI Systems"
+  description="Transform documentation, GitHub repos, PDFs, and codebases into structured knowledge for any AI system. 16 output formats including LangChain, LlamaIndex, Cursor, Claude, and more."
 >
   <Hero />
+  <Sources />
   <About />
   <div id="feature-matrix">
     <FeatureMatrix client:load lang={lang} />

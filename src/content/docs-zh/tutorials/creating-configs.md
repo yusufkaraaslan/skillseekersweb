@@ -75,4 +75,4 @@ skill-seekers submit-config \
   --description "My Framework 文档配置"
 ```
 
-**参见：** [配置格式参考](/docs/class-reference/config-format)获取所有可用选项。
+**参见：** [配置模式参考](/docs/reference/config-schema)获取所有可用选项。

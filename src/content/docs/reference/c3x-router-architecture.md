@@ -505,7 +505,7 @@ skill-seekers router output/*/ --output output/project-router/
 
 ## Next Steps
 
-- [Unified Multi-Source Scraping](/docs/features/unified-scraping) - Alternative to three-stream (single command)
+- [Unified Multi-Source Scraping](/docs/manual/scraping/unified-scraping) - Alternative to three-stream (single command)
 - [Large Documentation Handling](/docs/reference/large-documentation) - Split strategies for 10K+ pages
 - [Skill Architecture Guide](/docs/reference/skill-architecture) - Layering and splitting skills
 - [GitHub Scraping](/docs/cli/github) - GitHub repository scraping options

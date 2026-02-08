@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogCard from '../../../components/astro/blog/BlogCard.astro';
+import BlogList from '../../../components/astro/blog/BlogList.astro';
+
+const posts = await getCollection('blog-zh', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first)
+const sortedPosts = posts.sort((a, b) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Get featured post
+const featuredPost = sortedPosts.find(post => post.data.featured);
+const regularPosts = sortedPosts.filter(post => post !== featuredPost);
+---
+
+<BaseLayout 
+  title="博客 - Skill Seekers"
+  description="Skill Seekers 的最新新闻、教程和更新"
+>
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4 text-white">博客</h1>
+    <p class="text-xl text-gray-400 mb-12">
+      Skill Seekers 的最新新闻、教程和更新
+    </p>
+
+    {featuredPost && (
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6 text-white">精选</h2>
+        <BlogCard post={featuredPost} featured lang="zh" />
+      </section>
+    )}
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6 text-white">所有文章</h2>
+      <BlogList posts={regularPosts} lang="zh" />
+    </section>
+  </main>
+</BaseLayout>

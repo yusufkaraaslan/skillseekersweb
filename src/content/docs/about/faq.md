@@ -11,23 +11,35 @@ order: 4
 
 ### What is Skill Seekers?
 
-Skill Seekers is an open-source tool that automatically converts documentation websites, GitHub repositories, and PDFs into optimized AI skills for Claude, Gemini, and OpenAI ChatGPT.
+Skill Seekers is the **universal data layer for AI systems**. It automatically transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured knowledge for:
+
+- **RAG Pipelines** - LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
+- **AI Coding Assistants** - Cursor, Windsurf, Cline, Continue.dev
+- **Claude AI Skills** - Native format with YAML frontmatter
+- **Any LLM Platform** - Generic Markdown, JSON, YAML
 
 ### Is it free?
 
 Yes! Skill Seekers is **100% free and open-source** (MIT License). You only pay for:
 - **Claude API** (if using API enhancement mode) - ~$0.15-$0.30 per skill
 - **Your Claude Max subscription** (if using local enhancement - recommended!)
-- **API keys** for upload (if using automatic upload)
+- **Cloud storage** (if uploading to S3/GCS/Azure)
 
 **Most features are completely free**, including local AI enhancement using Claude Code.
 
 ### Which platforms are supported?
 
-- **Claude AI** - Native format (ZIP with YAML frontmatter)
-- **Google Gemini** - tar.gz with 1M token context
-- **OpenAI ChatGPT** - ZIP with vector store
-- **Generic Markdown** - Universal format for any LLM
+**Input Sources (4):**
+- Documentation websites (any HTML docs)
+- GitHub repositories (public & private)
+- PDF files (with OCR for scanned docs)
+- Local codebases (27+ languages)
+
+**Output Formats (16):**
+- **RAG/Vectors:** LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
+- **AI Platforms:** Claude, Gemini, OpenAI
+- **AI Coding:** Cursor, Windsurf, Cline, Continue.dev
+- **Generic:** Markdown, JSON, YAML
 
 All features work across all platforms with complete feature parity.
 
@@ -72,6 +84,7 @@ Without Claude Code, you can still:
 - Large docs (1000+ pages): **15-30 minutes**
 - GitHub repo analysis: **3-10 minutes**
 - PDF extraction: **1-5 minutes**
+- Local codebase: **5-15 minutes**
 - AI enhancement: **30-60 seconds** (local) or **10-30 seconds** (API)
 
 **Total for React docs:** ~12 minutes start to finish!
@@ -79,7 +92,7 @@ Without Claude Code, you can still:
 ### Can I use it without internet?
 
 Partially:
-- ✅ **Can work offline:** PDF extraction, local file analysis, enhancement with local models
+- ✅ **Can work offline:** PDF extraction, local file analysis, local codebases
 - ❌ **Needs internet:** Documentation scraping, GitHub API calls, API enhancement, upload
 
 ### How accurate is the scraping?
@@ -105,7 +118,7 @@ Partially:
 |---------|-------------|-----|
 | **Cost** | FREE (uses Claude Max) | ~$0.15-$0.30/skill |
 | **Speed** | 30-60 seconds | 10-30 seconds |
-| **Quality** | Same (Claude Sonnet 4.5) | Same |
+| **Quality** | Same (Claude Sonnet) | Same |
 | **Requirements** | Claude Code installed | ANTHROPIC_API_KEY |
 | **Use Case** | Single skills, development | Batch processing, CI/CD |
 
@@ -133,7 +146,7 @@ skill-seekers split --config configs/large-docs.json
 skill-seekers router output/large-docs-*/
 ```
 
-This creates focused sub-skills with intelligent routing. See [Large Documentation Guide](/docs/manual/advanced/large-docs) for details.
+This creates focused sub-skills with intelligent routing. See [Large Documentation Guide](/docs/reference/large-documentation) for details.
 
 ### Can I combine multiple sources?
 
@@ -143,46 +156,57 @@ Yes! Use **unified scraping**:
 skill-seekers unified --config configs/unified.json
 ```
 
-Combine documentation + GitHub + PDFs into one comprehensive skill. See [Multi-Source Tutorial](/docs/tutorials/multi-source-skills).
+Combine documentation + GitHub + PDFs + codebases into one comprehensive skill. See [Multi-Source Tutorial](/docs/tutorials/multi-source-skills).
+
+### Can I process local codebases?
+
+Yes! Use the `analyze` command:
+
+```bash
+# Analyze local project
+skill-seekers analyze --directory ./my-project --format langchain
+
+# Analyze Godot game
+skill-seekers analyze --directory ./my-game --comprehensive
+```
+
+Supports 27+ programming languages including Python, JavaScript, Go, Rust, C++, C#, GDScript, and more.
 
 ---
 
 ## Platform-Specific Questions
 
-### Do I need separate skills for Claude, Gemini, and OpenAI?
+### Do I need separate skills for different AI systems?
 
 No! Create once, package for any platform:
 
 ```bash
-# Create skill (works for all platforms)
+# Create skill (works for all sources)
 skill-seekers scrape --config configs/react.json
 
 # Package for different platforms
+skill-seekers package output/react/ --target langchain
+skill-seekers package output/react/ --target llamaindex
 skill-seekers package output/react/ --target claude
-skill-seekers package output/react/ --target gemini
-skill-seekers package output/react/ --target openai
 ```
 
-### How does Claude AI integration work?
+### How does RAG integration work?
 
-- **Format:** ZIP file with YAML frontmatter
-- **Upload:** Automatic via API or manual via Claude.ai
-- **MCP:** 18 tools available for Claude Code Desktop
-- **Quality:** Native format, best integration
+- **LangChain:** Native Document objects with metadata
+- **LlamaIndex:** TextNode objects with embeddings
+- **Vector DBs:** Direct export to Chroma, Weaviate, FAISS, Qdrant
+- **Chunking:** Smart semantic chunking (512 tokens)
 
-### How does Gemini integration work?
+See [RAG & Vector Databases](/docs/integrations/rag) for details.
 
-- **Format:** tar.gz with plain markdown
-- **Context:** Supports 1M token context window
-- **Upload:** Automatic via Google Files API + Grounding
-- **Enhancement:** Uses Gemini 2.0 Flash
+### How does AI Coding integration work?
 
-### How does OpenAI integration work?
+- **Cursor:** `.cursorrules` file with framework knowledge
+- **Windsurf:** `.windsurfrules` file
+- **Cline:** `.clinerules` + MCP tools
+- **Continue.dev:** HTTP context provider
 
-- **Format:** ZIP with assistant instructions
-- **Upload:** Automatic via Assistants API + Vector Store
-- **Search:** Semantic search with file search enabled
-- **Enhancement:** Uses GPT-4o
+All work with docs, repos, PDFs, and codebases.
 
 ---
 
@@ -214,7 +238,7 @@ skill-seekers scrape --config configs/test.json --interactive
 skill-seekers estimate --config configs/test.json
 ```
 
-See [Troubleshooting Guide](/docs/manual/mcp/troubleshooting) for more help.
+See [Troubleshooting Guide](/docs/guides/troubleshooting) for more help.
 
 ### Why does enhancement fail?
 
@@ -230,7 +254,7 @@ Common issues:
 
 ### What is MCP?
 
-MCP (Model Context Protocol) is a standard for connecting AI tools. Skill Seekers provides 18 MCP tools for Claude Code Desktop, allowing natural language commands like "create a React skill".
+MCP (Model Context Protocol) is a standard for connecting AI tools. Skill Seekers provides **26 MCP tools** for Claude Code Desktop, allowing natural language commands like "create a React skill".
 
 ### How do I set up MCP?
 
@@ -248,10 +272,11 @@ See [MCP Setup Guide](/docs/manual/mcp/setup) for details.
 ### Which AI agents support MCP?
 
 - **Claude Code** - stdio transport (native)
+- **GitHub Copilot CLI** - Enterprise integration
+- **OpenAI Codex CLI** - OpenAI integration
+- **OpenCode CLI** - Open source alternative
 - **Cursor** - HTTP transport
 - **Windsurf** - HTTP transport
-- **VS Code + Cline** - stdio transport
-- **IntelliJ IDEA** - HTTP transport
 
 Setup script auto-detects and configures all installed agents.
 

@@ -462,7 +462,7 @@ skill-seekers-how-to-guides examples.json \
 
 **测试集：** Skill_Seekers 自己的测试套件
 - 54 个测试文件
-- 700+ 个总测试
+- 1,852 个总测试
 - 50+ 个工作流示例
 
 **性能：**

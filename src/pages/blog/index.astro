@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/astro/blog/BlogCard.astro';
+import BlogList from '../../components/astro/blog/BlogList.astro';
+import { getLangFromUrl, getTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getTranslations(lang);
+
+// Get blog posts based on language
+const blogCollection = lang === 'zh' ? 'blog-zh' : 'blog';
+const posts = await getCollection(blogCollection as 'blog' | 'blog-zh', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first)
+const sortedPosts = posts.sort((a, b) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Get featured post
+const featuredPost = sortedPosts.find(post => post.data.featured);
+const regularPosts = sortedPosts.filter(post => post !== featuredPost);
+
+const pageTitle = lang === 'zh' ? '博客 - Skill Seekers' : 'Blog - Skill Seekers';
+const pageDescription = lang === 'zh' 
+  ? 'Skill Seekers 的最新新闻、教程和更新' 
+  : 'Latest news, tutorials, and updates from Skill Seekers';
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+>
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4 text-white">{lang === 'zh' ? '博客' : 'Blog'}</h1>
+    <p class="text-xl text-gray-400 mb-12">
+      {pageDescription}
+    </p>
+
+    {featuredPost && (
+      <section class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6 text-white">
+          {lang === 'zh' ? '精选' : 'Featured'}
+        </h2>
+        <BlogCard post={featuredPost} featured lang={lang} />
+      </section>
+    )}
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6 text-white">
+        {lang === 'zh' ? '所有文章' : 'All Posts'}
+      </h2>
+      <BlogList posts={regularPosts} lang={lang} />
+    </section>
+  </main>
+</BaseLayout>

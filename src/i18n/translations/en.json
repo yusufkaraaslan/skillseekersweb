@@ -1,16 +1,17 @@
 {
   "hero": {
     "badge": {
-      "version": "v2.7.0",
-      "tests": "1200+ tests passing",
+      "version": "v3.0.0",
+      "new": "NEW",
+      "tests": "1852 tests passing",
       "license": "MIT Licensed"
     },
     "headline": {
-      "part1": "Transform Docs, Code & PDFs into",
-      "part2": "AI Skills",
-      "part3": "in Minutes"
+      "part1": "Universal Data Layer",
+      "part2": "for AI Systems",
+      "part3": ""
     },
-    "subheadline": "Automatically convert documentation websites, GitHub repositories, and PDF files into production-ready skills for any LLM platform—Claude, Gemini, OpenAI, and more.",
+    "subheadline": "Transform documentation, GitHub repos, PDFs, and codebases into structured knowledge for any AI system. 16 output formats. One tool for RAG pipelines, AI coding assistants, and Claude skills.",
     "cta": {
       "getStarted": "Get Started",
       "browseConfigs": "Browse 24 Configs"
@@ -21,8 +22,9 @@
       "copied": "Copied!"
     },
     "socialProof": {
-      "tests": "1200+ Tests",
-      "platforms": "4 LLM Platforms",
+      "tests": "1852 Tests",
+      "platforms": "16 Output Formats",
+      "sources": "4 Input Sources",
       "time": "20-40 min / skill"
     }
   },
@@ -30,6 +32,7 @@
     "home": "Home",
     "docs": "Documentation",
     "configs": "Skill Gallery",
+    "blog": "Blog",
     "github": "GitHub",
     "getStarted": "Get Started"
   },
@@ -41,21 +44,21 @@
     "copied": "Copied!"
   },
   "about": {
-    "heading": "What is Skill Seekers?",
-    "description": "Skill Seekers is an open-source Python tool that automatically converts documentation websites, GitHub repositories, and PDF files into production-ready AI skills for Claude, Gemini, OpenAI, and other LLM platforms.",
+    "heading": "Universal Preprocessing for AI",
+    "description": "Skill Seekers is the universal data layer for AI systems. It transforms documentation websites, GitHub repositories, PDF files, and local codebases into production-ready formats for RAG pipelines, AI coding assistants, Claude skills, and any LLM platform.",
     "problem": {
       "title": "The Problem",
-      "item1": "Manually copying documentation into AI chat contexts is tedious and error-prone",
-      "item2": "Large codebases and documentation exceed AI context window limits",
-      "item3": "AI responses lack framework-specific knowledge and best practices",
-      "item4": "Keeping AI knowledge up-to-date with framework changes is time-consuming"
+      "item1": "70% of RAG development time is spent on data preprocessing—scraping, cleaning, chunking",
+      "item2": "AI coding assistants don't know your frameworks without manual context injection",
+      "item3": "Multi-source knowledge (docs + code + PDFs) requires complex integration",
+      "item4": "Different AI systems need different formats—LangChain, LlamaIndex, Cursor, Claude"
     },
     "solution": {
       "title": "The Solution",
-      "item1": "Automatically extract from docs, GitHub repos, and PDFs with multi-source analysis",
-      "item2": "Intelligent chunking, categorization, and Three-Stream Analysis (Code, Docs, Insights)",
-      "item3": "AI-enhanced skills with explanations, examples, and best practices",
-      "item4": "Deploy to any LLM platform (Claude, Gemini, OpenAI) in 20-40 minutes"
+      "item1": "One tool for all sources: docs, GitHub repos, PDFs, and local codebases",
+      "item2": "Smart chunking preserves context, code blocks, and hierarchical structure",
+      "item3": "16 output formats: RAG pipelines, AI coding assistants, Claude skills, vector DBs",
+      "item4": "15-45 minutes end-to-end: from source to production-ready AI knowledge"
     },
     "benefits": {
       "speed": {
@@ -73,11 +76,18 @@
     }
   },
   "features": {
-    "title": "Comprehensive Feature Set",
-    "subtitle": "Everything you need to transform documentation into production-ready AI skills",
+    "title": "Universal Intelligence Platform",
+    "subtitle": "Transform any documentation into structured knowledge for any AI system",
     "viewAll": "View All {count} Features",
     "showLess": "Show Less",
     "moreFeatures": "+{count} more features",
+    "formats": {
+      "title": "16 Output Formats",
+      "rag": "RAG/Vectors: LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate",
+      "ai": "AI Platforms: Claude, Gemini, OpenAI",
+      "coding": "AI Coding: Cursor, Windsurf, Cline, Continue.dev",
+      "generic": "Generic: Markdown"
+    },
     "cta": {
       "question": "Ready to transform your documentation?",
       "button": "Get Started Now"
@@ -103,9 +113,9 @@
       },
       {
         "icon": "🤖",
-        "title": "4 LLM Platforms",
-        "description": "Deploy to Claude Projects, Gemini, OpenAI, or export as Markdown",
-        "category": "Platform Support"
+        "title": "16 LLM Platforms",
+        "description": "Deploy to LangChain, LlamaIndex, Chroma, Claude, Gemini, OpenAI, Cursor, and more",
+        "category": "NEW - v3.0.0"
       },
       {
         "icon": "📦",
@@ -115,14 +125,14 @@
       },
       {
         "icon": "🔧",
-        "title": "MCP Integration",
-        "description": "Built-in Model Context Protocol support with 27+ tools",
-        "category": "Integration"
+        "title": "26 MCP Tools",
+        "description": "AI agents can prepare their own knowledge with 26 MCP tools (v3.0.0)",
+        "category": "NEW - v3.0.0"
       },
       {
         "icon": "✅",
-        "title": "700+ Tests",
-        "description": "Production-ready with comprehensive test coverage and validation",
+        "title": "1852 Tests",
+        "description": "Production-ready with 1852 tests across 100 test files (v3.0.0)",
         "category": "Quality"
       },
       {
@@ -338,12 +348,16 @@
       "contributors": "Contributors",
       "tests": "Tests Passing",
       "configs": "Preset Configs",
-      "platforms": "LLM Platforms"
+      "platforms": "Output Formats",
+      "mcpTools": "MCP Tools",
+      "languages": "Languages"
     },
     "values": {
-      "tests": "1200+",
+      "tests": "1852",
       "configs": "24",
-      "platforms": "4"
+      "platforms": "16",
+      "mcpTools": "26",
+      "languages": "27+"
     },
     "banner": "Open source • MIT Licensed • Active development",
     "cta": {
@@ -352,7 +366,7 @@
     }
   },
   "footer": {
-    "tagline": "Transform documentation into Claude AI skills in minutes.",
+    "tagline": "The Universal Documentation Preprocessor for AI Systems.",
     "sections": {
       "product": {
         "title": "Product",
@@ -384,7 +398,7 @@
     },
     "copyright": "© {year} Skill Seekers. MIT License. Built with ❤️ using",
     "stats": {
-      "tests": "1200+ tests"
+      "tests": "1852 tests"
     }
   },
   "configs": {

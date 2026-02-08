@@ -1,6 +1,6 @@
 ---
 title: 更新日志
-description: Skill Seekers 从 v0.1.0 到 v2.7.0 的完整版本历史，记录所有功能、更改、修复和破坏性更改
+description: Skill Seekers 从 v0.1.0 到 v3.0.0 的完整版本历史，记录所有功能、更改、修复和破坏性更改
 section: community
 order: 4
 ---
@@ -21,6 +21,67 @@ Skill Seeker 的所有显著更改都将记录在此文件中。
 ### 修复
 
 ### 删除
+
+---
+
+## [3.0.0] - 2026-02-10
+
+### 🚀 "通用智能平台" - 主要版本
+
+**主题：** 将任何文档转换为适用于任何 AI 系统的结构化知识。
+
+### 新增
+
+- **16 个平台适配器**（从 4 个增加）
+  - RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate
+  - AI 平台：Claude、Gemini、OpenAI
+  - AI 编码：Cursor、Windsurf、Cline、Continue.dev
+  - 通用：Markdown
+- **26 个 MCP 工具**（从 9 个增加）
+  - 配置工具（3 个）：generate_config、list_configs、validate_config
+  - 抓取工具（8 个）：estimate_pages、scrape_docs、scrape_github、scrape_pdf、scrape_codebase、detect_patterns、extract_test_examples、build_how_to_guides
+  - 打包工具（4 个）：package_skill、upload_skill、enhance_skill、install_skill
+  - 源工具（5 个）：fetch_config、submit_config、add/remove_config_source、list_config_sources
+  - 拆分工具（2 个）：split_config、generate_router
+  - 向量数据库工具（4 个）：export_to_weaviate、export_to_chroma、export_to_faiss、export_to_qdrant
+- **云存储支持**
+  - AWS S3，支持分块上传和预签名 URL
+  - Google Cloud Storage，带签名 URL
+  - Azure Blob Storage，带 SAS 令牌
+- **CI/CD 就绪**
+  - 用于自动生成技能的 GitHub Action
+  - 官方 Docker 镜像支持
+  - 带调度的自动化管道
+- **Godot 游戏引擎支持**
+  - 完整的 Godot 4.x 分析
+  - 信号流检测（208 个信号、634 个连接、298 个发射）
+  - 模式检测（EventBus、Observer、事件链）
+  - GDScript 测试提取（GUT、gdUnit4）
+- **7 种新编程语言**
+  - Dart（Flutter）、Scala、SCSS/SASS、Elixir、Lua、Perl
+  - 总计：支持 27+ 编程语言
+- **多代理支持**
+  - Claude Code（默认）
+  - GitHub Copilot CLI
+  - OpenAI Codex CLI
+  - OpenCode CLI
+  - 自定义代理支持
+- **RAG 分块**
+  - 语义文档拆分
+  - 最佳块大小（512 个令牌）
+  - 丰富的元数据保留
+
+### 统计数据
+
+- 1,852 个测试通过（从 700+ 增加）
+- 100 个测试文件
+- 58,512 行 Python 代码
+- 80+ 个文档文件
+- 12 个示例项目
+
+### 迁移
+
+v3.0.0 完全向后兼容。所有 v2.x 配置和命令保持不变。
 
 ---
 

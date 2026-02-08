@@ -441,7 +441,7 @@ skill-seekers unified --config unified-config.json
 ## Next Steps
 
 - [Documentation Scraping](/docs/cli/scrape) - Traditional web scraping options
-- [Unified Scraping](/docs/features/unified-scraping) - Combine llms.txt with other sources
+- [Unified Scraping](/docs/manual/scraping/unified-scraping) - Combine llms.txt with other sources
 - [Large Documentation](/docs/reference/large-documentation) - Handling 10K+ page sites
 
 ---

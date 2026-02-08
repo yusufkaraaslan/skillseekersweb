@@ -54,16 +54,16 @@ const stats = [
     color: '#10b981', // green
   },
   {
-    value: t.stats.values.configs,
-    label: t.stats.labels.configs,
-    icon: '📦',
-    color: '#6366f1', // indigo
-  },
-  {
     value: t.stats.values.platforms,
     label: t.stats.labels.platforms,
     icon: '🤖',
     color: '#8b5cf6', // purple
+  },
+  {
+    value: t.stats.values.mcpTools,
+    label: t.stats.labels.mcpTools,
+    icon: '🔧',
+    color: '#06b6d4', // cyan
   },
 ];
 ---
@@ -81,7 +81,7 @@ const stats = [
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
       {stats.map((stat, index) => (
         <div
           class="group text-center p-4 rounded-xl transition-all duration-300 hover:bg-dark-bg hover:shadow-lg hover:shadow-brand-primary/10 hover:-translate-y-1"

@@ -118,7 +118,7 @@ git push origin my-feature
 **环境：**
 - OS: Ubuntu 22.04
 - Python: 3.10.5
-- 版本：v2.7.0
+- 版本：v3.0.0
 ```
 
 ### 建议增强功能

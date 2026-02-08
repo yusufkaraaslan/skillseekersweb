@@ -516,7 +516,7 @@ skill-seekers upload react-openai.zip --target openai
 - [OpenAI Platform](https://platform.openai.com/)
 - [Assistants API Documentation](https://platform.openai.com/docs/assistants/overview)
 - [OpenAI Pricing](https://openai.com/pricing)
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Platform comparison
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Platform comparison
 
 ---
 

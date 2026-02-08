@@ -784,7 +784,7 @@ Permission denied (publickey)
 
 - [MCP Setup Guide](/docs/guides/mcp-setup) - Install MCP integration with git source tools
 - [CLI Reference](/docs/cli/scrape) - Documentation scraping commands
-- [Unified Scraping](/docs/features/unified-scraping) - Multi-source scraping with git configs
+- [Unified Scraping](/docs/manual/scraping/unified-scraping) - Multi-source scraping with git configs
 
 ---
 

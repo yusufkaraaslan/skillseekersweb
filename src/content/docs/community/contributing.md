@@ -118,7 +118,7 @@ When creating a bug report, include:
 **Environment:**
 - OS: Ubuntu 22.04
 - Python: 3.10.5
-- Version: v2.7.0
+- Version: v3.0.0
 ```
 
 ### Suggesting Enhancements

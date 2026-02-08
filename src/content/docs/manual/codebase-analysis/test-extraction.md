@@ -502,9 +502,9 @@ for example in report.examples:
 
 ## Next Steps
 
-- [Pattern Detection (C3.1)](/docs/features/pattern-detection) - Detect design patterns
-- [How-To Guide Generation (C3.3)](/docs/features/how-to-guides) - Build guides from workflows
-- [C3.x Codebase Analysis](/docs/features/c3x-codebase-analysis) - Complete analysis suite
+- [Pattern Detection (C3.1)](/docs/manual/codebase-analysis/pattern-detection) - Detect design patterns
+- [How-To Guide Generation (C3.3)](/docs/manual/codebase-analysis/how-to-guides) - Build guides from workflows
+- [C3.x Codebase Analysis](/docs/manual/codebase-analysis/c3x-codebase-analysis) - Complete analysis suite
 
 ---
 

@@ -436,7 +436,7 @@ skill-seekers upload react-gemini.tar.gz --target gemini
 - [Google AI Studio](https://aistudio.google.com/)
 - [Gemini API Documentation](https://ai.google.dev/docs)
 - [Gemini Pricing](https://ai.google.dev/pricing)
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Platform comparison
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Platform comparison
 
 ---
 

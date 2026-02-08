@@ -486,7 +486,7 @@ skill-seekers unified \
 
 ## Next Steps
 
-- [Three-Stream Architecture](/docs/features/three-stream-architecture) - Combine C3.x with GitHub insights
-- [Multi-LLM Support](/docs/features/multi-llm-support) - Deploy to Claude, Gemini, OpenAI
-- [AI Enhancement](/docs/features/ai-enhancement) - Improve C3.x output with AI
+- [Three-Stream Architecture](/docs/manual/advanced/three-stream-architecture) - Combine C3.x with GitHub insights
+- [Multi-LLM Support](/docs/manual/platforms/multi-llm-support) - Deploy to Claude, Gemini, OpenAI
+- [AI Enhancement](/docs/manual/enhancement/ai-enhancement) - Improve C3.x output with AI
 - [CLI Reference: unified](/docs/cli/unified) - Complete CLI documentation
