@@ -7,11 +7,11 @@
       "license": "MIT Licensed"
     },
     "headline": {
-      "part1": "Universal Data Layer",
-      "part2": "for AI Systems",
+      "part1": "AI Skills & RAG",
+      "part2": "for Any Source",
       "part3": ""
     },
-    "subheadline": "Transform documentation, GitHub repos, PDFs, and codebases into structured knowledge for any AI system. 16 output formats. One tool for RAG pipelines, AI coding assistants, and Claude skills.",
+    "subheadline": "Transform documentation, GitHub repos, PDFs, and codebases into AI skills and RAG knowledge. One tool for Claude skills, codebase analysis, AI coding assistants, and vector search.",
     "cta": {
       "getStarted": "Get Started",
       "browseConfigs": "Browse 24 Configs"
@@ -44,21 +44,21 @@
     "copied": "Copied!"
   },
   "about": {
-    "heading": "Universal Preprocessing for AI",
-    "description": "Skill Seekers is the universal data layer for AI systems. It transforms documentation websites, GitHub repositories, PDF files, and local codebases into production-ready formats for RAG pipelines, AI coding assistants, Claude skills, and any LLM platform.",
+    "heading": "AI Skills from Any Source",
+    "description": "Skill Seekers transforms documentation websites, GitHub repositories, PDF files, and local codebases into structured AI skills and RAG-ready knowledge. Create expertise packages for Claude, Gemini, OpenAI, LangChain, LlamaIndex, Cursor, and any LLM platform.",
     "problem": {
       "title": "The Problem",
-      "item1": "70% of RAG development time is spent on data preprocessing—scraping, cleaning, chunking",
-      "item2": "AI coding assistants don't know your frameworks without manual context injection",
-      "item3": "Multi-source knowledge (docs + code + PDFs) requires complex integration",
-      "item4": "Different AI systems need different formats—LangChain, LlamaIndex, Cursor, Claude"
+      "item1": "Building AI skills takes days of preprocessing—scraping, analyzing code, extracting patterns",
+      "item2": "AI assistants lack deep expertise without manual context preparation",
+      "item3": "Understanding new codebases requires weeks of manual analysis",
+      "item4": "Different AI systems need different formats—skills, RAG, coding rules"
     },
     "solution": {
       "title": "The Solution",
       "item1": "One tool for all sources: docs, GitHub repos, PDFs, and local codebases",
-      "item2": "Smart chunking preserves context, code blocks, and hierarchical structure",
-      "item3": "16 output formats: RAG pipelines, AI coding assistants, Claude skills, vector DBs",
-      "item4": "15-45 minutes end-to-end: from source to production-ready AI knowledge"
+      "item2": "Deep code analysis detects patterns, architecture, and design decisions",
+      "item3": "16 output formats: AI skills, RAG pipelines, coding rules, vector DBs",
+      "item4": "15-45 minutes end-to-end: from source to production-ready AI skill"
     },
     "benefits": {
       "speed": {
@@ -76,8 +76,8 @@
     }
   },
   "features": {
-    "title": "Universal Intelligence Platform",
-    "subtitle": "Transform any documentation into structured knowledge for any AI system",
+    "title": "AI Skills & Knowledge Toolkit",
+    "subtitle": "Transform any source into structured AI skills and RAG knowledge",
     "viewAll": "View All {count} Features",
     "showLess": "Show Less",
     "moreFeatures": "+{count} more features",
@@ -366,7 +366,7 @@
     }
   },
   "footer": {
-    "tagline": "The Universal Documentation Preprocessor for AI Systems.",
+    "tagline": "AI Skills & RAG Toolkit — Transform Any Source into Structured Knowledge.",
     "sections": {
       "product": {
         "title": "Product",

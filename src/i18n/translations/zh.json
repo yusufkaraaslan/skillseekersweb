@@ -7,11 +7,11 @@
       "license": "MIT 许可证"
     },
     "headline": {
-      "part1": "AI 系统的通用",
-      "part2": "数据层",
+      "part1": "AI 技能与 RAG",
+      "part2": "任何来源",
       "part3": ""
     },
-    "subheadline": "将文档、GitHub 仓库、PDF 和代码库转换为适用于任何 AI 系统的结构化知识。16 种输出格式。一个工具支持 RAG 管道、AI 编码助手和 Claude 技能。",
+    "subheadline": "将文档、GitHub 仓库、PDF 和代码库转换为 AI 技能和 RAG 知识。一个工具支持 Claude 技能、代码库分析、AI 编码助手和向量搜索。",
     "cta": {
       "getStarted": "开始使用",
       "browseConfigs": "浏览 24 个配置"
@@ -44,21 +44,21 @@
     "copied": "已复制！"
   },
   "about": {
-    "heading": "AI 的通用预处理",
-    "description": "Skill Seekers 是 AI 系统的通用数据层。它将文档网站、GitHub 仓库、PDF 文件和本地代码库转换为适用于 RAG 管道、AI 编码助手、Claude 技能和任何 LLM 平台的生产就绪格式。",
+    "heading": "任何来源的 AI 技能",
+    "description": "Skill Seekers 将文档网站、GitHub 仓库、PDF 文件和本地代码库转换为结构化的 AI 技能和 RAG 就绪知识。为 Claude、Gemini、OpenAI、LangChain、LlamaIndex、Cursor 和任何 LLM 平台创建专业知识包。",
     "problem": {
       "title": "问题所在",
-      "item1": "70% 的 RAG 开发时间花在数据预处理上——抓取、清理、分块",
-      "item2": "AI 编码助手在没有手动上下文注入的情况下不了解您的框架",
-      "item3": "多源知识（文档 + 代码 + PDF）需要复杂的集成",
-      "item4": "不同的 AI 系统需要不同的格式——LangChain、LlamaIndex、Cursor、Claude"
+      "item1": "构建 AI 技能需要数天的预处理——抓取文档、分析代码、提取模式",
+      "item2": "没有手动上下文准备，AI 助手缺乏深入的框架知识",
+      "item3": "理解新代码库需要数周的手动分析",
+      "item4": "不同的 AI 系统需要不同的格式——技能、RAG、编码规则"
     },
     "solution": {
       "title": "解决方案",
       "item1": "一个工具处理所有源：文档、GitHub 仓库、PDF 和本地代码库",
-      "item2": "智能分块保留上下文、代码块和层次结构",
-      "item3": "16 种输出格式：RAG 管道、AI 编码助手、Claude 技能、向量数据库",
-      "item4": "端到端 15-45 分钟：从源到生产就绪的 AI 知识"
+      "item2": "深度代码分析检测模式、架构和设计决策",
+      "item3": "16 种输出格式：AI 技能、RAG 管道、编码规则、向量数据库",
+      "item4": "端到端 15-45 分钟：从源到生产就绪的 AI 技能"
     },
     "benefits": {
       "speed": {
@@ -76,15 +76,15 @@
     }
   },
   "features": {
-    "title": "通用智能平台",
-    "subtitle": "将任何文档转换为适用于任何 AI 系统的结构化知识",
+    "title": "AI 技能与知识工具包",
+    "subtitle": "将任何来源转换为结构化的 AI 技能和 RAG 知识",
     "viewAll": "查看全部 {count} 个功能",
     "showLess": "显示更少",
     "moreFeatures": "还有 {count} 个功能",
     "formats": {
       "title": "16 种输出格式",
+      "ai": "AI 技能：Claude、Gemini、OpenAI",
       "rag": "RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate",
-      "ai": "AI 平台：Claude、Gemini、OpenAI",
       "coding": "AI 编码：Cursor、Windsurf、Cline、Continue.dev",
       "generic": "通用：Markdown"
     },
@@ -366,7 +366,7 @@
     }
   },
   "footer": {
-    "tagline": "AI 系统的通用文档预处理器。",
+    "tagline": "AI 技能与 RAG 工具包 — 将任何来源转换为结构化知识。",
     "sections": {
       "product": {
         "title": "产品",

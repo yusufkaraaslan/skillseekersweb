@@ -7,68 +7,77 @@ order: 1
 
 # What is Skill Seekers?
 
-Skill Seekers is the **universal preprocessor for AI systems**. It transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured knowledge for RAG pipelines, AI coding assistants, Claude skills, and any LLM platform.
+Skill Seekers is the **AI Skill & RAG Toolkit**. It transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured AI skills and RAG-ready knowledge for Claude, Gemini, OpenAI, LangChain, LlamaIndex, Cursor, and any LLM platform.
 
-**70% of RAG development time is spent on data preprocessing**—scraping, cleaning, chunking, and structuring documentation. **We automate all of it.**
+**What is an AI Skill?** A curated, structured knowledge package that gives AI systems deep expertise in a specific domain—frameworks, APIs, codebases, or documentation. Instead of generic responses, your AI "knows" the subject matter.
 
-Instead of manually preprocessing data, Skill Seekers:
+**The Problem:** 70% of AI skill development is spent on data preprocessing—scraping, cleaning, analyzing code, extracting patterns, and structuring knowledge. **We automate all of it.**
+
+Instead of manually building skills, Skill Seekers:
 
 1. **Extracts** from any source - docs, GitHub repos, PDFs, local codebases
 2. **Analyzes** with deep parsing (AST for code, OCR for PDFs, semantic chunking)
-3. **Detects** conflicts between documentation and code implementation
-4. **Organizes** content into categorized reference files with rich metadata
-5. **Enhances** with AI to extract best examples and key concepts
-6. **Packages** into 16+ formats for any AI system
+3. **Detects** patterns, design principles, and code architecture
+4. **Organizes** content into categorized skill files with rich metadata
+5. **Enhances** with AI to extract best practices, examples, and key concepts
+6. **Packages** into 16+ formats for any AI system—skills, RAG, or coding assistants
 
-**Result:** Production-ready AI knowledge in 15-45 minutes instead of days of manual work.
+**Result:** Production-ready AI skills in 15-45 minutes instead of days of manual work.
 
 ## Why Use Skill Seekers?
 
-### For RAG Builders & AI Engineers
-- 🤖 **RAG Systems**: Build production-grade Q&A bots, chatbots, documentation portals
-- 🚀 **99% Faster**: Days of preprocessing → 15-45 minutes
+### For AI Skill Developers
+- 🎯 **AI Skills for Claude, Gemini, OpenAI**: Create structured knowledge that gives AI systems true expertise
+- 🧠 **Codebase Intelligence**: Turn any GitHub repo or local project into an AI skill with deep pattern analysis
+- 📊 **Architecture Understanding**: AI learns your project's structure, patterns, and design decisions
+- 🚀 **99% Faster**: Days of skill building → 15-45 minutes
 - ✅ **Battle-Tested**: 1,852 tests, 24+ framework presets, production-ready
-- 🔄 **Multi-Source**: Combine docs + GitHub + PDFs + codebases automatically
-- 🌐 **Platform-Agnostic**: Export to LangChain, LlamaIndex, Pinecone, or custom
+
+### For Software Engineers & Developers
+- 💻 **Codebase Analysis**: Understand unfamiliar projects with AI-powered architecture detection
+- 🔍 **Pattern Discovery**: Automatically detect design patterns (MVC, Factory, Strategy, etc.)
+- 📚 **Documentation Generation**: Auto-generate architecture docs, API references, and how-to guides
+- 🧪 **Test-Driven Insights**: Extract working code examples from test suites
+- 🎮 **Game Development**: Godot signal flow analysis, Unity/Unreal C#/C++ pattern detection
 
 ### For AI Coding Assistant Users
-- 💻 **Cursor, Windsurf, Cline, Continue.dev**: Generate `.cursorrules` for framework expertise
-- 🎯 **Persistent Context**: AI "knows" your frameworks without manual prompting
-- 📚 **Always Current**: Update rules in 5 minutes when frameworks change
+- 🛠️ **Cursor, Windsurf, Cline, Continue.dev**: Generate `.cursorrules` for framework expertise
+- 🎯 **Persistent Context**: AI "knows" your frameworks and codebase without manual prompting
+- 🔄 **Always Current**: Update skills in 5 minutes when frameworks or code changes
 
-### For Game Developers
-- 🎮 **Godot 4.x**: Signal flow analysis (208 signals, 634 connections)
-- 🕹️ **Unity/Unreal**: C# and C++ code analysis with pattern detection
-- 📖 **Auto-Documentation**: Generate architecture docs from code
+### For RAG Builders & AI Engineers
+- 🤖 **RAG Systems**: Build production-grade Q&A bots, chatbots, documentation portals
+- 🌐 **Platform-Agnostic**: Export to LangChain, LlamaIndex, Pinecone, Chroma, Weaviate, Haystack
+- 🔄 **Multi-Source**: Combine docs + GitHub + PDFs + codebases automatically
 
-### For Teams
-- 🔧 **Internal Knowledge**: Combine docs + code repositories into single source of truth
-- 👥 **Share Configs**: Private git repos for team configurations
-- 🔄 **CI/CD Ready**: GitHub Actions for automated knowledge updates
+### For Teams & Enterprises
+- 🔧 **Internal Knowledge Base**: Transform internal docs + code repositories into unified AI skills
+- 👥 **Share Configs**: Private git repos for team skill configurations
+- 🔄 **CI/CD Ready**: GitHub Actions for automated skill updates when code changes
 
-## Quick Example
+## Quick Example (v3.0+ Unified Command)
 
 ```bash
 # Install
 pip install skill-seekers
 
-# From documentation
-skill-seekers scrape --config configs/react.json
+# Create skill from any source with one command
+skill-seekers create https://react.dev --target claude
 
 # From GitHub repository
-skill-seekers scrape --github https://github.com/owner/repo --format langchain
+skill-seekers create https://github.com/owner/repo --target langchain
 
 # From PDF
-skill-seekers scrape --pdf ./manual.pdf --format llamaindex
+skill-seekers create ./manual.pdf --target openai
 
 # From local codebase
-skill-seekers analyze --directory ./my-project --format langchain
+skill-seekers create ./my-project --target llamaindex
 
-# Package for any platform
-skill-seekers package output/ --target langchain
+# With workflow enhancement (v3.1.0)
+skill-seekers create https://docs.python.org --target claude --enhance-workflow api-documentation
 ```
 
-That's it! You now have RAG-ready documents from ANY source.
+That's it! You now have AI-ready skills from ANY source.
 
 ## Key Capabilities
 
@@ -86,20 +95,44 @@ That's it! You now have RAG-ready documents from ANY source.
 | **AI Coding** | Cursor, Windsurf, Cline, Continue.dev |
 | **Generic** | Markdown, JSON, YAML |
 
+### v3.1.0: Enhancement Workflows
+
+**New workflow system for consistent, reusable enhancement strategies:**
+
+```bash
+# Use bundled preset
+skill-seekers create <source> --enhance-workflow security-focus
+
+# Chain multiple workflows
+skill-seekers create <source> --enhance-workflow minimal --enhance-workflow api-documentation
+
+# Create custom workflow
+cat > my-workflow.yaml << 'EOF'
+name: "custom-analysis"
+stages:
+  - name: "Deep Analysis"
+    prompt: "Analyze this code for performance patterns..."
+    model: "claude-sonnet-4"
+EOF
+skill-seekers workflows add my-workflow.yaml
+```
+
+**Bundled presets:** `default`, `minimal`, `security-focus`, `architecture-comprehensive`, `api-documentation`
+
 ### C3.x Codebase Analysis
 - **C3.1:** Design pattern detection (Strategy, Factory, etc.)
 - **C3.2:** Test example extraction (working code from tests)
 - **C3.3:** How-to guide generation (automated tutorials)
 - **C3.4:** Configuration analysis (9 formats with security scan)
-- **C3.9:** Signal flow analysis (Godot, game engines)
-- **C3.10:** Multi-agent LOCAL mode support
+- **C3.5:** Architecture overview generation
+- **C3.7:** Architectural pattern detection (MVC, MVVM, etc.)
 
 ### Multi-Agent Support
 - **Claude Code** (default) - Native stdio transport
-- **GitHub Copilot CLI** - Enterprise integration
-- **OpenAI Codex CLI** - OpenAI integration
-- **OpenCode CLI** - Open source alternative
-- **Custom agents** - Any CLI tool
+- **Cursor** - HTTP transport
+- **Windsurf** - HTTP transport
+- **VS Code + Cline** - MCP integration
+- **IntelliJ IDEA** - MCP integration
 
 ### Intelligent Processing
 - **Smart chunking** - Preserves code blocks, maintains context (512 token chunks)
@@ -107,6 +140,19 @@ That's it! You now have RAG-ready documents from ANY source.
 - **Godot support** - Signal flow detection and pattern analysis
 - **Cloud storage** - Direct upload to S3, GCS, Azure
 - **CI/CD ready** - GitHub Actions + Docker
+
+## What's New in v3.1.0
+
+**Enhancement Workflows:**
+- **5 bundled presets** - Ready-to-use enhancement strategies
+- **Custom workflows** - Create your own YAML workflow definitions
+- **Multiple workflow chaining** - Combine presets for comprehensive analysis
+- **CLI management** - `workflows list`, `show`, `add`, `remove`, `validate`
+
+**Improved CLI:**
+- **Unified `create` command** - One command for all source types
+- **Multiple workflow flags** - Apply several workflows in one command
+- **Config file workflow support** - Define workflows in JSON configs
 
 ## What's New in v3.0.0
 
@@ -116,15 +162,13 @@ That's it! You now have RAG-ready documents from ANY source.
 - **26 MCP tools** (up from 9) - AI agents prepare their own knowledge
 - **Cloud storage** - AWS S3, Google Cloud Storage, Azure Blob Storage
 - **CI/CD ready** - GitHub Action + Docker support
-- **Godot game engine** - Full 4.x analysis with signal flow detection
-- **7 new languages** - Dart, Scala, SCSS/SASS, Elixir, Lua, Perl (27+ total)
-- **Multi-agent support** - Claude, Copilot, Codex, OpenCode
+- **Three-stream GitHub fetcher** - Code + Docs + Issues streams
 - **1,852 tests** (up from 700+) - Production-ready quality
 
-[Read the full v3.0.0 changelog →](/docs/community/changelog)
+[Read the full changelog →](/docs/community/changelog)
 
 ## Next Steps
 
-- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers v3.0.0
-- [Quick Start](/docs/getting-started/first-skill) - Create your first skill in 5 minutes
+- [Installation Guide](/docs/getting-started/installation) - Set up Skill Seekers
+- [Quick Start](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
 - [Browse Configs](/configs) - Explore 24 pre-built configurations

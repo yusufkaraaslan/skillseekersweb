@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-description: Common questions about Skill Seekers - installation, usage, platforms, pricing, and troubleshooting
+description: Common questions about Skill Seekers - installation, usage, platforms, pricing, workflows, and troubleshooting
 section: about
 order: 4
 ---
@@ -11,11 +11,11 @@ order: 4
 
 ### What is Skill Seekers?
 
-Skill Seekers is the **universal data layer for AI systems**. It automatically transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured knowledge for:
+Skill Seekers is the **AI Skill & RAG Toolkit**. It transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured AI skills and RAG-ready knowledge for:
 
-- **RAG Pipelines** - LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
+- **AI Platform Skills** - Claude, Gemini, OpenAI with deep expertise
 - **AI Coding Assistants** - Cursor, Windsurf, Cline, Continue.dev
-- **Claude AI Skills** - Native format with YAML frontmatter
+- **RAG Pipelines** - LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
 - **Any LLM Platform** - Generic Markdown, JSON, YAML
 
 ### Is it free?
@@ -36,8 +36,8 @@ Yes! Skill Seekers is **100% free and open-source** (MIT License). You only pay 
 - Local codebases (27+ languages)
 
 **Output Formats (16):**
+- **AI Skills:** Claude, Gemini, OpenAI
 - **RAG/Vectors:** LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate
-- **AI Platforms:** Claude, Gemini, OpenAI
 - **AI Coding:** Cursor, Windsurf, Cline, Continue.dev
 - **Generic:** Markdown, JSON, YAML
 
@@ -124,6 +124,52 @@ Partially:
 
 **Recommendation:** Use local mode for development, API for automation.
 
+### What are enhancement workflows (v3.1.0)?
+
+Workflows are **reusable enhancement strategies** that define how AI transforms your content:
+
+```bash
+# Use a preset workflow
+skill-seekers create https://react.dev --enhance-workflow security-focus
+
+# Chain multiple workflows
+skill-seekers create https://github.com/owner/repo \
+  --enhance-workflow minimal \
+  --enhance-workflow api-documentation
+```
+
+**Bundled presets:**
+- `default` - Balanced enhancement
+- `minimal` - Fast, light enhancement
+- `security-focus` - Security vulnerability analysis
+- `architecture-comprehensive` - Deep architectural insights
+- `api-documentation` - API-focused documentation
+
+See [Enhancement Workflows](/docs/manual/enhancement/workflows) for details.
+
+### How do I create custom workflows?
+
+```bash
+# Create workflow file
+cat > my-workflow.yaml << 'EOF'
+name: "custom-security"
+description: "Custom security analysis"
+stages:
+  - name: "Vulnerability Scan"
+    prompt: "Analyze the code for security vulnerabilities..."
+    model: "claude-sonnet-4"
+    temperature: 0.2
+EOF
+
+# Add to Skill Seekers
+skill-seekers workflows add my-workflow.yaml
+
+# Use it
+skill-seekers create <source> --enhance-workflow custom-security
+```
+
+See [Custom Workflows](/docs/manual/enhancement/custom-workflows) for complete guide.
+
 ### Can I scrape private documentation?
 
 Yes! Several options:
@@ -132,7 +178,7 @@ Yes! Several options:
 3. **Authentication** - Configure custom headers/cookies
 4. **Private GitHub** - Use GITHUB_TOKEN for private repos
 
-See [GitHub Analysis Tutorial](/docs/tutorials/analyzing-github) for details.
+See [GitHub Analysis Tutorial](/docs/tutorials/docs/github-repos) for details.
 
 ### How do I handle large documentation (10K+ pages)?
 
@@ -150,24 +196,41 @@ This creates focused sub-skills with intelligent routing. See [Large Documentati
 
 ### Can I combine multiple sources?
 
-Yes! Use **unified scraping**:
+Yes! Use the **unified create command** (v3.0+):
 
 ```bash
-skill-seekers unified --config configs/unified.json
+# Create with multiple sources
+skill-seekers create https://docs.example.com \
+  --github https://github.com/example/repo \
+  --pdf ./manual.pdf \
+  --target langchain
 ```
 
-Combine documentation + GitHub + PDFs + codebases into one comprehensive skill. See [Multi-Source Tutorial](/docs/tutorials/multi-source-skills).
+Or use a config file:
+
+```json
+{
+  "name": "unified-skill",
+  "sources": [
+    {"type": "documentation", "base_url": "https://docs.example.com"},
+    {"type": "github", "repository": "example/repo"},
+    {"type": "pdf", "directory": "./pdfs"}
+  ]
+}
+```
+
+See [Multi-Source Tutorial](/docs/tutorials/docs/multi-source) for details.
 
 ### Can I process local codebases?
 
-Yes! Use the `analyze` command:
+Yes! Use the `create` command with a local path:
 
 ```bash
 # Analyze local project
-skill-seekers analyze --directory ./my-project --format langchain
+skill-seekers create ./my-project --target langchain
 
-# Analyze Godot game
-skill-seekers analyze --directory ./my-game --comprehensive
+# Analyze Godot game with C3.x analysis
+skill-seekers create ./my-game --comprehensive --target claude
 ```
 
 Supports 27+ programming languages including Python, JavaScript, Go, Rust, C++, C#, GDScript, and more.
@@ -182,12 +245,12 @@ No! Create once, package for any platform:
 
 ```bash
 # Create skill (works for all sources)
-skill-seekers scrape --config configs/react.json
+skill-seekers create https://react.dev
 
 # Package for different platforms
-skill-seekers package output/react/ --target langchain
-skill-seekers package output/react/ --target llamaindex
-skill-seekers package output/react/ --target claude
+skill-seekers create https://react.dev --target langchain
+skill-seekers create https://react.dev --target llamaindex
+skill-seekers create https://react.dev --target claude
 ```
 
 ### How does RAG integration work?
@@ -232,7 +295,7 @@ Check:
 
 ```bash
 # Interactive mode shows what gets extracted
-skill-seekers scrape --config configs/test.json --interactive
+skill-seekers create https://example.com --interactive
 
 # Test on single page
 skill-seekers estimate --config configs/test.json
@@ -286,11 +349,12 @@ Setup script auto-detects and configures all installed agents.
 
 ### Can I customize the AI enhancement?
 
-Yes! Enhancement uses configurable prompts. You can:
-- Modify enhancement instructions in config
+Yes! Enhancement uses configurable workflows. You can:
+- Use bundled presets (`default`, `minimal`, `security-focus`, etc.)
+- Create custom YAML workflows
 - Use different AI models (Claude, Gemini, GPT-4o)
 - Skip enhancement entirely (`--skip-enhancement`)
-- Enhance manually later (`skill-seekers enhance output/skill/`)
+- Chain multiple workflows for comprehensive analysis
 
 ### Can I contribute configs?
 
