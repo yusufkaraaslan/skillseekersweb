@@ -10,19 +10,43 @@ interface ConfigGalleryProps {
 
 type SortOption = 'newest' | 'name' | 'popular';
 
-// Category icons
+// Category icons - 21 categories
 const categoryIcons: Record<string, string> = {
+  // Core categories
+  'ai-ml': '🧠',
+  'api-tech': '🔌',
+  'build-tools': '🔨',
+  'cloud': '☁️',
+  'cms': '📝',
+  'css-frameworks': '🎨',
+  'data-science': '📊',
+  'databases': '🗄️',
+  'development-tools': '🛠️',
+  'devops': '⚙️',
+  'game-engines': '🎮',
+  'gaming': '🎯',
+  'graphics': '🖼️',
+  'languages': '💻',
+  'messaging': '💬',
+  'mobile': '📱',
+  'payments': '💳',
+  'search': '🔍',
+  'security': '🔒',
+  'test-examples': '🧪',
+  'testing': '✅',
+  'web-frameworks': '🌐',
+  // Legacy names (kept for compatibility)
   'Web Framework': '🌐',
   'Mobile': '📱',
   'Database': '🗄️',
-  'AI/ML': '🤖',
+  'AI/ML': '🧠',
   'DevOps': '⚙️',
   'Language': '💻',
   'Tool': '🛠️',
   'Library': '📦',
   'CSS': '🎨',
-  'Testing': '🧪',
-  'Documentation': '📚',
+  'Testing': '✅',
+  'Documentation': '📝',
   'Cloud': '☁️',
 };
 
