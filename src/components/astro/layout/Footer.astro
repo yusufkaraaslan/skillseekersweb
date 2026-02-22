@@ -42,18 +42,37 @@ const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 [&>*]:border-0">
       <!-- Brand -->
       <div class="md:col-span-1">
-        <a href="/" class="flex items-center space-x-2 text-xl font-bold mb-4">
-          <svg class="h-8 w-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="/" class="flex items-center space-x-3 text-xl font-bold mb-4 group">
+          {/* Small Code Weaver Icon */}
+          <svg class="h-8 w-8" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="footer-logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+              <linearGradient id="footer-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00a3e0"/>
+                <stop offset="100%" stop-color="#00d4aa"/>
+              </linearGradient>
+              <linearGradient id="footer-gradient-2" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00d4aa"/>
+                <stop offset="100%" stop-color="#38bdf8"/>
               </linearGradient>
             </defs>
-            <path d="M20 2L37 10V20C37 29 32 35 20 38C8 35 3 29 3 20V10L20 2Z" fill="url(#footer-logo-gradient)" />
-            <path d="M20 10L28 14V20C28 24 26 27 20 29C14 27 12 24 12 20V14L20 10Z" fill="#0a0a0f" />
+            {/* Strand 1 */}
+            <path d="M60 40 L80 40 L80 60 L60 60 Z" fill="url(#footer-gradient-1)" opacity="0.9"/>
+            <path d="M80 60 L100 60 L120 80 L120 100 L100 100 L80 80 Z" fill="url(#footer-gradient-1)" opacity="0.9"/>
+            <path d="M120 100 L140 100 L160 120 L160 140 L140 140 L120 120 Z" fill="url(#footer-gradient-1)" opacity="0.9"/>
+            <path d="M160 140 L180 140 L180 160 L160 160 Z" fill="url(#footer-gradient-1)" opacity="0.9"/>
+            {/* Strand 2 */}
+            <rect x="85" y="40" width="30" height="15" rx="3" fill="url(#footer-gradient-2)" opacity="0.95"/>
+            <rect x="85" y="85" width="50" height="12" rx="2" fill="url(#footer-gradient-2)" opacity="0.9"/>
+            <rect x="85" y="102" width="40" height="12" rx="2" fill="url(#footer-gradient-2)" opacity="0.85"/>
+            <rect x="125" y="125" width="50" height="12" rx="2" fill="url(#footer-gradient-2)" opacity="0.9"/>
+            <rect x="145" y="170" width="30" height="15" rx="3" fill="url(#footer-gradient-2)" opacity="0.95"/>
+            {/* Nodes */}
+            <circle cx="75" cy="70" r="6" fill="#00a3e0" opacity="0.9"/>
+            <circle cx="115" cy="110" r="6" fill="#00d4aa" opacity="0.9"/>
+            <circle cx="155" cy="150" r="6" fill="#38bdf8" opacity="0.9"/>
+            <circle cx="170" cy="175" r="6" fill="#00a3e0" opacity="0.9"/>
           </svg>
-          <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+          <span class="bg-gradient-to-r from-ocean-600 to-ocean-500 bg-clip-text text-transparent">
             Skill Seekers
           </span>
         </a>
@@ -63,13 +82,13 @@ const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
         <!-- Stats Badge -->
         <div class="flex items-center space-x-2 text-xs text-dark-text-secondary">
           <span class="flex items-center space-x-1">
-            <svg class="h-4 w-4 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="h-4 w-4 text-ocean-500" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
             <span>{t.footer.stats.tests}</span>
           </span>
-          <span>•</span>
-          <span>v2.7.0</span>
+          <span class="text-ocean-500">•</span>
+          <span>v3.1.0</span>
         </div>
       </div>
 
@@ -82,7 +101,7 @@ const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
               <li>
                 <a
                   href={link.href}
-                  class="text-sm text-dark-text-secondary hover:text-brand-primary transition-colors"
+                  class="text-sm text-dark-text-secondary hover:text-ocean-500 transition-colors"
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
@@ -98,14 +117,14 @@ const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
     <!-- Bottom Section -->
     <div class="pt-8 border-t border-dark-border flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
       <p class="text-sm text-dark-text-secondary">
-        {copyright} <a href="https://astro.build" class="text-brand-primary hover:text-brand-secondary">Astro</a>.
+        {copyright} <a href="https://astro.build" class="text-ocean-500 hover:text-ocean-400">Astro</a>.
       </p>
 
       <!-- Social Links -->
       <div class="flex items-center space-x-6">
         <a
           href="https://github.com/yusufkaraaslan/Skill_Seekers"
-          class="text-dark-text-secondary hover:text-brand-primary transition-colors"
+          class="text-dark-text-secondary hover:text-ocean-500 transition-colors"
           aria-label="GitHub"
           target="_blank"
           rel="noopener noreferrer"
@@ -116,7 +135,7 @@ const copyright = t.footer.copyright.replace('{year}', currentYear.toString());
         </a>
         <a
           href="https://pypi.org/project/skill-seekers/"
-          class="text-dark-text-secondary hover:text-brand-primary transition-colors"
+          class="text-dark-text-secondary hover:text-ocean-500 transition-colors"
           aria-label="PyPI"
           target="_blank"
           rel="noopener noreferrer"

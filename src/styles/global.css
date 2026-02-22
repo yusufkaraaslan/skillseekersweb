@@ -1,26 +1,54 @@
 @import 'tailwindcss';
 
-/* Typography customization for docs */
+/* CSS Variables - Ocean Blue Theme */
+:root {
+  /* Ocean Blue Colors */
+  --ocean-primary: #0A2540;    /* Deep navy - Primary */
+  --ocean-secondary: #00D4AA;  /* Teal/cyan - Secondary */
+  --ocean-accent: #00A3E0;     /* Bright blue - Accent */
+  --ocean-light: #F6F9FC;      /* Light background */
+  
+  /* Dark Mode Colors */
+  --dark-bg: #0A0A0F;          /* Main background (near black) */
+  --dark-surface: #13131A;     /* Card/panel background */
+  --dark-border: #1F1F29;      /* Borders */
+  --dark-hover: #252532;       /* Hover states */
+  --dark-text-primary: #F8FAFC;    /* Primary text (white) */
+  --dark-text-secondary: #94A3B8;  /* Secondary text (gray) */
+  --dark-text-muted: #64748B;      /* Muted text */
+  
+  /* Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Monaco, Consolas, monospace;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+/* Typography customization for docs - Using Ocean Blue Theme */
 .prose {
-  --tw-prose-body: #a0a0b0;
-  --tw-prose-headings: #e8e8ee;
-  --tw-prose-links: #6366f1;
-  --tw-prose-bold: #e8e8ee;
-  --tw-prose-code: #8b5cf6;
-  --tw-prose-pre-bg: #13131a;
-  --tw-prose-pre-border: #1f1f29;
-  --tw-prose-bullets: #6366f1;
-  --tw-prose-quotes: #a0a0b0;
-  --tw-prose-quote-borders: #6366f1;
+  --tw-prose-body: var(--dark-text-secondary);
+  --tw-prose-headings: var(--dark-text-primary);
+  --tw-prose-links: var(--ocean-accent);
+  --tw-prose-bold: var(--dark-text-primary);
+  --tw-prose-code: var(--ocean-secondary);
+  --tw-prose-pre-bg: var(--dark-surface);
+  --tw-prose-pre-border: var(--dark-border);
+  --tw-prose-bullets: var(--ocean-accent);
+  --tw-prose-quotes: var(--dark-text-secondary);
+  --tw-prose-quote-borders: var(--ocean-accent);
   font-size: 1.0625rem;
   line-height: 1.7;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *)) {
+  font-family: var(--font-display);
+  font-weight: 600;
 }
 
 .prose :where(h2):not(:where([class~="not-prose"] *)) {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid #1f1f29;
+  border-bottom: 1px solid var(--dark-border);
 }
 
 .prose :where(h1 + h2):not(:where([class~="not-prose"] *)) {
@@ -57,17 +85,19 @@
 }
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
-  background-color: #13131a;
-  border: 1px solid #1f1f29;
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)) {
-  background-color: #13131a;
+  background-color: var(--dark-surface);
+  color: var(--ocean-secondary);
   padding: 0.25rem 0.375rem;
   border-radius: 0.25rem;
   font-weight: 400;
+  font-family: var(--font-mono);
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *))::before,
@@ -78,26 +108,27 @@
 .prose :where(a):not(:where([class~="not-prose"] *)) {
   text-decoration: none;
   font-weight: 500;
+  color: var(--ocean-accent);
 }
 
 .prose :where(a):not(:where([class~="not-prose"] *)):hover {
-  color: #8b5cf6;
+  color: var(--ocean-secondary);
 }
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-  border-left-color: #6366f1;
+  border-left-color: var(--ocean-accent);
   border-left-width: 4px;
-  background-color: #13131a;
+  background-color: var(--dark-surface);
   padding: 0.5rem 0 0.5rem 1rem;
   border-radius: 0 0.375rem 0.375rem 0;
 }
 
 .prose :where(thead):not(:where([class~="not-prose"] *)) {
-  background-color: #13131a;
+  background-color: var(--dark-surface);
 }
 
 .prose :where(tbody tr):not(:where([class~="not-prose"] *)) {
-  border-bottom-color: #1f1f29;
+  border-bottom-color: var(--dark-border);
 }
 
 .prose :where(th, td):not(:where([class~="not-prose"] *)) {
@@ -112,38 +143,55 @@
 
 html {
   @apply scroll-smooth;
+  font-family: var(--font-primary);
   /* Dark mode by default */
-  background-color: #0a0a0f;
-  color: #e8e8ee;
+  background-color: var(--dark-bg);
+  color: var(--dark-text-primary);
 }
 
 body {
-  @apply font-sans;
+  font-family: var(--font-primary);
+  background-color: var(--dark-bg);
+  color: var(--dark-text-primary);
 }
 
 /* Code blocks */
 code {
-  @apply font-mono text-sm;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
 }
 
 pre {
-  @apply font-mono text-sm p-4 rounded-lg overflow-x-auto;
-  background-color: #13131a;
-  border: 1px solid #1f1f29;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-semibold;
-  color: #e8e8ee;
+/* Headings - Using Space Grotesk for display */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--dark-text-primary);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  color: var(--dark-text-primary);
 }
 
 h1 {
   @apply text-4xl md:text-5xl lg:text-6xl;
+  letter-spacing: -0.02em;
 }
 
 h2 {
   @apply text-3xl md:text-4xl lg:text-5xl;
+  letter-spacing: -0.01em;
 }
 
 h3 {
@@ -153,17 +201,17 @@ h3 {
 /* Links */
 a {
   @apply transition-colors;
-  color: #6366f1;
+  color: var(--ocean-accent);
 }
 
 a:hover {
-  color: #8b5cf6;
+  color: var(--ocean-secondary);
 }
 
-/* Selection */
+/* Selection - Ocean Blue */
 ::selection {
-  background-color: rgba(99, 102, 241, 0.3);
-  color: #e8e8ee;
+  background-color: rgba(0, 163, 224, 0.3);
+  color: var(--dark-text-primary);
 }
 
 /* Scrollbar (dark theme) */
@@ -172,22 +220,22 @@ a:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #0a0a0f;
+  background-color: var(--dark-bg);
 }
 
 ::-webkit-scrollbar-thumb {
   @apply rounded-full;
-  background-color: #1f1f29;
+  background-color: var(--dark-border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(160, 160, 176, 0.3);
+  background-color: rgba(148, 163, 184, 0.4);
 }
 
-/* Focus styles */
+/* Focus styles - Ocean Blue accent */
 :focus-visible {
   @apply outline-2 outline-offset-2;
-  outline-color: #6366f1;
+  outline-color: var(--ocean-accent);
 }
 
 /* Custom animations */
@@ -249,9 +297,93 @@ a:hover {
   animation: gradient-x 3s ease infinite;
 }
 
-/* Gradient text helper */
+/* Glow pulse animations - Ocean Blue Theme */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.3),
+                0 0 40px rgba(0, 212, 170, 0.2),
+                0 0 60px rgba(0, 163, 224, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 212, 170, 0.5),
+                0 0 60px rgba(0, 212, 170, 0.3),
+                0 0 90px rgba(0, 163, 224, 0.2);
+  }
+}
+
+@keyframes glow-pulse-soft {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(0, 212, 170, 0.4))
+            drop-shadow(0 0 20px rgba(0, 163, 224, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(0, 212, 170, 0.6))
+            drop-shadow(0 0 40px rgba(0, 163, 224, 0.4));
+  }
+}
+
+@keyframes float-glow {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 15px rgba(0, 212, 170, 0.5));
+  }
+  50% {
+    transform: translateY(-10px);
+    filter: drop-shadow(0 0 25px rgba(0, 212, 170, 0.7));
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse-soft {
+  animation: glow-pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-float-glow {
+  animation: float-glow 4s ease-in-out infinite;
+}
+
+/* Icon glow effect - Ocean Blue */
+.icon-glow {
+  filter: drop-shadow(0 0 10px rgba(0, 212, 170, 0.5))
+          drop-shadow(0 0 20px rgba(0, 163, 224, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.icon-glow:hover {
+  filter: drop-shadow(0 0 20px rgba(0, 212, 170, 0.8))
+          drop-shadow(0 0 40px rgba(0, 163, 224, 0.5));
+}
+
+/* Gradient border glow - Ocean Blue */
+.gradient-border-glow {
+  position: relative;
+}
+
+.gradient-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--ocean-accent), var(--ocean-secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border-glow:hover::before {
+  opacity: 1;
+}
+
+/* Gradient text helper - Ocean Blue */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, var(--ocean-accent), var(--ocean-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -261,10 +393,12 @@ a:hover {
 /* Docs-specific styles */
 .prose ul li::marker {
   font-size: 1.1em;
+  color: var(--ocean-accent);
 }
 
 .prose ol li::marker {
   font-weight: 600;
+  color: var(--ocean-accent);
 }
 
 /* Better spacing for nested lists */
@@ -287,11 +421,11 @@ a:hover {
 }
 
 .prose thead {
-  background-color: #13131a;
+  background-color: var(--dark-surface);
 }
 
 .prose tbody tr {
-  border-bottom: 1px solid #1f1f29;
+  border-bottom: 1px solid var(--dark-border);
 }
 
 .prose tbody tr:last-child {
@@ -307,11 +441,11 @@ a:hover {
 /* Better code block styling in docs */
 .prose pre code {
   background: transparent;
-  color: #a0a0b0;
+  color: var(--dark-text-secondary);
   text-shadow: none;
 }
 
-/* Callout boxes (if needed) */
+/* Callout boxes - Ocean Blue Theme */
 .callout {
   border-left: 4px solid;
   padding-left: 1rem;
@@ -319,24 +453,24 @@ a:hover {
   padding-bottom: 0.5rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  background-color: #13131a;
+  background-color: var(--dark-surface);
   border-radius: 0 0.375rem 0.375rem 0;
 }
 
 .callout.info {
-  border-left-color: #6366f1;
+  border-left-color: var(--ocean-accent);
 }
 
 .callout.warning {
-  border-left-color: #f59e0b;
+  border-left-color: #F59E0B;
 }
 
 .callout.error {
-  border-left-color: #ef4444;
+  border-left-color: #EF4444;
 }
 
 .callout.success {
-  border-left-color: #10b981;
+  border-left-color: var(--ocean-secondary);
 }
 
 /* Remove any unwanted borders from grid/flex layouts */

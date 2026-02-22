@@ -7,13 +7,13 @@ interface ViewToggleProps {
 
 export default function ViewToggle({ viewMode, onViewModeChange }: ViewToggleProps) {
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-dark-border bg-dark-surface p-1">
+    <div className="flex items-center gap-2 rounded-lg border border-[#1F1F29] bg-[#13131A] p-1">
       <button
         onClick={() => onViewModeChange('grid')}
         className={`rounded px-3 py-2 text-sm font-medium transition-colors ${
           viewMode === 'grid'
-            ? 'bg-brand-primary text-white'
-            : 'text-dark-text-secondary hover:text-dark-text-primary'
+            ? 'bg-[#00A3E0] text-white'
+            : 'text-[#94A3B8] hover:text-white'
         }`}
         title="Grid view"
       >
@@ -30,8 +30,8 @@ export default function ViewToggle({ viewMode, onViewModeChange }: ViewTogglePro
         onClick={() => onViewModeChange('list')}
         className={`rounded px-3 py-2 text-sm font-medium transition-colors ${
           viewMode === 'list'
-            ? 'bg-brand-primary text-white'
-            : 'text-dark-text-secondary hover:text-dark-text-primary'
+            ? 'bg-[#00A3E0] text-white'
+            : 'text-[#94A3B8] hover:text-white'
         }`}
         title="List view"
       >

@@ -5,12 +5,13 @@ import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 
+// Ocean Blue themed gradients
 const gradients = [
-  '#3b82f6, #06b6d4',
-  '#a855f7, #ec4899',
-  '#22c55e, #10b981',
-  '#f97316, #ef4444',
-  '#6366f1, #a855f7',
+  '#00a3e0, #00d4aa', // Ocean blue to cyan
+  '#00d4aa, #38bdf8', // Cyan to light blue
+  '#00a3e0, #38bdf8', // Ocean blue to light blue
+  '#0ea5e9, #00d4aa', // Sky to cyan
+  '#06b6d4, #3b82f6', // Cyan to blue
 ];
 
 const useCases = t.usecases.cases.map((useCase: any, index: number) => ({
@@ -19,12 +20,16 @@ const useCases = t.usecases.cases.map((useCase: any, index: number) => ({
 }));
 ---
 
-<section class="py-20 bg-dark-bg">
+<section class="py-20 bg-dark-bg relative overflow-hidden">
+  {/* Background glow */}
+  <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-ocean-500/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-ocean-600/5 rounded-full blur-3xl -z-10"></div>
+  
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="mx-auto max-w-3xl text-center mb-16">
       <h2 class="text-4xl font-bold mb-4">
-        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+        <span class="bg-gradient-to-r from-ocean-600 to-ocean-500 bg-clip-text text-transparent">
           {t.usecases.title}
         </span>
       </h2>
@@ -37,19 +42,19 @@ const useCases = t.usecases.cases.map((useCase: any, index: number) => ({
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       {useCases.map((useCase: any, index: number) => (
         <div
-          class="group relative overflow-hidden rounded-xl border border-dark-border bg-dark-surface p-8 transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-1"
+          class="group relative overflow-hidden rounded-2xl border border-dark-border bg-dark-surface p-8 transition-all duration-300 hover:border-ocean-500/50 hover:shadow-2xl hover:shadow-ocean-500/20 hover:-translate-y-1"
           style={`animation-delay: ${index * 100}ms`}
         >
-          <!-- Icon with gradient background -->
+          {/* Icon with gradient background */}
           <div
-            class="mb-6 flex h-16 w-16 items-center justify-center rounded-lg text-4xl shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3"
+            class="mb-6 flex h-16 w-16 items-center justify-center rounded-xl text-4xl shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3"
             style={`background: linear-gradient(135deg, ${useCase.gradient})`}
           >
             {useCase.icon}
           </div>
 
           <!-- Title -->
-          <h3 class="mb-3 text-2xl font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">
+          <h3 class="mb-3 text-2xl font-semibold text-dark-text-primary group-hover:text-ocean-500 transition-colors">
             {useCase.title}
           </h3>
 
@@ -59,30 +64,33 @@ const useCases = t.usecases.cases.map((useCase: any, index: number) => ({
           </p>
 
           <!-- Example -->
-          <div class="rounded-lg bg-dark-bg/50 p-4 border border-dark-border/50 group-hover:border-brand-primary/30 transition-colors">
+          <div class="rounded-xl bg-dark-bg/50 p-4 border border-dark-border/50 group-hover:border-ocean-500/30 transition-colors">
             <p class="text-sm text-dark-text-secondary italic leading-relaxed">
               "{useCase.example}"
             </p>
           </div>
 
-          <!-- Animated glow effect -->
-          <div class="absolute inset-0 -z-10 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Animated glow effect */}
+          <div class="absolute inset-0 -z-10 bg-gradient-to-br from-ocean-500/5 to-ocean-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
       ))}
     </div>
 
     <!-- Platform Support Banner -->
-    <div class="rounded-lg border border-dark-border bg-gradient-to-r from-dark-surface to-dark-bg p-8">
-      <div class="text-center">
-        <h3 class="text-2xl font-semibold mb-4">{t.usecases.platforms.title}</h3>
+    <div class="rounded-2xl border border-dark-border bg-gradient-to-r from-dark-surface to-dark-bg p-8 relative overflow-hidden">
+      {/* Subtle glow */}
+      <div class="absolute inset-0 bg-gradient-to-r from-ocean-500/5 via-transparent to-ocean-500/5"></div>
+      
+      <div class="relative text-center">
+        <h3 class="text-2xl font-semibold mb-4 text-dark-text-primary">{t.usecases.platforms.title}</h3>
         <p class="text-dark-text-secondary mb-6">
           {t.usecases.platforms.subtitle}
         </p>
 
         <!-- Platform badges -->
-        <div class="flex flex-wrap items-center justify-center gap-4">
+        <div class="flex flex-wrap items-center justify-center gap-3">
           {t.usecases.platforms.items.map((platform: string) => (
-            <div class="rounded-lg bg-dark-surface border border-dark-border px-4 py-2 text-sm font-medium">
+            <div class="rounded-xl bg-dark-bg border border-ocean-500/20 px-4 py-2 text-sm font-medium text-dark-text-primary hover:border-ocean-500/50 hover:bg-ocean-500/5 transition-all duration-300">
               {platform}
             </div>
           ))}

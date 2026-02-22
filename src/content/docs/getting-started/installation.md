@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Step-by-step guide to installing Skill Seekers on your system
+description: Step-by-step guide to installing Skill Seekers v3.1.0 on your system
 section: getting-started
 order: 2
 ---
@@ -9,7 +9,7 @@ order: 2
 
 **Time:** 15-30 minutes total (including all installations)
 
-**Result:** Working Skill Seekers installation ready to create your first Claude skill
+**Result:** Working Skill Seekers v3.1.0 installation ready to create AI skills
 
 ## Prerequisites
 
@@ -35,10 +35,25 @@ pip install skill-seekers[all]     # For all platforms
 **Verify installation:**
 ```bash
 skill-seekers --version
-# Should show: skill-seekers 2.7.0 or higher
+# Should show: skill-seekers 3.1.0 or higher
 ```
 
-## Method 2: Install from Source
+## Method 2: Install with uv (Fastest)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package manager:
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install Skill Seekers
+uv tool install skill-seekers
+
+# Verify
+skill-seekers --version
+```
+
+## Method 3: Install from Source
 
 For development or the latest features:
 
@@ -120,9 +135,34 @@ pip install -e ".[all]"
 skill-seekers --version
 ```
 
-## Set Up API Keys
+## Optional: Install Claude Code (Recommended)
 
-Skill Seekers can enhance skills using AI. Set up your API key:
+Claude Code enables **free local AI enhancement** (uses your Claude Max subscription):
+
+```bash
+# Install via Homebrew (macOS)
+brew install claude
+
+# Or via npm
+npm install -g @anthropic/claude-code
+
+# Verify
+claude --version
+```
+
+**Why install Claude Code?**
+- ✅ **FREE enhancement** (no API costs)
+- ✅ **Local processing** (faster, more private)
+- ✅ **Same quality** as API mode
+
+Without Claude Code, you can still:
+- ✅ Scrape documentation perfectly
+- ✅ Package skills for all platforms
+- ✅ Use API enhancement (~$0.15-$0.30/skill)
+
+## Set Up API Keys (Optional)
+
+For API-based enhancement or upload, set up your API key:
 
 ### For Claude (Anthropic)
 
@@ -150,6 +190,36 @@ Add the export command to your shell profile (`~/.bashrc`, `~/.zshrc`, or `~/.ba
 echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
 source ~/.bashrc
 ```
+
+## Verify Your Setup
+
+Run the built-in check:
+
+```bash
+skill-seekers doctor
+```
+
+This will verify:
+- ✅ Python version
+- ✅ Skill Seekers installation
+- ✅ Git availability
+- ✅ Optional: Claude Code
+- ✅ Optional: API keys
+
+## Docker Installation (Alternative)
+
+Run Skill Seekers without installing Python:
+
+```bash
+# Pull the image
+docker pull skillseekers/skill-seekers:latest
+
+# Run
+docker run -v $(pwd):/data skillseekers/skill-seekers:latest \
+  create https://react.dev --target claude --output /data/react/
+```
+
+See [Docker Deployment](/docs/deployments/docker) for details.
 
 ## Troubleshooting
 
@@ -181,8 +251,16 @@ Use `--user` flag:
 pip install --user skill-seekers
 ```
 
+### macOS: "claude command not found"
+
+Claude Code may not be in your PATH. Add it:
+
+```bash
+export PATH="$HOME/.claude/bin:$PATH"
+```
+
 ## Next Steps
 
 - [Quick Start Guide](/docs/getting-started/quick-start) - Create your first skill in 5 minutes
+- [Your First Skill](/docs/getting-started/first-skill) - Deep dive tutorial
 - [Browse Configs](/configs) - Explore pre-built configurations
-- [Features Overview](/docs/about/features) - Learn what Skill Seekers can do

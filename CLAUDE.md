@@ -24,29 +24,32 @@ This file provides guidance to Claude Code when working with the **skillseekersw
 ### Core Framework
 - **Astro 5.16.6** - SSR-enabled static site generator
 - **React 18.3.1** - Interactive components
-- **TypeScript** - Type safety
+- **TypeScript** - Type safety with strict mode
 
 ### Styling & UI
 - **Tailwind CSS 4.1.18** - Utility-first CSS framework
 - **@tailwindcss/typography** - Prose styling for documentation
+- **Dark Mode** - Class-based dark mode support (`darkMode: 'class'`)
+- **Custom Theme** - Extended color palette (dark theme, brand colors), custom animations
 
 ### Backend & APIs
 - **Vercel Adapter** - SSR deployment on Vercel Edge
-- **GitHub OAuth** - Admin authentication
-- **GitHub API** - Issue management, repository commits
-- **Upstash Redis + Rate Limiting** - API rate limiting
+- **GitHub OAuth** - Admin authentication (cookie-based sessions)
+- **GitHub API** - Issue management to `skill-seekers-configs` repo, not `Skill_Seekers` repo
+- **Upstash Redis** - API rate limiting (30 requests/hour for admin endpoints)
 
 ### Monitoring & Analytics
-- **Sentry** - Error tracking and monitoring
+- **Sentry** - Error tracking and monitoring (client + server config)
 - **Vercel Analytics** - Web analytics
 
 ### Testing
 - **Vitest 4.0.16** - Unit and integration tests
 - **Testing Library** - React component testing
 - **jsdom** - DOM testing environment
+- **Coverage** - v8 provider with text/json/html reports
 
 ### Build & Dev Tools
-- **Vite** - Build tool
+- **Vite** - Build tool with path alias (`@` → `./src`)
 - **npm** - Package manager
 
 ## Project Structure
@@ -102,6 +105,92 @@ skillseekersweb/
 ├── .env.example            # Environment variables template
 └── README.md               # Project documentation
 ```
+
+## Code Architecture
+
+### Content Collections
+
+The project uses Astro's content collections for structured content:
+
+**Collections:**
+- `docs/` - English documentation with frontmatter schema
+- `docs-zh/` - Chinese documentation with same schema
+- `blog/` - English blog posts (planned)
+- `blog-zh/` - Chinese blog posts (planned)
+
+**Schema Fields:**
+- `title` - Page title
+- `description` - Meta description
+- `section` - Top-level category (about, getting-started, tutorials, manual, guides, cli, reference, community)
+- `subsection` - Optional sub-category (scraping, codebase-analysis, enhancement, platforms, advanced)
+- `order` - Optional ordering number
+- `draft` - Optional draft status (default: false)
+
+**Location:** `src/content/config.ts`
+
+### Authentication Architecture
+
+**Admin authentication uses cookie-based sessions:**
+1. User initiates OAuth via `/api/auth/github`
+2. GitHub redirects to `/api/auth/callback` with code
+3. Callback exchanges code for access token
+4. Fetches user profile from GitHub API
+5. Checks username against `ADMIN_GITHUB_USERNAMES` whitelist
+6. Sets `gh_admin_session` cookie with base64-encoded user data
+7. Protected endpoints verify cookie and decode session
+
+**Security Note:** Current implementation uses base64 encoding. Consider signed/encrypted tokens for production.
+
+**Protected Endpoints:**
+- `/api/admin/submissions` - List pending configs
+- `/api/admin/approve` - Approve and commit config
+- `/api/admin/reject` - Reject and close issue
+- `/api/admin/debug` - Debug configuration
+
+### Rate Limiting
+
+Uses Upstash Redis for API rate limiting:
+
+**Configuration:** `src/utils/ratelimit.ts`
+- Admin endpoints: 30 requests/hour per user
+- Public endpoints: 10 requests/15 minutes per IP
+
+**Applied to:**
+- All `/api/admin/*` endpoints
+- `/api/submit-config` endpoint
+
+### Internationalization (i18n)
+
+**Structure:**
+- Translation files: `src/i18n/translations/{en,zh}.json`
+- Helper functions: `src/i18n/utils.ts`
+- URL structure: `/` (English), `/zh/*` (Chinese)
+
+**Key Functions:**
+- `getTranslation(lang, keyPath)` - Get nested translation value
+- `getLangFromUrl(url)` - Extract language from URL path
+- `useTranslatedPath(lang)` - Create localized paths
+
+**Routing:**
+- `prefixDefaultLocale: false` - No `/en/` prefix for English
+- Dynamic routes: `[...slug].astro` handles both languages
+
+### GitHub Integration
+
+**Target Repository:** `yusufkaraaslan/skill-seekers-configs` (NOT `Skill_Seekers`)
+
+**Workflow:**
+1. Config submission creates issue with labels: `config-submission`, `needs-review`
+2. Admin reviews via `/admin` dashboard
+3. Approval commits config to `configs/` directory in `skill-seekers-configs` repo
+4. Rejection closes issue with reason comment
+
+**API Operations:**
+- List issues by label
+- Create commits with GitHub API
+- Add/remove issue labels
+- Post comments
+- Close issues
 
 ## Key Features
 
@@ -218,6 +307,33 @@ npx tsc --noEmit             # Check TypeScript files
 npm run lint                 # Run linter
 ```
 
+### Path Aliases
+
+The project uses path aliases for cleaner imports:
+
+```typescript
+// Instead of: import { foo } from '../../../utils/api'
+// Use: import { foo } from '@/utils/api'
+```
+
+**Configuration:**
+- TypeScript: Handled by `astro/tsconfigs/strict` base config
+- Vitest: Configured in `vitest.config.ts`
+- Alias: `@` → `./src`
+
+### Styling Architecture
+
+**Tailwind Configuration:**
+- Dark mode: Class-based (`class` strategy)
+- Custom colors: `dark.*` (background, surface, border, text), `brand.*` (primary, secondary, success, warning)
+- Custom animations: `gradient`, `fade-in`, `slide-in`
+- Typography plugin: For documentation prose styling
+
+**Global Styles:** `src/styles/global.css`
+- Tailwind directives
+- Custom CSS variables (if any)
+- Font imports (Inter, JetBrains Mono)
+
 ## Environment Variables
 
 Required environment variables (see `.env.example`):
@@ -281,25 +397,27 @@ npm run build               # Builds to dist/
 
 ## Integration with Skill_Seekers
 
-This website integrates with the [Skill_Seekers](https://github.com/yusufkaraaslan/Skill_Seekers) repository:
+This website integrates with the [skill-seekers-configs](https://github.com/yusufkaraaslan/skill-seekers-configs) repository (separate from the main [Skill_Seekers](https://github.com/yusufkaraaslan/Skill_Seekers) PyPI package repository):
 
 **Config Submission Flow:**
 1. User validates config on `/configs` page
 2. Clicks "Submit to GitHub"
-3. Creates GitHub Issue with labels: `config-submission`, `needs-review`
+3. Creates GitHub Issue in `skill-seekers-configs` repo with labels: `config-submission`, `needs-review`
 4. Admin reviews via `/admin` dashboard
 5. On approval:
-   - Config committed to `Skill_Seekers/configs/[name].json`
+   - Config committed to `skill-seekers-configs/configs/[name].json`
    - Issue labeled `approved` and closed
 6. On rejection:
    - Issue labeled `rejected` and closed with reason
 
 **GitHub API Operations:**
-- List issues with label `config-submission`
-- Create commits to `Skill_Seekers` repository
+- List issues with label `config-submission` from `skill-seekers-configs`
+- Create commits to `skill-seekers-configs` repository
 - Add labels to issues
 - Post comments on issues
 - Close issues
+
+**Important:** The admin dashboard interacts with the `skill-seekers-configs` repository for config management, not the main `Skill_Seekers` package repository.
 
 ## Common Tasks
 
@@ -475,11 +593,63 @@ npm test
 **Problem:** DOM-related test errors
 **Solution:** Ensure `jsdom` environment is configured in `vitest.config.ts`
 
+## Development Patterns
+
+### Component Organization
+
+**React Components:** `src/components/react/`
+- Use TypeScript with proper typing
+- Include `.test.tsx` files alongside components
+- Export named components (avoid default exports for better refactoring)
+
+**Astro Components:** `src/components/astro/`
+- Organized by feature: `landing/`, `docs/`, `layout/`
+- Can import and use React components via `client:*` directives
+
+**Common Patterns:**
+- Error boundaries: Use `ErrorBoundary.tsx` for React error handling
+- SEO components: `JsonLd.astro` for structured data
+- Layout composition: `BaseLayout.astro` for consistent page structure
+
+### API Endpoint Patterns
+
+**File-based routing:** `src/pages/api/**/*.ts`
+
+**Standard structure:**
+```typescript
+import type { APIRoute } from 'astro';
+
+export const GET: APIRoute = async ({ request }) => {
+  // 1. Validate auth (if protected)
+  // 2. Apply rate limiting
+  // 3. Process request
+  // 4. Return JSON response
+};
+```
+
+**Error handling:**
+- Always return JSON responses
+- Use appropriate HTTP status codes
+- Include error messages in response body
+
+### Content Management
+
+**Adding documentation:**
+1. Create `.md` file in `src/content/docs/` or `src/content/docs-zh/`
+2. Add frontmatter with required fields
+3. Content automatically available via `[...slug].astro` dynamic route
+4. No manual routing configuration needed
+
+**Frontmatter best practices:**
+- Include meaningful `description` for SEO
+- Use appropriate `section` and `subsection`
+- Set `order` for manual sorting within sections
+
 ## Best Practices
 
 ### Do's ✅
 
-- Run all tests before committing (`npm test`)
+- Run all tests before committing (`npm test` or `npm test -- --run`)
 - Update documentation when adding features
 - Add tests for new components/utilities
 - Use TypeScript types for all new code
@@ -487,6 +657,8 @@ npm test
 - Test admin features in local development before production
 - Keep environment variables secure (never commit `.env`)
 - Update Chinese translations when modifying English content
+- Use path alias `@/` for cleaner imports
+- Apply rate limiting to new public endpoints
 
 ### Don'ts ❌
 
@@ -497,6 +669,8 @@ npm test
 - Don't modify production environment variables without testing
 - Don't add admin users without verification
 - Don't deploy without testing preview URLs first
+- Don't confuse `skill-seekers-configs` repo with `Skill_Seekers` package repo
+- Don't use default exports in React components (use named exports)
 
 ## Related Projects
 
@@ -512,9 +686,61 @@ npm test
 - **Tailwind CSS Docs:** https://tailwindcss.com/docs
 - **Vercel Docs:** https://vercel.com/docs
 
+## Quick Reference
+
+### Key Files to Reference
+
+**Configuration:**
+- `astro.config.mjs` - Astro, integrations, i18n config
+- `vitest.config.ts` - Test configuration
+- `tailwind.config.ts` - Theme, colors, animations
+- `tsconfig.json` - TypeScript settings
+- `src/content/config.ts` - Content collection schemas
+
+**Core Utilities:**
+- `src/i18n/utils.ts` - Translation functions
+- `src/utils/ratelimit.ts` - Rate limiting configuration
+- `src/utils/types.ts` - Shared TypeScript types
+- `src/utils/api.ts` - API helper functions
+
+**Authentication:**
+- `src/pages/api/auth/github.ts` - OAuth initiation
+- `src/pages/api/auth/callback.ts` - OAuth callback handler
+- `src/pages/api/auth/logout.ts` - Session cleanup
+
+**Admin Endpoints:**
+- `src/pages/api/admin/submissions.ts` - List configs
+- `src/pages/api/admin/approve.ts` - Approve config
+- `src/pages/api/admin/reject.ts` - Reject config
+- `src/pages/api/admin/debug.ts` - Debug info
+
+### Common Commands Quick Reference
+
+```bash
+# Development
+npm install                       # First time setup
+npm run dev                       # Start dev server (localhost:4321)
+
+# Testing
+npm test                          # Run tests (watch mode)
+npm test -- --run                 # Run tests once (CI mode)
+npm run test:coverage             # With coverage report
+
+# Type Checking
+npx astro check                   # Check Astro files
+npx tsc --noEmit                  # Check TypeScript files
+
+# Building
+npm run build                     # Production build → dist/
+npm run preview                   # Preview build locally
+
+# Deployment
+git push origin main              # Auto-deploys to Vercel
+```
+
 ---
 
-**Last Updated:** 2026-02-03
+**Last Updated:** 2026-02-11
 **Astro Version:** 5.16.6
 **React Version:** 18.3.1
 **Deployment:** Vercel Edge (SSR)

@@ -27,12 +27,16 @@ const codeExamples = [
 ];
 ---
 
-<section class="py-20 bg-dark-surface border-y border-dark-border">
+<section class="py-20 bg-dark-surface border-y border-dark-border relative overflow-hidden">
+  {/* Background glow */}
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-ocean-500/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-ocean-600/5 rounded-full blur-3xl -z-10"></div>
+  
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="mx-auto max-w-3xl text-center mb-16">
       <h2 class="text-4xl font-bold mb-4">
-        <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+        <span class="bg-gradient-to-r from-ocean-600 to-ocean-500 bg-clip-text text-transparent">
           {t.quickstart.title}
         </span>
       </h2>
@@ -46,15 +50,15 @@ const codeExamples = [
       {codeExamples.map((example, index) => (
         <div class="relative group" style={`animation-delay: ${index * 150}ms`}>
           <!-- Step number badge -->
-          <div class="absolute -top-4 -left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary text-lg font-bold text-white shadow-lg shadow-brand-primary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+          <div class="absolute -top-4 -left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-ocean-600 to-ocean-500 text-lg font-bold text-white shadow-lg shadow-ocean-500/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
             {index + 1}
           </div>
 
           <!-- Code block -->
-          <div class="rounded-xl border border-dark-border bg-dark-bg overflow-hidden transition-all duration-300 hover:border-brand-primary hover:shadow-2xl hover:shadow-brand-primary/20 hover:-translate-y-1">
+          <div class="rounded-2xl border border-dark-border bg-dark-bg overflow-hidden transition-all duration-300 hover:border-ocean-500/50 hover:shadow-2xl hover:shadow-ocean-500/20 hover:-translate-y-1 h-full">
             <!-- Header -->
             <div class="border-b border-dark-border bg-dark-surface px-4 py-3 transition-colors group-hover:bg-dark-surface/80">
-              <h3 class="text-lg font-semibold text-dark-text-primary mb-1 group-hover:text-brand-primary transition-colors">
+              <h3 class="text-lg font-semibold text-dark-text-primary mb-1 group-hover:text-ocean-500 transition-colors">
                 {example.title}
               </h3>
               <p class="text-sm text-dark-text-secondary">
@@ -65,7 +69,7 @@ const codeExamples = [
             <!-- Code -->
             <div class="relative p-4">
               <button
-                class="copy-btn absolute top-6 right-6 rounded-md bg-dark-surface border border-dark-border px-3 py-1.5 text-xs text-dark-text-secondary hover:text-brand-primary hover:border-brand-primary hover:bg-dark-border transition-all duration-200 hover:scale-105"
+                class="copy-btn absolute top-6 right-6 rounded-md bg-dark-surface border border-dark-border px-3 py-1.5 text-xs text-dark-text-secondary hover:text-ocean-500 hover:border-ocean-500 hover:bg-ocean-500/10 transition-all duration-200 hover:scale-105"
                 data-copy={example.code}
               >
                 {t.common.copy}
@@ -79,41 +83,41 @@ const codeExamples = [
 
     <!-- Additional installation methods -->
     <div class="mx-auto max-w-4xl">
-      <div class="rounded-xl border border-dark-border bg-dark-bg p-8 hover:border-brand-primary/50 transition-colors duration-300">
-        <h3 class="text-xl font-semibold mb-6 text-center bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+      <div class="rounded-2xl border border-dark-border bg-dark-bg p-8 hover:border-ocean-500/30 transition-colors duration-300 shadow-xl shadow-ocean-500/5">
+        <h3 class="text-xl font-semibold mb-6 text-center bg-gradient-to-r from-ocean-600 to-ocean-500 bg-clip-text text-transparent">
           {t.quickstart.installOptions.title}
         </h3>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- PyPI -->
-          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-success hover:shadow-lg hover:shadow-brand-success/10">
+          <div class="group rounded-xl bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-ocean-500 hover:shadow-lg hover:shadow-ocean-500/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-success transition-colors">{t.quickstart.installOptions.pypi.title}</h4>
-              <span class="text-xs bg-brand-success/20 text-brand-success px-2 py-1 rounded-full">{t.quickstart.installOptions.pypi.badge}</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-ocean-500 transition-colors">{t.quickstart.installOptions.pypi.title}</h4>
+              <span class="text-xs bg-ocean-500/20 text-ocean-500 px-2 py-1 rounded-full">{t.quickstart.installOptions.pypi.badge}</span>
             </div>
             <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.pypi.code}</code>
           </div>
 
           <!-- uv -->
-          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/10">
+          <div class="group rounded-xl bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-ocean-400 hover:shadow-lg hover:shadow-ocean-400/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-primary transition-colors">{t.quickstart.installOptions.uv.title}</h4>
-              <span class="text-xs bg-brand-primary/20 text-brand-primary px-2 py-1 rounded-full">{t.quickstart.installOptions.uv.badge}</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-ocean-400 transition-colors">{t.quickstart.installOptions.uv.title}</h4>
+              <span class="text-xs bg-ocean-400/20 text-ocean-400 px-2 py-1 rounded-full">{t.quickstart.installOptions.uv.badge}</span>
             </div>
             <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.uv.code}</code>
           </div>
 
           <!-- Source -->
-          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-secondary hover:shadow-lg hover:shadow-brand-secondary/10">
+          <div class="group rounded-xl bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-ocean-300 hover:shadow-lg hover:shadow-ocean-300/10">
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-secondary transition-colors">{t.quickstart.installOptions.source.title}</h4>
-              <span class="text-xs bg-brand-secondary/20 text-brand-secondary px-2 py-1 rounded-full">{t.quickstart.installOptions.source.badge}</span>
+              <h4 class="font-semibold text-dark-text-primary group-hover:text-ocean-300 transition-colors">{t.quickstart.installOptions.source.title}</h4>
+              <span class="text-xs bg-ocean-300/20 text-ocean-300 px-2 py-1 rounded-full">{t.quickstart.installOptions.source.badge}</span>
             </div>
             <code class="block text-sm font-mono text-dark-text-secondary">{t.quickstart.installOptions.source.code}</code>
           </div>
 
           <!-- MCP -->
-          <div class="group rounded-lg bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-warning hover:shadow-lg hover:shadow-brand-warning/10">
+          <div class="group rounded-xl bg-dark-surface border border-dark-border p-4 transition-all duration-300 hover:border-brand-warning hover:shadow-lg hover:shadow-brand-warning/10">
             <div class="flex items-center justify-between mb-2">
               <h4 class="font-semibold text-dark-text-primary group-hover:text-brand-warning transition-colors">{t.quickstart.installOptions.mcp.title}</h4>
               <span class="text-xs bg-brand-warning/20 text-brand-warning px-2 py-1 rounded-full">{t.quickstart.installOptions.mcp.badge}</span>
@@ -128,7 +132,7 @@ const codeExamples = [
     <div class="mt-12 text-center">
       <a
         href="/docs/getting-started/installation"
-        class="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-transform hover:scale-105"
+        class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-ocean-500/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-ocean-500/40"
       >
         {t.quickstart.cta}
         <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,8 +152,10 @@ const codeExamples = [
         await navigator.clipboard.writeText(text);
         const originalText = btn.textContent;
         btn.textContent = btn.getAttribute('data-copied') || 'Copied!';
+        btn.classList.add('text-ocean-500', 'border-ocean-500');
         setTimeout(() => {
           btn.textContent = originalText;
+          btn.classList.remove('text-ocean-500', 'border-ocean-500');
         }, 2000);
       }
     });

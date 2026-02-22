@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  {/* Strand 1: Code - main diagonal */}
+  <path d="M50 30 L75 30 L100 55 L125 80 L150 105 L175 130 L175 155 L150 155 L125 130 L100 105 L75 80 L50 55 Z" fill="#00a3e0" opacity="0.9"/>
+  
+  {/* Strand 2: Docs - offset */}
+  <path d="M80 25 L105 25 L105 45 L130 70 L130 90 L155 115 L155 135 L130 135 L105 110 L80 85 L55 60 L55 40 Z" fill="#00d4aa" opacity="0.85"/>
+  
+  {/* Strand 3: Circuit - accent */}
+  <path d="M30 70 L55 70 L80 95 L105 120 L130 145 L155 170 L180 170 L180 195 L155 195 L130 170 L105 145 L80 120 L55 95 L30 70 Z" fill="#38bdf8" opacity="0.8"/>
+  
+  {/* Circuit nodes */}
+  <circle cx="65" cy="65" r="10" fill="#00d4aa" opacity="0.95"/>
+  <circle cx="115" cy="115" r="10" fill="#00a3e0" opacity="0.95"/>
+  <circle cx="165" cy="165" r="10" fill="#38bdf8" opacity="0.95"/>
+  
+  {/* Connecting lines */}
+  <line x1="75" y1="75" x2="105" y2="105" stroke="#00d4aa" stroke-width="3" opacity="0.6"/>
+  <line x1="125" y1="125" x2="155" y2="155" stroke="#00a3e0" stroke-width="3" opacity="0.6"/>
+</svg>

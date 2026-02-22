@@ -6,7 +6,6 @@ import { fetchConfigs } from '../utils/api';
 
 export const prerender = false;
 
-// Fetch configs dynamically (always fresh from API)
 const configs = await fetchConfigs();
 ---
 
@@ -18,44 +17,44 @@ const configs = await fetchConfigs();
   <ConfigGallery client:load initialConfigs={configs} />
 
   <!-- Submit Config Section -->
-  <section class="py-20 bg-dark-bg border-t border-dark-border">
+  <section class="py-20 bg-[#0A0A0F] border-t border-[#1F1F29]">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4">
-          <span class="bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent">
+        <h2 class="text-4xl font-bold mb-4" style="font-family: 'Space Grotesk', sans-serif;">
+          <span class="bg-gradient-to-r from-[#00A3E0] to-[#00D4AA] bg-clip-text text-transparent">
             Share Your Config
           </span>
         </h2>
-        <p class="text-xl text-dark-text-secondary max-w-3xl mx-auto">
+        <p class="text-xl text-[#94A3B8] max-w-3xl mx-auto" style="font-family: 'Inter', sans-serif;">
           Created a config for a framework not listed here? Share it with the community!
         </p>
       </div>
 
       <!-- Info Banner -->
       <div class="max-w-4xl mx-auto mb-12">
-        <div class="bg-gradient-to-r from-brand-primary/10 to-brand-secondary/10 border border-brand-primary/30 rounded-xl p-8">
+        <div class="bg-gradient-to-r from-[#00A3E0]/10 to-[#00D4AA]/10 border border-[#00A3E0]/30 rounded-xl p-8">
           <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
             <div class="flex-shrink-0 text-5xl">
               📤
             </div>
             <div class="flex-1">
-              <h3 class="text-2xl font-semibold mb-2">How to Submit</h3>
-              <ol class="text-dark-text-secondary space-y-2">
-                <li className="flex items-start">
-                  <span className="text-brand-primary mr-2">1.</span>
+              <h3 class="text-2xl font-semibold text-white mb-2" style="font-family: 'Space Grotesk', sans-serif;">How to Submit</h3>
+              <ol class="text-[#94A3B8] space-y-2" style="font-family: 'Inter', sans-serif;">
+                <li class="flex items-start">
+                  <span class="text-[#00A3E0] mr-2">1.</span>
                   <span>Validate your config using the tool below</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-brand-primary mr-2">2.</span>
+                <li class="flex items-start">
+                  <span class="text-[#00A3E0] mr-2">2.</span>
                   <span>Click "Copy & Submit to GitHub" when valid</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-brand-primary mr-2">3.</span>
+                <li class="flex items-start">
+                  <span class="text-[#00A3E0] mr-2">3.</span>
                   <span>Paste your config in the GitHub issue that opens</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="text-brand-primary mr-2">4.</span>
+                <li class="flex items-start">
+                  <span class="text-[#00A3E0] mr-2">4.</span>
                   <span>We'll review and add it to the official gallery!</span>
                 </li>
               </ol>
@@ -63,7 +62,8 @@ const configs = await fetchConfigs();
             <div class="flex-shrink-0">
               <a
                 href="/docs/guides/submit-config"
-                class="inline-flex items-center px-6 py-3 bg-dark-surface hover:bg-dark-border border border-dark-border rounded-lg text-sm font-medium text-dark-text-primary transition-all duration-300 hover:scale-105"
+                class="inline-flex items-center px-6 py-3 bg-[#13131A] hover:bg-[#1F1F29] border border-[#1F1F29] rounded-lg text-sm font-medium text-white transition-all duration-300 hover:scale-105"
+                style="font-family: 'Inter', sans-serif;"
               >
                 📖 Detailed Guide
                 <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,24 +81,24 @@ const configs = await fetchConfigs();
       <!-- Additional Info -->
       <div class="max-w-4xl mx-auto mt-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+          <div class="text-center p-6 bg-[#13131A] border border-[#1F1F29] rounded-lg">
             <div class="text-3xl mb-3">⚡</div>
-            <h4 class="font-semibold mb-2">Quick Review</h4>
-            <p class="text-sm text-dark-text-secondary">
+            <h4 class="font-semibold text-white mb-2" style="font-family: 'Space Grotesk', sans-serif;">Quick Review</h4>
+            <p class="text-sm text-[#94A3B8]" style="font-family: 'Inter', sans-serif;">
               We review submissions within 24-48 hours
             </p>
           </div>
-          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+          <div class="text-center p-6 bg-[#13131A] border border-[#1F1F29] rounded-lg">
             <div class="text-3xl mb-3">✅</div>
-            <h4 class="font-semibold mb-2">Quality Checked</h4>
-            <p class="text-sm text-dark-text-secondary">
+            <h4 class="font-semibold text-white mb-2" style="font-family: 'Space Grotesk', sans-serif;">Quality Checked</h4>
+            <p class="text-sm text-[#94A3B8]" style="font-family: 'Inter', sans-serif;">
               All configs are tested before adding
             </p>
           </div>
-          <div class="text-center p-6 bg-dark-surface border border-dark-border rounded-lg">
+          <div class="text-center p-6 bg-[#13131A] border border-[#1F1F29] rounded-lg">
             <div class="text-3xl mb-3">🎉</div>
-            <h4 class="font-semibold mb-2">Get Credit</h4>
-            <p class="text-sm text-dark-text-secondary">
+            <h4 class="font-semibold text-white mb-2" style="font-family: 'Space Grotesk', sans-serif;">Get Credit</h4>
+            <p class="text-sm text-[#94A3B8]" style="font-family: 'Inter', sans-serif;">
               Your GitHub profile listed as contributor
             </p>
           </div>

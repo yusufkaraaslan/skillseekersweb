@@ -1,56 +1,77 @@
 ---
-// Hero section with animated gradient background
+// Hero section with Code Weaver icon and glow pulse animation
 import { getLangFromUrl, getTranslations } from '../../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 ---
 
-<section class="relative overflow-hidden bg-dark-bg py-20 sm:py-32">
-  <!-- Animated gradient background -->
+<section class="relative overflow-hidden bg-dark-bg py-16 sm:py-24 lg:py-32">
+  {/* Animated gradient background */}
   <div class="absolute inset-0 -z-10">
-    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/20 via-brand-secondary/20 to-transparent opacity-80"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-primary/10 via-transparent to-transparent animate-pulse"></div>
-    <!-- Animated orbs -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-ocean-600/10 via-ocean-500/5 to-transparent opacity-80"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-ocean-600/10 via-transparent to-transparent animate-pulse"></div>
+    {/* Animated glow orbs */}
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-ocean-500/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-ocean-600/20 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-ocean-500/10 rounded-full blur-3xl animate-pulse"></div>
   </div>
 
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-4xl text-center">
-      <!-- Badge -->
-      <div class="mb-8 inline-flex items-center space-x-2 rounded-full bg-dark-surface/80 backdrop-blur-sm border border-dark-border px-4 py-2 text-sm shadow-lg animate-fade-in-up">
-        <svg class="h-4 w-4 text-brand-success animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+    <div class="mx-auto max-w-5xl text-center">
+      
+      {/* Code Weaver Icon with Glow */}
+      <div class="mb-12 flex justify-center animate-fade-in-up">
+        <div class="relative">
+          {/* Glow backdrop */}
+          <div class="absolute inset-0 bg-ocean-500/30 rounded-full blur-3xl animate-glow-pulse w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+          
+          {/* Icon container - using external SVG */}
+          <div class="relative w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 animate-float-glow">
+            <img 
+              src="/icon.svg" 
+              alt="Skill Seekers" 
+              class="w-full h-full object-contain drop-shadow-2xl"
+              style="filter: drop-shadow(0 0 20px rgba(0, 212, 170, 0.5));"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Badge */}
+      <div class="mb-6 inline-flex items-center space-x-2 rounded-full bg-dark-surface/80 backdrop-blur-sm border border-ocean-500/30 px-4 py-2 text-sm shadow-lg shadow-ocean-500/10 animate-fade-in-up">
+        <svg class="h-4 w-4 text-ocean-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
         </svg>
         <span class="text-dark-text-secondary">{t.hero.badge.version}</span>
-        <span class="text-dark-text-secondary">•</span>
+        <span class="text-ocean-500">•</span>
         <span class="text-dark-text-secondary">{t.hero.badge.tests}</span>
-        <span class="text-dark-text-secondary">•</span>
+        <span class="text-ocean-500">•</span>
         <span class="text-dark-text-secondary">{t.hero.badge.license}</span>
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl animate-fade-in-up" style="animation-delay: 100ms; color: #ffffff !important;">
-        {t.hero.headline.part1}
-        <span class="block" style="background: linear-gradient(to right, #6366f1, #8b5cf6, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+      {/* Main Headline */}
+      <h1 class="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl animate-fade-in-up" style="animation-delay: 100ms;">
+        <span class="text-dark-text-primary">{t.hero.headline.part1}</span>
+        <span class="block mt-2" style="background: linear-gradient(135deg, #00a3e0, #00d4aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
           {t.hero.headline.part2}
         </span>
-        {t.hero.headline.part3}
       </h1>
 
-      <!-- Subheadline -->
-      <p class="mb-10 text-xl text-dark-text-secondary sm:text-2xl">
+      {/* Subheadline */}
+      <p class="mb-10 text-lg text-dark-text-secondary sm:text-xl max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 200ms;">
         {t.hero.subheadline}
       </p>
 
-      <!-- CTA Buttons -->
+      {/* CTA Buttons */}
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up" style="animation-delay: 300ms">
         <a
           href="/docs/getting-started/installation"
-          class="group inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-brand-primary to-brand-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/60 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
+          class="group relative inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-ocean-500/30 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-ocean-500/40 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 focus:ring-offset-dark-bg overflow-hidden"
         >
-          {t.hero.cta.getStarted}
+          {/* Button glow effect */}
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+          <span class="relative">{t.hero.cta.getStarted}</span>
           <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
@@ -58,20 +79,20 @@ const t = getTranslations(lang);
 
         <a
           href="/configs"
-          class="inline-flex items-center justify-center rounded-lg border-2 border-dark-border bg-dark-surface/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-dark-text-primary transition-all duration-300 hover:bg-dark-surface hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/20 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-dark-bg"
+          class="group inline-flex items-center justify-center rounded-xl border-2 border-ocean-500/30 bg-dark-surface/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-dark-text-primary transition-all duration-300 hover:bg-ocean-500/10 hover:border-ocean-500 hover:shadow-lg hover:shadow-ocean-500/20 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 focus:ring-offset-dark-bg"
         >
           {t.hero.cta.browseConfigs}
         </a>
       </div>
 
-      <!-- Quick Install -->
-      <div class="mx-auto max-w-2xl">
-        <div class="rounded-lg bg-dark-surface border border-dark-border p-4">
+      {/* Quick Install */}
+      <div class="mx-auto max-w-2xl animate-fade-in-up" style="animation-delay: 400ms">
+        <div class="rounded-xl bg-dark-surface/80 backdrop-blur-sm border border-ocean-500/20 p-4 shadow-lg shadow-ocean-500/5">
           <div class="flex items-center justify-between mb-2">
             <span class="text-sm font-medium text-dark-text-secondary">{t.hero.quickInstall.label}</span>
             <button
               id="copy-install-btn"
-              class="text-sm text-brand-primary hover:text-brand-secondary transition-colors"
+              class="text-sm text-ocean-500 hover:text-ocean-400 transition-colors font-medium"
               data-copy="pip install skill-seekers"
               data-copied-text={t.hero.quickInstall.copied}
               data-copy-text={t.hero.quickInstall.copy}
@@ -79,37 +100,37 @@ const t = getTranslations(lang);
               {t.hero.quickInstall.copy}
             </button>
           </div>
-          <code class="block text-left font-mono text-sm text-dark-text-primary">
-            <span class="text-brand-secondary">$</span> pip install skill-seekers
+          <code class="block text-left font-mono text-sm text-dark-text-primary bg-dark-bg/50 rounded-lg p-3 border border-ocean-500/10">
+            <span class="text-ocean-500">$</span> pip install skill-seekers
           </code>
         </div>
       </div>
 
-      <!-- Social Proof -->
-      <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-dark-text-secondary">
-        <div class="flex items-center space-x-2">
-          <svg class="h-5 w-5 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
+      {/* Social Proof */}
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm text-dark-text-secondary animate-fade-in-up" style="animation-delay: 500ms">
+        <div class="flex items-center space-x-2 bg-dark-surface/50 rounded-full px-4 py-2 border border-ocean-500/10">
+          <svg class="h-5 w-5 text-ocean-500" fill="currentColor" viewBox="0 0 20 20">
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
           </svg>
-          <span>{t.hero.socialProof.tests}</span>
+          <span class="font-medium">{t.hero.socialProof.tests}</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <svg class="h-5 w-5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20">
+        <div class="flex items-center space-x-2 bg-dark-surface/50 rounded-full px-4 py-2 border border-ocean-500/10">
+          <svg class="h-5 w-5 text-ocean-600" fill="currentColor" viewBox="0 0 20 20">
             <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
           </svg>
-          <span>{t.hero.socialProof.platforms}</span>
+          <span class="font-medium">{t.hero.socialProof.platforms}</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <svg class="h-5 w-5 text-brand-secondary" fill="currentColor" viewBox="0 0 20 20">
+        <div class="flex items-center space-x-2 bg-dark-surface/50 rounded-full px-4 py-2 border border-ocean-500/10">
+          <svg class="h-5 w-5 text-ocean-500" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
           </svg>
-          <span>{t.hero.socialProof.sources}</span>
+          <span class="font-medium">{t.hero.socialProof.sources}</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <svg class="h-5 w-5 text-brand-success" fill="currentColor" viewBox="0 0 20 20">
+        <div class="flex items-center space-x-2 bg-dark-surface/50 rounded-full px-4 py-2 border border-ocean-500/10">
+          <svg class="h-5 w-5 text-ocean-400" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
           </svg>
-          <span>{t.hero.socialProof.time}</span>
+          <span class="font-medium">{t.hero.socialProof.time}</span>
         </div>
       </div>
     </div>
@@ -126,8 +147,10 @@ const t = getTranslations(lang);
     if (text) {
       await navigator.clipboard.writeText(text);
       copyBtn.textContent = copiedText || 'Copied!';
+      copyBtn.classList.add('text-ocean-400');
       setTimeout(() => {
         copyBtn.textContent = copyText || 'Copy';
+        copyBtn.classList.remove('text-ocean-400');
       }, 2000);
     }
   });

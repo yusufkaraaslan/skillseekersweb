@@ -10,14 +10,17 @@ This file provides essential guidance for AI coding agents working with the **sk
 - **Live Site:** https://skillseekersweb.com
 - **Type:** Astro + React SSR web application
 - **Deployment:** Vercel Edge (automatic via GitHub integration)
-- **Status:** Production (v0.0.1)
+- **Package Version:** 0.0.1
+- **Status:** Production
 
 ### Purpose
 
-1. **Admin Dashboard** (`/admin`) - Review and approve user-submitted skill-seekers configurations via GitHub Issues
-2. **Documentation Hub** (`/docs`) - Comprehensive guides for using skill-seekers package
-3. **Config Gallery** (`/configs`) - Browse, validate, and submit preset configurations
-4. **Internationalization** - Support for English (`en`) and Chinese (`zh`) languages
+1. **Landing Page** (`/`) - Marketing site with feature showcase, quick start guide, and stats
+2. **Admin Dashboard** (`/admin`) - Review and approve user-submitted skill-seekers configurations via GitHub Issues
+3. **Documentation Hub** (`/docs`) - Comprehensive guides for using skill-seekers package (45+ markdown files)
+4. **Blog** (`/blog`) - Release announcements, tutorials, and guides
+5. **Config Gallery** (`/configs`) - Browse, validate, and submit preset configurations
+6. **Internationalization** - Support for English (`en`) and Chinese (`zh`) languages
 
 ## Technology Stack
 
@@ -30,12 +33,19 @@ This file provides essential guidance for AI coding agents working with the **sk
 - **Tailwind CSS 4.1.18** - Utility-first CSS framework
 - **@tailwindcss/typography** - Prose styling for documentation
 - **@tailwindcss/vite** - Vite plugin for Tailwind CSS
-- Custom color palette defined in `tailwind.config.ts` with dark mode support
+- **Dark Mode** - Class-based strategy (`darkMode: 'class'`), dark theme by default
+- **Custom Theme** - Extended color palette:
+  - `dark.bg`: #0a0a0f
+  - `dark.surface`: #13131a
+  - `dark.border`: #1f1f29
+  - `brand.primary`: #6366f1 (Indigo-500)
+  - `brand.secondary`: #8b5cf6 (Purple-500)
+- **Custom Animations** - fade-in, slide-in, gradient, float effects
 
 ### Backend & APIs
 - **@astrojs/vercel** - SSR adapter for Vercel Edge
-- **GitHub OAuth** - Admin authentication via `@api/auth/*` endpoints
-- **GitHub API** - Issue management and repository commits
+- **GitHub OAuth** - Admin authentication via `/api/auth/*` endpoints (cookie-based sessions)
+- **GitHub API** - Issue management and repository commits to `skill-seekers-configs` repo
 - **Upstash Redis + @upstash/ratelimit** - API rate limiting
 
 ### Monitoring & Analytics
@@ -47,9 +57,10 @@ This file provides essential guidance for AI coding agents working with the **sk
 - **@testing-library/react** - React component testing
 - **@testing-library/jest-dom** - DOM assertions
 - **jsdom** - DOM testing environment
+- **Coverage** - v8 provider with text/json/html reports
 
 ### Build Tools
-- **Vite** - Build tool (via Astro)
+- **Vite** - Build tool (via Astro) with path alias (`@` → `./src`)
 - **npm** - Package manager
 
 ## Project Structure
@@ -61,6 +72,9 @@ skillseekersweb/
 │   │   ├── index.astro         # Homepage
 │   │   ├── admin.astro         # Admin dashboard (requires GitHub auth)
 │   │   ├── configs.astro       # Config gallery & submission
+│   │   ├── blog/               # Blog pages
+│   │   │   ├── index.astro
+│   │   │   └── [...slug].astro # Dynamic blog routes
 │   │   ├── docs/               # Documentation pages
 │   │   │   ├── index.astro
 │   │   │   ├── getting-started.astro
@@ -68,6 +82,7 @@ skillseekersweb/
 │   │   ├── zh/                 # Chinese translations (mirrors English structure)
 │   │   │   ├── index.astro
 │   │   │   ├── configs.astro
+│   │   │   ├── blog/
 │   │   │   └── docs/
 │   │   └── api/                # API routes (SSR endpoints)
 │   │       ├── auth/           # GitHub OAuth endpoints
@@ -85,37 +100,49 @@ skillseekersweb/
 │   │   │   ├── AdminDashboard.tsx
 │   │   │   ├── ConfigValidator.tsx
 │   │   │   ├── ConfigGallery.tsx
-│   │   │   └── ErrorBoundary.tsx
+│   │   │   ├── ConfigCard.tsx
+│   │   │   ├── ConfigDetailModal.tsx
+│   │   │   ├── ConfigFilters.tsx
+│   │   │   ├── ConfigSearch.tsx
+│   │   │   ├── ErrorBoundary.tsx
+│   │   │   ├── FeatureMatrix.tsx
+│   │   │   ├── LanguageSwitcher.tsx
+│   │   │   └── ViewToggle.tsx
 │   │   ├── astro/              # Astro static components
 │   │   │   ├── layout/         # Header, Footer
-│   │   │   ├── landing/        # Hero, Stats, UseCases
-│   │   │   └── docs/           # Sidebar, TableOfContents
+│   │   │   ├── landing/        # Hero, Stats, UseCases, About, QuickStart, Sources
+│   │   │   ├── docs/           # Sidebar, TableOfContents
+│   │   │   └── blog/           # BlogCard, BlogList
 │   │   └── seo/                # SEO components (JsonLd.astro)
 │   ├── content/                # Content collections
 │   │   ├── config.ts           # Content collection schemas
 │   │   ├── docs/               # English documentation (45+ markdown files)
-│   │   └── docs-zh/            # Chinese translations (9/45 complete)
+│   │   ├── docs-zh/            # Chinese translations (9/45 complete)
+│   │   ├── blog/               # English blog posts
+│   │   └── blog-zh/            # Chinese blog posts
 │   ├── layouts/                # Page layouts
 │   │   ├── BaseLayout.astro    # Root layout with SEO, i18n
 │   │   └── DocsLayout.astro    # Documentation page layout
 │   ├── styles/                 # Global styles
-│   │   └── global.css
+│   │   └── global.css          # Tailwind imports, prose customization, animations
 │   ├── utils/                  # Utility functions
 │   │   ├── ratelimit.ts        # Rate limiting with Upstash
 │   │   ├── api.ts              # API utilities
 │   │   └── types.ts            # Shared TypeScript types
 │   ├── i18n/                   # Internationalization
 │   │   ├── translations/       # Translation JSON files
-│   │   │   ├── en.json
-│   │   │   └── zh.json
+│   │   │   ├── en.json         # English translations
+│   │   │   └── zh.json         # Chinese translations
 │   │   ├── utils.ts            # i18n utility functions
 │   │   └── useTranslations.ts  # React hook for translations
 │   └── test/                   # Test utilities
 │       └── setup.ts            # Vitest setup (mocks, cleanup)
-├── public/                     # Static assets
+├── public/                     # Static assets (favicon.svg, og-image.png, robots.txt)
 ├── dist/                       # Build output (generated)
 ├── coverage/                   # Test coverage reports (generated)
 ├── .github/workflows/          # GitHub Actions
+│   ├── config-submission-acknowledgment.yml
+│   └── email-notification-template.yml.template
 ├── astro.config.mjs            # Astro configuration (i18n, sitemap, sentry)
 ├── tailwind.config.ts          # Tailwind CSS configuration
 ├── tsconfig.json               # TypeScript configuration
@@ -197,6 +224,7 @@ npm run test:coverage
 - Props interface named `Props` or `{ComponentName}Props`
 - Error boundaries wrap critical components (AdminDashboard, ConfigValidator, ConfigGallery)
 - Use Tailwind classes for styling (no CSS modules)
+- Client-side hydration: Use `client:load` directive in Astro
 
 ### Astro Components
 - Use `---` frontmatter for server-side code
@@ -215,6 +243,7 @@ npm run test:coverage
 - Dark mode is default (`class` strategy)
 - Custom colors: `dark.bg`, `dark.surface`, `brand.primary`, etc.
 - Animations defined in Tailwind config (`animate-fade-in`, `animate-slide-in`)
+- Global styles in `src/styles/global.css` with prose customization
 
 ## Environment Variables
 
@@ -260,6 +289,7 @@ SENTRY_AUTH_TOKEN=sntrys_...                  # For source map upload
 - Routing: `prefixDefaultLocale: false` (English at root)
 - Translation files: `src/i18n/translations/{en,zh}.json`
 - Content collections: `src/content/docs/` and `src/content/docs-zh/`
+- Blog collections: `src/content/blog/` and `src/content/blog-zh/`
 
 **Adding Translations:**
 1. Add key to `src/i18n/translations/en.json`
@@ -268,6 +298,42 @@ SENTRY_AUTH_TOKEN=sntrys_...                  # For source map upload
 
 **Translation Progress:**
 - See `TRANSLATION_PROGRESS.md` for current status (9/45 files complete)
+
+## Content Collections
+
+**Schema:** Defined in `src/content/config.ts`
+
+```typescript
+// Docs schema
+{
+  title: string,
+  description: string,
+  section: enum,        // about, getting-started, tutorials, manual, etc.
+  subsection?: enum,    // scraping, codebase-analysis, etc.
+  order?: number,       // For sorting
+  draft?: boolean,      // Default: false
+}
+
+// Blog schema
+{
+  title: string,
+  description: string,
+  pubDate: date,
+  author: string,       // Default: 'Skill Seekers Team'
+  tags: string[],
+  image?: string,
+  draft: boolean,
+  featured: boolean,
+}
+```
+
+**Collections:**
+- `docs` - English documentation (`src/content/docs/`)
+- `docs-zh` - Chinese documentation (`src/content/docs-zh/`)
+- `blog` - English blog posts (`src/content/blog/`)
+- `blog-zh` - Chinese blog posts (`src/content/blog-zh/`)
+
+**Rendering:** Dynamic routes via `src/pages/docs/[...slug].astro` and `src/pages/blog/[...slug].astro`
 
 ## API Endpoints
 
@@ -306,28 +372,6 @@ Implemented via Upstash Redis:
 
 **Graceful Degradation:** If Upstash not configured, requests are allowed (warning logged).
 
-## Content Collections
-
-**Schema:** Defined in `src/content/config.ts`
-
-```typescript
-// Frontmatter fields
-{
-  title: string,
-  description: string,
-  section: enum,        // about, getting-started, tutorials, etc.
-  subsection?: enum,    // scraping, codebase-analysis, etc.
-  order?: number,       // For sorting
-  draft?: boolean,      // Default: false
-}
-```
-
-**Collections:**
-- `docs` - English documentation (`src/content/docs/`)
-- `docs-zh` - Chinese documentation (`src/content/docs-zh/`)
-
-**Rendering:** Dynamic routes via `src/pages/docs/[...slug].astro`
-
 ## Deployment
 
 ### Vercel Configuration
@@ -354,6 +398,7 @@ Set in Vercel Dashboard → Settings → Environment Variables
 - Validate all user input on server-side
 - Apply rate limiting to all mutation endpoints
 - Use parameterized queries (prevent injection)
+- Filter sensitive data from Sentry events
 
 ### ❌ DON'T:
 - **NEVER** commit `.env` to git
@@ -364,12 +409,12 @@ Set in Vercel Dashboard → Settings → Environment Variables
 
 ## Key Documentation Files
 
-- `CLAUDE.md` - Comprehensive project guidance (read this first)
+- `CLAUDE.md` - Comprehensive project guidance for Claude Code
 - `ADMIN_SETUP.md` - Admin dashboard setup guide
 - `SENTRY_SETUP.md` - Error monitoring setup
 - `RATE_LIMITING.md` - Rate limiting documentation
+- `EMAIL_NOTIFICATIONS_SETUP.md` - Email notification setup (Proton Mail)
 - `TRANSLATION_PROGRESS.md` - i18n translation status
-- `KIMI_HANDOFF.md` - v3.0.0 update tasks (recently completed)
 - `.env.example` - Environment variables template
 
 ## Common Tasks
@@ -396,6 +441,19 @@ npm run dev
 
 # 5. Add Chinese translation (optional)
 touch src/content/docs-zh/category/new-page.md
+```
+
+### Adding a New Blog Post
+
+```bash
+# 1. Create markdown file
+touch src/content/blog/YYYY-MM-DD-post-title.md
+
+# 2. Add frontmatter with pubDate, title, description, tags
+
+# 3. Write content
+
+# 4. Test at http://localhost:4321/blog/post-title
 ```
 
 ### Adding a New API Endpoint
@@ -476,6 +534,8 @@ npm test
 - **Skill_Seekers** - Python package this website supports
   - Repository: https://github.com/yusufkaraaslan/Skill_Seekers
   - PyPI: https://pypi.org/project/skill-seekers/
+- **skill-seekers-configs** - Config repository for community submissions
+  - Repository: https://github.com/yusufkaraaslan/skill-seekers-configs
 
 ## Support & Resources
 
@@ -487,7 +547,8 @@ npm test
 
 ---
 
-**Last Updated:** 2026-02-08
+**Last Updated:** 2026-02-22
 **Astro Version:** 5.16.6
 **React Version:** 18.3.1
+**Tailwind Version:** 4.1.18
 **Deployment:** Vercel Edge (SSR)

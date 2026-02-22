@@ -1,17 +1,17 @@
 ---
 title: Create Your First Skill
-description: Quick hands-on tutorial to create your first AI skill in 5 minutes using Skill Seekers
+description: Quick hands-on tutorial to create your first AI skill in 5 minutes using Skill Seekers v3.1.0
 section: getting-started
-order: 3
+order: 4
 ---
 
 # Create Your First Skill
 
-Learn by doing! This tutorial walks you through creating your first AI skill from documentation in just 5 minutes.
+Learn by doing! This tutorial walks you through creating your first AI skill from documentation using the v3.0+ unified `create` command.
 
 **Prerequisites:** Skill Seekers installed ([Installation Guide](/docs/getting-started/installation))
 
-**Time:** 5 minutes | **Result:** Working Claude skill ready to upload
+**Time:** 5-10 minutes | **Result:** Working Claude skill ready to upload
 
 ---
 
@@ -34,18 +34,18 @@ Make sure Skill Seekers is ready:
 skill-seekers --version
 ```
 
-You should see something like: `Skill Seekers v3.0.0`
+You should see something like: `skill-seekers 3.1.0`
 
 **If not installed:** See [Installation Guide](/docs/getting-started/installation)
 
 ---
 
-## Step 2: Scrape the Documentation
+## Step 2: Create the Skill (Unified Command)
 
 Run this single command:
 
 ```bash
-skill-seekers scrape https://tailwindcss.com/docs/installation --max-pages 50
+skill-seekers create https://tailwindcss.com/docs --target claude --max-pages 50
 ```
 
 **What happens:**
@@ -54,18 +54,22 @@ skill-seekers scrape https://tailwindcss.com/docs/installation --max-pages 50
 3. **Smart categorization** - Organizes content into sections
 4. **Code detection** - Identifies and formats code examples
 5. **SKILL.md generation** - Creates main skill file
+6. **Packaging** - Creates Claude-compatible ZIP
 
 **Progress output:**
 ```
 🔍 Checking for llms.txt...
-📥 Scraping documentation...
+📥 Analyzing source type: documentation website
+🌐 Fetching https://tailwindcss.com/docs
+📄 Scraping documentation...
    ├─ Page 1/50: Installation
    ├─ Page 2/50: Editor Setup
    ├─ Page 3/50: Utility-First Fundamentals
    ...
    └─ Page 50/50: Plugin API
 
-✅ Skill created: output/tailwindcss/SKILL.md
+✅ Skill created: tailwindcss-claude.zip (1.8 MB)
+📦 Format: Claude AI (YAML frontmatter)
 📊 Statistics:
    - Pages: 50
    - Code examples: 127
@@ -80,12 +84,12 @@ skill-seekers scrape https://tailwindcss.com/docs/installation --max-pages 50
 Check the output:
 
 ```bash
-ls output/tailwindcss/
+unzip -l tailwindcss-claude.zip
 ```
 
 **You should see:**
 ```
-output/tailwindcss/
+tailwindcss/
 ├── SKILL.md                    # Main skill file (250-400 lines)
 ├── references/                 # Detailed documentation
 │   ├── utilities/
@@ -103,29 +107,33 @@ output/tailwindcss/
 
 **Preview the skill:**
 ```bash
-head -50 output/tailwindcss/SKILL.md
+# Extract and view
+unzip tailwindcss-claude.zip -d tailwindcss/
+head -50 tailwindcss/tailwindcss/SKILL.md
 ```
 
 ---
 
-## Step 4: Enhance with AI (Optional)
+## Step 4: Enhance with AI (Optional, v3.1.0)
 
-Transform from basic (3/10) to comprehensive (9/10):
+Transform from basic (3/10) to comprehensive (9/10) using workflow presets:
 
-**Option A: Local Enhancement (FREE with Claude Max)**
+**Option A: Default Enhancement**
 ```bash
-skill-seekers enhance output/tailwindcss/
+# Extract, enhance, and repackage
+skill-seekers create https://tailwindcss.com/docs \
+  --target claude \
+  --max-pages 50 \
+  --enhance-workflow default
 ```
 
-Uses your Claude Max subscription - no API costs!
-
-**Option B: API Enhancement (Fast)**
+**Option B: API Documentation Workflow**
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
-skill-seekers enhance output/tailwindcss/ --mode api
+skill-seekers create https://tailwindcss.com/docs \
+  --target claude \
+  --max-pages 50 \
+  --enhance-workflow api-documentation
 ```
-
-**Cost:** ~$0.10-$0.20
 
 **What enhancement does:**
 - Summarizes key concepts
@@ -134,41 +142,18 @@ skill-seekers enhance output/tailwindcss/ --mode api
 - Creates quick reference sections
 - Improves organization
 
-**Time:** 30-60 seconds
+**Time:** Adds 30-60 seconds
+
+**Available workflows:**
+- `default` - Balanced enhancement
+- `minimal` - Fast, light enhancement
+- `security-focus` - Security vulnerability analysis
+- `architecture-comprehensive` - Deep architectural insights
+- `api-documentation` - API-focused documentation
 
 ---
 
-## Step 5: Package the Skill
-
-Package for Claude AI:
-
-```bash
-skill-seekers package output/tailwindcss/ --target claude
-```
-
-**Output:**
-```
-✅ Packaged: tailwindcss-claude.zip (1.8 MB)
-📦 Format: Claude AI (YAML frontmatter)
-📄 Files: 1 SKILL.md + 45 references
-🎯 Ready to upload!
-```
-
-**For other platforms:**
-```bash
-# Google Gemini
-skill-seekers package output/tailwindcss/ --target gemini
-
-# OpenAI ChatGPT
-skill-seekers package output/tailwindcss/ --target openai
-
-# Generic Markdown
-skill-seekers package output/tailwindcss/ --target markdown
-```
-
----
-
-## Step 6: Upload to Claude
+## Step 5: Upload to Claude
 
 **Automatic Upload:**
 ```bash
@@ -185,7 +170,7 @@ skill-seekers upload tailwindcss-claude.zip --target claude
 
 ---
 
-## Step 7: Test Your Skill
+## Step 6: Test Your Skill
 
 Try these prompts in Claude:
 
@@ -206,10 +191,10 @@ Try these prompts in Claude:
 ## What You Just Learned
 
 **Skills covered:**
+- ✅ How to use the unified `create` command
 - ✅ How to scrape documentation websites
-- ✅ How to review generated skills
-- ✅ How to enhance with AI (optional)
-- ✅ How to package for different platforms
+- ✅ How to enhance with AI workflows (v3.1.0)
+- ✅ How to package for Claude AI
 - ✅ How to upload to Claude
 
 **Time investment:** 5 minutes (10-15 with enhancement)
@@ -230,14 +215,14 @@ Skill Seekers includes 24 presets for popular frameworks:
 # List available presets
 skill-seekers list-configs
 
-# Try React
-skill-seekers scrape --config react --max-pages 100
+# Try React with workflow
+skill-seekers create https://react.dev --target claude --max-pages 100 --enhance-workflow default
 
 # Try Vue
-skill-seekers scrape --config vue --max-pages 100
+skill-seekers create https://vuejs.org --target claude --max-pages 100
 
 # Try Django
-skill-seekers scrape --config django --max-pages 150
+skill-seekers create https://docs.djangoproject.com --target claude --max-pages 150
 ```
 
 ### 2. Scrape a GitHub Repository
@@ -245,30 +230,32 @@ skill-seekers scrape --config django --max-pages 150
 Add code analysis to your skills:
 
 ```bash
-skill-seekers github facebook/react --local-repo-path /path/to/react
+skill-seekers create https://github.com/facebook/react --target claude
 ```
 
-**See:** [Analyzing GitHub Tutorial](/docs/tutorials/analyzing-github)
+**See:** [GitHub Analysis Tutorial](/docs/tutorials/docs/github-repos)
 
 ### 3. Extract from PDFs
 
 Turn technical PDFs into searchable skills:
 
 ```bash
-skill-seekers pdf --input manual.pdf --ocr
+skill-seekers create ./manual.pdf --target claude --ocr
 ```
 
-**See:** [Extracting PDFs Tutorial](/docs/tutorials/extracting-pdfs)
+**See:** [Extracting PDFs Tutorial](/docs/tutorials/docs/pdf-manuals)
 
 ### 4. Create Multi-Source Skills
 
 Combine docs + GitHub + PDFs:
 
 ```bash
-skill-seekers unified --config django-complete.json
+skill-seekers create https://docs.djangoproject.com \
+  --github https://github.com/django/django \
+  --target claude
 ```
 
-**See:** [Multi-Source Tutorial](/docs/tutorials/multi-source-skills)
+**See:** [Multi-Source Tutorial](/docs/tutorials/docs/multi-source)
 
 ---
 
@@ -280,31 +267,28 @@ skill-seekers unified --config django-complete.json
 
 **Solution:** Use interactive mode to test selectors:
 ```bash
-skill-seekers scrape https://your-site.com/docs --interactive
+skill-seekers create https://your-site.com/docs --target claude --interactive
 ```
 
 ### "Scraping too slow"
 
 **Solutions:**
 ```bash
-# Use async mode (2-3x faster)
-skill-seekers scrape URL --async
-
-# Reduce pages for testing
-skill-seekers scrape URL --max-pages 10
-
 # Check if llms.txt is available (10x faster!)
 curl https://your-site.com/llms.txt
+
+# Reduce pages for testing
+skill-seekers create URL --target claude --max-pages 10
 ```
 
-### "Enhancement failed"
+### "Enhancement workflow not found"
 
-**Solutions:**
-- **Local mode:** Make sure Claude Code is installed
-- **API mode:** Set `ANTHROPIC_API_KEY` environment variable
-- **Timeout:** Increase with `--timeout 1200` (20 minutes)
+**Problem:** Workflow name doesn't exist
 
-**Full troubleshooting:** [Troubleshooting Guide](/docs/guides/troubleshooting)
+**Solution:** List available workflows:
+```bash
+skill-seekers workflows list
+```
 
 ---
 
@@ -312,17 +296,14 @@ curl https://your-site.com/llms.txt
 
 **Your typical workflow:**
 ```bash
-# 1. Scrape
-skill-seekers scrape https://docs.site.com/ --max-pages 50
+# 1. Create with enhancement (v3.1.0)
+skill-seekers create https://docs.site.com/ \
+  --target claude \
+  --max-pages 50 \
+  --enhance-workflow default
 
-# 2. Enhance (optional)
-skill-seekers enhance output/sitename/
-
-# 3. Package
-skill-seekers package output/sitename/ --target claude
-
-# 4. Upload
-skill-seekers upload sitename-claude.zip
+# 2. Upload
+skill-seekers upload sitename-claude.zip --target claude
 
 # Done! 🎉
 ```
@@ -337,20 +318,19 @@ skill-seekers upload sitename-claude.zip
 ## Next Steps
 
 **Tutorials:**
-- [Scraping Documentation](/docs/tutorials/scraping-docs) - Complete step-by-step guide
-- [Analyzing GitHub](/docs/tutorials/analyzing-github) - Add code analysis
-- [Extracting PDFs](/docs/tutorials/extracting-pdfs) - Work with PDF documentation
-- [Multi-Source Skills](/docs/tutorials/multi-source-skills) - Combine multiple sources
+- [Scraping Documentation](/docs/tutorials/docs/scraping-websites) - Complete step-by-step guide
+- [Analyzing GitHub](/docs/tutorials/docs/github-repos) - Add code analysis
+- [Extracting PDFs](/docs/tutorials/docs/pdf-manuals) - Work with PDF documentation
+- [Multi-Source Skills](/docs/tutorials/docs/multi-source) - Combine multiple sources
 
 **Manual:**
-- [Documentation Scraping](/docs/manual/scraping/documentation) - Advanced techniques
-- [AI Enhancement](/docs/manual/enhancement/ai-enhancement) - Deep dive into enhancement
-- [Multi-Platform Support](/docs/manual/platforms/overview) - Platform-specific guides
+- [Understanding Skills](/docs/getting-started/understanding-skills) - How skills work
+- [AI Enhancement](/docs/manual/enhancement/overview) - Deep dive into enhancement
+- [Enhancement Workflows](/docs/manual/enhancement/workflows) - v3.1.0 workflows
 
 **CLI Reference:**
-- [scrape command](/docs/cli/scrape) - Complete command reference
-- [package command](/docs/cli/package) - Packaging options
-- [upload command](/docs/cli/upload) - Upload automation
+- [create command](/docs/cli/create) - Complete command reference
+- [workflows command](/docs/cli/workflows) - v3.1.0 workflow management
 
 ---
 

@@ -6,11 +6,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 ---
 
-<section class="py-20 bg-dark-surface border-y border-dark-border">
+<section class="py-20 bg-dark-surface border-y border-dark-border relative overflow-hidden">
+  {/* Background glow effect */}
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-ocean-500/5 rounded-full blur-3xl -z-10"></div>
+  
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="mx-auto max-w-3xl text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">
+      <h2 class="text-4xl font-bold mb-6 text-dark-text-primary">
         {t.about.heading}
       </h2>
       <p class="text-xl text-dark-text-secondary leading-relaxed">
@@ -21,86 +24,111 @@ const t = getTranslations(lang);
     <!-- Problem/Solution Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
       <!-- The Problem -->
-      <div class="space-y-6">
-        <div class="inline-flex items-center space-x-2 text-red-400">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-          <h3 class="text-2xl font-bold">{t.about.problem.title}</h3>
+      <div class="space-y-6 p-8 rounded-2xl bg-dark-bg/50 border border-red-500/20 relative overflow-hidden group hover:border-red-500/40 transition-colors duration-300">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative">
+          <div class="inline-flex items-center space-x-2 text-red-400 mb-4">
+            <div class="p-2 bg-red-500/10 rounded-lg">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">{t.about.problem.title}</h3>
+          </div>
+          <ul class="space-y-4 text-dark-text-secondary">
+            <li class="flex items-start space-x-3">
+              <span class="text-red-400 text-xl flex-shrink-0">×</span>
+              <span>{t.about.problem.item1}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-red-400 text-xl flex-shrink-0">×</span>
+              <span>{t.about.problem.item2}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-red-400 text-xl flex-shrink-0">×</span>
+              <span>{t.about.problem.item3}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-red-400 text-xl flex-shrink-0">×</span>
+              <span>{t.about.problem.item4}</span>
+            </li>
+          </ul>
         </div>
-        <ul class="space-y-4 text-dark-text-secondary">
-          <li class="flex items-start space-x-3">
-            <span class="text-red-400 text-xl">×</span>
-            <span>{t.about.problem.item1}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-red-400 text-xl">×</span>
-            <span>{t.about.problem.item2}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-red-400 text-xl">×</span>
-            <span>{t.about.problem.item3}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-red-400 text-xl">×</span>
-            <span>{t.about.problem.item4}</span>
-          </li>
-        </ul>
       </div>
 
       <!-- The Solution -->
-      <div class="space-y-6">
-        <div class="inline-flex items-center space-x-2 text-green-400">
-          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <h3 class="text-2xl font-bold">{t.about.solution.title}</h3>
+      <div class="space-y-6 p-8 rounded-2xl bg-dark-bg/50 border border-ocean-500/20 relative overflow-hidden group hover:border-ocean-500/50 transition-colors duration-300">
+        <div class="absolute inset-0 bg-gradient-to-br from-ocean-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative">
+          <div class="inline-flex items-center space-x-2 text-ocean-500 mb-4">
+            <div class="p-2 bg-ocean-500/10 rounded-lg">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">{t.about.solution.title}</h3>
+          </div>
+          <ul class="space-y-4 text-dark-text-secondary">
+            <li class="flex items-start space-x-3">
+              <span class="text-ocean-500 text-xl flex-shrink-0">✓</span>
+              <span>{t.about.solution.item1}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-ocean-500 text-xl flex-shrink-0">✓</span>
+              <span>{t.about.solution.item2}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-ocean-500 text-xl flex-shrink-0">✓</span>
+              <span>{t.about.solution.item3}</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <span class="text-ocean-500 text-xl flex-shrink-0">✓</span>
+              <span>{t.about.solution.item4}</span>
+            </li>
+          </ul>
         </div>
-        <ul class="space-y-4 text-dark-text-secondary">
-          <li class="flex items-start space-x-3">
-            <span class="text-green-400 text-xl">✓</span>
-            <span>{t.about.solution.item1}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-green-400 text-xl">✓</span>
-            <span>{t.about.solution.item2}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-green-400 text-xl">✓</span>
-            <span>{t.about.solution.item3}</span>
-          </li>
-          <li class="flex items-start space-x-3">
-            <span class="text-green-400 text-xl">✓</span>
-            <span>{t.about.solution.item4}</span>
-          </li>
-        </ul>
       </div>
     </div>
 
     <!-- Key Benefits -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="text-center p-6 bg-dark-bg rounded-xl border border-dark-border hover:border-brand-primary transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/20">
-        <div class="text-5xl mb-4">⚡</div>
-        <h4 class="text-xl font-semibold mb-2">{t.about.benefits.speed.title}</h4>
-        <p class="text-sm text-dark-text-secondary">
-          {t.about.benefits.speed.description}
-        </p>
+      <div class="text-center p-8 bg-dark-bg rounded-2xl border border-dark-border hover:border-ocean-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/10 group relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-ocean-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-ocean-500/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+            ⚡
+          </div>
+          <h4 class="text-xl font-semibold mb-2 text-dark-text-primary">{t.about.benefits.speed.title}</h4>
+          <p class="text-sm text-dark-text-secondary">
+            {t.about.benefits.speed.description}
+          </p>
+        </div>
       </div>
 
-      <div class="text-center p-6 bg-dark-bg rounded-xl border border-dark-border hover:border-brand-primary transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/20">
-        <div class="text-5xl mb-4">🎯</div>
-        <h4 class="text-xl font-semibold mb-2">{t.about.benefits.expertise.title}</h4>
-        <p class="text-sm text-dark-text-secondary">
-          {t.about.benefits.expertise.description}
-        </p>
+      <div class="text-center p-8 bg-dark-bg rounded-2xl border border-dark-border hover:border-ocean-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/10 group relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-ocean-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-ocean-500/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+            🎯
+          </div>
+          <h4 class="text-xl font-semibold mb-2 text-dark-text-primary">{t.about.benefits.expertise.title}</h4>
+          <p class="text-sm text-dark-text-secondary">
+            {t.about.benefits.expertise.description}
+          </p>
+        </div>
       </div>
 
-      <div class="text-center p-6 bg-dark-bg rounded-xl border border-dark-border hover:border-brand-primary transition-all duration-300 hover:shadow-lg hover:shadow-brand-primary/20">
-        <div class="text-5xl mb-4">🔄</div>
-        <h4 class="text-xl font-semibold mb-2">{t.about.benefits.uptodate.title}</h4>
-        <p class="text-sm text-dark-text-secondary">
-          {t.about.benefits.uptodate.description}
-        </p>
+      <div class="text-center p-8 bg-dark-bg rounded-2xl border border-dark-border hover:border-ocean-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-ocean-500/10 group relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-ocean-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="relative">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-ocean-500/10 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+            🔄
+          </div>
+          <h4 class="text-xl font-semibold mb-2 text-dark-text-primary">{t.about.benefits.uptodate.title}</h4>
+          <p class="text-sm text-dark-text-secondary">
+            {t.about.benefits.uptodate.description}
+          </p>
+        </div>
       </div>
     </div>
   </div>

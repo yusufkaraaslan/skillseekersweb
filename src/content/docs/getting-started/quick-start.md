@@ -1,13 +1,13 @@
 ---
 title: Quick Start
-description: Get up and running with Skill Seekers in 5 minutes - create your first AI skill from any documentation source
+description: Get up and running with Skill Seekers v3.1.0 in 5 minutes - create your first AI skill using the unified create command
 section: getting-started
-order: 2
+order: 3
 ---
 
 # Quick Start
 
-Get up and running with Skill Seekers in **5 minutes**. This guide walks you through creating your first AI skill from a documentation website.
+Get up and running with Skill Seekers in **5 minutes** using the new v3.0+ unified `create` command.
 
 ## Prerequisites
 
@@ -15,138 +15,217 @@ Before starting, ensure you have:
 
 - Python 3.10 or higher installed
 - A terminal/command prompt
-- API key for your preferred LLM platform (Claude, Gemini, or OpenAI)
+- Skill Seekers installed (`pip install skill-seekers`)
 
-## Step 1: Install Skill Seekers
-
-```bash
-pip install skill-seekers
-```
-
-Or with uv (faster):
-
-```bash
-uv tool install skill-seekers
-```
-
-Verify the installation:
+## Step 1: Verify Installation
 
 ```bash
 skill-seekers --version
 ```
 
-You should see: `Skill Seekers v3.0.0`
+You should see: `skill-seekers 3.1.0` or higher
 
-## Step 2: Configure Your API Key
+## Step 2: Create Your First Skill (Unified Command)
 
-Set up your LLM platform API key:
+The v3.0+ `create` command works with any source:
 
 ```bash
-skill-seekers config
+# From documentation website
+skill-seekers create https://docs.python-requests.org --target claude
+
+# From GitHub repository
+skill-seekers create https://github.com/psf/requests --target claude
+
+# From PDF file
+skill-seekers create ./manual.pdf --target claude
+
+# From local codebase
+skill-seekers create ./my-project --target claude
 ```
 
-This interactive wizard will:
-1. Prompt for your API key
-2. Test the connection
-3. Save configuration securely
-
-Or set it directly:
+**Let's try a real example with Tailwind CSS:**
 
 ```bash
-export CLAUDE_API_KEY="your-api-key-here"
-```
-
-## Step 3: Create Your First Skill
-
-Let's scrape the documentation for a popular framework. This example uses React:
-
-```bash
-skill-seekers scrape https://react.dev --output react-skill/
+skill-seekers create https://tailwindcss.com/docs --target claude --max-pages 50
 ```
 
 **What happens:**
-- Skill Seekers crawls the React documentation
-- Extracts content from ~50-100 pages
-- Structures it for AI consumption
-- Takes 15-30 minutes depending on site size
+1. Detects source type (documentation website)
+2. Scrapes content from up to 50 pages
+3. Structures it for AI consumption
+4. Packages for Claude AI
+5. Takes 3-5 minutes
 
-**For faster results**, try a smaller site:
-
-```bash
-skill-seekers scrape https://docs.python-requests.org --output requests-skill/
+**Output:**
+```
+✅ Skill created: tailwindcss-claude.zip (2.1 MB)
+📦 Format: Claude AI (YAML frontmatter)
+📄 Pages: 50
+🎯 Ready to upload!
 ```
 
-## Step 4: Enhance with AI
+## Step 3: Enhance with Workflow (v3.1.0)
 
-Transform the scraped content into a production-ready skill:
-
-```bash
-skill-seekers enhance react-skill/ --platform claude
-```
-
-**Enhancement includes:**
-- ✨ AI-optimized descriptions
-- 🏷️ Smart tagging
-- 📚 Curated examples
-- 🔍 Better searchability
-
-## Step 5: Upload to Your Platform
-
-Deploy the skill to your AI platform:
+Transform the skill with AI enhancement using a workflow preset:
 
 ```bash
-skill-seekers upload react-skill/ --platform claude
+# Extract and enhance with default workflow
+skill-seekers create https://tailwindcss.com/docs --target claude --enhance-workflow default
+
+# Or use API documentation workflow
+skill-seekers create https://tailwindcss.com/docs --target claude --enhance-workflow api-documentation
 ```
 
-**Result:** Your skill is now available in Claude AI for immediate use.
+**Available workflows:**
+- `default` - Balanced enhancement
+- `minimal` - Fast, light enhancement  
+- `security-focus` - Security vulnerability analysis
+- `architecture-comprehensive` - Deep architectural insights
+- `api-documentation` - API-focused documentation
 
-## Alternative: GitHub Repository
+## Step 4: Upload to Claude
 
-Prefer analyzing code? Extract a skill from a GitHub repo:
+**Automatic upload:**
+```bash
+export ANTHROPIC_API_KEY="your-api-key-here"
+skill-seekers upload tailwindcss-claude.zip --target claude
+```
+
+**Manual upload:**
+1. Open [Claude.ai](https://claude.ai)
+2. Start a new conversation
+3. Click "Add Knowledge" (📎 icon)
+4. Upload `tailwindcss-claude.zip`
+5. Done!
+
+## Step 5: Test Your Skill
+
+Try these prompts in Claude:
+
+```
+"What are the Tailwind spacing utilities?"
+
+"Show me how to create a responsive navbar with Tailwind"
+
+"Create a card component using Tailwind"
+```
+
+**Result:** Claude responds with accurate, context-aware answers!
+
+---
+
+## Quick Examples for Different Sources
+
+### Documentation Website
 
 ```bash
-skill-seekers github https://github.com/owner/repo --output my-skill/
+skill-seekers create https://react.dev --target langchain
+skill-seekers create https://docs.python.org --target gemini
+skill-seekers create https://vuejs.org --target openai
 ```
 
-## Next Steps
+### GitHub Repository
 
-Now that you've created your first skill:
-
-- **[Create Your First Skill](/docs/getting-started/first-skill)** - Deep dive into skill creation
-- **[Scraping Tutorial](/docs/tutorials/scraping-docs)** - Master documentation scraping
-- **[CLI Reference](/docs/cli/overview)** - Explore all commands
-- **[Configuration Guide](/docs/cli/config)** - Customize Skill Seekers
-
-## Common Issues
-
-### "API key not found"
 ```bash
-skill-seekers config
-# Or set environment variable:
-export CLAUDE_API_KEY="your-key"
+# Public repo
+skill-seekers create https://github.com/facebook/react --target claude
+
+# With C3.x analysis (code patterns)
+skill-seekers create https://github.com/owner/repo --target claude --comprehensive
+
+# Private repo (set GITHUB_TOKEN first)
+export GITHUB_TOKEN="ghp_..."
+skill-seekers create https://github.com/private/repo --target claude
 ```
 
-### "Site requires authentication"
-Use the `--selector` option with custom CSS selectors, or check if the site provides `llms.txt` for faster access.
+### PDF File
 
-### "Out of API credits"
-Try local enhancement (free):
 ```bash
-skill-seekers enhance my-skill/ --method local
+# Basic extraction
+skill-seekers create ./manual.pdf --target claude
+
+# With OCR for scanned documents
+skill-seekers create ./scanned-manual.pdf --target claude --ocr
+
+# Specific page range
+skill-seekers create ./manual.pdf --target claude --pages "1-50"
 ```
+
+### Local Codebase
+
+```bash
+# Basic analysis
+skill-seekers create ./my-project --target claude
+
+# With comprehensive C3.x analysis
+skill-seekers create ./my-project --target claude --comprehensive
+
+# Specific output format
+skill-seekers create ./my-project --target langchain
+```
+
+### Multiple Sources (v3.0+)
+
+```bash
+# Combine documentation + GitHub + PDF in one command
+skill-seekers create https://docs.example.com \
+  --github https://github.com/example/repo \
+  --pdf ./manual.pdf \
+  --target claude
+```
+
+---
 
 ## One-Liner Complete Workflow
 
 For the impatient, here's everything in one command:
 
 ```bash
-skill-seekers scrape https://docs.python-requests.org --output requests/ && \
-skill-seekers enhance requests/ --platform claude && \
-skill-seekers upload requests/ --platform claude
+skill-seekers create https://docs.python-requests.org \
+  --target claude \
+  --enhance-workflow default && \
+skill-seekers upload requests-claude.zip --target claude
 ```
 
-**Total time:** ~20 minutes for a complete, production-ready skill.
+**Total time:** ~10-15 minutes for a complete, production-ready skill.
 
 ---
 
-💡 **Pro Tip:** Check if your target site has an `llms.txt` file (e.g., `https://docs.example.com/llms.txt`). This provides pre-structured documentation and is **10x faster** to process!
+## Next Steps
+
+Now that you've created your first skill:
+
+- **[Your First Skill](/docs/getting-started/first-skill)** - Deep dive into skill creation
+- **[Understanding Skills](/docs/getting-started/understanding-skills)** - How skills work
+- **[Tutorials](/docs/tutorials/docs/scraping-websites)** - Master specific use cases
+- **[CLI Reference](/docs/cli/index)** - Explore all commands
+
+---
+
+## Common Issues
+
+### "API key not found"
+
+```bash
+# Set environment variable
+export ANTHROPIC_API_KEY="your-key"
+
+# Or use local enhancement (free with Claude Code)
+skill-seekers create URL --target claude --enhance-mode local
+```
+
+### "Site requires authentication"
+
+Use the `--selector` option with custom CSS selectors, or check if the site provides `llms.txt` for faster access.
+
+### "Scraping too slow"
+
+```bash
+# Check if llms.txt is available (10x faster!)
+curl https://docs.example.com/llms.txt
+
+# Reduce pages for testing
+skill-seekers create URL --target claude --max-pages 10
+```
+
+💡 **Pro Tip:** Check if your target site has an `llms.txt` file. This provides pre-structured documentation and is **10x faster** to process!

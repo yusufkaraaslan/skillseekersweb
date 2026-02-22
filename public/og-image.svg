@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="50%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00a3e0"/>
+      <stop offset="100%" stop-color="#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="docGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4aa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="circuitGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#00a3e0"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00a3e0"/>
+      <stop offset="100%" stop-color="#00d4aa"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1f2937" stroke-width="0.5" opacity="0.5"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Glow orbs -->
+  <circle cx="200" cy="200" r="150" fill="#00a3e0" opacity="0.08" filter="url(#glow)"/>
+  <circle cx="1000" cy="450" r="180" fill="#00d4aa" opacity="0.08" filter="url(#glow)"/>
+  
+  <!-- Code Weaver Icon (centered, large) -->
+  <g transform="translate(600, 250) scale(1.5)" filter="url(#glow)">
+    <!-- Strand 1: Code -->
+    <path d="M-80 -80 L-60 -80 L-60 -60 L-80 -60 Z" fill="url(#codeGradient)" opacity="0.9"/>
+    <path d="M-60 -60 L-40 -60 L-20 -40 L-20 -20 L-40 -20 L-60 -40 Z" fill="url(#codeGradient)" opacity="0.9"/>
+    <path d="M-20 -20 L0 -20 L20 0 L20 20 L0 20 L-20 0 Z" fill="url(#codeGradient)" opacity="0.9"/>
+    <path d="M20 20 L40 20 L60 40 L60 60 L40 60 L20 40 Z" fill="url(#codeGradient)" opacity="0.9"/>
+    <path d="M60 60 L80 60 L80 80 L60 80 Z" fill="url(#codeGradient)" opacity="0.9"/>
+    
+    <!-- Strand 2: Docs -->
+    <rect x="-55" y="-80" width="30" height="15" rx="3" fill="url(#docGradient)" opacity="0.95"/>
+    <rect x="-55" y="-35" width="50" height="12" rx="2" fill="url(#docGradient)" opacity="0.9"/>
+    <rect x="-55" y="-18" width="40" height="12" rx="2" fill="url(#docGradient)" opacity="0.85"/>
+    <rect x="-15" y="5" width="50" height="12" rx="2" fill="url(#docGradient)" opacity="0.9"/>
+    <rect x="5" y="50" width="30" height="15" rx="3" fill="url(#docGradient)" opacity="0.95"/>
+    
+    <!-- Strand 3: Circuit nodes -->
+    <circle cx="-65" cy="-50" r="6" fill="url(#circuitGradient)" opacity="0.9"/>
+    <circle cx="-25" cy="-10" r="6" fill="url(#circuitGradient)" opacity="0.9"/>
+    <circle cx="15" cy="30" r="6" fill="url(#circuitGradient)" opacity="0.9"/>
+    <circle cx="30" cy="55" r="6" fill="url(#circuitGradient)" opacity="0.9"/>
+    <!-- Connecting lines -->
+    <line x1="-65" y1="-44" x2="-25" y2="-16" stroke="url(#circuitGradient)" stroke-width="2" opacity="0.5"/>
+    <line x1="-25" y1="-4" x2="15" y2="24" stroke="url(#circuitGradient)" stroke-width="2" opacity="0.5"/>
+    <line x1="15" y1="36" x2="30" y2="49" stroke="url(#circuitGradient)" stroke-width="2" opacity="0.5"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="420" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="64" fill="url(#textGradient)">
+    Skill Seekers
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="480" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="400" font-size="32" fill="#94a3b8">
+    AI Skills &amp; RAG Toolkit
+  </text>
+  
+  <!-- Bottom stats -->
+  <text x="600" y="560" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#64748b">
+    1,852 tests • 16 platforms • 24 presets
+  </text>
+</svg>

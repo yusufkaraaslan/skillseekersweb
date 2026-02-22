@@ -15,28 +15,50 @@ const langPrefix = lang === 'zh' ? '/zh' : '';
 
 // Organize docs by section
 const sections = {
-  'getting-started': { title: 'Getting Started', order: 1, docs: [] as CollectionEntry<'docs'>[] },
-  'features': { title: 'Features', order: 2, docs: [] as CollectionEntry<'docs'>[] },
-  'guides': { title: 'Guides', order: 3, docs: [] as CollectionEntry<'docs'>[] },
-  'cli': { title: 'CLI Reference', order: 4, docs: [] as CollectionEntry<'docs'>[] },
+  'about': { title: 'About', order: 1, docs: [] as CollectionEntry<'docs'>[] },
+  'getting-started': { title: 'Getting Started', order: 2, docs: [] as CollectionEntry<'docs'>[] },
+  'tutorials': { title: 'Tutorials', order: 3, docs: [] as CollectionEntry<'docs'>[] },
+  'manual': { title: 'Manual', order: 4, docs: [] as CollectionEntry<'docs'>[] },
   'integrations': { title: 'Integrations', order: 5, docs: [] as CollectionEntry<'docs'>[] },
-  'reference': { title: 'Reference', order: 6, docs: [] as CollectionEntry<'docs'>[] },
-  'community': { title: 'Community', order: 7, docs: [] as CollectionEntry<'docs'>[] },
+  'cli': { title: 'CLI Reference', order: 6, docs: [] as CollectionEntry<'docs'>[] },
+  'reference': { title: 'Reference', order: 7, docs: [] as CollectionEntry<'docs'>[] },
+  'community': { title: 'Community', order: 8, docs: [] as CollectionEntry<'docs'>[] },
+  'features': { title: 'Features', order: 9, docs: [] as CollectionEntry<'docs'>[] },
+  'guides': { title: 'Guides', order: 10, docs: [] as CollectionEntry<'docs'>[] },
+  'deployments': { title: 'Deployments', order: 11, docs: [] as CollectionEntry<'docs'>[] },
 };
 
-// Subsection configuration
-const subsections = {
-  'rag': { title: 'RAG & Vector Databases', order: 1 },
-  'coding': { title: 'AI Coding Assistants', order: 2 },
+// Subsection configuration for tutorials
+const tutorialSubsections = {
+  'rag': { title: 'RAG Pipelines', order: 1 },
+  'ai-assistants': { title: 'AI Assistants', order: 2 },
+  'coding': { title: 'AI Coding', order: 3 },
+  'docs': { title: 'Documentation', order: 4 },
+  'advanced': { title: 'Advanced', order: 5 },
+};
+
+// Subsection configuration for manual
+const manualSubsections = {
+  'concepts': { title: 'Concepts', order: 1 },
+  'scraping': { title: 'Scraping', order: 2 },
+  'enhancement': { title: 'Enhancement', order: 3 },
+  'packaging': { title: 'Packaging', order: 4 },
+  'mcp': { title: 'MCP', order: 5 },
+  'platforms': { title: 'Platforms', order: 6 },
+  'advanced': { title: 'Advanced', order: 7 },
+  'codebase-analysis': { title: 'Codebase Analysis', order: 8 },
+};
+
+// Subsection configuration for integrations
+const integrationSubsections = {
+  'rag': { title: 'RAG & Vector DBs', order: 1 },
+  'coding': { title: 'AI Coding', order: 2 },
 };
 
 // Group docs by section
-const integrationsDocs: CollectionEntry<'docs'>[] = [];
 docs.forEach((doc) => {
   const section = doc.data.section;
-  if (section === 'integrations') {
-    integrationsDocs.push(doc);
-  } else if (sections[section]) {
+  if (sections[section]) {
     sections[section].docs.push(doc);
   }
 });
@@ -96,9 +118,109 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
   <!-- Navigation Content -->
   <nav>
     <div class="space-y-6">
-      {/* Regular Sections */}
-      {orderedSections.map(([key, section]) => (
-        section.docs.length > 0 && (
+      {/* Sections with subsections */}
+      {orderedSections.map(([key, section]) => {
+        if (section.docs.length === 0) return null;
+        
+        // Handle Tutorials section with subsections
+        if (key === 'tutorials') {
+          return (
+            <div>
+              <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
+                {section.title}
+              </h3>
+              {Object.entries(tutorialSubsections).map(([subKey, subSection]) => {
+                const subDocs = section.docs
+                  .filter(d => {
+                    const slugParts = d.slug.split('/');
+                    return slugParts[0] === 'tutorials' && slugParts[1] === subKey;
+                  })
+                  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+                
+                if (subDocs.length === 0) return null;
+                
+                return (
+                  <div class="mb-3">
+                    <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
+                      {subSection.title}
+                    </h4>
+                    <ul class="space-y-1">
+                      {subDocs.map((doc) => {
+                        const isActive = doc.slug === currentSlug;
+                        return (
+                          <li>
+                            <a
+                              href={`${langPrefix}/docs/${doc.slug}`}
+                              class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
+                                isActive
+                                  ? 'bg-brand-primary text-white font-medium'
+                                  : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
+                              }`}
+                            >
+                              {doc.data.title}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+        
+        // Handle Manual section with subsections
+        if (key === 'manual') {
+          return (
+            <div>
+              <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
+                {section.title}
+              </h3>
+              {Object.entries(manualSubsections).map(([subKey, subSection]) => {
+                const subDocs = section.docs
+                  .filter(d => {
+                    const slugParts = d.slug.split('/');
+                    return slugParts[0] === 'manual' && slugParts[1] === subKey;
+                  })
+                  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+                
+                if (subDocs.length === 0) return null;
+                
+                return (
+                  <div class="mb-3">
+                    <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
+                      {subSection.title}
+                    </h4>
+                    <ul class="space-y-1">
+                      {subDocs.map((doc) => {
+                        const isActive = doc.slug === currentSlug;
+                        return (
+                          <li>
+                            <a
+                              href={`${langPrefix}/docs/${doc.slug}`}
+                              class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
+                                isActive
+                                  ? 'bg-brand-primary text-white font-medium'
+                                  : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
+                              }`}
+                            >
+                              {doc.data.title}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+        
+        // Handle Integrations section - flat list, no subsections
+        // Just render all docs in the section
+        return (
           <div>
             <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
               {section.title}
@@ -123,85 +245,8 @@ const orderedSections = Object.entries(sections).sort(([, a], [, b]) => a.order 
               })}
             </ul>
           </div>
-        )
-      ))}
-      
-      {/* Integrations Section with Subsections */}
-      {integrationsDocs.length > 0 && (
-        <div>
-          <h3 class="mb-2 text-sm font-semibold uppercase tracking-wider text-dark-text-secondary break-words">
-            Integrations
-          </h3>
-          
-          {/* RAG & Vector Databases Subsection */}
-          {(() => {
-            const ragDocs = integrationsDocs
-              .filter(d => d.data.subsection === 'rag')
-              .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
-            if (ragDocs.length === 0) return null;
-            return (
-              <div class="mb-3">
-                <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
-                  RAG & Vector DBs
-                </h4>
-                <ul class="space-y-1">
-                  {ragDocs.map((doc) => {
-                    const isActive = doc.slug === currentSlug;
-                    return (
-                      <li>
-                        <a
-                          href={`${langPrefix}/docs/${doc.slug}`}
-                          class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
-                            isActive
-                              ? 'bg-brand-primary text-white font-medium'
-                              : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
-                          }`}
-                        >
-                          {doc.data.title}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            );
-          })()}
-          
-          {/* AI Coding Assistants Subsection */}
-          {(() => {
-            const codingDocs = integrationsDocs
-              .filter(d => d.data.subsection === 'coding')
-              .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
-            if (codingDocs.length === 0) return null;
-            return (
-              <div>
-                <h4 class="mb-1 px-3 text-xs font-medium text-brand-primary uppercase tracking-wider">
-                  AI Coding Assistants
-                </h4>
-                <ul class="space-y-1">
-                  {codingDocs.map((doc) => {
-                    const isActive = doc.slug === currentSlug;
-                    return (
-                      <li>
-                        <a
-                          href={`${langPrefix}/docs/${doc.slug}`}
-                          class={`block rounded px-3 py-2 text-sm transition-colors break-words ${
-                            isActive
-                              ? 'bg-brand-primary text-white font-medium'
-                              : 'text-dark-text-secondary hover:bg-dark-border hover:text-dark-text-primary'
-                          }`}
-                        >
-                          {doc.data.title}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            );
-          })()}
-        </div>
-      )}
+        );
+      })}
     </div>
   </nav>
 </aside>

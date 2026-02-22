@@ -1,13 +1,13 @@
 ---
 title: Features Overview
-description: Complete overview of Skill Seekers features - scraping, analysis, enhancement, multi-platform support, and MCP integration
+description: Complete overview of Skill Seekers features - scraping, analysis, enhancement, multi-platform support, MCP integration, and v3.1.0 workflows
 section: about
 order: 2
 ---
 
 # Features Overview
 
-Skill Seekers v3.0.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
+Skill Seekers v3.1.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
 
 ## 🌐 Input Sources
 
@@ -24,6 +24,7 @@ Skill Seekers v3.0.0 offers comprehensive capabilities for creating AI skills fr
 - **README extraction** - Pulls README files from all directories
 - **Issue tracking** - Optionally includes GitHub issues and releases
 - **Changelog parsing** - Extracts version history and release notes
+- **Three-stream fetcher** (v3.0+) - Code + Docs + Issues streams
 
 ### PDF Extraction
 - **Text extraction** - Extracts text from technical PDFs
@@ -77,6 +78,41 @@ Advanced code analysis features for understanding codebases:
 
 ## 🤖 AI Enhancement
 
+### v3.1.0: Enhancement Workflows
+
+**New workflow system for consistent, reusable enhancement strategies:**
+
+```bash
+# List available workflows
+skill-seekers workflows list
+
+# Use a preset
+skill-seekers create <source> --enhance-workflow security-focus
+
+# Chain multiple workflows
+skill-seekers create <source> --enhance-workflow minimal --enhance-workflow api-documentation
+
+# Create custom workflow
+echo '
+stages:
+  - name: "Security Analysis"
+    prompt: "Analyze for security vulnerabilities..."
+    model: "claude-sonnet-4"
+    temperature: 0.3
+' > my-workflow.yaml
+
+skill-seekers workflows add my-workflow.yaml
+```
+
+**Bundled Presets:**
+| Preset | Purpose |
+|--------|---------|
+| `default` | Balanced enhancement for general use |
+| `minimal` | Light enhancement, fast processing |
+| `security-focus` | Security vulnerability analysis |
+| `architecture-comprehensive` | Deep architectural insights |
+| `api-documentation` | API-focused documentation |
+
 ### Local Enhancement (FREE)
 - **Uses Claude Code** - No API costs! Uses your Claude Max subscription
 - **4 execution modes** - Headless (default), Background, Daemon, Interactive
@@ -118,6 +154,28 @@ Advanced code analysis features for understanding codebases:
 - **Dual transport** - stdio (default) and HTTP (for web-based agents)
 - **Auto-configuration** - `./setup_mcp.sh` configures all detected agents
 
+## ☁️ Cloud Storage (v3.0+)
+
+Upload skills directly to cloud storage:
+
+```bash
+# AWS S3
+skill-seekers cloud upload --provider s3 --bucket my-skills --dir output/react/
+
+# Google Cloud Storage
+skill-seekers cloud upload --provider gcs --bucket my-skills --dir output/react/
+
+# Azure Blob Storage
+skill-seekers cloud upload --provider azure --container my-skills --dir output/react/
+```
+
+Features:
+- Upload/download directories
+- List files with metadata
+- Check file existence
+- Generate presigned URLs
+- Cloud-agnostic interface
+
 ## 📦 Smart Features
 
 ### Automatic llms.txt Detection
@@ -154,9 +212,10 @@ Advanced code analysis features for understanding codebases:
 
 - **1,852 tests** - Comprehensive test coverage, 100% passing
 - **24 preset configs** - Ready-to-use configs for popular frameworks
-- **4 platforms** - Complete multi-LLM support
+- **16 platforms** - Complete multi-platform support (up from 4 in v2.x)
 - **26 MCP tools** - Full Claude Code integration
-- **v3.0.0** - Latest release (February 2026)
+- **5 bundled workflows** - Enhancement presets (v3.1.0)
+- **v3.1.0** - Latest release (February 2026)
 
 ## Next Steps
 
