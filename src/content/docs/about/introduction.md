@@ -1,19 +1,19 @@
 ---
 title: What is Skill Seekers?
-description: Introduction to Skill Seekers - the AI Skill & RAG Toolkit. Transform docs, GitHub repos, PDFs, and codebases into structured AI skills and RAG knowledge for Claude, Gemini, OpenAI, and any LLM platform.
+description: Introduction to Skill Seekers — the data layer for AI systems. Transform 17 source types into structured AI skills and RAG knowledge for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.
 section: about
 order: 1
 ---
 
 # What is Skill Seekers?
 
-**Skill Seekers** is the **AI Skill & RAG Toolkit**. It transforms **documentation websites, GitHub repositories, PDF files, and local codebases** into structured AI skills and RAG-ready knowledge for Claude, Gemini, OpenAI, LangChain, LlamaIndex, Cursor, and any LLM platform.
+**Skill Seekers** is the **data layer for AI systems**. It transforms **17 source types** — documentation websites, GitHub repositories, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for **12+ AI platforms**.
 
 ## The Problem
 
 Building AI systems that truly understand a domain requires extensive preparation:
 
-- **AI Skill Development**: 70% of time is spent preprocessing—scraping docs, analyzing code, extracting patterns
+- **AI Skill Development**: 70% of time is spent preprocessing — scraping docs, analyzing code, extracting patterns
 - **Codebase Onboarding**: Understanding a new project takes weeks of manual analysis
 - **AI Assistant Expertise**: Generic AI responses lack deep framework and codebase knowledge
 - **Multi-format Needs**: Different AI systems need different formats (skills, RAG, coding rules)
@@ -24,85 +24,89 @@ Building AI systems that truly understand a domain requires extensive preparatio
 
 Skill Seekers automates AI skill creation and knowledge preprocessing:
 
-1. **Extract** from any source - docs, GitHub repos, PDFs, local codebases
-2. **Analyze** with deep code parsing (AST analysis, pattern detection, architecture mapping)
-3. **Enhance** with AI to extract best practices, examples, and key concepts (using **v3.1.0 workflow presets**)
-4. **Package** into 16+ output formats (AI skills, RAG pipelines, coding rules, vector DBs)
+1. **Extract** from any of 17 source types — docs, repos, PDFs, videos, notebooks, wikis, and more
+2. **Analyze** with deep code parsing (AST analysis across 27+ languages, pattern detection, architecture mapping)
+3. **Enhance** with any AI agent — Claude, Kimi, Codex, Copilot, OpenCode, or custom agents via unified AgentClient
+4. **Package** into 12+ output platforms (AI skills, RAG pipelines, coding rules, vector DBs)
 5. **Deploy** to any AI system with one command
 
 **Result:** Go from any source to production-ready AI skills in 15-45 minutes, not days.
 
 ## Key Capabilities
 
-### 4 Input Sources
-- **Documentation websites** - Scrape any HTML documentation (Docusaurus, GitBook, ReadTheDocs)
-- **GitHub repositories** - Analyze code structure, patterns, and examples (public & private)
-- **PDF files** - Extract text from technical PDFs with OCR support (scanned docs, manuals, research papers)
-- **Local codebases** - Analyze your own projects, game engines, or internal code (27+ languages)
+### 17 Input Sources
 
-### 16 Output Formats
+| # | Source | CLI |
+|---|--------|-----|
+| 1 | Documentation websites | `skill-seekers create <url>` |
+| 2 | GitHub repositories | `skill-seekers create owner/repo` |
+| 3 | PDF documents | `skill-seekers create file.pdf` |
+| 4 | Local codebases | `skill-seekers create ./path` |
+| 5 | Video (YouTube/local) | `skill-seekers video --url <url>` |
+| 6 | Word (.docx) | `skill-seekers create file.docx` |
+| 7 | EPUB e-books | `skill-seekers create book.epub` |
+| 8 | Jupyter Notebooks | `skill-seekers create file.ipynb` |
+| 9 | OpenAPI/Swagger | `skill-seekers create spec.yaml` |
+| 10 | AsciiDoc | `skill-seekers create file.adoc` |
+| 11 | PowerPoint (.pptx) | `skill-seekers create file.pptx` |
+| 12 | Local HTML | `skill-seekers create file.html` |
+| 13 | RSS/Atom feeds | `skill-seekers create feed.rss` |
+| 14 | Man pages | `skill-seekers create curl.1` |
+| 15 | Confluence wiki | `skill-seekers confluence --space KEY` |
+| 16 | Notion pages | `skill-seekers notion --database-id ID` |
+| 17 | Slack/Discord chat | `skill-seekers chat --export-path dir/` |
+
+### 12+ Output Platforms
+
 | Category | Platforms |
 |----------|-----------|
-| **RAG/Vectors** | LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate |
-| **AI Platforms** | Claude, Gemini, OpenAI |
-| **AI Coding** | Cursor, Windsurf, Cline, Continue.dev |
+| **AI Skills** | Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode |
+| **RAG/Vectors** | LangChain, LlamaIndex, Pinecone, Chroma, FAISS, Haystack, Qdrant, Weaviate |
+| **AI Coding** | Cursor, Windsurf, Cline, Continue.dev, Roo, Aider, Bolt, Kilo |
 | **Generic** | Markdown, JSON, YAML |
 
-### v3.1.0: Enhancement Workflows
+### Agent-Agnostic Enhancement (v3.5.0)
 
-New in v3.1.0: **Workflow presets** for AI enhancement. Choose from bundled presets or create your own:
+All enhancers now support multiple AI agents via the unified `AgentClient`:
 
 ```bash
-# Use a preset workflow
-skill-seekers create https://react.dev --enhance-workflow security-focus
+# Use different AI agents for enhancement
+skill-seekers create https://react.dev --agent kimi
+skill-seekers create https://react.dev --agent codex
+skill-seekers create https://react.dev --agent-cmd "my-custom-agent run"
 
-# Apply multiple workflows
-skill-seekers create https://github.com/owner/repo --enhance-workflow minimal --enhance-workflow api-documentation
-
-# Manage workflows
-skill-seekers workflows list
-skill-seekers workflows show security-focus
+# Enhancement levels control depth
+skill-seekers create https://react.dev --enhance-level 2  # architecture + patterns
 ```
 
-**Bundled presets:** `default`, `minimal`, `security-focus`, `architecture-comprehensive`, `api-documentation`
+**Supported agents:** Claude Code, Kimi, Codex, Copilot, OpenCode, and any custom agent.
 
 ### Intelligent Processing
-- **Smart categorization** - Automatically organizes content into logical sections
-- **Code detection** - Identifies and formats code examples with language tags (27+ languages)
-- **Pattern recognition** - Detects design patterns in codebases (C3.x analysis)
-- **Test extraction** - Extracts real usage examples from test files
-- **How-to generation** - Creates step-by-step tutorials from workflow examples
-- **Signal flow analysis** - Godot game engine event detection
+- **Smart SPA discovery** — Three-layer engine: sitemap.xml, llms.txt, and browser rendering for JavaScript sites
+- **Pattern recognition** — Detects 10 GoF design patterns in codebases (C3.x analysis, 27+ languages + Kotlin)
+- **Test extraction** — Extracts real usage examples from test files
+- **How-to generation** — Creates step-by-step tutorials from workflow examples
+- **Prompt injection detection** — Security workflow scans for injection patterns
 
-### AI Enhancement
-- **Local enhancement** - Uses Claude Code (FREE with Claude Max subscription)
-- **API enhancement** - Uses Claude API for batch processing
-- **Workflow presets** (v3.1.0) - Pre-configured enhancement strategies
-- **Quality improvement** - Transforms basic docs into comprehensive guides (3/10 → 9/10 quality)
-- **Context-aware** - Adds explanations, best practices, and troubleshooting
-
-### MCP Integration
-- **26 MCP tools** for Claude Code Desktop
-- **Multi-agent support** - Claude Code, Cursor, Windsurf, VS Code, IntelliJ
-- **One-command workflows** - Fetch, scrape, enhance, package, upload automatically
+### MCP & Marketplace
+- **40 MCP tools** across 10 categories for Claude Code Desktop, Cursor, and other agents
+- **Marketplace Publisher** — Publish skills to Claude Code plugin marketplace repos
+- **18 agent install paths** — Install skills to any supported AI coding assistant
 
 ## Version
 
-Current version: **v3.1.0** (February 2026)
+Current version: **v3.5.0** (April 2026)
 
 **Latest additions:**
-- Enhancement workflow presets
-- Multiple workflow chaining
-- CLI workflows management
-
-## Who Should Use Skill Seekers?
-
-- **AI Skill Developers** - Create structured skills for Claude, Gemini, OpenAI with deep expertise
-- **Software Engineers** - Analyze unfamiliar codebases, understand architecture and patterns
-- **AI Coding Assistant Users** - Give Cursor, Windsurf, Cline deep framework and project knowledge
-- **Game Developers** - Analyze Godot, Unity, Unreal projects with signal flow and pattern detection
-- **RAG Engineers** - Build production Q&A systems with preprocessed knowledge
-- **Teams** - Combine internal docs + code into unified AI skills and knowledge bases
+- Agent-agnostic architecture (v3.5.0)
+- Marketplace & config publishing (v3.5.0)
+- Smart SPA discovery engine (v3.5.0)
+- Prompt injection detection (v3.5.0)
+- 12 LLM platform targets (v3.4.0)
+- 21 UML architecture diagrams (v3.4.0)
+- 17 source types (v3.3.0)
+- Video scraping pipeline (v3.2.0)
+- **3194+ tests passing**
 
 ## Quick Example
 
@@ -110,31 +114,26 @@ Current version: **v3.1.0** (February 2026)
 # Install
 pip install skill-seekers
 
-# Create skill from any source (v3.0+ unified command)
-skill-seekers create https://react.dev --target langchain
+# Create skill from any source
+skill-seekers create https://react.dev --target claude
+skill-seekers create facebook/react --target langchain
+skill-seekers create manual.pdf --target openai
+skill-seekers create notebook.ipynb --target gemini
 
-# From GitHub repo
-skill-seekers create https://github.com/facebook/react --target claude
+# Use a different AI agent
+skill-seekers create https://react.dev --agent kimi
 
-# From PDF
-skill-seekers create ./manual.pdf --target openai
-
-# From local codebase
-skill-seekers create ./my-project --target langchain
-
-# With workflow enhancement (v3.1.0)
-skill-seekers create https://docs.python.org --target claude --enhance-workflow api-documentation
+# Run diagnostics
+skill-seekers doctor
 ```
-
-**Result:** You now have AI-ready skills from ANY source!
 
 ## Next Steps
 
-- [Installation Guide](/docs/getting-started/installation) - Install Skill Seekers
-- [Your First Skill](/docs/getting-started/first-skill) - Create your first AI skill in 3 steps
-- [Features Overview](/docs/about/features) - Explore all capabilities
-- [Community Showcase](/docs/about/showcase) - See what others have built
+- [Installation Guide](/docs/getting-started/installation) — Install Skill Seekers
+- [Your First Skill](/docs/getting-started/first-skill) — Create your first AI skill in 3 steps
+- [Features Overview](/docs/about/features) — Explore all capabilities
+- [Architecture](/architecture) — View 21 UML architecture diagrams
 
 ---
 
-**Open Source** - MIT License | **Community-Driven** - Contributions welcome!
+**Open Source** — MIT License | **Community-Driven** — Contributions welcome!

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title={isZh ? 'API 参考 - Skill Seekers' : 'API Reference - Skill Seekers'}
+  description={isZh
+    ? 'Skill Seekers 完整 API 参考文档，由 StarUML 生成'
+    : 'Complete Skill Seekers API reference documentation, generated from StarUML'}
+>
+  <div class="bg-dark-bg min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="max-w-4xl mx-auto text-center mb-8">
+        <h1 class="text-4xl font-bold mb-4 text-dark-text-primary">
+          {isZh ? 'API 参考' : 'API Reference'}
+        </h1>
+        <p class="text-xl text-dark-text-secondary mb-6">
+          {isZh
+            ? '完整的类、方法和接口文档，由 StarUML 从源代码生成'
+            : 'Complete class, method, and interface documentation generated from source code via StarUML'}
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+          <a
+            href="/api-reference/index.html"
+            target="_blank"
+            class="inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 text-white font-semibold text-sm hover:scale-105 transition-transform shadow-lg shadow-ocean-500/20"
+          >
+            {isZh ? '在新标签页中打开' : 'Open in New Tab'}
+            <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          <a
+            href="/architecture"
+            class="inline-flex items-center px-5 py-2.5 rounded-xl border border-dark-border bg-dark-surface text-dark-text-secondary font-semibold text-sm hover:text-ocean-500 hover:border-ocean-500 transition-colors"
+          >
+            {isZh ? '查看 UML 图表' : 'View UML Diagrams'}
+          </a>
+        </div>
+      </div>
+
+      <!-- Embedded API Reference -->
+      <div class="max-w-7xl mx-auto rounded-2xl border border-dark-border overflow-hidden shadow-xl">
+        <iframe
+          src="/api-reference/index.html"
+          class="w-full bg-white"
+          style="height: 80vh; min-height: 600px;"
+          title={isZh ? 'Skill Seekers API 参考' : 'Skill Seekers API Reference'}
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

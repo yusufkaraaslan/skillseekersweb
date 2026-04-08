@@ -1,6 +1,6 @@
 ---
 title: MCP Tools Reference
-description: Complete reference for all 26 MCP tools available in Skill Seekers - natural language commands for AI agents
+description: Complete reference for all 40 MCP tools available in Skill Seekers v3.5.0 — natural language commands for AI agents across 10 categories
 section: manual
 subsection: mcp
 order: 2
@@ -8,15 +8,18 @@ order: 2
 
 # MCP Tools Reference
 
-Skill Seekers provides **26 MCP (Model Context Protocol) tools** for Claude Code Desktop and other AI agents. These tools enable natural language commands for skill creation, codebase analysis, and knowledge management.
+Skill Seekers v3.5.0 provides **40 MCP (Model Context Protocol) tools** across 10 categories for Claude Code Desktop, Cursor, and other MCP-compatible AI agents.
 
 ## Overview
 
 MCP tools allow AI agents to:
-- **Create skills** from documentation, code, and PDFs
-- **Analyze codebases** with C3.x pattern detection
-- **Enhance knowledge** with AI-powered improvements
+- **Create skills** from all 17 source types (11 scraping tools)
+- **Analyze codebases** with C3.x pattern detection (27+ languages)
+- **Enhance knowledge** with any AI agent via AgentClient
 - **Manage configurations** for different platforms
+- **Publish to marketplace** — push skills and configs to repos
+- **Sync configs** — crawl sites and update URL lists
+- **Run diagnostics** — doctor command for troubleshooting
 
 All tools work across **5 AI agent platforms**: Claude Code, Cursor, Windsurf, VS Code, and IntelliJ.
 

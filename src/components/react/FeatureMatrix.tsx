@@ -10,9 +10,9 @@ export default function FeatureMatrix({ lang }: FeatureMatrixProps) {
   const [expanded, setExpanded] = useState(false);
   const t = useTranslations(lang);
 
-  // Show first 9 features initially
-  const displayedFeatures = expanded ? t.features.items : t.features.items.slice(0, 9);
-  const hiddenCount = t.features.items.length - 9;
+  // Show first 12 features initially
+  const displayedFeatures = expanded ? t.features.items : t.features.items.slice(0, 12);
+  const hiddenCount = t.features.items.length - 12;
 
   return (
     <section className="py-20 bg-dark-bg relative overflow-hidden" id="feature-matrix">

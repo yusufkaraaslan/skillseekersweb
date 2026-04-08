@@ -1,13 +1,13 @@
 ---
 title: 快速开始
-description: 在 5 分钟内启动并运行 Skill Seekers - 从任何文档源创建您的第一个 AI 技能
+description: 在 5 分钟内启动并运行 Skill Seekers v3.5.0 — 从 17 种源类型中的任何一种创建 AI 技能
 section: getting-started
 order: 2
 ---
 
 # 快速开始
 
-在 **5 分钟** 内启动并运行 Skill Seekers。本指南将引导您从文档网站创建您的第一个 AI 技能。
+在 **5 分钟** 内启动并运行 Skill Seekers v3.5.0。本指南将引导您创建您的第一个 AI 技能。
 
 ## 先决条件
 

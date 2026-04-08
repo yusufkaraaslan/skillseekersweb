@@ -1,6 +1,6 @@
 ---
 title: 概述
-description: 将技能部署到 Claude AI、Google Gemini、OpenAI ChatGPT 或导出为 Markdown
+description: 将技能部署到 12+ AI 平台 — Claude、Gemini、OpenAI、Kimi、DeepSeek、Qwen 等
 section: manual
 subsection: platforms
 order: 1

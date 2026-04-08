@@ -1,6 +1,6 @@
 ---
 title: MCP 工具参考
-description: Skill Seekers 中所有 26 个 MCP 工具的完整参考 - AI 代理的自然语言命令
+description: Skill Seekers v3.5.0 中所有 40 个 MCP 工具的完整参考 — 跨 10 个类别的 AI 代理自然语言命令
 section: manual
 subsection: mcp
 order: 2

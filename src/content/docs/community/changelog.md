@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: Complete version history of Skill Seekers from v0.1.0 to v3.0.0 with all features, changes, fixes, and breaking changes documented
+description: Complete version history of Skill Seekers from v0.1.0 to v3.5.0 with all features, changes, fixes, and breaking changes documented
 section: community
 order: 4
 ---
@@ -14,13 +14,89 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [3.5.0] - 2026-04-01
+
+**Theme:** Agent-agnostic architecture, marketplace pipeline, smart SPA discovery, dynamic routing refactor, and removal of artificial limits. 60+ files changed.
+
 ### Added
+- **Agent-agnostic `AgentClient` abstraction** — all 5 enhancers now support Claude, Kimi, Codex, Copilot, OpenCode, and custom agents
+- **Kimi CLI integration** with stdin piping and output parsing
+- **MarketplacePublisher** — publish skills to Claude Code plugin marketplace repos
+- **MarketplaceManager** — register and manage marketplace repositories
+- **ConfigPublisher** — push configs to registered config source repos
+- **Smart SPA discovery engine** — three-layer discovery: sitemap.xml, llms.txt, SPA nav rendering
+- **`"browser": true` config support** for JavaScript SPA sites
+- **Dynamic routing via `_build_argv()`** — added 7 missing CLI flags
+- **Kotlin language support** for codebase analysis
+- **Headless browser rendering** (`--browser` flag) via Playwright
+- **`skill-seekers doctor` command** — 8 diagnostic checks
+- **Prompt injection check workflow** — scans for injection patterns
+- **6 behavioral UML diagrams** — sequence, activity, and component diagrams
+- **134 new tests** (total: 3194+)
 
 ### Changed
+- Renamed `claude-enhanced` merge mode to `ai-enhanced` (backward compat kept)
+- Removed 118+ hardcoded Claude references across 60+ files
+- Removed 50-file GitHub API analysis limit
+- Removed 100-file config extraction limit
+- Fixed unified scraper default `max_pages` from 100 to 500
 
-### Fixed
+### Security
+- Removed command injection via cloned repo script execution
+- Replaced `git add -A` with targeted staging
+- Clear auth tokens from cached `.git/config`
+- Use `defusedxml` for sitemap XML parsing (XXE protection)
+- Path traversal validation for config names
 
-### Removed
+---
+
+## [3.4.0] - 2026-03-21
+
+### Added
+- **OpenCode adaptor** (`--target opencode`)
+- **6 new LLM platform adaptors**: Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks (total: 12 targets)
+- **7 new CLI agent install paths** (total: 18 agents)
+- **Full UML architecture documentation** — 14 class diagrams synced from StarUML
+- **StarUML HTML API reference** documentation export
+- **Ecosystem section** in README
+
+### Changed
+- Platform count: 5 → 12 LLM targets
+- Agent count: 11 → 18 install paths
+
+---
+
+## [3.3.0] - 2026-03-16
+
+**Theme:** 10 new source types (17 total), EPUB integration, sync-config command, performance optimizations, 12 README translations, and 19 bug fixes.
+
+### Added
+- **10 new source types**: Jupyter, Local HTML, OpenAPI/Swagger, AsciiDoc, PowerPoint, RSS/Atom, Man Pages, Confluence, Notion, Slack/Discord
+- **EPUB unified pipeline integration**
+- **Generic merge system** for any combination of source types
+- **17 source types in config validator**
+- **`sync-config` command** — crawl doc sites and diff URLs
+- **10 new CLI subcommands**, entry points, and optional dependency groups
+- **MCP `scrape_generic` tool** — handles all new source types
+- **77 new integration tests**
+
+### Performance
+- Pre-compiled regex and O(1) URL dedup in doc_scraper
+- Bisect-based O(log n) line indexing
+- O(1) tree traversal in github_scraper
+
+---
+
+## [3.2.0] - 2026-03-01
+
+**Theme:** Video source support, Word document support, Pinecone adaptor. 94 files changed, +23,500 lines. 2,540 tests passing.
+
+### Added
+- **Video scraping pipeline** — YouTube and local video extraction with transcripts, visual OCR, code timeline
+- **Word document (.docx) support**
+- **Pinecone vector DB adaptor**
 
 ---
 

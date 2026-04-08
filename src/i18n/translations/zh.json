@@ -1,20 +1,20 @@
 {
   "hero": {
     "badge": {
-      "version": "v3.0.0",
+      "version": "v3.5.0",
       "new": "NEW",
-      "tests": "1852 个测试通过",
+      "tests": "3194+ 个测试通过",
       "license": "MIT 许可证"
     },
     "headline": {
-      "part1": "AI 技能与 RAG",
-      "part2": "任何来源",
+      "part1": "AI 系统的",
+      "part2": "数据层",
       "part3": ""
     },
-    "subheadline": "将文档、GitHub 仓库、PDF 和代码库转换为 AI 技能和 RAG 知识。一个工具支持 Claude 技能、代码库分析、AI 编码助手和向量搜索。",
+    "subheadline": "将 17 种源类型 — 文档、GitHub 仓库、PDF、视频、笔记本、wiki 等 — 转换为 AI 技能和 RAG 知识。一个工具支持 Claude、Gemini、OpenAI、LangChain、Cursor 等 12+ AI 平台。",
     "cta": {
       "getStarted": "开始使用",
-      "browseConfigs": "浏览 24 个配置"
+      "browseConfigs": "浏览配置"
     },
     "quickInstall": {
       "label": "快速安装",
@@ -22,10 +22,10 @@
       "copied": "已复制！"
     },
     "socialProof": {
-      "tests": "1852 个测试",
-      "platforms": "16 种输出格式",
-      "sources": "4 种输入源",
-      "time": "每个技能 20-40 分钟"
+      "tests": "3194+ 个测试",
+      "platforms": "12+ AI 平台",
+      "sources": "17 种输入源",
+      "time": "每个技能 15-45 分钟"
     }
   },
   "nav": {
@@ -34,6 +34,8 @@
     "configs": "技能库",
     "blog": "博客",
     "github": "GitHub",
+    "architecture": "架构",
+    "apiDocs": "API 文档",
     "getStarted": "开始使用"
   },
   "common": {
@@ -44,21 +46,21 @@
     "copied": "已复制！"
   },
   "about": {
-    "heading": "任何来源的 AI 技能",
-    "description": "Skill Seekers 将文档网站、GitHub 仓库、PDF 文件和本地代码库转换为结构化的 AI 技能和 RAG 就绪知识。为 Claude、Gemini、OpenAI、LangChain、LlamaIndex、Cursor 和任何 LLM 平台创建专业知识包。",
+    "heading": "AI 系统的数据层",
+    "description": "Skill Seekers 将 17 种源类型 — 文档站点、GitHub 仓库、PDF、视频、Jupyter 笔记本、Word/EPUB 文档、OpenAPI 规范、Confluence wiki、Notion 页面等 — 转换为结构化 AI 技能和 RAG 就绪知识，支持 12+ AI 平台。",
     "problem": {
       "title": "问题所在",
-      "item1": "构建 AI 技能需要数天的预处理——抓取文档、分析代码、提取模式",
+      "item1": "构建 AI 技能需要数天的预处理 — 抓取文档、分析代码、提取模式",
       "item2": "没有手动上下文准备，AI 助手缺乏深入的框架知识",
       "item3": "理解新代码库需要数周的手动分析",
-      "item4": "不同的 AI 系统需要不同的格式——技能、RAG、编码规则"
+      "item4": "不同的 AI 系统需要不同的格式 — 技能、RAG、编码规则"
     },
     "solution": {
       "title": "解决方案",
-      "item1": "一个工具处理所有源：文档、GitHub 仓库、PDF 和本地代码库",
-      "item2": "深度代码分析检测模式、架构和设计决策",
-      "item3": "16 种输出格式：AI 技能、RAG 管道、编码规则、向量数据库",
-      "item4": "端到端 15-45 分钟：从源到生产就绪的 AI 技能"
+      "item1": "一个工具处理 17 种源类型：文档、仓库、PDF、视频、笔记本、wiki 等",
+      "item2": "深度代码分析检测 27+ 种语言中的模式、架构和设计决策",
+      "item3": "12+ 输出平台：Claude、Gemini、OpenAI、Kimi、DeepSeek、LangChain、Cursor 等",
+      "item4": "端到端 15-45 分钟：从任何来源到生产就绪的 AI 技能"
     },
     "benefits": {
       "speed": {
@@ -76,17 +78,17 @@
     }
   },
   "features": {
-    "title": "AI 技能与知识工具包",
-    "subtitle": "将任何来源转换为结构化的 AI 技能和 RAG 知识",
+    "title": "完整的 AI 知识工具包",
+    "subtitle": "将 17 种源类型中的任何一种转换为结构化 AI 技能和 RAG 知识",
     "viewAll": "查看全部 {count} 个功能",
     "showLess": "显示更少",
     "moreFeatures": "还有 {count} 个功能",
     "formats": {
-      "title": "16 种输出格式",
-      "ai": "AI 技能：Claude、Gemini、OpenAI",
-      "rag": "RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate",
-      "coding": "AI 编码：Cursor、Windsurf、Cline、Continue.dev",
-      "generic": "通用：Markdown"
+      "title": "12+ AI 平台",
+      "ai": "AI 技能：Claude、Gemini、OpenAI、Kimi、DeepSeek、Qwen、OpenRouter、Together、Fireworks、MiniMax、OpenCode",
+      "rag": "RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate、Pinecone",
+      "coding": "AI 编码：Cursor、Windsurf、Cline、Continue.dev、Roo、Aider、Bolt、Kilo",
+      "generic": "通用：Markdown、JSON、YAML"
     },
     "cta": {
       "question": "准备好转换您的文档了吗？",
@@ -94,46 +96,106 @@
     },
     "items": [
       {
+        "icon": "🎯",
+        "title": "17 种源类型",
+        "description": "文档、GitHub、PDF、视频、Word、EPUB、Jupyter、OpenAPI、AsciiDoc、PPTX、HTML、RSS、man 页面、Confluence、Notion、Slack/Discord 和本地代码库",
+        "category": "v3.3.0+"
+      },
+      {
+        "icon": "🤖",
+        "title": "代理无关架构",
+        "description": "所有增强器通过统一 AgentClient 支持 Claude、Kimi、Codex、Copilot、OpenCode 和自定义代理",
+        "category": "新功能 - v3.5.0"
+      },
+      {
         "icon": "🌊",
         "title": "三流分析",
         "description": "将 GitHub 仓库拆分为代码（C3.x）、文档和见解流，创建全面的技能",
-        "category": "新功能 - v2.6.0"
+        "category": "核心功能"
       },
       {
         "icon": "🌐",
-        "title": "多源抓取",
-        "description": "从文档网站、GitHub 仓库和 PDF 文件中提取",
-        "category": "数据来源"
+        "title": "智能 SPA 发现",
+        "description": "三层发现引擎：sitemap.xml、llms.txt 和 SPA 导航渲染，用于 JavaScript 站点",
+        "category": "新功能 - v3.5.0"
+      },
+      {
+        "icon": "🔧",
+        "title": "40 个 MCP 工具",
+        "description": "AI 代理可以使用 40 个 MCP 工具跨 10 个类别准备自己的知识",
+        "category": "v3.5.0"
+      },
+      {
+        "icon": "🏪",
+        "title": "市场发布器",
+        "description": "通过 MarketplacePublisher 和 ConfigPublisher 将技能发布到 Claude Code 插件市场仓库",
+        "category": "新功能 - v3.5.0"
+      },
+      {
+        "icon": "🖥️",
+        "title": "浏览器渲染",
+        "description": "使用 Playwright 渲染 JavaScript SPA 站点 — 自动安装 Chromium，处理 React/Vue/Angular",
+        "category": "v3.5.0"
+      },
+      {
+        "icon": "🩺",
+        "title": "Doctor 命令",
+        "description": "8 项诊断检查：Python 版本、依赖项、API 密钥、MCP 服务器、输出目录",
+        "category": "新功能 - v3.5.0"
+      },
+      {
+        "icon": "🛡️",
+        "title": "提示注入检测",
+        "description": "内置安全工作流扫描抓取的内容以检测注入模式并标记可疑内容",
+        "category": "新功能 - v3.5.0"
+      },
+      {
+        "icon": "📊",
+        "title": "12 个 LLM 平台目标",
+        "description": "Claude、Gemini、OpenAI、Kimi、DeepSeek、Qwen、OpenRouter、Together、Fireworks、MiniMax、OpenCode、Markdown",
+        "category": "v3.4.0"
+      },
+      {
+        "icon": "🔌",
+        "title": "18 个代理安装路径",
+        "description": "安装技能到 Claude、Cursor、Windsurf、Cline、Continue、Roo、Aider、Bolt、Kilo、Kimi 等",
+        "category": "v3.4.0"
+      },
+      {
+        "icon": "🎬",
+        "title": "视频抓取",
+        "description": "从 YouTube 和本地视频中提取代码、转录文本和结构化知识，支持 OCR",
+        "category": "v3.2.0"
       },
       {
         "icon": "✨",
         "title": "AI 增强",
-        "description": "使用 Claude 自动添加解释、示例和最佳实践",
-        "category": "AI 功能"
-      },
-      {
-        "icon": "🤖",
-        "title": "16 个 LLM 平台",
-        "description": "部署到 LangChain、LlamaIndex、Chroma、Claude、Gemini、OpenAI、Cursor 等",
-        "category": "新功能 - v3.0.0"
+        "description": "使用任何 AI 代理自动添加解释、示例和最佳实践",
+        "category": "核心功能"
       },
       {
         "icon": "📦",
-        "title": "24 个预设配置",
-        "description": "为流行框架（React、Vue、Django 等）提供即用配置",
+        "title": "24+ 个预设配置",
+        "description": "为流行框架（React、Vue、Django、FastAPI、Godot 等）提供即用配置",
         "category": "配置"
       },
       {
-        "icon": "🔧",
-        "title": "26 个 MCP 工具",
-        "description": "AI 代理可以使用 26 个 MCP 工具准备自己的知识（v3.0.0）",
-        "category": "新功能 - v3.0.0"
+        "icon": "✅",
+        "title": "3194+ 个测试",
+        "description": "生产就绪，整个代码库中有 3194+ 个测试通过",
+        "category": "质量"
       },
       {
-        "icon": "✅",
-        "title": "1852 个测试",
-        "description": "生产就绪，100 个测试文件中有 1852 个测试（v3.0.0）",
-        "category": "质量"
+        "icon": "🔄",
+        "title": "同步配置",
+        "description": "爬取文档站点导航，将 URL 与配置进行差异对比，使用 --apply 自动更新",
+        "category": "v3.3.0"
+      },
+      {
+        "icon": "📐",
+        "title": "UML 架构文档",
+        "description": "21 张 UML 图（类图、序列图、活动图、组件图），通过 StarUML 从源代码同步",
+        "category": "v3.4.0"
       },
       {
         "icon": "⚡",
@@ -142,10 +204,22 @@
         "category": "自动化"
       },
       {
-        "icon": "⏱️",
-        "title": "20-40 分钟",
-        "description": "在一小时内完成技能生成，包括 AI 增强",
-        "category": "性能"
+        "icon": "🔬",
+        "title": "C3.x 代码库分析",
+        "description": "跨 27+ 种语言的深度 AST 分析 — 模式、示例、指南、配置和架构",
+        "category": "核心功能"
+      },
+      {
+        "icon": "📄",
+        "title": "PDF 和文档 OCR",
+        "description": "从扫描的 PDF、Word 文档、EPUB 电子书和 PowerPoint 演示文稿中提取文本",
+        "category": "数据来源"
+      },
+      {
+        "icon": "🧠",
+        "title": "智能分块",
+        "description": "针对 LLM 上下文窗口和 RAG 管道优化的自动内容分割",
+        "category": "AI 功能"
       },
       {
         "icon": "🎯",
@@ -154,100 +228,22 @@
         "category": "配置"
       },
       {
-        "icon": "🚦",
-        "title": "速率限制",
-        "description": "控制抓取速度以尊重服务器资源（0.1-5 请求/秒）",
-        "category": "配置"
-      },
-      {
-        "icon": "🔍",
-        "title": "自定义 CSS 选择器",
-        "description": "为主要内容、标题和代码块定义精确的选择器",
-        "category": "定制化"
-      },
-      {
         "icon": "⚙️",
         "title": "异步模式",
         "description": "可配置并发的并行抓取（最多 50 个工作线程）",
         "category": "性能"
       },
       {
-        "icon": "📚",
-        "title": "大型文档支持",
-        "description": "通过智能分页处理海量文档网站",
-        "category": "数据来源"
-      },
-      {
-        "icon": "🧠",
-        "title": "智能分块",
-        "description": "针对 LLM 上下文窗口优化的自动内容分割",
-        "category": "AI 功能"
-      },
-      {
-        "icon": "🔬",
-        "title": "C3.x 代码库分析",
-        "description": "深度 AST 分析，提取模式、示例、指南和配置",
-        "category": "代码库分析"
-      },
-      {
-        "icon": "⚙️",
-        "title": "配置模式检测",
-        "description": "提取和分析 9 种配置格式，配备 AI 安全分析",
-        "category": "代码库分析"
-      },
-      {
-        "icon": "📖",
-        "title": "自动操作指南",
-        "description": "从代码生成全面的教程，配备 AI 增强",
-        "category": "代码库分析"
-      },
-      {
-        "icon": "📄",
-        "title": "PDF OCR",
-        "description": "使用 OCR 后备从扫描的 PDF 中提取文本",
-        "category": "数据来源"
-      },
-      {
-        "icon": "💬",
-        "title": "自定义提示",
-        "description": "为特定用例定制 AI 增强提示",
-        "category": "AI 功能"
-      },
-      {
         "icon": "🔒",
         "title": "GitHub 认证",
         "description": "支持使用 GitHub 令牌认证的私有仓库",
         "category": "集成"
-      },
-      {
-        "icon": "📊",
-        "title": "进度跟踪",
-        "description": "抓取期间的实时进度条和状态更新",
-        "category": "用户体验"
-      },
-      {
-        "icon": "🎨",
-        "title": "Markdown 导出",
-        "description": "将技能导出为可移植的 Markdown 文件，适用于任何平台",
-        "category": "平台支持"
-      },
-      {
-        "icon": "🔄",
-        "title": "增量更新",
-        "description": "仅重新抓取更改的页面以保持技能最新",
-        "category": "自动化"
-      },
-      {
-        "icon": "🛡️",
-        "title": "错误恢复",
-        "description": "失败请求的指数退避自动重试",
-        "category": "质量"
       }
     ]
   },
   "quickstart": {
     "title": "三步开始",
-    "subtitle": "从零到生产就绪技能，仅需 20-40 分钟",
+    "subtitle": "从零到生产就绪技能，仅需 15-45 分钟",
     "steps": [
       {
         "number": "1",
@@ -257,15 +253,15 @@
       },
       {
         "number": "2",
-        "title": "2. 抓取文档",
-        "description": "使用预设配置或创建自己的配置",
-        "code": "skill-seekers scrape --config react\n# 或直接从 URL\nskill-seekers scrape --url https://react.dev --name react"
+        "title": "2. 创建技能",
+        "description": "支持 17 种源类型",
+        "code": "skill-seekers create https://react.dev\n# 或：skill-seekers create facebook/react\n# 或：skill-seekers create ./my-project"
       },
       {
         "number": "3",
-        "title": "3. 打包并上传",
-        "description": "创建 .zip 并上传到 Claude",
-        "code": "skill-seekers package output/react/\nskill-seekers upload react.zip\n\n# 完成！您的技能已准备就绪"
+        "title": "3. 打包和部署",
+        "description": "导出到任何 AI 平台",
+        "code": "skill-seekers package output/react --target claude\n# 或：--target langchain, gemini, openai, cursor, ..."
       }
     ],
     "installOptions": {
@@ -287,7 +283,7 @@
       },
       "mcp": {
         "title": "MCP 集成",
-        "badge": "5 个代理",
+        "badge": "18 个代理",
         "code": "./setup_mcp.sh"
       }
     },
@@ -312,14 +308,14 @@
       {
         "title": "为团队",
         "icon": "👥",
-        "description": "将内部文档 + 代码仓库合并为单一信息源。",
-        "example": "通过私有 git 仓库在 3-500+ 团队成员之间共享自定义配置。"
+        "description": "将内部文档 + 代码仓库 + Confluence wiki 合并为单一信息源。",
+        "example": "通过私有 git 仓库共享自定义配置，或发布到市场。"
       },
       {
         "title": "为学习者",
         "icon": "📚",
-        "description": "从文档、代码示例和 PDF 教程构建全面技能。",
-        "example": "将官方文档 + GitHub 示例 + PDF 手册合并为统一的学习资源。"
+        "description": "从文档、代码示例、视频和 PDF 教程构建全面技能。",
+        "example": "将官方文档 + GitHub 示例 + YouTube 教程 + PDF 手册合并为统一的学习资源。"
       },
       {
         "title": "为开源项目",
@@ -330,12 +326,14 @@
     ],
     "platforms": {
       "title": "多平台支持",
-      "subtitle": "将您的技能导出到多个 LLM 平台，配备特定平台优化",
+      "subtitle": "将您的技能导出到 12+ 个 LLM 平台，配备特定平台优化",
       "items": [
         "🤖 Claude AI",
         "💎 Google Gemini",
-        "🔮 OpenAI ChatGPT",
-        "📝 通用 Markdown"
+        "🔮 OpenAI / GPT",
+        "🌙 Kimi / DeepSeek / Qwen",
+        "🔗 LangChain / LlamaIndex",
+        "💻 Cursor / Windsurf / Cline"
       ]
     }
   },
@@ -348,15 +346,15 @@
       "contributors": "贡献者",
       "tests": "测试通过",
       "configs": "预设配置",
-      "platforms": "输出格式",
+      "platforms": "AI 平台",
       "mcpTools": "MCP 工具",
       "languages": "编程语言"
     },
     "values": {
-      "tests": "1852",
-      "configs": "24",
-      "platforms": "16",
-      "mcpTools": "26",
+      "tests": "3194+",
+      "configs": "24+",
+      "platforms": "12+",
+      "mcpTools": "40",
       "languages": "27+"
     },
     "banner": "开源 • MIT 许可证 • 活跃开发",
@@ -366,7 +364,7 @@
     }
   },
   "footer": {
-    "tagline": "AI 技能与 RAG 工具包 — 将任何来源转换为结构化知识。",
+    "tagline": "AI 系统的数据层 — 将任何来源转换为结构化知识。",
     "sections": {
       "product": {
         "title": "产品",
@@ -374,6 +372,7 @@
           "features": "功能",
           "configs": "配置",
           "docs": "文档",
+          "architecture": "架构",
           "api": "API 参考"
         }
       },
@@ -398,12 +397,12 @@
     },
     "copyright": "© {year} Skill Seekers. MIT 许可证。使用 ❤️ 和以下技术构建",
     "stats": {
-      "tests": "1852 个测试"
+      "tests": "3194+ 个测试"
     }
   },
   "configs": {
     "title": "配置画廊 | Skill Seekers",
-    "description": "浏览和下载 27 个生产就绪的 Skill Seekers 配置。使用预构建配置将文档、GitHub 仓库和 PDF 转换为 Claude AI 技能。",
+    "description": "浏览和下载生产就绪的 Skill Seekers 配置。使用预构建配置将文档、GitHub 仓库、PDF 和 14 种以上源类型转换为 AI 技能。",
     "gallery": {
       "heading": "配置画廊",
       "subtitle": "浏览和下载 {count} 个生产就绪的 Skill Seekers 配置",

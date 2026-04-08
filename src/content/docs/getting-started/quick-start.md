@@ -1,13 +1,13 @@
 ---
 title: Quick Start
-description: Get up and running with Skill Seekers v3.1.0 in 5 minutes - create your first AI skill using the unified create command
+description: Get up and running with Skill Seekers v3.5.0 in 5 minutes — create AI skills from any of 17 source types
 section: getting-started
 order: 3
 ---
 
 # Quick Start
 
-Get up and running with Skill Seekers in **5 minutes** using the new v3.0+ unified `create` command.
+Get up and running with Skill Seekers in **5 minutes** using the unified `create` command.
 
 ## Prerequisites
 
@@ -21,23 +21,31 @@ Before starting, ensure you have:
 
 ```bash
 skill-seekers --version
+# Expected: skill-seekers 3.5.0 or higher
+
+# Run diagnostics (optional)
+skill-seekers doctor
 ```
 
-You should see: `skill-seekers 3.1.0` or higher
+## Step 2: Create Your First Skill
 
-## Step 2: Create Your First Skill (Unified Command)
-
-The v3.0+ `create` command works with any source:
+The `create` command auto-detects source type and works with any of 17 sources:
 
 ```bash
 # From documentation website
 skill-seekers create https://docs.python-requests.org --target claude
 
 # From GitHub repository
-skill-seekers create https://github.com/psf/requests --target claude
+skill-seekers create psf/requests --target claude
 
 # From PDF file
 skill-seekers create ./manual.pdf --target claude
+
+# From Jupyter notebook
+skill-seekers create notebook.ipynb --target claude
+
+# With different AI agent for enhancement
+skill-seekers create https://react.dev --agent kimi
 
 # From local codebase
 skill-seekers create ./my-project --target claude

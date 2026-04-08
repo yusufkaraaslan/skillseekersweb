@@ -1,20 +1,20 @@
 {
   "hero": {
     "badge": {
-      "version": "v3.0.0",
+      "version": "v3.5.0",
       "new": "NEW",
-      "tests": "1852 tests passing",
+      "tests": "3194+ tests passing",
       "license": "MIT Licensed"
     },
     "headline": {
-      "part1": "AI Skills & RAG",
-      "part2": "for Any Source",
+      "part1": "The Data Layer",
+      "part2": "for AI Systems",
       "part3": ""
     },
-    "subheadline": "Transform documentation, GitHub repos, PDFs, and codebases into AI skills and RAG knowledge. One tool for Claude skills, codebase analysis, AI coding assistants, and vector search.",
+    "subheadline": "Transform 17 source types — docs, GitHub repos, PDFs, videos, notebooks, wikis, and more — into AI skills and RAG knowledge. One tool for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.",
     "cta": {
       "getStarted": "Get Started",
-      "browseConfigs": "Browse 24 Configs"
+      "browseConfigs": "Browse Configs"
     },
     "quickInstall": {
       "label": "Quick Install",
@@ -22,10 +22,10 @@
       "copied": "Copied!"
     },
     "socialProof": {
-      "tests": "1852 Tests",
-      "platforms": "16 Output Formats",
-      "sources": "4 Input Sources",
-      "time": "20-40 min / skill"
+      "tests": "3194+ Tests",
+      "platforms": "12+ AI Platforms",
+      "sources": "17 Input Sources",
+      "time": "15-45 min / skill"
     }
   },
   "nav": {
@@ -34,6 +34,8 @@
     "configs": "Skill Gallery",
     "blog": "Blog",
     "github": "GitHub",
+    "architecture": "Architecture",
+    "apiDocs": "API Docs",
     "getStarted": "Get Started"
   },
   "common": {
@@ -44,21 +46,21 @@
     "copied": "Copied!"
   },
   "about": {
-    "heading": "AI Skills from Any Source",
-    "description": "Skill Seekers transforms documentation websites, GitHub repositories, PDF files, and local codebases into structured AI skills and RAG-ready knowledge. Create expertise packages for Claude, Gemini, OpenAI, LangChain, LlamaIndex, Cursor, and any LLM platform.",
+    "heading": "The Data Layer for AI Systems",
+    "description": "Skill Seekers transforms 17 source types — documentation sites, GitHub repos, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for 12+ AI platforms.",
     "problem": {
       "title": "The Problem",
-      "item1": "Building AI skills takes days of preprocessing—scraping, analyzing code, extracting patterns",
+      "item1": "Building AI skills takes days of preprocessing — scraping, analyzing code, extracting patterns",
       "item2": "AI assistants lack deep expertise without manual context preparation",
       "item3": "Understanding new codebases requires weeks of manual analysis",
-      "item4": "Different AI systems need different formats—skills, RAG, coding rules"
+      "item4": "Different AI systems need different formats — skills, RAG, coding rules"
     },
     "solution": {
       "title": "The Solution",
-      "item1": "One tool for all sources: docs, GitHub repos, PDFs, and local codebases",
-      "item2": "Deep code analysis detects patterns, architecture, and design decisions",
-      "item3": "16 output formats: AI skills, RAG pipelines, coding rules, vector DBs",
-      "item4": "15-45 minutes end-to-end: from source to production-ready AI skill"
+      "item1": "One tool for 17 source types: docs, repos, PDFs, videos, notebooks, wikis, and more",
+      "item2": "Deep code analysis detects patterns, architecture, and design decisions across 27+ languages",
+      "item3": "12+ output platforms: Claude, Gemini, OpenAI, Kimi, DeepSeek, LangChain, Cursor, and more",
+      "item4": "15-45 minutes end-to-end: from any source to production-ready AI skill"
     },
     "benefits": {
       "speed": {
@@ -76,17 +78,17 @@
     }
   },
   "features": {
-    "title": "AI Skills & Knowledge Toolkit",
-    "subtitle": "Transform any source into structured AI skills and RAG knowledge",
+    "title": "Complete AI Knowledge Toolkit",
+    "subtitle": "Transform any of 17 source types into structured AI skills and RAG knowledge",
     "viewAll": "View All {count} Features",
     "showLess": "Show Less",
     "moreFeatures": "+{count} more features",
     "formats": {
-      "title": "16 Output Formats",
-      "rag": "RAG/Vectors: LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate",
-      "ai": "AI Platforms: Claude, Gemini, OpenAI",
-      "coding": "AI Coding: Cursor, Windsurf, Cline, Continue.dev",
-      "generic": "Generic: Markdown"
+      "title": "12+ AI Platforms",
+      "rag": "RAG/Vectors: LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate, Pinecone",
+      "ai": "AI Skills: Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode",
+      "coding": "AI Coding: Cursor, Windsurf, Cline, Continue.dev, Roo, Aider, Bolt, Kilo",
+      "generic": "Generic: Markdown, JSON, YAML"
     },
     "cta": {
       "question": "Ready to transform your documentation?",
@@ -94,46 +96,106 @@
     },
     "items": [
       {
+        "icon": "🎯",
+        "title": "17 Source Types",
+        "description": "Docs, GitHub, PDF, video, Word, EPUB, Jupyter, OpenAPI, AsciiDoc, PPTX, HTML, RSS, man pages, Confluence, Notion, Slack/Discord, and local codebases",
+        "category": "v3.3.0+"
+      },
+      {
+        "icon": "🤖",
+        "title": "Agent-Agnostic Architecture",
+        "description": "All enhancers support Claude, Kimi, Codex, Copilot, OpenCode, and custom agents via unified AgentClient",
+        "category": "NEW - v3.5.0"
+      },
+      {
         "icon": "🌊",
         "title": "Three-Stream Analysis",
         "description": "Split GitHub repos into Code (C3.x), Docs, and Insights streams for comprehensive skills",
-        "category": "NEW - v2.6.0"
+        "category": "Core Feature"
       },
       {
         "icon": "🌐",
-        "title": "Multi-Source Scraping",
-        "description": "Extract from documentation websites, GitHub repositories, and PDF files",
-        "category": "Data Sources"
+        "title": "Smart SPA Discovery",
+        "description": "Three-layer discovery engine: sitemap.xml, llms.txt, and SPA nav rendering for JavaScript sites",
+        "category": "NEW - v3.5.0"
+      },
+      {
+        "icon": "🔧",
+        "title": "40 MCP Tools",
+        "description": "AI agents can prepare their own knowledge with 40 MCP tools across 10 categories",
+        "category": "v3.5.0"
+      },
+      {
+        "icon": "🏪",
+        "title": "Marketplace Publisher",
+        "description": "Publish skills to Claude Code plugin marketplace repos with MarketplacePublisher and ConfigPublisher",
+        "category": "NEW - v3.5.0"
+      },
+      {
+        "icon": "🖥️",
+        "title": "Browser Rendering",
+        "description": "Render JavaScript SPA sites with Playwright — auto-installs Chromium, handles React/Vue/Angular",
+        "category": "v3.5.0"
+      },
+      {
+        "icon": "🩺",
+        "title": "Doctor Command",
+        "description": "8 diagnostic checks: Python version, dependencies, API keys, MCP server, output directory",
+        "category": "NEW - v3.5.0"
+      },
+      {
+        "icon": "🛡️",
+        "title": "Prompt Injection Detection",
+        "description": "Bundled security workflow scans scraped content for injection patterns and flags suspicious content",
+        "category": "NEW - v3.5.0"
+      },
+      {
+        "icon": "📊",
+        "title": "12 LLM Platform Targets",
+        "description": "Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode, Markdown",
+        "category": "v3.4.0"
+      },
+      {
+        "icon": "🔌",
+        "title": "18 Agent Install Paths",
+        "description": "Install skills to Claude, Cursor, Windsurf, Cline, Continue, Roo, Aider, Bolt, Kilo, Kimi, and more",
+        "category": "v3.4.0"
+      },
+      {
+        "icon": "🎬",
+        "title": "Video Scraping",
+        "description": "Extract code, transcripts, and structured knowledge from YouTube and local videos with OCR",
+        "category": "v3.2.0"
       },
       {
         "icon": "✨",
         "title": "AI Enhancement",
-        "description": "Automatically add explanations, examples, and best practices using Claude",
-        "category": "AI Features"
-      },
-      {
-        "icon": "🤖",
-        "title": "16 LLM Platforms",
-        "description": "Deploy to LangChain, LlamaIndex, Chroma, Claude, Gemini, OpenAI, Cursor, and more",
-        "category": "NEW - v3.0.0"
+        "description": "Automatically add explanations, examples, and best practices using any AI agent",
+        "category": "Core Feature"
       },
       {
         "icon": "📦",
-        "title": "24 Preset Configs",
-        "description": "Ready-to-use configs for popular frameworks (React, Vue, Django, etc.)",
+        "title": "24+ Preset Configs",
+        "description": "Ready-to-use configs for popular frameworks (React, Vue, Django, FastAPI, Godot, etc.)",
         "category": "Configuration"
       },
       {
-        "icon": "🔧",
-        "title": "26 MCP Tools",
-        "description": "AI agents can prepare their own knowledge with 26 MCP tools (v3.0.0)",
-        "category": "NEW - v3.0.0"
+        "icon": "✅",
+        "title": "3194+ Tests",
+        "description": "Production-ready with 3194+ tests passing across the entire codebase",
+        "category": "Quality"
       },
       {
-        "icon": "✅",
-        "title": "1852 Tests",
-        "description": "Production-ready with 1852 tests across 100 test files (v3.0.0)",
-        "category": "Quality"
+        "icon": "🔄",
+        "title": "Sync Config",
+        "description": "Crawl doc site navigation, diff URLs against your config, and auto-update with --apply",
+        "category": "v3.3.0"
+      },
+      {
+        "icon": "📐",
+        "title": "UML Architecture Docs",
+        "description": "21 UML diagrams (class, sequence, activity, component) synced from source code via StarUML",
+        "category": "v3.4.0"
       },
       {
         "icon": "⚡",
@@ -142,10 +204,22 @@
         "category": "Automation"
       },
       {
-        "icon": "⏱️",
-        "title": "20-40 Minutes",
-        "description": "Complete skill generation in under an hour, including AI enhancement",
-        "category": "Performance"
+        "icon": "🔬",
+        "title": "C3.x Codebase Analysis",
+        "description": "Deep AST analysis across 27+ languages — patterns, examples, guides, configs, and architecture",
+        "category": "Core Feature"
+      },
+      {
+        "icon": "📄",
+        "title": "PDF & Document OCR",
+        "description": "Extract text from scanned PDFs, Word docs, EPUB e-books, and PowerPoint presentations",
+        "category": "Data Sources"
+      },
+      {
+        "icon": "🧠",
+        "title": "Smart Chunking",
+        "description": "Automatic content splitting optimized for LLM context windows and RAG pipelines",
+        "category": "AI Features"
       },
       {
         "icon": "🎯",
@@ -154,100 +228,22 @@
         "category": "Configuration"
       },
       {
-        "icon": "🚦",
-        "title": "Rate Limiting",
-        "description": "Control scraping speed to respect server resources (0.1-5 req/sec)",
-        "category": "Configuration"
-      },
-      {
-        "icon": "🔍",
-        "title": "Custom CSS Selectors",
-        "description": "Define precise selectors for main content, titles, and code blocks",
-        "category": "Customization"
-      },
-      {
         "icon": "⚙️",
         "title": "Async Mode",
         "description": "Parallel scraping with configurable concurrency (up to 50 workers)",
         "category": "Performance"
       },
       {
-        "icon": "📚",
-        "title": "Large Docs Support",
-        "description": "Handle massive documentation sites with intelligent pagination",
-        "category": "Data Sources"
-      },
-      {
-        "icon": "🧠",
-        "title": "Smart Chunking",
-        "description": "Automatic content splitting optimized for LLM context windows",
-        "category": "AI Features"
-      },
-      {
-        "icon": "🔬",
-        "title": "C3.x Codebase Analysis",
-        "description": "Deep AST analysis extracting patterns, examples, guides, and configurations",
-        "category": "Codebase Analysis"
-      },
-      {
-        "icon": "⚙️",
-        "title": "Config Pattern Detection",
-        "description": "Extract and analyze 9 config formats with AI-powered security analysis",
-        "category": "Codebase Analysis"
-      },
-      {
-        "icon": "📖",
-        "title": "Auto How-To Guides",
-        "description": "Generate comprehensive tutorials from code with AI enhancement",
-        "category": "Codebase Analysis"
-      },
-      {
-        "icon": "📄",
-        "title": "PDF OCR",
-        "description": "Extract text from scanned PDFs with OCR fallback",
-        "category": "Data Sources"
-      },
-      {
-        "icon": "💬",
-        "title": "Custom Prompts",
-        "description": "Customize AI enhancement prompts for specific use cases",
-        "category": "AI Features"
-      },
-      {
         "icon": "🔒",
         "title": "GitHub Auth",
         "description": "Support for private repositories with GitHub token authentication",
         "category": "Integration"
-      },
-      {
-        "icon": "📊",
-        "title": "Progress Tracking",
-        "description": "Real-time progress bars and status updates during scraping",
-        "category": "UX"
-      },
-      {
-        "icon": "🎨",
-        "title": "Markdown Export",
-        "description": "Export skills as portable Markdown files for any platform",
-        "category": "Platform Support"
-      },
-      {
-        "icon": "🔄",
-        "title": "Incremental Updates",
-        "description": "Re-scrape only changed pages to keep skills up-to-date",
-        "category": "Automation"
-      },
-      {
-        "icon": "🛡️",
-        "title": "Error Recovery",
-        "description": "Automatic retry with exponential backoff for failed requests",
-        "category": "Quality"
       }
     ]
   },
   "quickstart": {
     "title": "Get Started in 3 Steps",
-    "subtitle": "From zero to production-ready skill in 20-40 minutes",
+    "subtitle": "From zero to production-ready skill in 15-45 minutes",
     "steps": [
       {
         "number": "1",
@@ -257,15 +253,15 @@
       },
       {
         "number": "2",
-        "title": "2. Scrape Docs",
-        "description": "Use preset configs or create your own",
-        "code": "skill-seekers scrape --config react\n# Or from URL directly\nskill-seekers scrape --url https://react.dev --name react"
+        "title": "2. Create Skill",
+        "description": "From any of 17 source types",
+        "code": "skill-seekers create https://react.dev\n# Or: skill-seekers create facebook/react\n# Or: skill-seekers create ./my-project"
       },
       {
         "number": "3",
-        "title": "3. Package & Upload",
-        "description": "Create .zip and upload to Claude",
-        "code": "skill-seekers package output/react/\nskill-seekers upload react.zip\n\n# Done! Your skill is ready to use"
+        "title": "3. Package & Deploy",
+        "description": "Export to any AI platform",
+        "code": "skill-seekers package output/react --target claude\n# Or: --target langchain, gemini, openai, cursor, ..."
       }
     ],
     "installOptions": {
@@ -287,7 +283,7 @@
       },
       "mcp": {
         "title": "MCP Integration",
-        "badge": "5 Agents",
+        "badge": "18 Agents",
         "code": "./setup_mcp.sh"
       }
     },
@@ -312,14 +308,14 @@
       {
         "title": "For Teams",
         "icon": "👥",
-        "description": "Combine internal docs + code repositories into single source of truth.",
-        "example": "Share custom configs via private git repos across 3-500+ team members."
+        "description": "Combine internal docs + code repos + Confluence wikis into single source of truth.",
+        "example": "Share custom configs via private git repos or publish to the marketplace."
       },
       {
         "title": "For Learners",
         "icon": "📚",
-        "description": "Build comprehensive skills from docs, code examples, and PDF tutorials.",
-        "example": "Combine official docs + GitHub examples + PDF manual into one unified learning resource."
+        "description": "Build comprehensive skills from docs, code examples, videos, and PDF tutorials.",
+        "example": "Combine official docs + GitHub examples + YouTube tutorials + PDF manual into one learning resource."
       },
       {
         "title": "For Open Source",
@@ -330,12 +326,14 @@
     ],
     "platforms": {
       "title": "Multi-Platform Support",
-      "subtitle": "Export your skills to multiple LLM platforms with platform-specific optimizations",
+      "subtitle": "Export your skills to 12+ LLM platforms with platform-specific optimizations",
       "items": [
         "🤖 Claude AI",
         "💎 Google Gemini",
-        "🔮 OpenAI ChatGPT",
-        "📝 Generic Markdown"
+        "🔮 OpenAI / GPT",
+        "🌙 Kimi / DeepSeek / Qwen",
+        "🔗 LangChain / LlamaIndex",
+        "💻 Cursor / Windsurf / Cline"
       ]
     }
   },
@@ -348,15 +346,15 @@
       "contributors": "Contributors",
       "tests": "Tests Passing",
       "configs": "Preset Configs",
-      "platforms": "Output Formats",
+      "platforms": "AI Platforms",
       "mcpTools": "MCP Tools",
       "languages": "Languages"
     },
     "values": {
-      "tests": "1852",
-      "configs": "24",
-      "platforms": "16",
-      "mcpTools": "26",
+      "tests": "3194+",
+      "configs": "24+",
+      "platforms": "12+",
+      "mcpTools": "40",
       "languages": "27+"
     },
     "banner": "Open source • MIT Licensed • Active development",
@@ -366,7 +364,7 @@
     }
   },
   "footer": {
-    "tagline": "AI Skills & RAG Toolkit — Transform Any Source into Structured Knowledge.",
+    "tagline": "The Data Layer for AI Systems — Transform Any Source into Structured Knowledge.",
     "sections": {
       "product": {
         "title": "Product",
@@ -374,6 +372,7 @@
           "features": "Features",
           "configs": "Configs",
           "docs": "Documentation",
+          "architecture": "Architecture",
           "api": "API Reference"
         }
       },
@@ -398,12 +397,12 @@
     },
     "copyright": "© {year} Skill Seekers. MIT License. Built with ❤️ using",
     "stats": {
-      "tests": "1852 tests"
+      "tests": "3194+ tests"
     }
   },
   "configs": {
     "title": "Configuration Gallery | Skill Seekers",
-    "description": "Browse and download 27 production-ready configurations for Skill Seekers. Convert documentation, GitHub repos, and PDFs into Claude AI skills with pre-built configs.",
+    "description": "Browse and download production-ready configurations for Skill Seekers. Convert documentation, GitHub repos, PDFs, and 14 more source types into AI skills with pre-built configs.",
     "gallery": {
       "heading": "Configuration Gallery",
       "subtitle": "Browse and download {count} production-ready configurations for Skill Seekers",

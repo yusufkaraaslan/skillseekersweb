@@ -76,7 +76,7 @@ export default function ConfigValidator() {
       return errors;
     }
 
-    const validTypes = ['documentation', 'github', 'pdf'];
+    const validTypes = ['documentation', 'github', 'pdf', 'local', 'word', 'epub', 'video', 'jupyter', 'html', 'openapi', 'asciidoc', 'pptx', 'rss', 'manpage', 'confluence', 'notion', 'chat'];
     if (!validTypes.includes(source.type)) {
       errors.push({ field: `${prefix}.type`, message: `Type must be one of: ${validTypes.join(', ')}` });
       return errors;

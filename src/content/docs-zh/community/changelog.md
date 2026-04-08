@@ -1,6 +1,6 @@
 ---
 title: 更新日志
-description: Skill Seekers 从 v0.1.0 到 v3.0.0 的完整版本历史，记录所有功能、更改、修复和破坏性更改
+description: Skill Seekers 从 v0.1.0 到 v3.5.0 的完整版本历史，记录所有功能、更改、修复和破坏性更改
 section: community
 order: 4
 ---
@@ -13,6 +13,51 @@ Skill Seeker 的所有显著更改都将记录在此文件中。
 本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
 ## [未发布]
+
+---
+
+## [3.5.0] - 2026-04-01
+
+**主题：** 代理无关架构、市场发布流水线、智能 SPA 发现、动态路由重构和人为限制移除。60+ 文件变更。
+
+### 新增
+- **代理无关 `AgentClient` 抽象** — 所有 5 个增强器支持 Claude、Kimi、Codex、Copilot、OpenCode 和自定义代理
+- **MarketplacePublisher** — 发布技能到 Claude Code 插件市场仓库
+- **智能 SPA 发现引擎** — 三层发现：sitemap.xml、llms.txt、SPA 导航渲染
+- **`skill-seekers doctor` 命令** — 8 项诊断检查
+- **提示注入检查工作流**
+- **Kotlin 语言支持**
+- **134 个新测试**（总计：3194+）
+
+---
+
+## [3.4.0] - 2026-03-21
+
+### 新增
+- **6 个新 LLM 平台适配器**：Kimi、DeepSeek、Qwen、OpenRouter、Together、Fireworks（总计：12 个目标）
+- **7 个新 CLI 代理安装路径**（总计：18 个代理）
+- **完整 UML 架构文档** — 14 张类图
+- **StarUML HTML API 参考**
+
+---
+
+## [3.3.0] - 2026-03-16
+
+**主题：** 10 种新源类型（共 17 种）、EPUB 集成、sync-config 命令。
+
+### 新增
+- **10 种新源类型**：Jupyter、本地 HTML、OpenAPI/Swagger、AsciiDoc、PowerPoint、RSS/Atom、Man 手册、Confluence、Notion、Slack/Discord
+- **`sync-config` 命令** — 爬取文档站点并同步 URL
+- **77 个新集成测试**
+
+---
+
+## [3.2.0] - 2026-03-01
+
+### 新增
+- **视频抓取流水线** — YouTube 和本地视频提取
+- **Word (.docx) 支持**
+- **Pinecone 向量数据库适配器**
 
 ### 新增
 

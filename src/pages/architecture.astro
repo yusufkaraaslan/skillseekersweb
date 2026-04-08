@@ -1,0 +1,353 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLangFromUrl, getTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = getTranslations(lang);
+const isZh = lang === 'zh';
+
+export const prerender = true;
+
+const coreModules = [
+  {
+    id: 'package-overview',
+    title: isZh ? '包概览' : 'Package Overview',
+    img: '/diagrams/00_package_overview.png',
+    desc: isZh
+      ? '8个核心模块和5个工具模块的分层架构。核心模块：CLICore、Scrapers、Adaptors、Analysis、Enhancement、Packaging、MCP、Sync。'
+      : 'Layered architecture with 8 core modules and 5 utility modules. Core: CLICore, Scrapers, Adaptors, Analysis, Enhancement, Packaging, MCP, Sync.',
+  },
+  {
+    id: 'cli-core',
+    title: isZh ? 'CLI 核心' : 'CLI Core',
+    img: '/diagrams/01_cli_core.png',
+    desc: isZh
+      ? 'CLIDispatcher 通过 COMMAND_MODULES 映射子命令。CreateCommand 通过 SourceDetector 自动检测源类型，初始化 ExecutionContext 单例，然后调用 get_converter() → converter.run()。'
+      : 'CLIDispatcher maps subcommands via COMMAND_MODULES. CreateCommand auto-detects source type via SourceDetector, initializes ExecutionContext singleton, then calls get_converter() → converter.run().',
+  },
+  {
+    id: 'scrapers',
+    title: isZh ? '抓取器' : 'Scrapers',
+    img: '/diagrams/02_scrapers.png',
+    desc: isZh
+      ? '18个转换器类继承 SkillConverter 基类（模板方法：run() → extract() → build_skill()）。工厂模式：通过 CONVERTER_REGISTRY 的 get_converter(source_type, config)。'
+      : '18 converter classes inheriting SkillConverter base class (Template Method: run() → extract() → build_skill()). Factory: get_converter(source_type, config) via CONVERTER_REGISTRY.',
+  },
+  {
+    id: 'adaptors',
+    title: isZh ? '适配器' : 'Adaptors',
+    img: '/diagrams/03_adaptors.png',
+    desc: isZh
+      ? 'SkillAdaptor ABC 带3个抽象方法。两级层次：直接子类和 OpenAICompatibleAdaptor 中间层（MiniMax、Kimi、DeepSeek、Qwen 等）。'
+      : 'SkillAdaptor ABC with 3 abstract methods. Two-level hierarchy: direct subclasses (Claude, Gemini, OpenAI, etc.) and OpenAICompatibleAdaptor intermediate (MiniMax, Kimi, DeepSeek, Qwen, etc.).',
+  },
+  {
+    id: 'analysis',
+    title: isZh ? 'C3.x 分析流水线' : 'C3.x Analysis Pipeline',
+    img: '/diagrams/04_analysis.png',
+    desc: isZh
+      ? 'UnifiedCodebaseAnalyzer 协调：CodeAnalyzer（AST，9种语言）、PatternRecognizer（10个GoF检测器）、TestExampleExtractor、HowToGuideBuilder、ConfigExtractor 等。'
+      : 'UnifiedCodebaseAnalyzer orchestrates: CodeAnalyzer (AST, 9 languages), PatternRecognizer (10 GoF detectors), TestExampleExtractor, HowToGuideBuilder, ConfigExtractor, and more.',
+  },
+  {
+    id: 'enhancement',
+    title: isZh ? '增强系统' : 'Enhancement',
+    img: '/diagrams/05_enhancement.png',
+    desc: isZh
+      ? '两个增强层次：AIEnhancer（API模式，通过 AgentClient 支持多提供者）和 UnifiedEnhancer（C3.x 流水线增强器）。WorkflowEngine 协调多阶段增强工作流。'
+      : 'Two enhancement hierarchies: AIEnhancer (API mode, multi-provider via AgentClient) and UnifiedEnhancer (C3.x pipeline enhancers). WorkflowEngine orchestrates multi-stage enhancement workflows.',
+  },
+  {
+    id: 'packaging',
+    title: isZh ? '打包系统' : 'Packaging',
+    img: '/diagrams/06_packaging.png',
+    desc: isZh
+      ? 'PackageSkill 委托适配器进行格式特定打包。UploadSkill 处理平台 API 上传。InstallSkill/InstallAgent 安装到 AI 代理目录。'
+      : 'PackageSkill delegates to adaptors for format-specific packaging. UploadSkill handles platform API uploads. InstallSkill/InstallAgent install to AI agent directories.',
+  },
+  {
+    id: 'mcp-server',
+    title: isZh ? 'MCP 服务器' : 'MCP Server',
+    img: '/diagrams/07_mcp_server.png',
+    desc: isZh
+      ? 'SkillSeekerMCPServer（FastMCP）提供40个工具分10类。支持类：SourceManager、AgentDetector、GitConfigRepo、MarketplacePublisher、ConfigPublisher。'
+      : 'SkillSeekerMCPServer (FastMCP) with 40 tools in 10 categories. Supporting: SourceManager, AgentDetector, GitConfigRepo, MarketplacePublisher, ConfigPublisher.',
+  },
+  {
+    id: 'sync',
+    title: isZh ? '同步系统' : 'Sync',
+    img: '/diagrams/08_sync.png',
+    desc: isZh
+      ? 'SyncMonitor 通过 ChangeDetector（SHA-256 哈希、HTTP 头、内容差异）调度定期检查。Notifier 在检测到变更时发送警报。'
+      : 'SyncMonitor schedules periodic checks via ChangeDetector (SHA-256 hashing, HTTP headers, content diffing). Notifier sends alerts when changes are found.',
+  },
+];
+
+const utilityModules = [
+  {
+    id: 'parsers',
+    title: isZh ? '解析器' : 'Parsers',
+    img: '/diagrams/09_parsers.png',
+    desc: isZh
+      ? 'SubcommandParser ABC 带18个子类。所有源类型通过 CreateParser 路由。'
+      : 'SubcommandParser ABC with 18 subclasses. All source types route through CreateParser.',
+  },
+  {
+    id: 'storage',
+    title: isZh ? '存储' : 'Storage',
+    img: '/diagrams/10_storage.png',
+    desc: isZh
+      ? 'BaseStorageAdaptor ABC 带 S3、GCS、Azure 实现。'
+      : 'BaseStorageAdaptor ABC with S3, GCS, Azure implementations.',
+  },
+  {
+    id: 'embedding',
+    title: isZh ? '嵌入' : 'Embedding',
+    img: '/diagrams/11_embedding.png',
+    desc: isZh
+      ? 'EmbeddingGenerator（多提供者：OpenAI、Sentence Transformers、Voyage AI）。EmbeddingPipeline 协调提供者、缓存和成本跟踪。'
+      : 'EmbeddingGenerator (multi-provider: OpenAI, Sentence Transformers, Voyage AI). EmbeddingPipeline coordinates provider, caching, and cost tracking.',
+  },
+  {
+    id: 'benchmark',
+    title: isZh ? '基准测试' : 'Benchmark',
+    img: '/diagrams/12_benchmark.png',
+    desc: isZh
+      ? 'BenchmarkRunner 协调 Benchmark 实例。BenchmarkResult 收集计时/内存/指标并生成报告。'
+      : 'BenchmarkRunner orchestrates Benchmark instances. BenchmarkResult collects timings/memory/metrics and produces reports.',
+  },
+  {
+    id: 'utilities',
+    title: isZh ? '工具类' : 'Utilities',
+    img: '/diagrams/13_utilities.png',
+    desc: isZh
+      ? '16个共享辅助类：LanguageDetector、MarkdownCleaner、RAGChunker、RateLimitHandler、ConfigValidator 等。'
+      : '16 shared helper classes: LanguageDetector, MarkdownCleaner, RAGChunker, RateLimitHandler, ConfigValidator, and more.',
+  },
+];
+
+const behavioralDiagrams = [
+  {
+    id: 'create-pipeline',
+    title: isZh ? '创建流水线序列' : 'Create Pipeline Sequence',
+    img: '/diagrams/14_create_pipeline_sequence.png',
+    desc: isZh
+      ? 'CreateCommand 流水线：SourceDetector.detect() → ExecutionContext.initialize() → get_converter() → converter.run() → _run_enhancement() → _run_workflows()。增强在 CreateCommand 中集中处理。'
+      : 'CreateCommand pipeline: SourceDetector.detect() → ExecutionContext.initialize() → get_converter() → converter.run() → _run_enhancement() → _run_workflows(). Enhancement centralized in CreateCommand.',
+  },
+  {
+    id: 'github-unified',
+    title: isZh ? 'GitHub 统一流程 + C3.x' : 'GitHub Unified Flow + C3.x',
+    img: '/diagrams/15_github_unified_sequence.png',
+    desc: isZh
+      ? 'UnifiedScraper 协调 GitHub 抓取（3流获取），然后委托 analyze_codebase() 进行 C3.x 分析的5个阶段。'
+      : 'UnifiedScraper orchestrates GitHub scraping (3-stream fetch) then delegates to analyze_codebase() for all 5 C3.x stages.',
+  },
+  {
+    id: 'source-detection',
+    title: isZh ? '源自动检测' : 'Source Auto-Detection',
+    img: '/diagrams/16_source_detection_activity.png',
+    desc: isZh
+      ? '活动图显示 source_detector.py 决策树：文件扩展名 → 视频URL → 目录（代码库）→ GitHub 模式 → HTTP URL → 裸域名推断。'
+      : 'Activity diagram showing source_detector.py decision tree: file extension → video URL → directory (Codebase) → GitHub pattern → HTTP URL → bare domain inference.',
+  },
+  {
+    id: 'mcp-invocation',
+    title: isZh ? 'MCP 工具调用' : 'MCP Tool Invocation',
+    img: '/diagrams/17_mcp_invocation_sequence.png',
+    desc: isZh
+      ? 'MCP 客户端 → FastMCPServer（stdio/HTTP）两条调用路径：路径A（抓取工具）使用 get_converter() 进程内执行，路径B（打包/配置工具）使用直接 Python 导入。'
+      : 'MCP Client → FastMCPServer (stdio/HTTP) with two paths: Path A (scraping) uses get_converter() in-process, Path B (packaging/config) uses direct Python imports.',
+  },
+  {
+    id: 'enhancement-pipeline',
+    title: isZh ? '增强流水线' : 'Enhancement Pipeline',
+    img: '/diagrams/18_enhancement_activity.png',
+    desc: isZh
+      ? '--enhance-level 决策流：Level 0 跳过 AI，Level 1+ 选择 API/本地模式通过 AgentClient，Level 2+ 启用架构增强，Level 3 启用模式和测试增强。'
+      : '--enhance-level decision flow: Level 0 skips AI, Level 1+ selects API/local mode via AgentClient, Level 2+ enables architecture enhancement, Level 3 adds patterns and tests.',
+  },
+  {
+    id: 'runtime-components',
+    title: isZh ? '运行时组件' : 'Runtime Components',
+    img: '/diagrams/19_runtime_components.png',
+    desc: isZh
+      ? '组件图显示运行时依赖。CLI Core → Scrapers → Codebase Analysis → Enhancement。MCP Server 通过 get_converter() 访问 Scrapers。可选 Browser Renderer (Playwright) 用于 SPA 站点。'
+      : 'Component diagram with runtime dependencies. CLI Core → Scrapers → Codebase Analysis → Enhancement. MCP Server reaches Scrapers via get_converter(). Optional Browser Renderer (Playwright) for SPA sites.',
+  },
+  {
+    id: 'browser-rendering',
+    title: isZh ? '浏览器渲染流程' : 'Browser Rendering Flow',
+    img: '/diagrams/20_browser_rendering_sequence.png',
+    desc: isZh
+      ? '当设置 --browser 标志时，DocScraper 委托给 BrowserRenderer.render_page() 而非 requests.get()。渲染器自动安装 Chromium，导航并等待 JavaScript 执行完成。'
+      : 'When --browser flag is set, DocScraper delegates to BrowserRenderer.render_page() instead of requests.get(). Renderer auto-installs Chromium, navigates and waits for JavaScript execution.',
+  },
+];
+---
+
+<BaseLayout
+  title={isZh ? 'Skill Seekers 架构' : 'Skill Seekers Architecture'}
+  description={isZh
+    ? 'Skill Seekers UML 架构文档 — 21张图表涵盖类图、序列图、活动图和组件图'
+    : 'Skill Seekers UML architecture documentation — 21 diagrams covering class, sequence, activity, and component diagrams'}
+>
+  <div class="bg-dark-bg min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Header -->
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h1 class="text-4xl font-bold mb-4 text-dark-text-primary">
+          {isZh ? '架构文档' : 'Architecture Documentation'}
+        </h1>
+        <p class="text-xl text-dark-text-secondary mb-6">
+          {isZh
+            ? '21张 UML 图表，使用 StarUML 创建，从源代码同步'
+            : '21 UML diagrams created with StarUML, synced from source code'}
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/api-reference/index.html"
+            target="_blank"
+            class="inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 text-white font-semibold text-sm hover:scale-105 transition-transform shadow-lg shadow-ocean-500/20"
+          >
+            {isZh ? '查看完整 API 参考' : 'Full API Reference'}
+            <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/yusufkaraaslan/Skill_Seekers"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-5 py-2.5 rounded-xl border border-dark-border bg-dark-surface text-dark-text-secondary font-semibold text-sm hover:text-ocean-500 hover:border-ocean-500 transition-colors"
+          >
+            {isZh ? '查看源代码' : 'View Source Code'}
+          </a>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="max-w-3xl mx-auto mb-16 bg-dark-surface rounded-2xl border border-dark-border p-6">
+        <h2 class="text-lg font-semibold text-dark-text-primary mb-4">
+          {isZh ? '目录' : 'Table of Contents'}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <h3 class="font-medium text-ocean-500 mb-2">{isZh ? '核心模块 (9)' : 'Core Modules (9)'}</h3>
+            <ul class="space-y-1 text-dark-text-secondary">
+              {coreModules.map(m => (
+                <li><a href={`#${m.id}`} class="hover:text-ocean-400 transition-colors">{m.title}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-ocean-500 mb-2">{isZh ? '工具模块 (5)' : 'Utility Modules (5)'}</h3>
+            <ul class="space-y-1 text-dark-text-secondary">
+              {utilityModules.map(m => (
+                <li><a href={`#${m.id}`} class="hover:text-ocean-400 transition-colors">{m.title}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium text-ocean-500 mb-2">{isZh ? '行为图 (7)' : 'Behavioral (7)'}</h3>
+            <ul class="space-y-1 text-dark-text-secondary">
+              {behavioralDiagrams.map(m => (
+                <li><a href={`#${m.id}`} class="hover:text-ocean-400 transition-colors">{m.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Modules -->
+      <div class="max-w-6xl mx-auto mb-20">
+        <h2 class="text-3xl font-bold text-dark-text-primary mb-10 text-center">
+          {isZh ? '核心模块' : 'Core Modules'}
+        </h2>
+        <div class="space-y-16">
+          {coreModules.map(diagram => (
+            <div id={diagram.id} class="scroll-mt-24">
+              <h3 class="text-xl font-semibold text-ocean-500 mb-3">{diagram.title}</h3>
+              <p class="text-dark-text-secondary mb-4 text-sm">{diagram.desc}</p>
+              <div class="bg-dark-surface rounded-2xl border border-dark-border p-4 overflow-x-auto">
+                <img
+                  src={diagram.img}
+                  alt={diagram.title}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Utility Modules -->
+      <div class="max-w-6xl mx-auto mb-20">
+        <h2 class="text-3xl font-bold text-dark-text-primary mb-10 text-center">
+          {isZh ? '工具模块' : 'Utility Modules'}
+        </h2>
+        <div class="space-y-16">
+          {utilityModules.map(diagram => (
+            <div id={diagram.id} class="scroll-mt-24">
+              <h3 class="text-xl font-semibold text-ocean-500 mb-3">{diagram.title}</h3>
+              <p class="text-dark-text-secondary mb-4 text-sm">{diagram.desc}</p>
+              <div class="bg-dark-surface rounded-2xl border border-dark-border p-4 overflow-x-auto">
+                <img
+                  src={diagram.img}
+                  alt={diagram.title}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Behavioral Diagrams -->
+      <div class="max-w-6xl mx-auto mb-20">
+        <h2 class="text-3xl font-bold text-dark-text-primary mb-10 text-center">
+          {isZh ? '行为图' : 'Behavioral Diagrams'}
+        </h2>
+        <div class="space-y-16">
+          {behavioralDiagrams.map(diagram => (
+            <div id={diagram.id} class="scroll-mt-24">
+              <h3 class="text-xl font-semibold text-ocean-500 mb-3">{diagram.title}</h3>
+              <p class="text-dark-text-secondary mb-4 text-sm">{diagram.desc}</p>
+              <div class="bg-dark-surface rounded-2xl border border-dark-border p-4 overflow-x-auto">
+                <img
+                  src={diagram.img}
+                  alt={diagram.title}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Design Patterns Summary -->
+      <div class="max-w-4xl mx-auto mb-20">
+        <h2 class="text-3xl font-bold text-dark-text-primary mb-8 text-center">
+          {isZh ? '关键设计模式' : 'Key Design Patterns'}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { pattern: 'Strategy + Factory', where: isZh ? '适配器、存储、嵌入' : 'Adaptors, Storage, Embedding' },
+            { pattern: 'Template Method + Factory', where: isZh ? '抓取器（18个转换器）' : 'Scrapers (18 converters)' },
+            { pattern: 'Singleton', where: isZh ? '配置（ExecutionContext）' : 'Configuration (ExecutionContext)' },
+            { pattern: 'Command', where: isZh ? 'CLI 调度' : 'CLI Dispatch' },
+            { pattern: 'Template Method', where: isZh ? '模式检测、解析器' : 'Pattern Detection, Parsers' },
+          ].map(item => (
+            <div class="bg-dark-surface rounded-xl border border-dark-border p-4 hover:border-ocean-500/30 transition-colors">
+              <span class="text-ocean-500 font-semibold text-sm">{item.pattern}</span>
+              <p class="text-dark-text-secondary text-sm mt-1">{item.where}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

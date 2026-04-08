@@ -1,6 +1,6 @@
 ---
 title: Overview
-description: Deploy skills to Claude AI, Google Gemini, OpenAI ChatGPT, or export as Markdown
+description: Deploy skills to 12+ AI platforms — Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, and more
 section: manual
 subsection: platforms
 order: 1
@@ -8,16 +8,18 @@ order: 1
 
 # Multi-LLM Platform Support
 
-**Available since v2.5.0**
+**12+ platforms since v3.4.0** (expanded from 4 in v2.5.0)
 
-Skill Seekers supports 4 LLM platforms out of the box. Scrape documentation once, deploy everywhere.
+Skill Seekers supports 12+ LLM platforms organized into tiers. Scrape documentation once, deploy everywhere.
 
 ## Supported Platforms
 
-| Platform | Format | Auto Upload | AI Enhancement | Package Size | API Key Required |
-|----------|--------|-------------|----------------|--------------|------------------|
-| **Claude AI** | ZIP + YAML | ✅ Yes | ✅ Yes | Optimized | ANTHROPIC_API_KEY |
-| **Google Gemini** | tar.gz | ✅ Yes | ✅ Yes | Compressed | GOOGLE_API_KEY |
+### Tier 1: Direct Skill Platforms
+
+| Platform | Format | Auto Upload | AI Enhancement | API Key Required |
+|----------|--------|-------------|----------------|------------------|
+| **Claude AI** | ZIP + YAML | ✅ Yes | ✅ Yes | ANTHROPIC_API_KEY |
+| **Google Gemini** | tar.gz | ✅ Yes | ✅ Yes | GOOGLE_API_KEY |
 | **OpenAI ChatGPT** | ZIP + Vector Store | ✅ Yes | ✅ Yes | Indexed | OPENAI_API_KEY |
 | **Generic Markdown** | ZIP | ❌ Manual | ❌ No | Universal | None |
 

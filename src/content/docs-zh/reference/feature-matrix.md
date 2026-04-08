@@ -1,13 +1,13 @@
 ---
 title: 功能支持矩阵和平台比较
-description: Claude AI、Google Gemini、OpenAI ChatGPT 和通用 Markdown 的完整功能支持矩阵 - 比较平台、技能模式、CLI 命令和 MCP 工具
+description: Skill Seekers v3.5.0 完整功能支持矩阵 — 12+ AI 平台、17 种源类型、40 个 MCP 工具和 18 个代理安装路径
 section: reference
 order: 4
 ---
 
 # 功能支持矩阵和平台比较
 
-**Skill Seekers 在所有支持平台上的功能完整比较。**
+**Skill Seekers v3.5.0 在所有 12+ 支持平台上的功能完整比较。**
 
 ## 平台概述
 

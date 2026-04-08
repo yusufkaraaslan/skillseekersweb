@@ -1,224 +1,118 @@
 ---
 title: Features Overview
-description: Complete overview of Skill Seekers features - scraping, analysis, enhancement, multi-platform support, MCP integration, and v3.1.0 workflows
+description: Complete overview of Skill Seekers v3.5.0 features — 17 source types, 12+ AI platforms, agent-agnostic enhancement, marketplace, 40 MCP tools, and UML architecture
 section: about
 order: 2
 ---
 
 # Features Overview
 
-Skill Seekers v3.1.0 offers comprehensive capabilities for creating AI skills from any knowledge source.
+Skill Seekers v3.5.0 is a comprehensive toolkit for transforming any knowledge source into structured AI skills and RAG-ready knowledge.
 
-## 🌐 Input Sources
+## Input Sources (17 Types)
 
 ### Documentation Scraping
-- **HTML websites** - Scrape any documentation site (React, Vue, Django, Godot, etc.)
-- **llms.txt support** - 10x faster when sites provide AI-optimized documentation
-- **Unlimited pages** - No page limits, handles 40K+ page documentation sites
-- **Smart selectors** - Automatic content detection or custom CSS selectors
-- **Category detection** - Automatically organizes content into logical sections
+- **HTML websites** — Scrape any documentation site (React, Vue, Django, Godot, etc.)
+- **Smart SPA discovery** (v3.5.0) — Three-layer engine: sitemap.xml, llms.txt, and browser rendering for JavaScript SPA sites
+- **Browser rendering** (v3.5.0) — Playwright-based rendering for React, Vue, Angular sites that return empty HTML shells
+- **Unlimited pages** — No page limits, handles 40K+ page documentation sites
+- **Smart selectors** — Automatic content detection or custom CSS selectors
 
 ### GitHub Repository Analysis
-- **Unlimited local analysis** - Analyze entire codebases without API rate limits
-- **Code structure** - Extracts classes, functions, dependencies
-- **README extraction** - Pulls README files from all directories
-- **Issue tracking** - Optionally includes GitHub issues and releases
-- **Changelog parsing** - Extracts version history and release notes
-- **Three-stream fetcher** (v3.0+) - Code + Docs + Issues streams
+- **Unlimited local analysis** — Analyze entire codebases without API rate limits (50-file limit removed in v3.5.0)
+- **Three-stream fetcher** — Code + Docs + Issues streams
+- **C3.x deep analysis** — AST parsing across 27+ languages including Kotlin (v3.5.0)
+- **10 GoF pattern detectors** — Singleton, Factory, Strategy, Observer, etc.
+- **Test example extraction** — Real usage examples from test files
 
-### PDF Extraction
-- **Text extraction** - Extracts text from technical PDFs
-- **OCR support** - Handles scanned documents with Tesseract OCR
-- **Password-protected** - Supports encrypted PDFs
-- **Table extraction** - Extracts tables with structure preservation
-- **Parallel processing** - 3x faster with multi-core support
+### PDF & Document Extraction
+- **PDF** — Text extraction with OCR fallback for scanned documents
+- **Word (.docx)** (v3.2.0) — Full document extraction
+- **EPUB** (v3.3.0) — Chapter extraction, DRM detection, EPUB 2/3 support
+- **PowerPoint (.pptx)** (v3.3.0) — Slide text, speaker notes, tables, code block detection
+- **AsciiDoc** (v3.3.0) — Headings, code blocks, tables, admonitions
 
-### Multi-Source Skills (Unified Scraping)
-- **Combine sources** - Docs + GitHub + PDFs in one skill
-- **Conflict detection** - Identifies and resolves duplicate content
-- **Priority resolution** - Configurable source priorities
-- **Comprehensive knowledge** - Creates complete picture of frameworks/tools
+### Media & API Sources
+- **Video** (v3.2.0) — YouTube and local video extraction: transcripts, visual OCR, code timeline tracking
+- **Jupyter Notebooks** (v3.3.0) — Code cells, outputs, markdown, kernel metadata
+- **OpenAPI/Swagger** (v3.3.0) — Endpoint extraction, schema resolution, security schemes
+- **RSS/Atom feeds** (v3.3.0) — Article extraction with optional full-page scraping
+- **Local HTML** (v3.3.0) — Smart main content detection
+- **Man pages** (v3.3.0) — Structured section parsing, gzip/bzip2/xz support
 
-## 🧬 C3.x Codebase Analysis Suite
+### Collaboration & Wiki Sources
+- **Confluence** (v3.3.0) — REST API or HTML export, page hierarchy, macros
+- **Notion** (v3.3.0) — API or Markdown export, 20+ block types, 16+ property types
+- **Slack/Discord** (v3.3.0) — Workspace exports or live API, threads, code snippets
 
-Advanced code analysis features for understanding codebases:
+## Output Platforms (12+)
 
-### C3.1 Pattern Detection
-- **10 design patterns** - Detects Singleton, Factory, Observer, Strategy, Decorator, Builder, Adapter, Command, Template Method, Chain of Responsibility
-- **9 languages** - Python (AST-based), JavaScript, TypeScript, C++, C, C#, Go, Rust, Java
-- **87% precision** - Tested on 100 real-world projects
+| Category | Platforms |
+|----------|-----------|
+| **AI Skills** | Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode |
+| **RAG/Vectors** | LangChain, LlamaIndex, Pinecone, Chroma, FAISS, Haystack, Qdrant, Weaviate |
+| **AI Coding** | Cursor, Windsurf, Cline, Continue.dev, Roo, Aider, Bolt, Kilo |
+| **Generic** | Markdown, JSON, YAML |
 
-### C3.2 Test Example Extraction
-- **Real usage examples** - Extracts examples from test files
-- **5 categories** - Instantiation, method calls, configuration, setup, workflows
-- **Quality filtering** - Removes trivial patterns, keeps meaningful examples
-- **80%+ high-confidence** - Only includes clear, useful examples
+## Agent-Agnostic Enhancement (v3.5.0)
 
-### C3.3 How-To Guide Generation
-- **AI-enhanced tutorials** - Transforms test workflows into step-by-step guides
-- **5 automatic improvements** - Step descriptions, troubleshooting, prerequisites, next steps, use cases
-- **Dual-mode AI** - API mode (fast) or LOCAL mode (FREE with Claude Max)
-- **95%+ satisfaction** - Enhanced guides rated highly by users
+All 5 enhancers now support multiple AI agents via the unified `AgentClient` abstraction:
 
-### C3.4 Configuration Pattern Extraction
-- **9 config formats** - JSON, YAML, TOML, ENV, INI, Python, JavaScript, Dockerfile, Docker Compose
-- **7 common patterns** - Database, API, logging, cache, email, auth, server configs
-- **Security analysis** - Identifies hardcoded secrets and exposed credentials
-- **AI-enhanced insights** - Explanations, best practices, migration suggestions
-
-### C3.5 Architectural Overview
-- **ARCHITECTURE.md generation** - Comprehensive architectural overview with 8 sections
-- **Integrated analysis** - Combines all C3.x outputs into unified skills
-- **Default ON** - Automatically runs when local_repo_path is provided
-
-### C3.7 Architectural Pattern Detection
-- **8 patterns** - MVC, MVVM, MVP, Repository, Service Layer, Layered, Clean Architecture
-- **Framework detection** - Django, Flask, Spring, ASP.NET, Rails, Laravel, Angular, React, Vue.js
-- **Evidence-based** - Confidence scoring with detailed evidence
-
-## 🤖 AI Enhancement
-
-### v3.1.0: Enhancement Workflows
-
-**New workflow system for consistent, reusable enhancement strategies:**
+- **API mode:** Anthropic, Moonshot/Kimi, Google Gemini, OpenAI
+- **LOCAL mode:** Claude Code, Kimi, Codex, Copilot, OpenCode, or any custom agent
+- **Auto-detection:** Automatically detects available agent from API keys
+- **Custom agents:** `--agent-cmd "my-agent run"` for any CLI-based agent
 
 ```bash
-# List available workflows
-skill-seekers workflows list
-
-# Use a preset
-skill-seekers create <source> --enhance-workflow security-focus
-
-# Chain multiple workflows
-skill-seekers create <source> --enhance-workflow minimal --enhance-workflow api-documentation
-
-# Create custom workflow
-echo '
-stages:
-  - name: "Security Analysis"
-    prompt: "Analyze for security vulnerabilities..."
-    model: "claude-sonnet-4"
-    temperature: 0.3
-' > my-workflow.yaml
-
-skill-seekers workflows add my-workflow.yaml
+skill-seekers create https://react.dev --agent kimi
+skill-seekers create https://react.dev --agent codex
+skill-seekers create https://react.dev --agent-cmd "my-custom-agent run"
 ```
 
-**Bundled Presets:**
-| Preset | Purpose |
-|--------|---------|
-| `default` | Balanced enhancement for general use |
-| `minimal` | Light enhancement, fast processing |
-| `security-focus` | Security vulnerability analysis |
-| `architecture-comprehensive` | Deep architectural insights |
-| `api-documentation` | API-focused documentation |
+## Marketplace & Publishing (v3.5.0)
 
-### Local Enhancement (FREE)
-- **Uses Claude Code** - No API costs! Uses your Claude Max subscription
-- **4 execution modes** - Headless (default), Background, Daemon, Interactive
-- **30-60 seconds** - Quick enhancement with Claude Sonnet 4.5
-- **3/10 → 9/10 quality** - Transforms basic docs into comprehensive guides
+- **MarketplacePublisher** — Publish skills to Claude Code plugin marketplace repos
+- **MarketplaceManager** — Register and manage marketplace repositories
+- **ConfigPublisher** — Push configs to registered config source repos
+- **`push_config` MCP tool** — Automated config publishing
 
-### API Enhancement
-- **Platform-specific models** - Claude Sonnet 4, Gemini 2.0 Flash, GPT-4o
-- **Batch processing** - Efficient for large-scale enhancement
-- **Cost-effective** - ~$0.15-$0.30 per skill
-- **Quality verification** - Automatic checks before packaging
+## MCP Integration (40 Tools)
 
-## 🌍 Multi-Platform Support
+40 MCP tools across 10 categories for AI agents to prepare their own knowledge:
 
-### Supported Platforms
-- **Claude AI** - Native ZIP format with YAML frontmatter
-- **Google Gemini** - tar.gz with 1M token context support
-- **OpenAI ChatGPT** - ZIP with vector store and file search
-- **Generic Markdown** - Universal format for any LLM
+- Scraping tools (11) — All 17 source types accessible
+- Config management, validation, packaging, installation
+- Marketplace publishing and config pushing
+- Supports Claude Code Desktop, Cursor, and other MCP-compatible agents
 
-### Complete Feature Parity
-- All skill modes work with all platforms
-- All CLI commands support `--target` parameter
-- All MCP tools support platform selection
-- Consistent workflow across platforms
+## CLI Commands (27+)
 
-## 🔌 MCP Integration
+Key commands:
+- `create` — Unified entry point for all source types with auto-detection
+- `doctor` (v3.5.0) — 8 diagnostic checks for troubleshooting
+- `sync-config` (v3.3.0) — Crawl doc sites and sync URL lists
+- `package` — Export to any platform with `--target`
+- `install` / `install-agent` — Install to AI agent directories
+- `workflows` — Manage enhancement workflow presets
 
-### 26 MCP Tools for Claude Code
-- **Config Management** - generate_config, list_configs, validate_config
-- **Scraping** - scrape_docs, scrape_github, scrape_pdf, estimate_pages
-- **Processing** - enhance_skill, package_skill, upload_skill
-- **Workflows** - install_skill (complete automation)
-- **Splitting** - split_config, generate_router (for large docs)
-- **Sources** - fetch_config, add_config_source, list_config_sources, remove_config_source
+## Architecture Documentation (v3.4.0)
 
-### Multi-Agent Support
-- **5 AI agents** - Claude Code, Cursor, Windsurf, VS Code + Cline, IntelliJ IDEA
-- **Dual transport** - stdio (default) and HTTP (for web-based agents)
-- **Auto-configuration** - `./setup_mcp.sh` configures all detected agents
+- **21 UML diagrams** created with StarUML, synced from source code
+- 14 class diagrams covering all modules
+- 7 behavioral diagrams (sequence, activity, component)
+- [View Architecture Diagrams](/architecture)
+- [Full API Reference](/api-docs)
 
-## ☁️ Cloud Storage (v3.0+)
+## Security (v3.5.0)
 
-Upload skills directly to cloud storage:
+- **Prompt injection detection** — Bundled workflow scans scraped content for injection patterns
+- **defusedxml** for XXE protection in sitemap parsing
+- **Path traversal validation** for config names
+- **Auth token cleanup** from cached Git configs
 
-```bash
-# AWS S3
-skill-seekers cloud upload --provider s3 --bucket my-skills --dir output/react/
+## Quality & Testing
 
-# Google Cloud Storage
-skill-seekers cloud upload --provider gcs --bucket my-skills --dir output/react/
-
-# Azure Blob Storage
-skill-seekers cloud upload --provider azure --container my-skills --dir output/react/
-```
-
-Features:
-- Upload/download directories
-- List files with metadata
-- Check file existence
-- Generate presigned URLs
-- Cloud-agnostic interface
-
-## 📦 Smart Features
-
-### Automatic llms.txt Detection
-- **10x faster** - Downloads AI-optimized docs when available
-- **3 variants** - llms-full.txt, llms.txt, llms-small.txt
-- **Complete content** - No truncation, preserves full documentation
-
-### Git-Based Config Sources
-- **Private repositories** - Fetch configs from private/team repos
-- **Team collaboration** - Share configs across organizations
-- **Version control** - Track config changes over time
-- **Secure auth** - Environment variable tokens only
-
-### Large Documentation Support
-- **40K+ pages** - Handles massive documentation sites
-- **Config splitting** - Breaks large sites into focused sub-skills
-- **Router generation** - Creates intelligent routing between sub-skills
-- **Checkpoint/resume** - Resume interrupted scraping sessions
-
-### Quality Assurance
-- **Automatic checks** - Quality scoring before packaging (0-100 score, A-F grade)
-- **Structure validation** - Validates SKILL.md, references/ directory
-- **Link validation** - Checks all internal markdown links
-- **Enhancement verification** - Ensures AI enhancement completed successfully
-
-## 🚀 Performance
-
-- **Parallel scraping** - 2-3x faster with async mode
-- **Intelligent caching** - 50% faster on re-runs
-- **PDF parallel processing** - 3x faster with multi-core support
-- **Shallow git clones** - 10-50x faster for git-based configs
-
-## 📊 Statistics
-
-- **1,852 tests** - Comprehensive test coverage, 100% passing
-- **24 preset configs** - Ready-to-use configs for popular frameworks
-- **16 platforms** - Complete multi-platform support (up from 4 in v2.x)
-- **26 MCP tools** - Full Claude Code integration
-- **5 bundled workflows** - Enhancement presets (v3.1.0)
-- **v3.1.0** - Latest release (February 2026)
-
-## Next Steps
-
-- [Use Cases](/docs/about/use-cases) - When to use Skill Seekers
-- [FAQ](/docs/about/faq) - Frequently asked questions
-- [Installation](/docs/getting-started/installation) - Get started now
+- **3194+ tests passing** with 39 expected skips
+- Comprehensive coverage across all 17 source types
+- Integration tests with local HTTP servers
+- Performance benchmarks with stabilized thresholds
