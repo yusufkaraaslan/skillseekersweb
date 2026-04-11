@@ -1,13 +1,13 @@
 ---
 title: What is Skill Seekers?
-description: Introduction to Skill Seekers — the data layer for AI systems. Transform 17 source types into structured AI skills and RAG knowledge for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.
+description: Introduction to Skill Seekers — the data layer for AI systems. Transform 18 source types into structured AI skills and RAG knowledge for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.
 section: about
 order: 1
 ---
 
 # What is Skill Seekers?
 
-**Skill Seekers** is the **data layer for AI systems**. It transforms **17 source types** — documentation websites, GitHub repositories, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for **12+ AI platforms**.
+**Skill Seekers** is the **data layer for AI systems**. It transforms **18 source types** — documentation websites, GitHub repositories, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for **12+ AI platforms**.
 
 ## The Problem
 
@@ -24,7 +24,7 @@ Building AI systems that truly understand a domain requires extensive preparatio
 
 Skill Seekers automates AI skill creation and knowledge preprocessing:
 
-1. **Extract** from any of 17 source types — docs, repos, PDFs, videos, notebooks, wikis, and more
+1. **Extract** from any of 18 source types — docs, repos, PDFs, videos, notebooks, wikis, and more
 2. **Analyze** with deep code parsing (AST analysis across 27+ languages, pattern detection, architecture mapping)
 3. **Enhance** with any AI agent — Claude, Kimi, Codex, Copilot, OpenCode, or custom agents via unified AgentClient
 4. **Package** into 12+ output platforms (AI skills, RAG pipelines, coding rules, vector DBs)
@@ -98,13 +98,15 @@ skill-seekers create https://react.dev --enhance-level 2  # architecture + patte
 Current version: **v3.5.0** (April 2026)
 
 **Latest additions:**
+- Grand Unification — one command, direct converters (v3.5.0)
 - Agent-agnostic architecture (v3.5.0)
 - Marketplace & config publishing (v3.5.0)
 - Smart SPA discovery engine (v3.5.0)
 - Prompt injection detection (v3.5.0)
+- All content extraction features enabled by default (v3.5.0)
 - 12 LLM platform targets (v3.4.0)
 - 21 UML architecture diagrams (v3.4.0)
-- 17 source types (v3.3.0)
+- 17 source types (v3.3.0) → 18 (v3.5.0)
 - Video scraping pipeline (v3.2.0)
 - **3194+ tests passing**
 

@@ -1,6 +1,6 @@
 ---
 title: Features Overview
-description: Complete overview of Skill Seekers v3.5.0 features — 17 source types, 12+ AI platforms, agent-agnostic enhancement, marketplace, 40 MCP tools, and UML architecture
+description: Complete overview of Skill Seekers v3.5.0 features — 18 source types, 12+ AI platforms, agent-agnostic enhancement, marketplace, 40 MCP tools, and UML architecture
 section: about
 order: 2
 ---
@@ -80,7 +80,7 @@ skill-seekers create https://react.dev --agent-cmd "my-custom-agent run"
 
 40 MCP tools across 10 categories for AI agents to prepare their own knowledge:
 
-- Scraping tools (11) — All 17 source types accessible
+- Scraping tools (11) — All 18 source types accessible
 - Config management, validation, packaging, installation
 - Marketplace publishing and config pushing
 - Supports Claude Code Desktop, Cursor, and other MCP-compatible agents
@@ -113,6 +113,6 @@ Key commands:
 ## Quality & Testing
 
 - **3194+ tests passing** with 39 expected skips
-- Comprehensive coverage across all 17 source types
+- Comprehensive coverage across all 18 source types
 - Integration tests with local HTTP servers
 - Performance benchmarks with stabilized thresholds

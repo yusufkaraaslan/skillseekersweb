@@ -1,6 +1,6 @@
 ---
 title: 快速开始
-description: 在 5 分钟内启动并运行 Skill Seekers v3.5.0 — 从 17 种源类型中的任何一种创建 AI 技能
+description: 在 5 分钟内启动并运行 Skill Seekers v3.5.0 — 从 18 种源类型中的任何一种创建 AI 技能
 section: getting-started
 order: 2
 ---

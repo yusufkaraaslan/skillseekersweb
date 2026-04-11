@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-description: Get up and running with Skill Seekers v3.5.0 in 5 minutes — create AI skills from any of 17 source types
+description: Get up and running with Skill Seekers v3.5.0 in 5 minutes — create AI skills from any of 18 source types
 section: getting-started
 order: 3
 ---
@@ -29,7 +29,7 @@ skill-seekers doctor
 
 ## Step 2: Create Your First Skill
 
-The `create` command auto-detects source type and works with any of 17 sources:
+The `create` command auto-detects source type and works with any of 18 sources:
 
 ```bash
 # From documentation website

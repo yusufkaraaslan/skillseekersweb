@@ -11,7 +11,7 @@
       "part2": "for AI Systems",
       "part3": ""
     },
-    "subheadline": "Transform 17 source types — docs, GitHub repos, PDFs, videos, notebooks, wikis, and more — into AI skills and RAG knowledge. One tool for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.",
+    "subheadline": "Transform 18 source types — docs, GitHub repos, PDFs, videos, notebooks, wikis, and more — into AI skills and RAG knowledge. One tool for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.",
     "cta": {
       "getStarted": "Get Started",
       "browseConfigs": "Browse Configs"
@@ -47,7 +47,7 @@
   },
   "about": {
     "heading": "The Data Layer for AI Systems",
-    "description": "Skill Seekers transforms 17 source types — documentation sites, GitHub repos, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for 12+ AI platforms.",
+    "description": "Skill Seekers transforms 18 source types — documentation sites, GitHub repos, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for 12+ AI platforms.",
     "problem": {
       "title": "The Problem",
       "item1": "Building AI skills takes days of preprocessing — scraping, analyzing code, extracting patterns",
@@ -57,7 +57,7 @@
     },
     "solution": {
       "title": "The Solution",
-      "item1": "One tool for 17 source types: docs, repos, PDFs, videos, notebooks, wikis, and more",
+      "item1": "One tool for 18 source types: docs, repos, PDFs, videos, notebooks, wikis, and more",
       "item2": "Deep code analysis detects patterns, architecture, and design decisions across 27+ languages",
       "item3": "12+ output platforms: Claude, Gemini, OpenAI, Kimi, DeepSeek, LangChain, Cursor, and more",
       "item4": "15-45 minutes end-to-end: from any source to production-ready AI skill"
@@ -79,7 +79,7 @@
   },
   "features": {
     "title": "Complete AI Knowledge Toolkit",
-    "subtitle": "Transform any of 17 source types into structured AI skills and RAG knowledge",
+    "subtitle": "Transform any of 18 source types into structured AI skills and RAG knowledge",
     "viewAll": "View All {count} Features",
     "showLess": "Show Less",
     "moreFeatures": "+{count} more features",
@@ -97,7 +97,7 @@
     "items": [
       {
         "icon": "🎯",
-        "title": "17 Source Types",
+        "title": "18 Source Types",
         "description": "Docs, GitHub, PDF, video, Word, EPUB, Jupyter, OpenAPI, AsciiDoc, PPTX, HTML, RSS, man pages, Confluence, Notion, Slack/Discord, and local codebases",
         "category": "v3.3.0+"
       },
@@ -254,7 +254,7 @@
       {
         "number": "2",
         "title": "2. Create Skill",
-        "description": "From any of 17 source types",
+        "description": "From any of 18 source types",
         "code": "skill-seekers create https://react.dev\n# Or: skill-seekers create facebook/react\n# Or: skill-seekers create ./my-project"
       },
       {

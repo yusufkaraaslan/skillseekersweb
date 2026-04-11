@@ -1,6 +1,6 @@
 ---
 title: 功能概览
-description: Skill Seekers v3.5.0 功能完整概览 — 17 种源类型、12+ AI 平台、代理无关增强、市场发布、40 个 MCP 工具和 UML 架构
+description: Skill Seekers v3.5.0 功能完整概览 — 18 种源类型、12+ AI 平台、代理无关增强、市场发布、40 个 MCP 工具和 UML 架构
 section: about
 order: 2
 ---
@@ -74,4 +74,4 @@ skill-seekers create https://react.dev --agent-cmd "my-custom-agent run"
 ## 质量和测试
 
 - **3194+ 个测试通过**
-- 涵盖所有 17 种源类型的全面覆盖
+- 涵盖所有 18 种源类型的全面覆盖

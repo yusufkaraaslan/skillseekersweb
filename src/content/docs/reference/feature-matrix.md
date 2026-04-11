@@ -1,6 +1,6 @@
 ---
 title: Feature Support Matrix & Platform Comparison
-description: Complete feature support matrix across all 12+ AI platforms, 17 source types, 40 MCP tools, and 18 agent install paths
+description: Complete feature support matrix across all 12+ AI platforms, 18 source types, 40 MCP tools, and 18 agent install paths
 section: reference
 order: 4
 ---
@@ -92,7 +92,7 @@ Skill Seekers supports **12+ target platforms** organized into tiers:
 
 | Category | Tools | Description |
 |----------|-------|-------------|
-| Scraping | 11 | All 17 source types via `scrape_*` and `scrape_generic` tools |
+| Scraping | 11 | All 18 source types via `scrape_*` and `scrape_generic` tools |
 | Config | 4 | Create, read, update, validate configs |
 | Packaging | 3 | Package, upload, install skills |
 | Analysis | 3 | Codebase analysis, quality check, estimate |

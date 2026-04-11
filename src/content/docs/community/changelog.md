@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: Complete version history of Skill Seekers from v0.1.0 to v3.5.0 with all features, changes, fixes, and breaking changes documented
+description: Complete version history of Skill Seekers from v0.1.0 to v3.5.0 — Grand Unification, agent-agnostic architecture, marketplace pipeline, and all features, changes, fixes, and breaking changes documented
 section: community
 order: 4
 ---
@@ -16,11 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [3.5.0] - 2026-04-01
+## [3.5.0] - 2026-04-09
 
-**Theme:** Agent-agnostic architecture, marketplace pipeline, smart SPA discovery, dynamic routing refactor, and removal of artificial limits. 60+ files changed.
+**Theme:** Grand Unification — one command, one interface, direct converters. Agent-agnostic architecture, marketplace pipeline, smart SPA discovery, and all content extraction enabled by default. 80+ files changed.
 
 ### Added
+- **Grand Unification** — unified `create` command as single entry point for all 18 source types with auto-detection, direct converter invocation, and centralized enhancement (#346)
 - **Agent-agnostic `AgentClient` abstraction** — all 5 enhancers now support Claude, Kimi, Codex, Copilot, OpenCode, and custom agents
 - **Kimi CLI integration** with stdin piping and output parsing
 - **MarketplacePublisher** — publish skills to Claude Code plugin marketplace repos
@@ -33,15 +34,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Headless browser rendering** (`--browser` flag) via Playwright
 - **`skill-seekers doctor` command** — 8 diagnostic checks
 - **Prompt injection check workflow** — scans for injection patterns
+- **Codex CLI plugin manifest** (`.codex-plugin/plugin.json`) for OpenAI Codex integration (#350)
 - **6 behavioral UML diagrams** — sequence, activity, and component diagrams
 - **134 new tests** (total: 3194+)
 
 ### Changed
+- **All content extraction features enabled by default** — pattern detection, test examples, how-to guides, config extraction, and router generation no longer require explicit opt-in
 - Renamed `claude-enhanced` merge mode to `ai-enhanced` (backward compat kept)
 - Removed 118+ hardcoded Claude references across 60+ files
 - Removed 50-file GitHub API analysis limit
 - Removed 100-file config extraction limit
 - Fixed unified scraper default `max_pages` from 100 to 500
+- Centralized enhancement timeouts to 45min default with unlimited support
+- Excluded slow MCP/e2e tests from CI coverage step to prevent timeouts
+
+### Fixed
+- Replaced `glob('*.md')` with `rglob('*.md')` in all adaptors — fixes packaging for nested skill directories (#349)
+- GitHub language detection crashes with `TypeError` on non-integer metadata keys (#322)
+- C3.x codebase analysis crashes with `TypeError` on removed `enhance_with_ai`/`ai_mode` kwargs (#323)
 
 ### Security
 - Removed command injection via cloned repo script execution
@@ -76,7 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **10 new source types**: Jupyter, Local HTML, OpenAPI/Swagger, AsciiDoc, PowerPoint, RSS/Atom, Man Pages, Confluence, Notion, Slack/Discord
 - **EPUB unified pipeline integration**
 - **Generic merge system** for any combination of source types
-- **17 source types in config validator**
+- **18 source types in config validator**
 - **`sync-config` command** — crawl doc sites and diff URLs
 - **10 new CLI subcommands**, entry points, and optional dependency groups
 - **MCP `scrape_generic` tool** — handles all new source types

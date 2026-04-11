@@ -11,7 +11,7 @@
       "part2": "数据层",
       "part3": ""
     },
-    "subheadline": "将 17 种源类型 — 文档、GitHub 仓库、PDF、视频、笔记本、wiki 等 — 转换为 AI 技能和 RAG 知识。一个工具支持 Claude、Gemini、OpenAI、LangChain、Cursor 等 12+ AI 平台。",
+    "subheadline": "将 18 种源类型 — 文档、GitHub 仓库、PDF、视频、笔记本、wiki 等 — 转换为 AI 技能和 RAG 知识。一个工具支持 Claude、Gemini、OpenAI、LangChain、Cursor 等 12+ AI 平台。",
     "cta": {
       "getStarted": "开始使用",
       "browseConfigs": "浏览配置"
@@ -47,7 +47,7 @@
   },
   "about": {
     "heading": "AI 系统的数据层",
-    "description": "Skill Seekers 将 17 种源类型 — 文档站点、GitHub 仓库、PDF、视频、Jupyter 笔记本、Word/EPUB 文档、OpenAPI 规范、Confluence wiki、Notion 页面等 — 转换为结构化 AI 技能和 RAG 就绪知识，支持 12+ AI 平台。",
+    "description": "Skill Seekers 将 18 种源类型 — 文档站点、GitHub 仓库、PDF、视频、Jupyter 笔记本、Word/EPUB 文档、OpenAPI 规范、Confluence wiki、Notion 页面等 — 转换为结构化 AI 技能和 RAG 就绪知识，支持 12+ AI 平台。",
     "problem": {
       "title": "问题所在",
       "item1": "构建 AI 技能需要数天的预处理 — 抓取文档、分析代码、提取模式",
@@ -57,7 +57,7 @@
     },
     "solution": {
       "title": "解决方案",
-      "item1": "一个工具处理 17 种源类型：文档、仓库、PDF、视频、笔记本、wiki 等",
+      "item1": "一个工具处理 18 种源类型：文档、仓库、PDF、视频、笔记本、wiki 等",
       "item2": "深度代码分析检测 27+ 种语言中的模式、架构和设计决策",
       "item3": "12+ 输出平台：Claude、Gemini、OpenAI、Kimi、DeepSeek、LangChain、Cursor 等",
       "item4": "端到端 15-45 分钟：从任何来源到生产就绪的 AI 技能"
@@ -79,7 +79,7 @@
   },
   "features": {
     "title": "完整的 AI 知识工具包",
-    "subtitle": "将 17 种源类型中的任何一种转换为结构化 AI 技能和 RAG 知识",
+    "subtitle": "将 18 种源类型中的任何一种转换为结构化 AI 技能和 RAG 知识",
     "viewAll": "查看全部 {count} 个功能",
     "showLess": "显示更少",
     "moreFeatures": "还有 {count} 个功能",
@@ -97,7 +97,7 @@
     "items": [
       {
         "icon": "🎯",
-        "title": "17 种源类型",
+        "title": "18 种源类型",
         "description": "文档、GitHub、PDF、视频、Word、EPUB、Jupyter、OpenAPI、AsciiDoc、PPTX、HTML、RSS、man 页面、Confluence、Notion、Slack/Discord 和本地代码库",
         "category": "v3.3.0+"
       },
@@ -254,7 +254,7 @@
       {
         "number": "2",
         "title": "2. 创建技能",
-        "description": "支持 17 种源类型",
+        "description": "支持 18 种源类型",
         "code": "skill-seekers create https://react.dev\n# 或：skill-seekers create facebook/react\n# 或：skill-seekers create ./my-project"
       },
       {

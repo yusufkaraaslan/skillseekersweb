@@ -13,7 +13,7 @@ Skill Seekers v3.5.0 provides **40 MCP (Model Context Protocol) tools** across 1
 ## Overview
 
 MCP tools allow AI agents to:
-- **Create skills** from all 17 source types (11 scraping tools)
+- **Create skills** from all 18 source types (11 scraping tools)
 - **Analyze codebases** with C3.x pattern detection (27+ languages)
 - **Enhance knowledge** with any AI agent via AgentClient
 - **Manage configurations** for different platforms

@@ -20,7 +20,7 @@ Skill Seekers follows a **layered module design** with 8 core modules and 5 util
 
 ### Core Modules
 1. **CLICore** — Git-style command dispatcher, entry point for all commands
-2. **Scrapers** — 18 converter classes for 17 source types (Template Method + Factory pattern)
+2. **Scrapers** — 18 converter classes for 18 source types (Template Method + Factory pattern)
 3. **Adaptors** — Strategy+Factory for 20+ output platforms
 4. **Analysis** — C3.x codebase analysis pipeline (AST, 10 GoF pattern detectors)
 5. **Enhancement** — AI-powered skill improvement via `AgentClient` (API + LOCAL modes)

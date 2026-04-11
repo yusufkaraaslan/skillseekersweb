@@ -1,6 +1,6 @@
 ---
 title: 功能支持矩阵和平台比较
-description: Skill Seekers v3.5.0 完整功能支持矩阵 — 12+ AI 平台、17 种源类型、40 个 MCP 工具和 18 个代理安装路径
+description: Skill Seekers v3.5.0 完整功能支持矩阵 — 12+ AI 平台、18 种源类型、40 个 MCP 工具和 18 个代理安装路径
 section: reference
 order: 4
 ---
