@@ -1,7 +1,7 @@
 {
   "hero": {
     "badge": {
-      "version": "v3.5.0",
+      "version": "v3.9.0",
       "new": "NEW",
       "tests": "3194+ tests passing",
       "license": "MIT Licensed"
@@ -11,7 +11,7 @@
       "part2": "for AI Systems",
       "part3": ""
     },
-    "subheadline": "Transform 18 source types — docs, GitHub repos, PDFs, videos, notebooks, wikis, and more — into AI skills and RAG knowledge. One tool for Claude, Gemini, OpenAI, LangChain, Cursor, and 12+ AI platforms.",
+    "subheadline": "Transform 18 source types — docs, GitHub repos, PDFs, videos, notebooks, wikis, and more — into AI skills and RAG knowledge. One tool for Claude, Gemini, OpenAI, LangChain, Cursor, and 22 AI platforms.",
     "cta": {
       "getStarted": "Get Started",
       "browseConfigs": "Browse Configs"
@@ -23,7 +23,7 @@
     },
     "socialProof": {
       "tests": "3194+ Tests",
-      "platforms": "12+ AI Platforms",
+      "platforms": "22 AI Platforms",
       "sources": "17 Input Sources",
       "time": "15-45 min / skill"
     }
@@ -47,7 +47,7 @@
   },
   "about": {
     "heading": "The Data Layer for AI Systems",
-    "description": "Skill Seekers transforms 18 source types — documentation sites, GitHub repos, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for 12+ AI platforms.",
+    "description": "Skill Seekers transforms 18 source types — documentation sites, GitHub repos, PDFs, videos, Jupyter notebooks, Word/EPUB documents, OpenAPI specs, Confluence wikis, Notion pages, and more — into structured AI skills and RAG-ready knowledge for 22 AI platforms.",
     "problem": {
       "title": "The Problem",
       "item1": "Building AI skills takes days of preprocessing — scraping, analyzing code, extracting patterns",
@@ -59,7 +59,7 @@
       "title": "The Solution",
       "item1": "One tool for 18 source types: docs, repos, PDFs, videos, notebooks, wikis, and more",
       "item2": "Deep code analysis detects patterns, architecture, and design decisions across 27+ languages",
-      "item3": "12+ output platforms: Claude, Gemini, OpenAI, Kimi, DeepSeek, LangChain, Cursor, and more",
+      "item3": "22 output platforms: Claude, Gemini, OpenAI, Kimi, DeepSeek, LangChain, Cursor, and more",
       "item4": "15-45 minutes end-to-end: from any source to production-ready AI skill"
     },
     "benefits": {
@@ -84,7 +84,7 @@
     "showLess": "Show Less",
     "moreFeatures": "+{count} more features",
     "formats": {
-      "title": "12+ AI Platforms",
+      "title": "22 AI Platforms",
       "rag": "RAG/Vectors: LangChain, LlamaIndex, Chroma, FAISS, Haystack, Qdrant, Weaviate, Pinecone",
       "ai": "AI Skills: Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode",
       "coding": "AI Coding: Cursor, Windsurf, Cline, Continue.dev, Roo, Aider, Bolt, Kilo",
@@ -102,10 +102,16 @@
         "category": "v3.3.0+"
       },
       {
+        "icon": "🛰️",
+        "title": "AI Project Scan",
+        "description": "Point scan at any project — an AI agent reads its manifests, README, Dockerfile/CI and source imports, then emits one config per detected framework.",
+        "category": "NEW - v3.9.0"
+      },
+      {
         "icon": "🤖",
         "title": "Agent-Agnostic Architecture",
         "description": "All enhancers support Claude, Kimi, Codex, Copilot, OpenCode, and custom agents via unified AgentClient",
-        "category": "NEW - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🌊",
@@ -117,47 +123,47 @@
         "icon": "🌐",
         "title": "Smart SPA Discovery",
         "description": "Three-layer discovery engine: sitemap.xml, llms.txt, and SPA nav rendering for JavaScript sites",
-        "category": "NEW - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🔧",
         "title": "40 MCP Tools",
         "description": "AI agents can prepare their own knowledge with 40 MCP tools across 10 categories",
-        "category": "v3.5.0"
+        "category": "v3.9.0"
       },
       {
         "icon": "🏪",
         "title": "Marketplace Publisher",
         "description": "Publish skills to Claude Code plugin marketplace repos with MarketplacePublisher and ConfigPublisher",
-        "category": "NEW - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🖥️",
         "title": "Browser Rendering",
         "description": "Render JavaScript SPA sites with Playwright — auto-installs Chromium, handles React/Vue/Angular",
-        "category": "v3.5.0"
+        "category": "v3.9.0"
       },
       {
         "icon": "🩺",
         "title": "Doctor Command",
         "description": "8 diagnostic checks: Python version, dependencies, API keys, MCP server, output directory",
-        "category": "NEW - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🛡️",
         "title": "Prompt Injection Detection",
         "description": "Bundled security workflow scans scraped content for injection patterns and flags suspicious content",
-        "category": "NEW - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "📊",
-        "title": "12 LLM Platform Targets",
-        "description": "Claude, Gemini, OpenAI, Kimi, DeepSeek, Qwen, OpenRouter, Together, Fireworks, MiniMax, OpenCode, Markdown",
+        "title": "22 Export Targets",
+        "description": "12 LLM platforms, 8 RAG/vector targets, plus Atlas and IBM Bob — one prep, every target",
         "category": "v3.4.0"
       },
       {
         "icon": "🔌",
-        "title": "18 Agent Install Paths",
+        "title": "19 Agent Install Paths",
         "description": "Install skills to Claude, Cursor, Windsurf, Cline, Continue, Roo, Aider, Bolt, Kilo, Kimi, and more",
         "category": "v3.4.0"
       },
@@ -181,8 +187,8 @@
       },
       {
         "icon": "✅",
-        "title": "3194+ Tests",
-        "description": "Production-ready with 3194+ tests passing across the entire codebase",
+        "title": "3,900+ Tests",
+        "description": "Production-ready with 3,900+ tests passing across the entire codebase",
         "category": "Quality"
       },
       {
@@ -326,7 +332,7 @@
     ],
     "platforms": {
       "title": "Multi-Platform Support",
-      "subtitle": "Export your skills to 12+ LLM platforms with platform-specific optimizations",
+      "subtitle": "Export your skills to 22 LLM platforms with platform-specific optimizations",
       "items": [
         "🤖 Claude AI",
         "💎 Google Gemini",
@@ -353,7 +359,7 @@
     "values": {
       "tests": "3194+",
       "configs": "24+",
-      "platforms": "12+",
+      "platforms": "22",
       "mcpTools": "40",
       "languages": "27+"
     },
