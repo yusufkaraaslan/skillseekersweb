@@ -1,0 +1,243 @@
+---
+/**
+ * Sponsors page body, shared by /sponsors and /zh/sponsors.
+ *
+ * Sponsor data comes from sponsors.json in the Skill_Seekers repo (single
+ * source of truth). Only Silver and above get a logo here, per SPONSORSHIP.md.
+ */
+import { getSponsors, logoSrc, TIER_WIDTH, WEB_TIERS, hasWebSponsors } from '../../utils/sponsors';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const isZh = lang === 'zh';
+
+const data = await getSponsors();
+const showSponsors = hasWebSponsors(data);
+
+// Flattened for the template — Astro's compiler dislikes nested ternaries/`??` in JSX.
+const sponsorGroups = WEB_TIERS.map((tier) => ({
+  tier,
+  width: TIER_WIDTH[tier],
+  entries: (data[tier] ?? []).map((s) => ({
+    name: s.name,
+    url: s.url,
+    src: logoSrc(s),
+    blurb: s.blurb ? s.blurb.replace(/`/g, '') : '',
+  })),
+})).filter((g) => g.entries.length > 0);
+
+const POLICY_URL = 'https://github.com/yusufkaraaslan/Skill_Seekers/blob/main/SPONSORSHIP.md';
+const mailtoHref = 'mailto:' + data.contact;
+
+const tierLabel: Record<string, string> = {
+  partners: isZh ? '首发合作伙伴' : 'Launch Partner',
+  platinum: isZh ? '白金赞助商' : 'Platinum Sponsors',
+  gold: isZh ? '黄金赞助商' : 'Gold Sponsors',
+  silver: isZh ? '白银赞助商' : 'Silver Sponsors',
+};
+
+const tiers = [
+  {
+    name: isZh ? '支持者' : 'Supporter',
+    price: '$10',
+    perk: isZh ? '在 SPONSORS.md 中署名' : 'Name in SPONSORS.md',
+  },
+  {
+    name: isZh ? '青铜' : 'Bronze',
+    price: '$50',
+    perk: isZh ? 'README 底部赞助网格中的小徽标' : 'Small logo in the README sponsor grid',
+  },
+  {
+    name: isZh ? '白银' : 'Silver',
+    price: '$150',
+    perk: isZh
+      ? 'README 赞助网格中的中等徽标 + 本站赞助页展示'
+      : 'Medium logo in the README grid + logo on this page',
+  },
+  {
+    name: isZh ? '黄金' : 'Gold',
+    price: '$400',
+    perk: isZh
+      ? 'README 赞助区顶部的大徽标 + 网站展示 + 发布说明提及'
+      : 'Large logo near the top of the README + website placement + mention in release notes',
+  },
+  {
+    name: isZh ? '白金' : 'Platinum',
+    price: '$1,000',
+    perk: isZh
+      ? '黄金全部权益 + README 中的简短「赞助」说明 + 优先问题处理'
+      : 'Everything in Gold + a short "Sponsored" blurb in the README + priority issue triage',
+  },
+];
+
+const rules = isZh
+  ? [
+      '相关性筛选：赞助商必须是对 AI 工具、文档基础设施或开源开发者真正有用的工具或服务。',
+      '明确标注：所有付费展示均明确标记为「赞助」。不做原生广告式的模糊处理。',
+      '无编辑控制权：赞助购买的是展示位，而非背书。我不会撰写预设结论的评测或推荐。',
+      '无追踪参数：赞助链接为干净 URL。无 UTM 标签、无重定向链、无分析注入。',
+      '书面记录：所有条款在上线前以书面形式（邮件即可）确认。',
+      '安全审查：赞助商提交的任何 PR 都与其他 PR 一样经过安全审查。',
+      '终止条款：任何一方均可提前 30 天通知终止月度合作。',
+      '先付款后上线：首笔款项到账后展示位才会上线。',
+    ]
+  : [
+      'Relevance filter. Sponsors must be tools or services genuinely useful to developers working with AI tooling, docs infrastructure, or open source.',
+      'Clear labeling. All paid placements are explicitly marked "Sponsor" or "Sponsored." No native-ad ambiguity.',
+      'No editorial control. A sponsorship buys placement, not endorsement. I don\'t write reviews with predetermined conclusions.',
+      'No tracking parameters. Sponsor links are clean URLs. No UTM tags, no redirect chains, no analytics injection.',
+      'Written trail. All terms are agreed in writing before anything goes live.',
+      'Security review. Any sponsor-submitted PR goes through the same security review as any other PR.',
+      'Termination. Either side can end a monthly arrangement with 30 days\' notice.',
+      'Payment first. Placement goes live after the first payment clears.',
+    ];
+---
+
+<div class="bg-dark-bg min-h-screen">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <h1 class="text-4xl font-bold mb-4 text-dark-text-primary">
+        {isZh ? '赞助 Skill Seekers' : 'Sponsoring Skill Seekers'}
+      </h1>
+      <p class="text-xl text-dark-text-secondary mb-6">
+        {isZh
+          ? '赞助让这个项目保持维护、安全且免费。'
+          : 'Sponsorship keeps the project maintained, secure, and free.'}
+      </p>
+      <p class="text-dark-text-secondary">
+        {isZh
+          ? 'Skill Seekers 是面向 AI 系统的开源数据层。我们的受众是使用 Claude、Cursor、LangChain 以及更广泛 AI 工具生态的开发者。'
+          : 'Skill Seekers is an open-source data layer for AI systems. Our audience is developers building with Claude, Cursor, LangChain, and the broader AI tooling ecosystem.'}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        <a
+          href={data.sponsors_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 text-white font-semibold text-sm hover:scale-105 transition-transform shadow-lg shadow-ocean-500/20"
+        >
+          {isZh ? '成为赞助商' : 'Become a sponsor'}
+        </a>
+        <a
+          href={POLICY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-5 py-2.5 rounded-xl border border-dark-border bg-dark-surface text-dark-text-secondary font-semibold text-sm hover:text-ocean-500 hover:border-ocean-500 transition-colors"
+        >
+          {isZh ? '完整条款' : 'Full policy'}
+        </a>
+      </div>
+    </div>
+
+    <!-- Current sponsors -->
+    {showSponsors && (
+      <section class="max-w-4xl mx-auto mb-16">
+        <h2 class="text-2xl font-bold mb-2 text-center text-dark-text-primary">
+          {isZh ? '当前赞助商' : 'Current sponsors'}
+        </h2>
+        <p class="text-sm text-dark-text-secondary text-center mb-8">
+          {isZh ? '以下均为付费赞助展示。' : 'All placements below are paid sponsorships.'}
+        </p>
+
+        {sponsorGroups.map((group) => (
+          <div class="mb-10">
+            <h3 class="text-xs uppercase tracking-widest text-dark-text-secondary text-center mb-5">
+              {tierLabel[group.tier]}
+            </h3>
+            <div class="flex flex-wrap items-center justify-center gap-8">
+              {group.entries.map((s) => (
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  class="block rounded-xl border border-dark-border bg-dark-surface p-6 hover:border-ocean-500 transition-colors"
+                >
+                  <img src={s.src} alt={s.name} width={group.width} loading="lazy" class="max-w-full h-auto" />
+                </a>
+              ))}
+            </div>
+            {group.entries.filter((s) => s.blurb).map((s) => (
+              <p class="text-sm text-dark-text-secondary text-center max-w-2xl mx-auto mt-5">
+                <a href={s.url} target="_blank" rel="noopener noreferrer sponsored" class="text-ocean-500 hover:underline">{s.name}</a>
+                {' — '}{s.blurb}
+              </p>
+            ))}
+          </div>
+        ))}
+      </section>
+    )}
+
+    <!-- Tiers -->
+    <section class="max-w-4xl mx-auto mb-16">
+      <h2 class="text-2xl font-bold mb-2 text-center text-dark-text-primary">
+        {isZh ? '展示位与档位' : 'Placements & tiers'}
+      </h2>
+      <p class="text-sm text-dark-text-secondary text-center mb-8">
+        {isZh
+          ? '所有金额均为每月。一次性展示按月费 2 倍计，投放 30 天。'
+          : 'All amounts are monthly. One-time placements available at 2× the monthly rate for a 30-day run.'}
+      </p>
+      <div class="overflow-x-auto rounded-xl border border-dark-border">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-dark-surface">
+            <tr>
+              <th class="px-5 py-3 font-semibold text-dark-text-primary">{isZh ? '档位' : 'Tier'}</th>
+              <th class="px-5 py-3 font-semibold text-dark-text-primary whitespace-nowrap">{isZh ? '价格' : 'Price'}</th>
+              <th class="px-5 py-3 font-semibold text-dark-text-primary">{isZh ? '权益' : 'What you get'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tiers.map((tier) => (
+              <tr class="border-t border-dark-border">
+                <td class="px-5 py-4 font-semibold text-dark-text-primary whitespace-nowrap">{tier.name}</td>
+                <td class="px-5 py-4 text-ocean-500 font-semibold whitespace-nowrap">{tier.price}<span class="text-dark-text-secondary font-normal">/mo</span></td>
+                <td class="px-5 py-4 text-dark-text-secondary">{tier.perk}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-dark-text-secondary mt-4 text-center">
+        {isZh
+          ? '定制合作（集成、联合市场推广、内容）逐案报价。'
+          : 'Custom arrangements (integrations, co-marketing, content) are quoted case by case.'}
+      </p>
+    </section>
+
+    <!-- Rules -->
+    <section class="max-w-3xl mx-auto mb-16">
+      <h2 class="text-2xl font-bold mb-6 text-center text-dark-text-primary">
+        {isZh ? '规则 — 联系前请阅读' : 'Rules — read before reaching out'}
+      </h2>
+      <ol class="space-y-3">
+        {rules.map((rule, i) => (
+          <li class="flex gap-4 rounded-xl border border-dark-border bg-dark-surface p-4">
+            <span class="text-ocean-500 font-bold shrink-0">{i + 1}</span>
+            <span class="text-sm text-dark-text-secondary">{rule}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- How to start -->
+    <section class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4 text-dark-text-primary">
+        {isZh ? '如何开始' : 'How to start'}
+      </h2>
+      <p class="text-dark-text-secondary mb-6">
+        {isZh
+          ? '发送邮件，说明：选择的档位、展示位、您的徽标与链接、账单联系人。通过相关性筛选后，您将收到书面条款确认和上线日期。'
+          : 'Email with: which tier, which placement, your logo and link, and billing contact. If it passes the relevance filter, you\'ll get written confirmation of terms and a go-live date.'}
+      </p>
+      <a
+        href={mailtoHref}
+        class="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-ocean-600 to-ocean-500 text-white font-semibold hover:scale-105 transition-transform shadow-lg shadow-ocean-500/20"
+      >
+        {data.contact}
+      </a>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SponsorsContent from '../components/astro/SponsorsContent.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Sponsor Skill Seekers"
+  description="Sponsorship tiers, placements, and rules for Skill Seekers — the open-source data layer for AI systems."
+>
+  <SponsorsContent lang="en" />
+</BaseLayout>
