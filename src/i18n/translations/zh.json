@@ -1,7 +1,7 @@
 {
   "hero": {
     "badge": {
-      "version": "v3.5.0",
+      "version": "v3.9.0",
       "new": "NEW",
       "tests": "3194+ 个测试通过",
       "license": "MIT 许可证"
@@ -11,7 +11,7 @@
       "part2": "数据层",
       "part3": ""
     },
-    "subheadline": "将 18 种源类型 — 文档、GitHub 仓库、PDF、视频、笔记本、wiki 等 — 转换为 AI 技能和 RAG 知识。一个工具支持 Claude、Gemini、OpenAI、LangChain、Cursor 等 12+ AI 平台。",
+    "subheadline": "将 18 种源类型 — 文档、GitHub 仓库、PDF、视频、笔记本、wiki 等 — 转换为 AI 技能和 RAG 知识。一个工具支持 Claude、Gemini、OpenAI、LangChain、Cursor 等 22 个 AI 平台。",
     "cta": {
       "getStarted": "开始使用",
       "browseConfigs": "浏览配置"
@@ -23,7 +23,7 @@
     },
     "socialProof": {
       "tests": "3194+ 个测试",
-      "platforms": "12+ AI 平台",
+      "platforms": "22 个 AI 平台",
       "sources": "17 种输入源",
       "time": "每个技能 15-45 分钟"
     }
@@ -48,7 +48,7 @@
   },
   "about": {
     "heading": "AI 系统的数据层",
-    "description": "Skill Seekers 将 18 种源类型 — 文档站点、GitHub 仓库、PDF、视频、Jupyter 笔记本、Word/EPUB 文档、OpenAPI 规范、Confluence wiki、Notion 页面等 — 转换为结构化 AI 技能和 RAG 就绪知识，支持 12+ AI 平台。",
+    "description": "Skill Seekers 将 18 种源类型 — 文档站点、GitHub 仓库、PDF、视频、Jupyter 笔记本、Word/EPUB 文档、OpenAPI 规范、Confluence wiki、Notion 页面等 — 转换为结构化 AI 技能和 RAG 就绪知识，支持 22 个 AI 平台。",
     "problem": {
       "title": "问题所在",
       "item1": "构建 AI 技能需要数天的预处理 — 抓取文档、分析代码、提取模式",
@@ -60,7 +60,7 @@
       "title": "解决方案",
       "item1": "一个工具处理 18 种源类型：文档、仓库、PDF、视频、笔记本、wiki 等",
       "item2": "深度代码分析检测 27+ 种语言中的模式、架构和设计决策",
-      "item3": "12+ 输出平台：Claude、Gemini、OpenAI、Kimi、DeepSeek、LangChain、Cursor 等",
+      "item3": "22 个输出平台：Claude、Gemini、OpenAI、Kimi、DeepSeek、LangChain、Cursor 等",
       "item4": "端到端 15-45 分钟：从任何来源到生产就绪的 AI 技能"
     },
     "benefits": {
@@ -85,7 +85,7 @@
     "showLess": "显示更少",
     "moreFeatures": "还有 {count} 个功能",
     "formats": {
-      "title": "12+ AI 平台",
+      "title": "22 个 AI 平台",
       "ai": "AI 技能：Claude、Gemini、OpenAI、Kimi、DeepSeek、Qwen、OpenRouter、Together、Fireworks、MiniMax、OpenCode",
       "rag": "RAG/向量：LangChain、LlamaIndex、Chroma、FAISS、Haystack、Qdrant、Weaviate、Pinecone",
       "coding": "AI 编码：Cursor、Windsurf、Cline、Continue.dev、Roo、Aider、Bolt、Kilo",
@@ -103,10 +103,16 @@
         "category": "v3.3.0+"
       },
       {
+        "icon": "🛰️",
+        "title": "AI 项目扫描",
+        "description": "将 scan 指向任意项目 — AI 代理读取清单文件、README、Dockerfile/CI 和源码导入，然后为每个检测到的框架生成一个配置。",
+        "category": "新功能 - v3.9.0"
+      },
+      {
         "icon": "🤖",
         "title": "代理无关架构",
         "description": "所有增强器通过统一 AgentClient 支持 Claude、Kimi、Codex、Copilot、OpenCode 和自定义代理",
-        "category": "新功能 - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🌊",
@@ -118,47 +124,47 @@
         "icon": "🌐",
         "title": "智能 SPA 发现",
         "description": "三层发现引擎：sitemap.xml、llms.txt 和 SPA 导航渲染，用于 JavaScript 站点",
-        "category": "新功能 - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🔧",
         "title": "40 个 MCP 工具",
         "description": "AI 代理可以使用 40 个 MCP 工具跨 10 个类别准备自己的知识",
-        "category": "v3.5.0"
+        "category": "v3.9.0"
       },
       {
         "icon": "🏪",
         "title": "市场发布器",
         "description": "通过 MarketplacePublisher 和 ConfigPublisher 将技能发布到 Claude Code 插件市场仓库",
-        "category": "新功能 - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🖥️",
         "title": "浏览器渲染",
         "description": "使用 Playwright 渲染 JavaScript SPA 站点 — 自动安装 Chromium，处理 React/Vue/Angular",
-        "category": "v3.5.0"
+        "category": "v3.9.0"
       },
       {
         "icon": "🩺",
         "title": "Doctor 命令",
         "description": "8 项诊断检查：Python 版本、依赖项、API 密钥、MCP 服务器、输出目录",
-        "category": "新功能 - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "🛡️",
         "title": "提示注入检测",
         "description": "内置安全工作流扫描抓取的内容以检测注入模式并标记可疑内容",
-        "category": "新功能 - v3.5.0"
+        "category": "v3.5.0"
       },
       {
         "icon": "📊",
-        "title": "12 个 LLM 平台目标",
-        "description": "Claude、Gemini、OpenAI、Kimi、DeepSeek、Qwen、OpenRouter、Together、Fireworks、MiniMax、OpenCode、Markdown",
+        "title": "22 个导出目标",
+        "description": "12 个 LLM 平台、8 个 RAG/向量目标，外加 Atlas 与 IBM Bob — 一次准备，导出到所有目标",
         "category": "v3.4.0"
       },
       {
         "icon": "🔌",
-        "title": "18 个代理安装路径",
+        "title": "19 个代理安装路径",
         "description": "安装技能到 Claude、Cursor、Windsurf、Cline、Continue、Roo、Aider、Bolt、Kilo、Kimi 等",
         "category": "v3.4.0"
       },
@@ -182,8 +188,8 @@
       },
       {
         "icon": "✅",
-        "title": "3194+ 个测试",
-        "description": "生产就绪，整个代码库中有 3194+ 个测试通过",
+        "title": "3,900+ 个测试",
+        "description": "生产就绪，整个代码库中有 3,900+ 个测试通过",
         "category": "质量"
       },
       {
@@ -327,7 +333,7 @@
     ],
     "platforms": {
       "title": "多平台支持",
-      "subtitle": "将您的技能导出到 12+ 个 LLM 平台，配备特定平台优化",
+      "subtitle": "将您的技能导出到 22 个 LLM 平台，配备特定平台优化",
       "items": [
         "🤖 Claude AI",
         "💎 Google Gemini",
@@ -354,7 +360,7 @@
     "values": {
       "tests": "3194+",
       "configs": "24+",
-      "platforms": "12+",
+      "platforms": "22",
       "mcpTools": "40",
       "languages": "27+"
     },
