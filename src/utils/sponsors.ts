@@ -13,7 +13,7 @@
 import fallback from '../data/sponsors.json';
 
 const SPONSORS_JSON_URL =
-  'https://raw.githubusercontent.com/yusufkaraaslan/Skill_Seekers/development/sponsors.json';
+  'https://raw.githubusercontent.com/yusufkaraaslan/Skill_Seekers/HEAD/sponsors.json';
 
 export interface Sponsor {
   name: string;
