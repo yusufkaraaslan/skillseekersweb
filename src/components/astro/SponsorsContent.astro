@@ -77,7 +77,7 @@ const rules = isZh
       '相关性筛选：赞助商必须是对 AI 工具、文档基础设施或开源开发者真正有用的工具或服务。',
       '明确标注：所有付费展示均明确标记为「赞助」。不做原生广告式的模糊处理。',
       '无编辑控制权：赞助购买的是展示位，而非背书。我不会撰写预设结论的评测或推荐。',
-      '无追踪参数：赞助链接为干净 URL。无 UTM 标签、无重定向链、无分析注入。',
+      '链接政策：赞助链接可包含标准 UTM 参数（utm_source、utm_medium、utm_campaign）用于流量统计。不允许联盟/推荐参数、重定向链和分析注入。',
       '书面记录：所有条款在上线前以书面形式（邮件即可）确认。',
       '安全审查：赞助商提交的任何 PR 都与其他 PR 一样经过安全审查。',
       '终止条款：任何一方均可提前 30 天通知终止月度合作。',
@@ -87,7 +87,7 @@ const rules = isZh
       'Relevance filter. Sponsors must be tools or services genuinely useful to developers working with AI tooling, docs infrastructure, or open source.',
       'Clear labeling. All paid placements are explicitly marked "Sponsor" or "Sponsored." No native-ad ambiguity.',
       'No editorial control. A sponsorship buys placement, not endorsement. I don\'t write reviews with predetermined conclusions.',
-      'No tracking parameters. Sponsor links are clean URLs. No UTM tags, no redirect chains, no analytics injection.',
+      'Link policy. Sponsor links may include standard UTM parameters (utm_source, utm_medium, utm_campaign) for traffic measurement. Affiliate/referral parameters, redirect chains, and analytics injection are not permitted.',
       'Written trail. All terms are agreed in writing before anything goes live.',
       'Security review. Any sponsor-submitted PR goes through the same security review as any other PR.',
       'Termination. Either side can end a monthly arrangement with 30 days\' notice.',
@@ -177,8 +177,8 @@ const rules = isZh
       </h2>
       <p class="text-sm text-dark-text-secondary text-center mb-8">
         {isZh
-          ? '所有金额均为每月。一次性展示按月费 2 倍计，投放 30 天。'
-          : 'All amounts are monthly. One-time placements available at 2× the monthly rate for a 30-day run.'}
+          ? '所有赞助均通过 GitHub Sponsors 进行，金额均为每月。一次性方案见赞助页面。'
+          : 'All sponsorships run through GitHub Sponsors. All amounts are monthly. One-time options are available on the Sponsors page.'}
       </p>
       <div class="overflow-x-auto rounded-xl border border-dark-border">
         <table class="w-full text-left text-sm">
